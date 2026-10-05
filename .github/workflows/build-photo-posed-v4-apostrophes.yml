@@ -1,0 +1,93 @@
+name: Build HOTS-04 Photo-Posed V4 Apostrophe Heroes
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-photo-posed-v4-apostrophes.yml'
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {id: '11', hero: "Mal'Ganis"}
+          - {id: '18', hero: "Zul'jin"}
+    env:
+      HERO_NAME: ${{ matrix.hero }}
+
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Prepare corrected skins and V4 pose pipeline
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src=Path('reference_analysis/selected_skin_plan.json')
+          dst=Path('reference_analysis/selected_skin_plan_v4.json')
+          plan=json.loads(src.read_text(encoding='utf-8'))
+          plan['heroes']['Rexxar'].update({'skin_key':'base','directory':'storm_hero_rexxar_base','repository':'HOTS-03','model_path':'storm_hero_rexxar_base/storm_hero_rexxar_base.m3'})
+          plan['heroes']['Lt Morales'].update({'skin_key':'ultimate','directory':'storm_hero_medic_ultimate','repository':'HOTS-03','model_path':'storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3'})
+          plan['heroes']['Dehaka'].update({'skin_key':'mecha','directory':'storm_hero_dehaka_mecha','repository':'HOTS-02','model_path':'storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3'})
+          dst.write_text(json.dumps(plan,indent=2),encoding='utf-8')
+          PY
+          cp tools/exposed_r2/run_photo_posed_job_v3_1_source.py tools/run_photo_posed_job_v4_runtime.py
+          cp tools/exposed_r2/build_one_photo_posed_v3_source.py tools/build_one_photo_posed_v4_runtime.py
+          python tools/patch_photo_pose_v4.py --runner tools/run_photo_posed_job_v4_runtime.py --builder tools/build_one_photo_posed_v4_runtime.py
+          python -m py_compile tools/run_photo_posed_job_v4_runtime.py tools/build_one_photo_posed_v4_runtime.py
+
+      - name: Build photographed pose
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v4_runtime.py --hero "$HERO_NAME" --max-animations 28 --max-coarse-frames 184 --refine-candidates 12
+
+      - name: Stage completed hero package
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          SAFE=$(python - <<'PY'
+          import os,re
+          value=os.environ['HERO_NAME'].strip()
+          value=re.sub(r'[^A-Za-z0-9._-]+','_',value)
+          value=re.sub(r'_+','_',value).strip('_.')
+          print(value or 'hero')
+          PY
+          )
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-$SAFE"
+          STAGE="$RUNNER_TEMP/stage-${{ matrix.id }}"
+          mkdir -p "$STAGE"
+          if [[ -d "$ROOT" ]]; then cp -a "$ROOT"/. "$STAGE"/; fi
+          printf '%s\n' "$HERO_NAME" > "$STAGE/HERO_REQUESTED.txt"
+          printf '%s\n' "$SAFE" > "$STAGE/HERO_SAFE.txt"
+          find "$STAGE" -maxdepth 3 -type f -printf '%P\n' | sort > "$STAGE/STAGED_FILES.txt"
+
+      - name: Upload completed hero package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-posed-v4-apostrophe-${{ matrix.id }}
+          path: ${{ runner.temp }}/stage-${{ matrix.id }}
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: error
