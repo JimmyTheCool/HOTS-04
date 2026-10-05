@@ -1,0 +1,124 @@
+name: Repair HOTS-04 Photo-Posed V4 Alarak
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repair-photo-posed-v4-alarak.yml'
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  SOURCE_RUN_ID: '37349602397'
+
+jobs:
+  repair:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Download frozen photographed-pose source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/source"
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name photo-posed-v4-01 --dir "$RUNNER_TEMP/source"
+          test -f "$RUNNER_TEMP/source/HeroBuild/Initial/Alarak.stl"
+          test -f "$RUNNER_TEMP/source/HeroBuild/Raw/Alarak.stl"
+          test -f "$RUNNER_TEMP/source/HeroBuild/Reports/pose_match.json"
+
+      - name: Install and prepare repair toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends git
+          python -m pip install --disable-pip-version-check --quiet numpy==2.2.6 scipy==1.15.3 trimesh==4.8.3 pymeshfix==0.18.1 fast-simplification==0.1.12 matplotlib==3.10.1
+          git clone --filter=blob:none --sparse --depth 1 --branch chatgpt-stl-builder https://github.com/JimmyTheCool/HOTS-03.git "$RUNNER_TEMP/HOTS-03-tools"
+          git -C "$RUNNER_TEMP/HOTS-03-tools" sparse-checkout set ci
+          cp "$RUNNER_TEMP/HOTS-03-tools/ci/repair_stl_collection.py" "$RUNNER_TEMP/repair-normal.py"
+          for patch in patch_repair_dimension_retention.py patch_repair_voxel_translation.py patch_repair_face_connectivity.py; do
+            python "$RUNNER_TEMP/HOTS-03-tools/ci/$patch" "$RUNNER_TEMP/repair-normal.py"
+          done
+          cp "$RUNNER_TEMP/repair-normal.py" "$RUNNER_TEMP/repair-voxel.py"
+          python "$RUNNER_TEMP/HOTS-03-tools/ci/patch_repair_force_voxel.py" "$RUNNER_TEMP/repair-voxel.py"
+
+      - name: Rebuild high-detail and robust Alarak meshes
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v4-fix-Alarak"
+          mkdir -p "$ROOT/HighDetail" "$ROOT/Robust" "$ROOT/Raw" "$ROOT/Reports/Alarak" "$RUNNER_TEMP/high-input" "$RUNNER_TEMP/robust-input"
+          cp "$RUNNER_TEMP/source/HeroBuild/Raw/Alarak.stl" "$ROOT/Raw/Alarak.stl"
+          cp "$RUNNER_TEMP/source/HeroBuild/Initial/Alarak.stl" "$RUNNER_TEMP/high-input/Alarak.stl"
+          cp "$RUNNER_TEMP/source/HeroBuild/Initial/Alarak.stl" "$RUNNER_TEMP/robust-input/Alarak.stl"
+          cp -a "$RUNNER_TEMP/source/Reports/Alarak/." "$ROOT/Reports/Alarak/" || true
+          cp -a "$RUNNER_TEMP/source/HeroBuild/Reports/." "$ROOT/Reports/Alarak/"
+
+          # At 0.20 mm the source exceeded the target and simplification opened the mesh.
+          # A 0.25 mm direct marching-cubes union remains dense while avoiding destructive decimation.
+          python "$RUNNER_TEMP/repair-voxel.py" \
+            --input "$RUNNER_TEMP/high-input" --output "$ROOT/HighDetail" \
+            --report-json "$ROOT/Reports/Alarak/fine_repair_r2.json" \
+            --report-csv "$ROOT/Reports/Alarak/fine_repair_r2.csv" \
+            --expected 1 --pitch 0.25 --max-triangles 1500000 --target-triangles 1500000
+
+          python "$RUNNER_TEMP/repair-voxel.py" \
+            --input "$RUNNER_TEMP/robust-input" --output "$ROOT/Robust" \
+            --report-json "$ROOT/Reports/Alarak/robust_repair.json" \
+            --report-csv "$ROOT/Reports/Alarak/robust_repair.csv" \
+            --expected 1 --pitch 0.62 --max-triangles 500000 --target-triangles 440000
+
+          python "$RUNNER_TEMP/HOTS-03-tools/ci/validate_stl_collection.py" \
+            --input "$ROOT/HighDetail" --report-json "$ROOT/Reports/Alarak/high_detail_validation.json" \
+            --report-csv "$ROOT/Reports/Alarak/high_detail_validation.csv" \
+            --checksums "$ROOT/Reports/Alarak/HIGH_DETAIL_SHA256SUMS.txt" --expected 1 --max-triangles 1500000
+          python "$RUNNER_TEMP/HOTS-03-tools/ci/validate_stl_collection.py" \
+            --input "$ROOT/Robust" --report-json "$ROOT/Reports/Alarak/robust_validation.json" \
+            --report-csv "$ROOT/Reports/Alarak/robust_validation.csv" \
+            --checksums "$ROOT/Reports/Alarak/ROBUST_SHA256SUMS.txt" --expected 1 --max-triangles 500000
+
+          python - "$ROOT" <<'PY'
+          import json,sys
+          from pathlib import Path
+          root=Path(sys.argv[1]); reports=root/'Reports'/'Alarak'
+          pose=json.loads((reports/'pose_match.json').read_text(encoding='utf-8'))
+          selected=pose['selected']
+          high=json.loads((reports/'high_detail_validation.json').read_text(encoding='utf-8'))
+          robust=json.loads((reports/'robust_validation.json').read_text(encoding='utf-8'))
+          quality={
+            'hero':'Alarak','safe':'Alarak','skin_key':'base',
+            'model_path':'storm_hero_alarak_base/storm_hero_alarak_base.m3',
+            'selected_animation':selected.get('animation_name'),'selected_frame':selected.get('frame'),
+            'pose_score':selected.get('pose_score'),'ground_support_score':selected.get('ground_support_score'),
+            'rest_pose_baseline_score':(pose.get('rest_pose_baseline') or {}).get('score'),
+            'improvement_over_rest_pose':pose.get('improvement_over_rest_pose'),
+            'camera':selected.get('camera'),'coarse_frames_tested':pose.get('coarse_frames_tested'),
+            'refined_frames_tested':pose.get('refined_frames_tested'),
+            'high_detail_validation_passed':high.get('passed'),
+            'robust_validation_passed':robust.get('passed'),
+            'high_detail_voxel_pitch_mm':0.25,'high_detail_triangle_limit':1500000,
+            'repair_note':'0.25 mm direct watertight voxel union; no destructive high-detail decimation',
+          }
+          (reports/'photo_pose_quality_summary.json').write_text(json.dumps(quality,indent=2),encoding='utf-8')
+          (root/'HERO_COMPLETE.txt').write_text(f"Alarak\nbase\n{selected.get('animation_name')}\nframe={selected.get('frame')}\nscore={selected.get('pose_score')}\n",encoding='utf-8')
+          if not (high.get('passed') and robust.get('passed')): raise SystemExit(1)
+          PY
+
+      - name: Upload repaired Alarak package
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-posed-v4-fix-01
+          path: ${{ runner.temp }}/HOTS04-photo-posed-v4-fix-Alarak
+          retention-days: 90
+          compression-level: 0
