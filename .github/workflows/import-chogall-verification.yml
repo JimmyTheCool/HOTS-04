@@ -1,0 +1,55 @@
+name: Import Completed Cho-Gall Verification
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-chogall-verification.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download completed verification artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/chogall-artifact"
+          gh api \
+            -H 'Accept: application/vnd.github+json' \
+            /repos/JimmyTheCool/HOTS-04/actions/artifacts/11336213966/zip \
+            > "$RUNNER_TEMP/chogall.zip"
+          unzip -q "$RUNNER_TEMP/chogall.zip" -d "$RUNNER_TEMP/chogall-artifact"
+          find "$RUNNER_TEMP/chogall-artifact" -type f -print
+          mkdir -p reference_analysis/geometry_verification
+          report="$(find "$RUNNER_TEMP/chogall-artifact" -type f -path '*/geometry_verification/Cho-Gall.json' | head -n 1)"
+          csv="$(find "$RUNNER_TEMP/chogall-artifact" -type f -path '*/geometry_verification/Cho-Gall.csv' | head -n 1)"
+          image="$(find "$RUNNER_TEMP/chogall-artifact" -type f -path '*/geometry_verification/Cho-Gall.jpg' | head -n 1)"
+          test -n "$report" && test -f "$report"
+          cp "$report" reference_analysis/geometry_verification/Cho-Gall.json
+          cp "$csv" reference_analysis/geometry_verification/Cho-Gall.csv
+          cp "$image" reference_analysis/geometry_verification/Cho-Gall.jpg
+          cat reference_analysis/geometry_verification/Cho-Gall.json
+
+      - name: Commit result and trigger plan generation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/geometry_verification
+          git commit -m 'Import completed Cho-Gall skin geometry verification'
+          git pull --rebase origin main
+          git push origin HEAD:main
