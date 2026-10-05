@@ -1,0 +1,139 @@
+{
+  "hero": "Cho-Gall",
+  "photos": [
+    "Cho-Gall01.jpg",
+    "Cho-Gall02.jpg",
+    "Cho-Gall03.jpg",
+    "Cho-Gall04.jpg"
+  ],
+  "angle_step": 10,
+  "selected_skin_key": "ultimate",
+  "selection_method": "68% multi-angle silhouette + 32% CLIP appearance",
+  "ranked_candidates": [
+    {
+      "skin_key": "ultimate",
+      "stl_path": "/home/runner/work/_temp/chogall-verify/candidates/ultimate.stl",
+      "silhouette_score": 0.5051322526896008,
+      "best_sequence": {
+        "base_angle": 50,
+        "direction": -1,
+        "angles": [
+          50,
+          320,
+          230,
+          140
+        ],
+        "per_view_scores": [
+          0.41488820170465085,
+          0.5447885484900604,
+          0.4557414534384292,
+          0.605110807125263
+        ]
+      },
+      "clip_score": 0.42759765863418575,
+      "silhouette_normalized": 1.0,
+      "clip_normalized": 0.9226328665251569,
+      "combined_score": 0.9752425172880502
+    },
+    {
+      "skin_key": "corruptor",
+      "stl_path": "/home/runner/work/_temp/chogall-verify/candidates/corruptor.stl",
+      "silhouette_score": 0.4991773245099793,
+      "best_sequence": {
+        "base_angle": 50,
+        "direction": -1,
+        "angles": [
+          50,
+          320,
+          230,
+          140
+        ],
+        "per_view_scores": [
+          0.4053730918133738,
+          0.5547699426605697,
+          0.44332762175520374,
+          0.5932386418107701
+        ]
+      },
+      "clip_score": 0.41583526968955997,
+      "silhouette_normalized": 0.8721686973099896,
+      "clip_normalized": 0.5986940583814341,
+      "combined_score": 0.7846568128528518
+    },
+    {
+      "skin_key": "base",
+      "stl_path": "/home/runner/work/_temp/chogall-verify/candidates/base.stl",
+      "silhouette_score": 0.47264911899702733,
+      "best_sequence": {
+        "base_angle": 130,
+        "direction": 1,
+        "angles": [
+          130,
+          220,
+          310,
+          40
+        ],
+        "per_view_scores": [
+          0.37748383552708675,
+          0.5162054006202336,
+          0.41662241010197676,
+          0.5802848297388121
+        ]
+      },
+      "clip_score": 0.43040690004825594,
+      "silhouette_normalized": 0.302701700150587,
+      "clip_normalized": 1.0,
+      "combined_score": 0.5258371561023991
+    },
+    {
+      "skin_key": "altered20",
+      "stl_path": "/home/runner/work/_temp/chogall-verify/candidates/altered20.stl",
+      "silhouette_score": 0.45854798065052016,
+      "best_sequence": {
+        "base_angle": 120,
+        "direction": 1,
+        "angles": [
+          120,
+          210,
+          300,
+          30
+        ],
+        "per_view_scores": [
+          0.3545048867940941,
+          0.5231150840711989,
+          0.3879082526327311,
+          0.5686636991040565
+        ]
+      },
+      "clip_score": 0.4235636246204376,
+      "silhouette_normalized": 0.0,
+      "clip_normalized": 0.8115346723932688,
+      "combined_score": 0.25969109516584604
+    },
+    {
+      "skin_key": "pumpkin",
+      "stl_path": "/home/runner/work/_temp/chogall-verify/candidates/pumpkin.stl",
+      "silhouette_score": 0.4700546389679907,
+      "best_sequence": {
+        "base_angle": 60,
+        "direction": -1,
+        "angles": [
+          60,
+          330,
+          240,
+          150
+        ],
+        "per_view_scores": [
+          0.37422286440202435,
+          0.5204271817962323,
+          0.4107938688305027,
+          0.5747746408432035
+        ]
+      },
+      "clip_score": 0.39409637272357945,
+      "silhouette_normalized": 0.24700736565803455,
+      "clip_normalized": 0.0,
+      "combined_score": 0.1679650086474635
+    }
+  ]
+}
