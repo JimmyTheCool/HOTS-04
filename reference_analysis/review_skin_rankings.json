@@ -1,0 +1,1056 @@
+{
+  "Rexxar": {
+    "images": [
+      "Rexxar01.jpg",
+      "Rexxar02.jpg",
+      "Rexxar03.jpg",
+      "Rexxar04.jpg"
+    ],
+    "captions": [
+      "league league league league league league league league league league league league league league league league league league league league league",
+      "a screenshot of two dogs in a space setting",
+      "a screenshot of a group of bears in a space setting",
+      "an image of a group of monsters in a space setting"
+    ],
+    "recommended_skin_key": "frost",
+    "recommended_directory": "storm_hero_rexxar_frost",
+    "recommended_repository": "HOTS-03",
+    "recommended_model_path": "storm_hero_rexxar_frost/storm_hero_rexxar_frost.m3",
+    "score_margin": 0.001090607643127517,
+    "probability_entropy": 1.3429265037821638,
+    "confidence": "low",
+    "ranked_candidates": [
+      {
+        "skin_key": "frost",
+        "canonical_directory": "storm_hero_rexxar_frost",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_rexxar_frost/storm_hero_rexxar_frost.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_rexxar_frost",
+            "model_path": "storm_hero_rexxar_frost/storm_hero_rexxar_frost.m3",
+            "all_m3_paths": [
+              "storm_hero_rexxar_frost/storm_hero_rexxar_frost.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Rexxar wearing a frost covered northern hunter appearance",
+          "Rexxar from Heroes of the Storm, a frost covered northern hunter appearance",
+          "a 3D video game model of Rexxar, a frost covered northern hunter appearance",
+          "the frost skin for Rexxar in Heroes of the Storm",
+          "Rexxar, silhouette and costume showing a frost covered northern hunter appearance"
+        ],
+        "image_cosine": 0.35957199335098267,
+        "caption_cosine": 0.6726287007331848,
+        "combined_score": 0.403399932384491,
+        "per_view_image_cosine": [
+          0.3582596182823181,
+          0.34039509296417236,
+          0.3646855652332306,
+          0.33691686391830444
+        ],
+        "probability": 0.32983259950495186
+      },
+      {
+        "skin_key": "base",
+        "canonical_directory": "storm_hero_rexxar_base",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_rexxar_base/storm_hero_rexxar_base.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_rexxar_base",
+            "model_path": "storm_hero_rexxar_base/storm_hero_rexxar_base.m3",
+            "all_m3_paths": [
+              "storm_hero_rexxar_base/storm_hero_rexxar_base.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Rexxar wearing the default original appearance and standard armour",
+          "Rexxar from Heroes of the Storm, the default original appearance and standard armour",
+          "a 3D video game model of Rexxar, the default original appearance and standard armour",
+          "the base skin for Rexxar in Heroes of the Storm",
+          "Rexxar, silhouette and costume showing the default original appearance and standard armour"
+        ],
+        "image_cosine": 0.3560883402824402,
+        "caption_cosine": 0.6862382292747498,
+        "combined_score": 0.4023093247413635,
+        "per_view_image_cosine": [
+          0.3560299277305603,
+          0.34731990098953247,
+          0.3463424742221832,
+          0.33699846267700195
+        ],
+        "probability": 0.31575321579445037
+      },
+      {
+        "skin_key": "marine",
+        "canonical_directory": "storm_hero_rexxar_marine",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_rexxar_marine/storm_hero_rexxar_marine.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_rexxar_marine",
+            "model_path": "storm_hero_rexxar_marine/storm_hero_rexxar_marine.m3",
+            "all_m3_paths": [
+              "storm_hero_rexxar_marine/storm_hero_rexxar_marine.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Rexxar wearing a StarCraft space marine power armour appearance",
+          "Rexxar from Heroes of the Storm, a StarCraft space marine power armour appearance",
+          "a 3D video game model of Rexxar, a StarCraft space marine power armour appearance",
+          "the marine skin for Rexxar in Heroes of the Storm",
+          "Rexxar, silhouette and costume showing a StarCraft space marine power armour appearance"
+        ],
+        "image_cosine": 0.33851587772369385,
+        "caption_cosine": 0.6969848275184631,
+        "combined_score": 0.3887015306949615,
+        "per_view_image_cosine": [
+          0.33974534273147583,
+          0.3307570517063141,
+          0.33166027069091797,
+          0.316097229719162
+        ],
+        "probability": 0.1832129585066025
+      },
+      {
+        "skin_key": "ultimate",
+        "canonical_directory": "storm_hero_rexxar_ultimate",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_rexxar_ultimate/storm_hero_rexxar_ultimate.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_rexxar_ultimate",
+            "model_path": "storm_hero_rexxar_ultimate/storm_hero_rexxar_ultimate.m3",
+            "all_m3_paths": [
+              "storm_hero_rexxar_ultimate/storm_hero_rexxar_ultimate.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Rexxar wearing the ornate master skin with upgraded elaborate armour",
+          "Rexxar from Heroes of the Storm, the ornate master skin with upgraded elaborate armour",
+          "a 3D video game model of Rexxar, the ornate master skin with upgraded elaborate armour",
+          "the ultimate skin for Rexxar in Heroes of the Storm",
+          "Rexxar, silhouette and costume showing the ornate master skin with upgraded elaborate armour"
+        ],
+        "image_cosine": 0.34656772017478943,
+        "caption_cosine": 0.6354146599769592,
+        "combined_score": 0.38700629174709317,
+        "per_view_image_cosine": [
+          0.35484856367111206,
+          0.32792213559150696,
+          0.33755260705947876,
+          0.32929208874702454
+        ],
+        "probability": 0.17120122619399533
+      }
+    ]
+  },
+  "Lt Morales": {
+    "images": [
+      "Lt Morales01.jpg",
+      "Lt Morales02.jpg",
+      "Lt Morales03.jpg",
+      "Lt Morales04.jpg"
+    ],
+    "captions": [
+      "an image of a giant robot in a space setting",
+      "an image of a man in a suit with a green light on his chest",
+      "a screenshot of a giant robot with green glowing eyes",
+      "a screenshot of a giant robot and a giant robot in a screenshot of a giant robot"
+    ],
+    "recommended_skin_key": "ultimate",
+    "recommended_directory": "storm_hero_medic_ultimate",
+    "recommended_repository": "HOTS-03",
+    "recommended_model_path": "storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3",
+    "score_margin": 0.01420784950256343,
+    "probability_entropy": 1.6613588610406944,
+    "confidence": "medium",
+    "ranked_candidates": [
+      {
+        "skin_key": "ultimate",
+        "canonical_directory": "storm_hero_medic_ultimate",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_ultimate",
+            "model_path": "storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3"
+            ]
+          },
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_ultimate_shield",
+            "model_path": "storm_hero_medic_ultimate_shield/storm_hero_medic_ultimate_shield.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_ultimate_shield/storm_hero_medic_ultimate_shield.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Lieutenant Morales the StarCraft medic wearing the ornate master skin with upgraded elaborate armour",
+          "Lieutenant Morales the StarCraft medic from Heroes of the Storm, the ornate master skin with upgraded elaborate armour",
+          "a 3D video game model of Lieutenant Morales the StarCraft medic, the ornate master skin with upgraded elaborate armour",
+          "the ultimate skin for Lieutenant Morales the StarCraft medic in Heroes of the Storm",
+          "Lieutenant Morales the StarCraft medic, silhouette and costume showing the ornate master skin with upgraded elaborate armour"
+        ],
+        "image_cosine": 0.35829800367355347,
+        "caption_cosine": 0.6740259528160095,
+        "combined_score": 0.40249991655349726,
+        "per_view_image_cosine": [
+          0.3538893163204193,
+          0.35330232977867126,
+          0.35545670986175537,
+          0.34114760160446167
+        ],
+        "probability": 0.3417960979982618
+      },
+      {
+        "skin_key": "enforcer",
+        "canonical_directory": "storm_hero_medic_enforcer",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_medic_enforcer/storm_hero_medic_enforcer.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_enforcer",
+            "model_path": "storm_hero_medic_enforcer/storm_hero_medic_enforcer.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_enforcer/storm_hero_medic_enforcer.m3"
+            ]
+          },
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_enforcer_shield",
+            "model_path": "storm_hero_medic_enforcer_shield/storm_hero_medic_enforcer_shield.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_enforcer_shield/storm_hero_medic_enforcer_shield.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Lieutenant Morales the StarCraft medic wearing a heavily armoured futuristic enforcer appearance",
+          "Lieutenant Morales the StarCraft medic from Heroes of the Storm, a heavily armoured futuristic enforcer appearance",
+          "a 3D video game model of Lieutenant Morales the StarCraft medic, a heavily armoured futuristic enforcer appearance",
+          "the enforcer skin for Lieutenant Morales the StarCraft medic in Heroes of the Storm",
+          "Lieutenant Morales the StarCraft medic, silhouette and costume showing a heavily armoured futuristic enforcer appearance"
+        ],
+        "image_cosine": 0.33607548475265503,
+        "caption_cosine": 0.7090510725975037,
+        "combined_score": 0.38829206705093383,
+        "per_view_image_cosine": [
+          0.3321610391139984,
+          0.3337690830230713,
+          0.33567118644714355,
+          0.31512749195098877
+        ],
+        "probability": 0.19362056134082192
+      },
+      {
+        "skin_key": "base",
+        "canonical_directory": "storm_hero_medic_base",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_medic_base/storm_hero_medic_base.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_base",
+            "model_path": "storm_hero_medic_base/storm_hero_medic_base.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_base/storm_hero_medic_base.m3"
+            ]
+          },
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_base_shield",
+            "model_path": "storm_hero_medic_base_shield/storm_hero_medic_base_shield.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_base_shield/storm_hero_medic_base_shield.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Lieutenant Morales the StarCraft medic wearing the default original appearance and standard armour",
+          "Lieutenant Morales the StarCraft medic from Heroes of the Storm, the default original appearance and standard armour",
+          "a 3D video game model of Lieutenant Morales the StarCraft medic, the default original appearance and standard armour",
+          "the base skin for Lieutenant Morales the StarCraft medic in Heroes of the Storm",
+          "Lieutenant Morales the StarCraft medic, silhouette and costume showing the default original appearance and standard armour"
+        ],
+        "image_cosine": 0.335113525390625,
+        "caption_cosine": 0.684576690196991,
+        "combined_score": 0.38403836846351624,
+        "per_view_image_cosine": [
+          0.33141690492630005,
+          0.32965219020843506,
+          0.33603212237358093,
+          0.31585896015167236
+        ],
+        "probability": 0.16332669046372472
+      },
+      {
+        "skin_key": "uther_medic",
+        "canonical_directory": "storm_hero_uther_medic",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_uther_medic/storm_hero_uther_medic.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_uther_medic",
+            "model_path": "storm_hero_uther_medic/storm_hero_uther_medic.m3",
+            "all_m3_paths": [
+              "storm_hero_uther_medic/storm_hero_uther_medic.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Lieutenant Morales the StarCraft medic wearing uther medic themed appearance",
+          "Lieutenant Morales the StarCraft medic from Heroes of the Storm, uther medic themed appearance",
+          "a 3D video game model of Lieutenant Morales the StarCraft medic, uther medic themed appearance",
+          "the uther medic skin for Lieutenant Morales the StarCraft medic in Heroes of the Storm",
+          "Lieutenant Morales the StarCraft medic, silhouette and costume showing uther medic themed appearance"
+        ],
+        "image_cosine": 0.33321186900138855,
+        "caption_cosine": 0.6511850953102112,
+        "combined_score": 0.3777281206846237,
+        "per_view_image_cosine": [
+          0.32715022563934326,
+          0.33013883233070374,
+          0.33083462715148926,
+          0.31738603115081787
+        ],
+        "probability": 0.12689278531869164
+      },
+      {
+        "skin_key": "apoth",
+        "canonical_directory": "storm_hero_medic_apoth",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_medic_apoth/storm_hero_medic_apoth.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_apoth",
+            "model_path": "storm_hero_medic_apoth/storm_hero_medic_apoth.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_apoth/storm_hero_medic_apoth.m3"
+            ]
+          },
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_apoth_shield",
+            "model_path": "storm_hero_medic_apoth_shield/storm_hero_medic_apoth_shield.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_apoth_shield/storm_hero_medic_apoth_shield.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Lieutenant Morales the StarCraft medic wearing an apothecary plague doctor medical appearance",
+          "Lieutenant Morales the StarCraft medic from Heroes of the Storm, an apothecary plague doctor medical appearance",
+          "a 3D video game model of Lieutenant Morales the StarCraft medic, an apothecary plague doctor medical appearance",
+          "the apoth skin for Lieutenant Morales the StarCraft medic in Heroes of the Storm",
+          "Lieutenant Morales the StarCraft medic, silhouette and costume showing an apothecary plague doctor medical appearance"
+        ],
+        "image_cosine": 0.32825741171836853,
+        "caption_cosine": 0.6582726240158081,
+        "combined_score": 0.3744595414400101,
+        "per_view_image_cosine": [
+          0.3138452172279358,
+          0.3257601261138916,
+          0.3329617381095886,
+          0.31353121995925903
+        ],
+        "probability": 0.11134119883581291
+      },
+      {
+        "skin_key": "love",
+        "canonical_directory": "storm_hero_medic_love",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_medic_love/storm_hero_medic_love.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_love",
+            "model_path": "storm_hero_medic_love/storm_hero_medic_love.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_love/storm_hero_medic_love.m3"
+            ]
+          },
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_medic_love_shield",
+            "model_path": "storm_hero_medic_love_shield/storm_hero_medic_love_shield.m3",
+            "all_m3_paths": [
+              "storm_hero_medic_love_shield/storm_hero_medic_love_shield.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Lieutenant Morales the StarCraft medic wearing a pink heart themed love doctor appearance",
+          "Lieutenant Morales the StarCraft medic from Heroes of the Storm, a pink heart themed love doctor appearance",
+          "a 3D video game model of Lieutenant Morales the StarCraft medic, a pink heart themed love doctor appearance",
+          "the love skin for Lieutenant Morales the StarCraft medic in Heroes of the Storm",
+          "Lieutenant Morales the StarCraft medic, silhouette and costume showing a pink heart themed love doctor appearance"
+        ],
+        "image_cosine": 0.3128981292247772,
+        "caption_cosine": 0.6509966254234314,
+        "combined_score": 0.3602319186925888,
+        "per_view_image_cosine": [
+          0.30545949935913086,
+          0.30841225385665894,
+          0.31726163625717163,
+          0.29478806257247925
+        ],
+        "probability": 0.06302266604268711
+      }
+    ]
+  },
+  "Dehaka": {
+    "images": [
+      "Dehaka01.jpg",
+      "Dehaka02.jpg",
+      "Dehaka03.jpg",
+      "Dehaka04.jpg"
+    ],
+    "captions": [
+      "a yellow and black robot standing in front of a planet",
+      "an image of a yellow and black robot standing in front of a planet",
+      "an image of a giant robot in a space setting",
+      "an image of a yellow and black robot in a space setting"
+    ],
+    "recommended_skin_key": "mecha",
+    "recommended_directory": "storm_hero_dehaka_mecha",
+    "recommended_repository": "HOTS-02",
+    "recommended_model_path": "storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3",
+    "score_margin": 0.005510986447334332,
+    "probability_entropy": 1.5685821649158789,
+    "confidence": "low",
+    "ranked_candidates": [
+      {
+        "skin_key": "mecha",
+        "canonical_directory": "storm_hero_dehaka_mecha",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_dehaka_mecha",
+            "model_path": "storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3",
+            "all_m3_paths": [
+              "storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Dehaka wearing a futuristic robotic mecha appearance",
+          "Dehaka from Heroes of the Storm, a futuristic robotic mecha appearance",
+          "a 3D video game model of Dehaka, a futuristic robotic mecha appearance",
+          "the mecha skin for Dehaka in Heroes of the Storm",
+          "Dehaka, silhouette and costume showing a futuristic robotic mecha appearance"
+        ],
+        "image_cosine": 0.3413551151752472,
+        "caption_cosine": 0.6269958019256592,
+        "combined_score": 0.3813448113203049,
+        "per_view_image_cosine": [
+          0.33274340629577637,
+          0.34512561559677124,
+          0.32107990980148315,
+          0.3361020088195801
+        ],
+        "probability": 0.29091592372203395
+      },
+      {
+        "skin_key": "vhaka",
+        "canonical_directory": "storm_hero_dehaka_vhaka",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_dehaka_vhaka/storm_hero_dehaka_vhaka.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_dehaka_vhaka",
+            "model_path": "storm_hero_dehaka_vhaka/storm_hero_dehaka_vhaka.m3",
+            "all_m3_paths": [
+              "storm_hero_dehaka_vhaka/storm_hero_dehaka_vhaka.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Dehaka wearing a savage dinosaur beast appearance",
+          "Dehaka from Heroes of the Storm, a savage dinosaur beast appearance",
+          "a 3D video game model of Dehaka, a savage dinosaur beast appearance",
+          "the vhaka skin for Dehaka in Heroes of the Storm",
+          "Dehaka, silhouette and costume showing a savage dinosaur beast appearance"
+        ],
+        "image_cosine": 0.33751678466796875,
+        "caption_cosine": 0.6112099289894104,
+        "combined_score": 0.37583382487297057,
+        "per_view_image_cosine": [
+          0.3192942142486572,
+          0.33877649903297424,
+          0.3342251777648926,
+          0.3277431130409241
+        ],
+        "probability": 0.23336292169838663
+      },
+      {
+        "skin_key": "ultimate",
+        "canonical_directory": "storm_hero_dehaka_ultimate",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_dehaka_ultimate/storm_hero_dehaka_ultimate.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_dehaka_ultimate",
+            "model_path": "storm_hero_dehaka_ultimate/storm_hero_dehaka_ultimate.m3",
+            "all_m3_paths": [
+              "storm_hero_dehaka_ultimate/storm_hero_dehaka_ultimate.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Dehaka wearing the ornate master skin with upgraded elaborate armour",
+          "Dehaka from Heroes of the Storm, the ornate master skin with upgraded elaborate armour",
+          "a 3D video game model of Dehaka, the ornate master skin with upgraded elaborate armour",
+          "the ultimate skin for Dehaka in Heroes of the Storm",
+          "Dehaka, silhouette and costume showing the ornate master skin with upgraded elaborate armour"
+        ],
+        "image_cosine": 0.34019333124160767,
+        "caption_cosine": 0.5531947612762451,
+        "combined_score": 0.3700135314464569,
+        "per_view_image_cosine": [
+          0.3266652226448059,
+          0.34894174337387085,
+          0.32186949253082275,
+          0.3330305218696594
+        ],
+        "probability": 0.18489407777763267
+      },
+      {
+        "skin_key": "base",
+        "canonical_directory": "storm_hero_dehaka_base",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_dehaka_base/storm_hero_dehaka_base.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_dehaka_base",
+            "model_path": "storm_hero_dehaka_base/storm_hero_dehaka_base.m3",
+            "all_m3_paths": [
+              "storm_hero_dehaka_base/storm_hero_dehaka_base.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Dehaka wearing the default original appearance and standard armour",
+          "Dehaka from Heroes of the Storm, the default original appearance and standard armour",
+          "a 3D video game model of Dehaka, the default original appearance and standard armour",
+          "the base skin for Dehaka in Heroes of the Storm",
+          "Dehaka, silhouette and costume showing the default original appearance and standard armour"
+        ],
+        "image_cosine": 0.33213046193122864,
+        "caption_cosine": 0.5839782953262329,
+        "combined_score": 0.36738915860652926,
+        "per_view_image_cosine": [
+          0.3224814534187317,
+          0.3345704972743988,
+          0.32227885723114014,
+          0.3196420967578888
+        ],
+        "probability": 0.16646884835639317
+      },
+      {
+        "skin_key": "toys18",
+        "canonical_directory": "storm_hero_dehaka_toys18",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_dehaka_toys18/storm_hero_dehaka_toys18.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_dehaka_toys18",
+            "model_path": "storm_hero_dehaka_toys18/storm_hero_dehaka_toys18.m3",
+            "all_m3_paths": [
+              "storm_hero_dehaka_toys18/storm_hero_dehaka_toys18.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Dehaka wearing a colourful plastic toy appearance",
+          "Dehaka from Heroes of the Storm, a colourful plastic toy appearance",
+          "a 3D video game model of Dehaka, a colourful plastic toy appearance",
+          "the toys 18 skin for Dehaka in Heroes of the Storm",
+          "Dehaka, silhouette and costume showing a colourful plastic toy appearance"
+        ],
+        "image_cosine": 0.328473836183548,
+        "caption_cosine": 0.5543615221977234,
+        "combined_score": 0.36009811222553256,
+        "per_view_image_cosine": [
+          0.32243359088897705,
+          0.3316703736782074,
+          0.3123331069946289,
+          0.31823477149009705
+        ],
+        "probability": 0.12435822844555355
+      }
+    ]
+  },
+  "Nova": {
+    "images": [
+      "Nova01.jpg",
+      "Nova02.jpg",
+      "Nova03.jpg",
+      "Nova04.jpg"
+    ],
+    "captions": [
+      "a woman in a futuristic suit holding a gun",
+      "a screenshot of a female with a gun in her hand",
+      "a screenshot of a female with a gun in her hand",
+      "an image of a woman with a gun in front of a planet"
+    ],
+    "recommended_skin_key": "base",
+    "recommended_directory": "storm_hero_nova_base",
+    "recommended_repository": "HOTS-03",
+    "recommended_model_path": "storm_hero_nova_base/storm_hero_nova_base_v05.m3",
+    "score_margin": 0.009562899470329289,
+    "probability_entropy": 1.8124070335565623,
+    "confidence": "low",
+    "ranked_candidates": [
+      {
+        "skin_key": "base",
+        "canonical_directory": "storm_hero_nova_base",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_nova_base/storm_hero_nova_base_v05.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_nova_base",
+            "model_path": "storm_hero_nova_base/storm_hero_nova_base_v05.m3",
+            "all_m3_paths": [
+              "storm_hero_nova_base/storm_hero_nova_base_v05.m3"
+            ]
+          },
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_nova_base_holo",
+            "model_path": "storm_hero_nova_base_holo/storm_hero_nova_base_holo.m3",
+            "all_m3_paths": [
+              "storm_hero_nova_base_holo/storm_hero_nova_base_holo.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Nova wearing the default original appearance and standard armour",
+          "Nova from Heroes of the Storm, the default original appearance and standard armour",
+          "a 3D video game model of Nova, the default original appearance and standard armour",
+          "the base skin for Nova in Heroes of the Storm",
+          "Nova, silhouette and costume showing the default original appearance and standard armour"
+        ],
+        "image_cosine": 0.3654823899269104,
+        "caption_cosine": 0.7400376796722412,
+        "combined_score": 0.4179201304912567,
+        "per_view_image_cosine": [
+          0.3531835377216339,
+          0.36304357647895813,
+          0.3561979830265045,
+          0.34979578852653503
+        ],
+        "probability": 0.2904552559655048
+      },
+      {
+        "skin_key": "widow",
+        "canonical_directory": "storm_hero_nova_widow",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_nova_widow/storm_hero_nova_widow_v05.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_nova_widow",
+            "model_path": "storm_hero_nova_widow/storm_hero_nova_widow_v05.m3",
+            "all_m3_paths": [
+              "storm_hero_nova_widow/storm_hero_nova_widow_v05.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Nova wearing a Widowmaker inspired sniper appearance",
+          "Nova from Heroes of the Storm, a Widowmaker inspired sniper appearance",
+          "a 3D video game model of Nova, a Widowmaker inspired sniper appearance",
+          "the widow skin for Nova in Heroes of the Storm",
+          "Nova, silhouette and costume showing a Widowmaker inspired sniper appearance"
+        ],
+        "image_cosine": 0.35854312777519226,
+        "caption_cosine": 0.7143581509590149,
+        "combined_score": 0.4083572310209274,
+        "per_view_image_cosine": [
+          0.3444852828979492,
+          0.364308625459671,
+          0.33590322732925415,
+          0.3505203425884247
+        ],
+        "probability": 0.19813201707165196
+      },
+      {
+        "skin_key": "spectre",
+        "canonical_directory": "storm_hero_nova_spectre",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_nova_spectre/storm_hero_nova_spectre_v05.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_nova_spectre",
+            "model_path": "storm_hero_nova_spectre/storm_hero_nova_spectre_v05.m3",
+            "all_m3_paths": [
+              "storm_hero_nova_spectre/storm_hero_nova_spectre_v05.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Nova wearing a dark stealth spectre operative appearance",
+          "Nova from Heroes of the Storm, a dark stealth spectre operative appearance",
+          "a 3D video game model of Nova, a dark stealth spectre operative appearance",
+          "the spectre skin for Nova in Heroes of the Storm",
+          "Nova, silhouette and costume showing a dark stealth spectre operative appearance"
+        ],
+        "image_cosine": 0.3517167866230011,
+        "caption_cosine": 0.7279374599456787,
+        "combined_score": 0.40438768088817595,
+        "per_view_image_cosine": [
+          0.3415678143501282,
+          0.3495834171772003,
+          0.33662137389183044,
+          0.3408815860748291
+        ],
+        "probability": 0.16904273555974816
+      },
+      {
+        "skin_key": "madaxe18",
+        "canonical_directory": "storm_hero_nova_madaxe18",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_nova_madaxe18/storm_hero_nova_madaxe18.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_nova_madaxe18",
+            "model_path": "storm_hero_nova_madaxe18/storm_hero_nova_madaxe18.m3",
+            "all_m3_paths": [
+              "storm_hero_nova_madaxe18/storm_hero_nova_madaxe18.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Nova wearing a post apocalyptic mad axe warrior appearance",
+          "Nova from Heroes of the Storm, a post apocalyptic mad axe warrior appearance",
+          "a 3D video game model of Nova, a post apocalyptic mad axe warrior appearance",
+          "the madaxe 18 skin for Nova in Heroes of the Storm",
+          "Nova, silhouette and costume showing a post apocalyptic mad axe warrior appearance"
+        ],
+        "image_cosine": 0.3394847512245178,
+        "caption_cosine": 0.7289507389068604,
+        "combined_score": 0.3940099895000458,
+        "per_view_image_cosine": [
+          0.32756710052490234,
+          0.34023019671440125,
+          0.33018866181373596,
+          0.32306891679763794
+        ],
+        "probability": 0.11161371097117904
+      },
+      {
+        "skin_key": "ultimate",
+        "canonical_directory": "storm_hero_nova_ultimate",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_nova_ultimate/storm_hero_nova_ultimate_v05.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_nova_ultimate",
+            "model_path": "storm_hero_nova_ultimate/storm_hero_nova_ultimate_v05.m3",
+            "all_m3_paths": [
+              "storm_hero_nova_ultimate/storm_hero_nova_ultimate_v05.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Nova wearing the ornate master skin with upgraded elaborate armour",
+          "Nova from Heroes of the Storm, the ornate master skin with upgraded elaborate armour",
+          "a 3D video game model of Nova, the ornate master skin with upgraded elaborate armour",
+          "the ultimate skin for Nova in Heroes of the Storm",
+          "Nova, silhouette and costume showing the ornate master skin with upgraded elaborate armour"
+        ],
+        "image_cosine": 0.3418060839176178,
+        "caption_cosine": 0.6922983527183533,
+        "combined_score": 0.39087500154972077,
+        "per_view_image_cosine": [
+          0.33525246381759644,
+          0.3354484438896179,
+          0.3314153850078583,
+          0.3279719352722168
+        ],
+        "probability": 0.09845941005134448
+      },
+      {
+        "skin_key": "novazon",
+        "canonical_directory": "storm_hero_nova_novazon",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_nova_novazon/storm_hero_nova_novazon_v05.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_nova_novazon",
+            "model_path": "storm_hero_nova_novazon/storm_hero_nova_novazon_v05.m3",
+            "all_m3_paths": [
+              "storm_hero_nova_novazon/storm_hero_nova_novazon_v05.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Nova wearing an Amazon warrior appearance with spear and tribal armour",
+          "Nova from Heroes of the Storm, an Amazon warrior appearance with spear and tribal armour",
+          "a 3D video game model of Nova, an Amazon warrior appearance with spear and tribal armour",
+          "the novazon skin for Nova in Heroes of the Storm",
+          "Nova, silhouette and costume showing an Amazon warrior appearance with spear and tribal armour"
+        ],
+        "image_cosine": 0.32853803038597107,
+        "caption_cosine": 0.7121292948722839,
+        "combined_score": 0.38224080741405486,
+        "per_view_image_cosine": [
+          0.315637469291687,
+          0.32662370800971985,
+          0.3222796618938446,
+          0.31391647458076477
+        ],
+        "probability": 0.0697053182682334
+      },
+      {
+        "skin_key": "rollerderby",
+        "canonical_directory": "storm_hero_nova_rollerderby",
+        "repository": "HOTS-03",
+        "model_path": "storm_hero_nova_rollerderby/storm_hero_nova_rollerderby_v05.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-03",
+            "directory": "storm_hero_nova_rollerderby",
+            "model_path": "storm_hero_nova_rollerderby/storm_hero_nova_rollerderby_v05.m3",
+            "all_m3_paths": [
+              "storm_hero_nova_rollerderby/storm_hero_nova_rollerderby_v05.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Nova wearing a roller derby athlete appearance with skates and sports gear",
+          "Nova from Heroes of the Storm, a roller derby athlete appearance with skates and sports gear",
+          "a 3D video game model of Nova, a roller derby athlete appearance with skates and sports gear",
+          "the rollerderby skin for Nova in Heroes of the Storm",
+          "Nova, silhouette and costume showing a roller derby athlete appearance with skates and sports gear"
+        ],
+        "image_cosine": 0.3319130539894104,
+        "caption_cosine": 0.6721744537353516,
+        "combined_score": 0.37954964995384216,
+        "per_view_image_cosine": [
+          0.3276006281375885,
+          0.3289656341075897,
+          0.34088146686553955,
+          0.29414311051368713
+        ],
+        "probability": 0.06259155211233809
+      }
+    ]
+  },
+  "Cho-Gall": {
+    "images": [
+      "Cho-Gall01.jpg",
+      "Cho-Gall02.jpg",
+      "Cho-Gall03.jpg",
+      "Cho-Gall04.jpg"
+    ],
+    "captions": [
+      "an image of a character from the game world of warcraft",
+      "an image of a character in the mobile game mobile legends",
+      "a screenshot of a character in the game world of war",
+      "a screenshot of a giant, a giant, a giant, a giant, a giant, a giant"
+    ],
+    "recommended_skin_key": "base",
+    "recommended_directory": "storm_hero_chogall_base",
+    "recommended_repository": "HOTS-02",
+    "recommended_model_path": "storm_hero_chogall_base/storm_hero_chogall_base.m3",
+    "score_margin": 0.002809241414070185,
+    "probability_entropy": 1.5199436294071778,
+    "confidence": "low",
+    "ranked_candidates": [
+      {
+        "skin_key": "base",
+        "canonical_directory": "storm_hero_chogall_base",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_chogall_base/storm_hero_chogall_base.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_chogall_base",
+            "model_path": "storm_hero_chogall_base/storm_hero_chogall_base.m3",
+            "all_m3_paths": [
+              "storm_hero_chogall_base/storm_hero_chogall_base.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Cho'Gall the two-headed ogre wearing the default original appearance and standard armour",
+          "Cho'Gall the two-headed ogre from Heroes of the Storm, the default original appearance and standard armour",
+          "a 3D video game model of Cho'Gall the two-headed ogre, the default original appearance and standard armour",
+          "the base skin for Cho'Gall the two-headed ogre in Heroes of the Storm",
+          "Cho'Gall the two-headed ogre, silhouette and costume showing the default original appearance and standard armour"
+        ],
+        "image_cosine": 0.40318694710731506,
+        "caption_cosine": 0.5976151823997498,
+        "combined_score": 0.43040690004825594,
+        "per_view_image_cosine": [
+          0.3887578248977661,
+          0.3982927203178406,
+          0.39511823654174805,
+          0.396317720413208
+        ],
+        "probability": 0.29014522267753534
+      },
+      {
+        "skin_key": "ultimate",
+        "canonical_directory": "storm_hero_chogall_ultimate",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_chogall_ultimate",
+            "model_path": "storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3",
+            "all_m3_paths": [
+              "storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Cho'Gall the two-headed ogre wearing the ornate master skin with upgraded elaborate armour",
+          "Cho'Gall the two-headed ogre from Heroes of the Storm, the ornate master skin with upgraded elaborate armour",
+          "a 3D video game model of Cho'Gall the two-headed ogre, the ornate master skin with upgraded elaborate armour",
+          "the ultimate skin for Cho'Gall the two-headed ogre in Heroes of the Storm",
+          "Cho'Gall the two-headed ogre, silhouette and costume showing the ornate master skin with upgraded elaborate armour"
+        ],
+        "image_cosine": 0.4042530655860901,
+        "caption_cosine": 0.5710001587867737,
+        "combined_score": 0.42759765863418575,
+        "per_view_image_cosine": [
+          0.39113321900367737,
+          0.4026072025299072,
+          0.3940550684928894,
+          0.39486485719680786
+        ],
+        "probability": 0.2593067979975539
+      },
+      {
+        "skin_key": "altered20",
+        "canonical_directory": "storm_hero_chogall_altered20",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_chogall_altered20/storm_hero_chogall_altered20.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_chogall_altered20",
+            "model_path": "storm_hero_chogall_altered20/storm_hero_chogall_altered20.m3",
+            "all_m3_paths": [
+              "storm_hero_chogall_altered20/storm_hero_chogall_altered20.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Cho'Gall the two-headed ogre wearing an altered fate arcane mutant appearance with unusual magical armour",
+          "Cho'Gall the two-headed ogre from Heroes of the Storm, an altered fate arcane mutant appearance with unusual magical armour",
+          "a 3D video game model of Cho'Gall the two-headed ogre, an altered fate arcane mutant appearance with unusual magical armour",
+          "the altered 20 skin for Cho'Gall the two-headed ogre in Heroes of the Storm",
+          "Cho'Gall the two-headed ogre, silhouette and costume showing an altered fate arcane mutant appearance with unusual magical armour"
+        ],
+        "image_cosine": 0.39307892322540283,
+        "caption_cosine": 0.6108267903327942,
+        "combined_score": 0.4235636246204376,
+        "per_view_image_cosine": [
+          0.3795574903488159,
+          0.38760972023010254,
+          0.38631510734558105,
+          0.3854306638240814
+        ],
+        "probability": 0.22066606669910635
+      },
+      {
+        "skin_key": "corruptor",
+        "canonical_directory": "storm_hero_chogall_corruptor",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_chogall_corruptor/storm_hero_chogall_corruptor.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_chogall_corruptor",
+            "model_path": "storm_hero_chogall_corruptor/storm_hero_chogall_corruptor.m3",
+            "all_m3_paths": [
+              "storm_hero_chogall_corruptor/storm_hero_chogall_corruptor.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Cho'Gall the two-headed ogre wearing a heavily corrupted demonic appearance with spikes and monstrous armour",
+          "Cho'Gall the two-headed ogre from Heroes of the Storm, a heavily corrupted demonic appearance with spikes and monstrous armour",
+          "a 3D video game model of Cho'Gall the two-headed ogre, a heavily corrupted demonic appearance with spikes and monstrous armour",
+          "the corruptor skin for Cho'Gall the two-headed ogre in Heroes of the Storm",
+          "Cho'Gall the two-headed ogre, silhouette and costume showing a heavily corrupted demonic appearance with spikes and monstrous armour"
+        ],
+        "image_cosine": 0.38685470819473267,
+        "caption_cosine": 0.5938587188720703,
+        "combined_score": 0.41583526968955997,
+        "per_view_image_cosine": [
+          0.373142808675766,
+          0.38707852363586426,
+          0.3773459494113922,
+          0.37697792053222656
+        ],
+        "probability": 0.1619870430958414
+      },
+      {
+        "skin_key": "pumpkin",
+        "canonical_directory": "storm_hero_chogall_pumpkin",
+        "repository": "HOTS-02",
+        "model_path": "storm_hero_chogall_pumpkin/storm_hero_chogall_pumpkin.m3",
+        "source_variants": [
+          {
+            "repository": "HOTS-02",
+            "directory": "storm_hero_chogall_pumpkin",
+            "model_path": "storm_hero_chogall_pumpkin/storm_hero_chogall_pumpkin.m3",
+            "all_m3_paths": [
+              "storm_hero_chogall_pumpkin/storm_hero_chogall_pumpkin.m3"
+            ]
+          }
+        ],
+        "prompts": [
+          "a full body game character screenshot of Cho'Gall the two-headed ogre wearing a Halloween pumpkin headed harvest monster appearance",
+          "Cho'Gall the two-headed ogre from Heroes of the Storm, a Halloween pumpkin headed harvest monster appearance",
+          "a 3D video game model of Cho'Gall the two-headed ogre, a Halloween pumpkin headed harvest monster appearance",
+          "the pumpkin skin for Cho'Gall the two-headed ogre in Heroes of the Storm",
+          "Cho'Gall the two-headed ogre, silhouette and costume showing a Halloween pumpkin headed harvest monster appearance"
+        ],
+        "image_cosine": 0.37347540259361267,
+        "caption_cosine": 0.5207680463790894,
+        "combined_score": 0.39409637272357945,
+        "per_view_image_cosine": [
+          0.3603314459323883,
+          0.3750600814819336,
+          0.3641696572303772,
+          0.3626038134098053
+        ],
+        "probability": 0.067894869529963
+      }
+    ]
+  }
+}
