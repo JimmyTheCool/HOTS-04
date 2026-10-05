@@ -1,0 +1,219 @@
+name: Normalize HOTS-04 Photo-Posed V4 Heroes
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/normalize-photo-posed-v4.yml'
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  PRIMARY_RUN_ID: '37349602397'
+  APOSTROPHE_RUN_ID: '37349684308'
+
+jobs:
+  normalize:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        include:
+          - {id: '01', hero: 'Alarak', source: 'primary'}
+          - {id: '02', hero: 'Arthas', source: 'primary'}
+          - {id: '03', hero: 'Blaze', source: 'primary'}
+          - {id: '04', hero: 'Cho-Gall', source: 'primary'}
+          - {id: '05', hero: 'Dehaka', source: 'primary'}
+          - {id: '06', hero: 'ETC', source: 'primary'}
+          - {id: '07', hero: 'Fenix', source: 'primary'}
+          - {id: '08', hero: 'Leoric', source: 'primary'}
+          - {id: '09', hero: 'Lt Morales', source: 'primary'}
+          - {id: '10', hero: 'Lunara', source: 'primary'}
+          - {id: '11', hero: "Mal'Ganis", source: 'apostrophe'}
+          - {id: '12', hero: 'Nova', source: 'primary'}
+          - {id: '13', hero: 'Ragnaros', source: 'primary'}
+          - {id: '14', hero: 'Rexxar', source: 'primary'}
+          - {id: '15', hero: 'Stukov', source: 'primary'}
+          - {id: '16', hero: 'Tychus', source: 'primary'}
+          - {id: '17', hero: 'Zagara', source: 'primary'}
+          - {id: '18', hero: "Zul'jin", source: 'apostrophe'}
+    env:
+      HERO_NAME: ${{ matrix.hero }}
+      HERO_ID: ${{ matrix.id }}
+      HERO_SOURCE: ${{ matrix.source }}
+
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Wait for source build and download hero package
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$HERO_SOURCE" == "apostrophe" ]]; then
+            RUN_ID="$APOSTROPHE_RUN_ID"
+            ARTIFACT="photo-posed-v4-apostrophe-$HERO_ID"
+          else
+            RUN_ID="$PRIMARY_RUN_ID"
+            ARTIFACT="photo-posed-v4-$HERO_ID"
+          fi
+          for attempt in $(seq 1 900); do
+            status=$(gh run view "$RUN_ID" --repo "$GITHUB_REPOSITORY" --json status --jq '.status')
+            if [[ "$status" == "completed" ]]; then break; fi
+            echo "Waiting for run $RUN_ID ($HERO_NAME): $status"
+            sleep 15
+          done
+          mkdir -p "$RUNNER_TEMP/source"
+          gh run download "$RUN_ID" --repo "$GITHUB_REPOSITORY" --name "$ARTIFACT" --dir "$RUNNER_TEMP/source"
+          find "$RUNNER_TEMP/source" -maxdepth 4 -type f -printf '%P\n' | sort | head -n 500
+
+      - name: Install repair and validation tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends git
+          python -m pip install --disable-pip-version-check --quiet numpy==2.2.6 scipy==1.15.3 trimesh==4.8.3 pymeshfix==0.18.1 fast-simplification==0.1.12 matplotlib==3.10.1
+          git clone --filter=blob:none --sparse --depth 1 --branch chatgpt-stl-builder https://github.com/JimmyTheCool/HOTS-03.git "$RUNNER_TEMP/HOTS-03-tools"
+          git -C "$RUNNER_TEMP/HOTS-03-tools" sparse-checkout set ci
+          cp "$RUNNER_TEMP/HOTS-03-tools/ci/repair_stl_collection.py" "$RUNNER_TEMP/repair-normal.py"
+          for patch in patch_repair_dimension_retention.py patch_repair_voxel_translation.py patch_repair_face_connectivity.py; do
+            python "$RUNNER_TEMP/HOTS-03-tools/ci/$patch" "$RUNNER_TEMP/repair-normal.py"
+          done
+          cp "$RUNNER_TEMP/repair-normal.py" "$RUNNER_TEMP/repair-voxel.py"
+          python "$RUNNER_TEMP/HOTS-03-tools/ci/patch_repair_force_voxel.py" "$RUNNER_TEMP/repair-voxel.py"
+
+      - name: Keep valid outputs or recover from the frozen photographed pose
+        shell: bash
+        run: |
+          set -euo pipefail
+          SAFE=$(python - <<'PY'
+          import os,re
+          value=os.environ['HERO_NAME'].strip()
+          value=re.sub(r'[^A-Za-z0-9._-]+','_',value)
+          value=re.sub(r'_+','_',value).strip('_.')
+          print(value or 'hero')
+          PY
+          )
+          SRC="$RUNNER_TEMP/source"
+          OUT="$RUNNER_TEMP/normalized-$HERO_ID"
+          mkdir -p "$OUT/HighDetail" "$OUT/Robust" "$OUT/Raw" "$OUT/Reports/$SAFE"
+          [[ -d "$SRC/Reports/$SAFE" ]] && cp -a "$SRC/Reports/$SAFE/." "$OUT/Reports/$SAFE/" || true
+          [[ -d "$SRC/HeroBuild/Reports" ]] && cp -a "$SRC/HeroBuild/Reports/." "$OUT/Reports/$SAFE/" || true
+          [[ -f "$SRC/Raw/$SAFE.stl" ]] && cp "$SRC/Raw/$SAFE.stl" "$OUT/Raw/$SAFE.stl" || true
+          [[ -f "$SRC/HeroBuild/Raw/$SAFE.stl" ]] && cp "$SRC/HeroBuild/Raw/$SAFE.stl" "$OUT/Raw/$SAFE.stl" || true
+
+          VALIDATOR="$RUNNER_TEMP/HOTS-03-tools/ci/validate_stl_collection.py"
+          HIGH_OK=0
+          ROBUST_OK=0
+          if [[ -f "$SRC/HighDetail/$SAFE.stl" ]]; then
+            mkdir -p "$RUNNER_TEMP/check-high"
+            cp "$SRC/HighDetail/$SAFE.stl" "$RUNNER_TEMP/check-high/$SAFE.stl"
+            if python "$VALIDATOR" --input "$RUNNER_TEMP/check-high" --report-json "$RUNNER_TEMP/check-high.json" --report-csv "$RUNNER_TEMP/check-high.csv" --checksums "$RUNNER_TEMP/check-high.sha" --expected 1 --max-triangles 1500000; then
+              cp "$SRC/HighDetail/$SAFE.stl" "$OUT/HighDetail/$SAFE.stl"
+              HIGH_OK=1
+            fi
+          fi
+          if [[ -f "$SRC/Robust/$SAFE.stl" ]]; then
+            mkdir -p "$RUNNER_TEMP/check-robust"
+            cp "$SRC/Robust/$SAFE.stl" "$RUNNER_TEMP/check-robust/$SAFE.stl"
+            if python "$VALIDATOR" --input "$RUNNER_TEMP/check-robust" --report-json "$RUNNER_TEMP/check-robust.json" --report-csv "$RUNNER_TEMP/check-robust.csv" --checksums "$RUNNER_TEMP/check-robust.sha" --expected 1 --max-triangles 500000; then
+              cp "$SRC/Robust/$SAFE.stl" "$OUT/Robust/$SAFE.stl"
+              ROBUST_OK=1
+            fi
+          fi
+
+          INITIAL=""
+          for candidate in "$SRC/HeroBuild/Initial/$SAFE.stl" "$SRC/Initial/$SAFE.stl"; do
+            [[ -f "$candidate" ]] && INITIAL="$candidate" && break
+          done
+          if [[ "$HIGH_OK" -ne 1 || "$ROBUST_OK" -ne 1 ]]; then
+            test -n "$INITIAL"
+          fi
+
+          if [[ "$HIGH_OK" -ne 1 ]]; then
+            for pitch in 0.25 0.28 0.32 0.36; do
+              rm -rf "$RUNNER_TEMP/high-input" "$RUNNER_TEMP/high-try"
+              mkdir -p "$RUNNER_TEMP/high-input" "$RUNNER_TEMP/high-try"
+              cp "$INITIAL" "$RUNNER_TEMP/high-input/$SAFE.stl"
+              echo "Trying high-detail pitch $pitch mm for $HERO_NAME"
+              if python "$RUNNER_TEMP/repair-voxel.py" --input "$RUNNER_TEMP/high-input" --output "$RUNNER_TEMP/high-try" --report-json "$OUT/Reports/$SAFE/high_detail_repair_${pitch}.json" --report-csv "$OUT/Reports/$SAFE/high_detail_repair_${pitch}.csv" --expected 1 --pitch "$pitch" --max-triangles 2000000 --target-triangles 2000000; then
+                if python "$VALIDATOR" --input "$RUNNER_TEMP/high-try" --report-json "$OUT/Reports/$SAFE/high_detail_validation.json" --report-csv "$OUT/Reports/$SAFE/high_detail_validation.csv" --checksums "$OUT/Reports/$SAFE/HIGH_DETAIL_SHA256SUMS.txt" --expected 1 --max-triangles 2000000; then
+                  cp "$RUNNER_TEMP/high-try/$SAFE.stl" "$OUT/HighDetail/$SAFE.stl"
+                  printf '%s\n' "$pitch" > "$OUT/Reports/$SAFE/high_detail_pitch_mm.txt"
+                  HIGH_OK=1
+                  break
+                fi
+              fi
+            done
+          else
+            python "$VALIDATOR" --input "$OUT/HighDetail" --report-json "$OUT/Reports/$SAFE/high_detail_validation.json" --report-csv "$OUT/Reports/$SAFE/high_detail_validation.csv" --checksums "$OUT/Reports/$SAFE/HIGH_DETAIL_SHA256SUMS.txt" --expected 1 --max-triangles 2000000
+          fi
+
+          if [[ "$ROBUST_OK" -ne 1 ]]; then
+            for pitch in 0.55 0.62 0.72; do
+              rm -rf "$RUNNER_TEMP/robust-input" "$RUNNER_TEMP/robust-try"
+              mkdir -p "$RUNNER_TEMP/robust-input" "$RUNNER_TEMP/robust-try"
+              cp "$INITIAL" "$RUNNER_TEMP/robust-input/$SAFE.stl"
+              echo "Trying robust pitch $pitch mm for $HERO_NAME"
+              if python "$RUNNER_TEMP/repair-voxel.py" --input "$RUNNER_TEMP/robust-input" --output "$RUNNER_TEMP/robust-try" --report-json "$OUT/Reports/$SAFE/robust_repair_${pitch}.json" --report-csv "$OUT/Reports/$SAFE/robust_repair_${pitch}.csv" --expected 1 --pitch "$pitch" --max-triangles 500000 --target-triangles 500000; then
+                if python "$VALIDATOR" --input "$RUNNER_TEMP/robust-try" --report-json "$OUT/Reports/$SAFE/robust_validation.json" --report-csv "$OUT/Reports/$SAFE/robust_validation.csv" --checksums "$OUT/Reports/$SAFE/ROBUST_SHA256SUMS.txt" --expected 1 --max-triangles 500000; then
+                  cp "$RUNNER_TEMP/robust-try/$SAFE.stl" "$OUT/Robust/$SAFE.stl"
+                  printf '%s\n' "$pitch" > "$OUT/Reports/$SAFE/robust_pitch_mm.txt"
+                  ROBUST_OK=1
+                  break
+                fi
+              fi
+            done
+          else
+            python "$VALIDATOR" --input "$OUT/Robust" --report-json "$OUT/Reports/$SAFE/robust_validation.json" --report-csv "$OUT/Reports/$SAFE/robust_validation.csv" --checksums "$OUT/Reports/$SAFE/ROBUST_SHA256SUMS.txt" --expected 1 --max-triangles 500000
+          fi
+          test "$HIGH_OK" -eq 1
+          test "$ROBUST_OK" -eq 1
+
+          python - "$SRC" "$OUT" "$HERO_NAME" "$SAFE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          src,out,hero,safe=Path(sys.argv[1]),Path(sys.argv[2]),sys.argv[3],sys.argv[4]
+          report_dir=out/'Reports'/safe
+          existing=report_dir/'photo_pose_quality_summary.json'
+          if existing.is_file():
+              quality=json.loads(existing.read_text(encoding='utf-8'))
+          else:
+              pose_path=report_dir/'pose_match.json'
+              if not pose_path.is_file(): raise SystemExit('pose_match.json missing')
+              pose=json.loads(pose_path.read_text(encoding='utf-8')); selected=pose['selected']
+              skin={'Cho-Gall':'ultimate','Dehaka':'mecha','Lt Morales':'ultimate','Rexxar':'base'}.get(hero,'base')
+              quality={'hero':hero,'safe':safe,'skin_key':skin,'selected_animation':selected.get('animation_name'),'selected_frame':selected.get('frame'),'pose_score':selected.get('pose_score'),'ground_support_score':selected.get('ground_support_score'),'camera':selected.get('camera'),'coarse_frames_tested':pose.get('coarse_frames_tested'),'refined_frames_tested':pose.get('refined_frames_tested')}
+          quality['high_detail_validation_passed']=True
+          quality['robust_validation_passed']=True
+          pitch_file=report_dir/'high_detail_pitch_mm.txt'
+          if pitch_file.is_file(): quality['high_detail_voxel_pitch_mm']=float(pitch_file.read_text().strip())
+          quality['normalization_note']='Validated existing output or recovered from the exact frozen photographed animation pose without changing pose or skin.'
+          existing.write_text(json.dumps(quality,indent=2),encoding='utf-8')
+          (out/'HERO_COMPLETE.txt').write_text(f"{hero}\n{quality.get('skin_key')}\n{quality.get('selected_animation')}\nframe={quality.get('selected_frame')}\nscore={quality.get('pose_score')}\n",encoding='utf-8')
+          forbidden=('sit','seated','chair','throne','bench','crouch','kneel')
+          if hero=='Nova' and any(t in str(quality.get('selected_animation') or '').casefold() for t in forbidden): raise SystemExit('Nova is seated/crouched')
+          if hero=='Cho-Gall' and float(quality.get('ground_support_score') or 0)<0.45: raise SystemExit('Cho-Gall ground support failed')
+          exact={'Cho-Gall':'ultimate','Dehaka':'mecha','Lt Morales':'ultimate','Rexxar':'base'}
+          if hero in exact and quality.get('skin_key')!=exact[hero]: raise SystemExit(f'wrong skin: {quality.get("skin_key")}')
+          PY
+
+      - name: Upload normalized validated hero
+        uses: actions/upload-artifact@v4
+        with:
+          name: normalized-photo-posed-v4-${{ matrix.id }}
+          path: ${{ runner.temp }}/normalized-${{ matrix.id }}
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: error
