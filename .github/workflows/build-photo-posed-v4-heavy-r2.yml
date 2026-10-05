@@ -1,0 +1,157 @@
+name: Build HOTS-04 Photo-Posed V4 Heavy Heroes R2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/build-photo-posed-v4-heavy-r2.yml'
+      - 'tools/prepare_photo_posed_v4_heavy_runtime.py'
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  dehaka:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    env:
+      HERO_NAME: Dehaka
+      HERO_ID: '05'
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Prepare memory-safe V4 runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/prepare_photo_posed_v4_heavy_runtime.py
+      - name: Build exact skin in photographed pose
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v4_heavy_runtime.py --hero "$HERO_NAME" --max-animations 28 --max-coarse-frames 184 --refine-candidates 12
+      - name: Stage completed and partial posed outputs
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          SAFE=Dehaka
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-$SAFE"
+          STAGE="$RUNNER_TEMP/heavy-$HERO_ID"
+          mkdir -p "$STAGE"
+          if [[ -d "$ROOT" ]]; then cp -a "$ROOT"/. "$STAGE"/; fi
+          printf '%s\n' "$HERO_NAME" > "$STAGE/HERO_REQUESTED.txt"
+          printf '%s\n' "$SAFE" > "$STAGE/HERO_SAFE.txt"
+          find "$STAGE" -maxdepth 6 -type f -printf '%P\n' | sort > "$STAGE/STAGED_FILES.txt"
+      - name: Upload Dehaka package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-posed-v4-heavy-r2-05
+          path: ${{ runner.temp }}/heavy-05
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: error
+
+  fenix:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    env:
+      HERO_NAME: Fenix
+      HERO_ID: '07'
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Prepare memory-safe V4 runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/prepare_photo_posed_v4_heavy_runtime.py
+      - name: Build exact skin in photographed pose
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v4_heavy_runtime.py --hero "$HERO_NAME" --max-animations 28 --max-coarse-frames 184 --refine-candidates 12
+      - name: Stage completed and partial posed outputs
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          SAFE=Fenix
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-$SAFE"
+          STAGE="$RUNNER_TEMP/heavy-$HERO_ID"
+          mkdir -p "$STAGE"
+          if [[ -d "$ROOT" ]]; then cp -a "$ROOT"/. "$STAGE"/; fi
+          printf '%s\n' "$HERO_NAME" > "$STAGE/HERO_REQUESTED.txt"
+          printf '%s\n' "$SAFE" > "$STAGE/HERO_SAFE.txt"
+          find "$STAGE" -maxdepth 6 -type f -printf '%P\n' | sort > "$STAGE/STAGED_FILES.txt"
+      - name: Upload Fenix package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-posed-v4-heavy-r2-07
+          path: ${{ runner.temp }}/heavy-07
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: error
+
+  rexxar:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    env:
+      HERO_NAME: Rexxar
+      HERO_ID: '14'
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Prepare memory-safe V4 runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/prepare_photo_posed_v4_heavy_runtime.py
+      - name: Build exact skin in photographed pose
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v4_heavy_runtime.py --hero "$HERO_NAME" --max-animations 28 --max-coarse-frames 184 --refine-candidates 12
+      - name: Stage completed and partial posed outputs
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          SAFE=Rexxar
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-$SAFE"
+          STAGE="$RUNNER_TEMP/heavy-$HERO_ID"
+          mkdir -p "$STAGE"
+          if [[ -d "$ROOT" ]]; then cp -a "$ROOT"/. "$STAGE"/; fi
+          printf '%s\n' "$HERO_NAME" > "$STAGE/HERO_REQUESTED.txt"
+          printf '%s\n' "$SAFE" > "$STAGE/HERO_SAFE.txt"
+          find "$STAGE" -maxdepth 6 -type f -printf '%P\n' | sort > "$STAGE/STAGED_FILES.txt"
+      - name: Upload Rexxar package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-posed-v4-heavy-r2-14
+          path: ${{ runner.temp }}/heavy-14
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: error
