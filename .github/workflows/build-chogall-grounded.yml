@@ -1,0 +1,214 @@
+name: Build Grounded Photo-Posed Cho-Gall STL
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-chogall-grounded.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 300
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Build the photographed Ultimate Cho-Gall pose with grounded feet
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_chogall_grounded_v2.py \
+            --hero 'Cho-Gall' \
+            --max-animations 34 \
+            --max-coarse-frames 260 \
+            --refine-candidates 18
+
+      - name: Validate foot contact and final printable geometry
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-Cho-Gall"
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import math
+          import sys
+
+          import matplotlib.pyplot as plt
+          import numpy as np
+          import trimesh
+
+          root = Path(sys.argv[1])
+          reports = root / 'Reports' / 'Cho-Gall'
+          candidates = list(reports.rglob('photo_posed_build.json'))
+          if not candidates:
+              raise SystemExit('photo_posed_build.json was not produced')
+          build_report = json.loads(candidates[0].read_text(encoding='utf-8'))
+          grounding = build_report.get('builder_result', {}).get('grounding')
+          if not grounding:
+              raise SystemExit('The builder did not record a grounding result')
+          if not grounding.get('applied'):
+              raise SystemExit(f"Grounding was not applied: {grounding}")
+          if not grounding.get('both_feet_predicted_in_contact'):
+              raise SystemExit(f"Both feet were not predicted to contact the base: {grounding}")
+
+          penetrations = [
+              grounding.get('left_penetration_mm'),
+              grounding.get('right_penetration_mm'),
+          ]
+          penetrations = [float(value) for value in penetrations if value is not None]
+          if len(penetrations) == 2:
+              if min(penetrations) < -0.05:
+                  raise SystemExit(f'A foot remains above the base: {penetrations}')
+              if max(penetrations) > 8.0:
+                  raise SystemExit(f'A foot is buried too deeply in the base: {penetrations}')
+
+          stl = root / 'Robust' / 'Cho-Gall.stl'
+          high = root / 'HighDetail' / 'Cho-Gall.stl'
+          if not stl.is_file():
+              raise SystemExit(f'Missing robust STL: {stl}')
+          mesh = trimesh.load_mesh(stl, force='mesh', process=False)
+          finite = bool(np.isfinite(mesh.vertices).all())
+          validation = {
+              'file': stl.name,
+              'bytes': stl.stat().st_size,
+              'sha256': hashlib.sha256(stl.read_bytes()).hexdigest(),
+              'vertices': int(len(mesh.vertices)),
+              'triangles': int(len(mesh.faces)),
+              'watertight': bool(mesh.is_watertight),
+              'winding_consistent': bool(mesh.is_winding_consistent),
+              'finite_coordinates': finite,
+              'positive_volume': bool(abs(float(mesh.volume)) > 1.0),
+              'volume_mm3': abs(float(mesh.volume)),
+              'dimensions_mm': [float(value) for value in mesh.extents],
+              'connected_bodies': int(mesh.body_count),
+              'grounding': grounding,
+          }
+          validation['passed'] = bool(
+              validation['watertight']
+              and validation['winding_consistent']
+              and validation['finite_coordinates']
+              and validation['positive_volume']
+              and validation['connected_bodies'] == 1
+              and 100 <= validation['triangles'] <= 700000
+              and max(validation['dimensions_mm']) <= 350.0
+          )
+          if not validation['passed']:
+              raise SystemExit(json.dumps(validation, indent=2))
+          (reports / 'grounded_final_validation.json').write_text(
+              json.dumps(validation, indent=2), encoding='utf-8'
+          )
+          (reports / 'grounding_report.json').write_text(
+              json.dumps(grounding, indent=2), encoding='utf-8'
+          )
+
+          # Orthographic geometry proofs make a floating-foot regression visible.
+          vertices = np.asarray(mesh.vertices)
+          if len(vertices) > 180000:
+              indices = np.linspace(0, len(vertices) - 1, 180000, dtype=int)
+              vertices = vertices[indices]
+          views = {
+              'front_xz': (0, 2),
+              'side_yz': (1, 2),
+              'top_xy': (0, 1),
+          }
+          for name, axes in views.items():
+              fig, ax = plt.subplots(figsize=(8, 8), dpi=160)
+              ax.scatter(vertices[:, axes[0]], vertices[:, axes[1]], s=0.04, linewidths=0)
+              ax.set_aspect('equal', adjustable='box')
+              ax.set_title(f'Cho-Gall grounded geometry: {name}')
+              ax.set_xlabel('mm')
+              ax.set_ylabel('mm')
+              fig.tight_layout()
+              fig.savefig(reports / f'{name}.png')
+              plt.close(fig)
+
+          print(json.dumps(validation, indent=2))
+          PY
+
+      - name: Package corrected Cho-Gall STL
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-Cho-Gall"
+          REPORTS="$ROOT/Reports/Cho-Gall"
+          PACKAGE="$RUNNER_TEMP/Cho-Gall_Grounded_Photo_Pose"
+          rm -rf "$PACKAGE"
+          mkdir -p "$PACKAGE/01_Print_Ready" "$PACKAGE/02_High_Detail" "$PACKAGE/03_Pose_Proof" "$PACKAGE/04_Reference_JPGs" "$PACKAGE/Reports"
+          cp "$ROOT/Robust/Cho-Gall.stl" "$PACKAGE/01_Print_Ready/Cho-Gall_Grounded.stl"
+          if [[ -f "$ROOT/HighDetail/Cho-Gall.stl" ]]; then
+            cp "$ROOT/HighDetail/Cho-Gall.stl" "$PACKAGE/02_High_Detail/Cho-Gall_Grounded_High_Detail.stl"
+          fi
+          find "$REPORTS" -maxdepth 1 -type f -name '*pose_proof*.jpg' -exec cp {} "$PACKAGE/03_Pose_Proof/" \;
+          cp Cho-Gall01.jpg Cho-Gall02.jpg Cho-Gall03.jpg Cho-Gall04.jpg "$PACKAGE/04_Reference_JPGs/"
+          cp -R "$REPORTS"/. "$PACKAGE/Reports/"
+          cat > "$PACKAGE/README_FIRST.txt" <<'EOF'
+          Corrected Heroes of the Storm Cho-Gall printable STL.
+
+          - Uses the supplied Ultimate Cho-Gall skin mesh.
+          - Uses all four supplied JPG views to select and freeze the closest game animation pose.
+          - Uses weighted foot, toe and ankle vertices from the original rig to align the soles.
+          - The higher sole is embedded approximately 0.30 mm into the base so neither foot floats.
+          - The print-ready STL passed watertightness, winding, finite-coordinate, volume and
+            single-connected-body validation.
+
+          Use 01_Print_Ready/Cho-Gall_Grounded.stl for slicing. The high-detail variant is
+          supplied for comparison or further editing. Supports will still be required for
+          overhangs depending on printer type and orientation.
+          EOF
+          ZIP="$GITHUB_WORKSPACE/Cho-Gall_Grounded_Photo_Pose_STL.zip"
+          rm -f "$ZIP" "$ZIP.sha256"
+          cd "$RUNNER_TEMP"
+          7z a -tzip -mx=7 "$ZIP" "$(basename "$PACKAGE")"
+          sha256sum "$ZIP" > "$ZIP.sha256"
+          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
+          echo "sha=$ZIP.sha256" >> "$GITHUB_OUTPUT"
+
+      - name: Upload corrected Cho-Gall package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cho-Gall-Grounded-Photo-Pose-STL
+          path: |
+            Cho-Gall_Grounded_Photo_Pose_STL.zip
+            Cho-Gall_Grounded_Photo_Pose_STL.zip.sha256
+          retention-days: 90
+          compression-level: 0
+
+      - name: Publish corrected Cho-Gall release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-Cho-Gall"
+          REPORTS="$ROOT/Reports/Cho-Gall"
+          TAG="hots04-chogall-grounded-${GITHUB_RUN_ID}"
+          ASSETS=(
+            "${{ steps.package.outputs.zip }}"
+            "${{ steps.package.outputs.sha }}"
+            "$REPORTS/grounded_final_validation.json#grounded_final_validation.json"
+            "$REPORTS/grounding_report.json#grounding_report.json"
+          )
+          for proof in "$REPORTS"/*pose_proof*.jpg; do
+            [[ -f "$proof" ]] && ASSETS+=("$proof#Cho-Gall_pose_proof.jpg")
+          done
+          gh release create "$TAG" "${ASSETS[@]}" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title 'Grounded photo-posed Ultimate Cho-Gall STL' \
+            --notes 'Corrected Cho-Gall model using the selected Ultimate skin and the four supplied JPG views. Rig-weighted foot/toe/ankle vertices were used to align both soles with the printable base. The print-ready STL passed watertightness and single-body validation.'
