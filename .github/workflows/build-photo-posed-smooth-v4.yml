@@ -1,0 +1,428 @@
+name: Build HOTS-04 Photo-Posed Smooth STL V4
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [photo-pose-v4]
+    paths:
+      - '.github/workflows/build-photo-posed-smooth-v4.yml'
+      - 'tools/prepare_photo_pose_v4.py'
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        include:
+          - {hero: 'Alarak', safe: 'Alarak', voxel: '0.220'}
+          - {hero: 'Arthas', safe: 'Arthas', voxel: '0.240'}
+          - {hero: 'Blaze', safe: 'Blaze', voxel: '0.240'}
+          - {hero: 'Cho-Gall', safe: 'Cho-Gall', voxel: '0.220'}
+          - {hero: 'Dehaka', safe: 'Dehaka', voxel: '0.260'}
+          - {hero: 'ETC', safe: 'ETC', voxel: '0.240'}
+          - {hero: 'Fenix', safe: 'Fenix', voxel: '0.300'}
+          - {hero: 'Leoric', safe: 'Leoric', voxel: '0.240'}
+          - {hero: 'Lt Morales', safe: 'Lt_Morales', voxel: '0.220'}
+          - {hero: 'Lunara', safe: 'Lunara', voxel: '0.220'}
+          - {hero: "Mal'Ganis", safe: 'Mal_Ganis', voxel: '0.240'}
+          - {hero: 'Nova', safe: 'Nova', voxel: '0.200'}
+          - {hero: 'Ragnaros', safe: 'Ragnaros', voxel: '0.260'}
+          - {hero: 'Rexxar', safe: 'Rexxar', voxel: '0.240'}
+          - {hero: 'Stukov', safe: 'Stukov', voxel: '0.220'}
+          - {hero: 'Tychus', safe: 'Tychus', voxel: '0.240'}
+          - {hero: 'Zagara', safe: 'Zagara', voxel: '0.280'}
+          - {hero: "Zul'jin", safe: 'Zul_jin', voxel: '0.220'}
+
+    steps:
+      - name: Check out V4 branch
+        uses: actions/checkout@v4
+        with:
+          ref: photo-pose-v4
+          fetch-depth: 1
+
+      - name: Apply user-confirmed skin corrections
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('reference_analysis/selected_skin_plan.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          heroes = data['heroes']
+          heroes['Rexxar'].update({
+              'skin_key': 'base',
+              'directory': 'storm_hero_rexxar_base',
+              'repository': 'HOTS-03',
+              'model_path': 'storm_hero_rexxar_base/storm_hero_rexxar_base.m3',
+              'selection_method': 'user correction: Frost was the wrong skin; rebuilt from base Rexxar geometry',
+          })
+          heroes['Lt Morales'].update({
+              'skin_key': 'apoth',
+              'directory': 'storm_hero_medic_apoth',
+              'repository': 'HOTS-03',
+              'model_path': 'storm_hero_medic_apoth/storm_hero_medic_apoth.m3',
+              'selection_method': 'user correction plus green-vial/armoured screenshot evidence: Apothecary geometry',
+          })
+          heroes['Dehaka'].update({
+              'skin_key': 'mecha',
+              'directory': 'storm_hero_dehaka_mecha',
+              'repository': 'HOTS-02',
+              'model_path': 'storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3',
+              'selection_method': 'user-confirmed non-base skin; yellow/black robotic screenshots: Mecha geometry',
+          })
+          data['selection_policy'] = (
+              'User-corrected exact skin geometry; four-view pose matching; standing-only Nova and Cho-Gall; '
+              'bilateral Cho-Gall foot grounding; adaptive fine voxel union and Taubin surface smoothing.'
+          )
+          path.write_text(json.dumps(data, indent=2), encoding='utf-8')
+          print(json.dumps({k: heroes[k] for k in ('Rexxar', 'Lt Morales', 'Dehaka')}, indent=2))
+          PY
+
+      - name: Prepare standing-pose V4 runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/prepare_photo_pose_v4.py \
+            --runner-bootstrap tools/run_photo_posed_job_v3_2.py \
+            --pose-source tools/exposed_r2/build_one_photo_posed_v3_source.py \
+            --output-runner tools/run_photo_posed_job_v4.py \
+            --output-pose tools/build_one_photo_posed_v4.py \
+            --voxel '${{ matrix.voxel }}' \
+            --max-triangles 900000 \
+            --target-triangles 820000
+          python -m py_compile tools/run_photo_posed_job_v4.py tools/build_one_photo_posed_v4.py
+
+      - name: Build exact skin in photographed standing pose
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v4.py \
+            --hero '${{ matrix.hero }}' \
+            --max-animations 30 \
+            --max-coarse-frames 192 \
+            --refine-candidates 12
+
+      - name: Create smoothed print-ready STL
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import numpy as np
+          import trimesh
+
+          root = Path(os.environ['HERO_ARTIFACT_ROOT'])
+          safe = os.environ['HERO_SAFE']
+          hero = '${{ matrix.hero }}'
+          candidates = [
+              root / 'HighDetail' / f'{safe}.stl',
+              root / 'Robust' / f'{safe}.stl',
+          ]
+          source = None
+          for candidate in candidates:
+              if not candidate.is_file():
+                  continue
+              try:
+                  mesh = trimesh.load_mesh(candidate, force='mesh', process=True)
+                  if isinstance(mesh, trimesh.Scene):
+                      mesh = trimesh.util.concatenate(tuple(mesh.geometry.values()))
+                  if mesh.is_watertight and int(mesh.body_count) == 1:
+                      source = candidate
+                      break
+              except Exception:
+                  continue
+          if source is None:
+              source = root / 'Robust' / f'{safe}.stl'
+          mesh = trimesh.load_mesh(source, force='mesh', process=True)
+          if isinstance(mesh, trimesh.Scene):
+              mesh = trimesh.util.concatenate(tuple(mesh.geometry.values()))
+          before_volume = float(abs(mesh.volume))
+          before_extents = np.asarray(mesh.extents, dtype=float)
+          before_faces = int(len(mesh.faces))
+
+          # Taubin smoothing removes voxel stair-stepping without the shrinkage of
+          # ordinary Laplacian smoothing. The base is kept flat by restoring the
+          # lower 1.2 mm contact region after smoothing.
+          vertices_before = mesh.vertices.copy()
+          base_limit = float(mesh.bounds[0, 2] + 1.2)
+          base_indices = np.flatnonzero(vertices_before[:, 2] <= base_limit)
+          trimesh.smoothing.filter_taubin(mesh, lamb=0.34, nu=0.35, iterations=7)
+          if len(base_indices):
+              mesh.vertices[base_indices, 2] = vertices_before[base_indices, 2]
+          mesh.apply_translation((0.0, 0.0, -float(mesh.bounds[0, 2])))
+          try:
+              trimesh.repair.fix_normals(mesh, multibody=True)
+          except TypeError:
+              trimesh.repair.fix_normals(mesh)
+          mesh.remove_unreferenced_vertices()
+
+          out_dir = root / 'Smooth'
+          out_dir.mkdir(parents=True, exist_ok=True)
+          output = out_dir / f'{safe}.stl'
+          mesh.export(output)
+          checked = trimesh.load_mesh(output, force='mesh', process=True)
+          if isinstance(checked, trimesh.Scene):
+              checked = trimesh.util.concatenate(tuple(checked.geometry.values()))
+          after_extents = np.asarray(checked.extents, dtype=float)
+          report = {
+              'hero': hero,
+              'source': str(source),
+              'output': str(output),
+              'vertices': int(len(checked.vertices)),
+              'triangles': int(len(checked.faces)),
+              'watertight': bool(checked.is_watertight),
+              'winding_consistent': bool(checked.is_winding_consistent),
+              'connected_bodies': int(checked.body_count),
+              'finite_coordinates': bool(np.isfinite(checked.vertices).all()),
+              'volume_before_mm3': before_volume,
+              'volume_after_mm3': float(abs(checked.volume)),
+              'volume_retention': float(abs(checked.volume) / max(before_volume, 1e-9)),
+              'extents_before_mm': before_extents.tolist(),
+              'extents_after_mm': after_extents.tolist(),
+              'triangle_count_before': before_faces,
+              'taubin_iterations': 7,
+              'taubin_lambda': 0.34,
+              'taubin_nu': 0.35,
+          }
+          report['passed'] = bool(
+              report['watertight']
+              and report['winding_consistent']
+              and report['connected_bodies'] == 1
+              and report['finite_coordinates']
+              and report['volume_after_mm3'] > 1.0
+              and 100 <= report['triangles'] <= 900000
+              and 0.92 <= report['volume_retention'] <= 1.08
+          )
+          reports = root / 'Reports' / safe
+          reports.mkdir(parents=True, exist_ok=True)
+          (reports / 'smooth_surface_validation.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+          print(json.dumps(report, indent=2))
+          if not report['passed']:
+              raise SystemExit('Smoothed STL failed the release quality gate')
+          PY
+
+      - name: Upload completed V4 hero
+        uses: actions/upload-artifact@v4
+        with:
+          name: v4-${{ matrix.safe }}
+          path: ${{ env.HERO_ARTIFACT_ROOT }}
+          retention-days: 90
+          compression-level: 0
+
+  package:
+    needs: build
+    runs-on: ubuntu-22.04
+    timeout-minutes: 150
+    steps:
+      - name: Check out V4 branch
+        uses: actions/checkout@v4
+        with:
+          ref: photo-pose-v4
+          fetch-depth: 1
+
+      - name: Download all completed hero artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v4-*
+          path: ${{ runner.temp }}/heroes
+
+      - name: Assemble and independently validate final collection
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet trimesh==4.8.3 numpy==2.2.6
+          ROOT="$RUNNER_TEMP/HOTS04_Photo_Posed_Smooth_STL_V4"
+          mkdir -p "$ROOT/01_Smooth_Print_Ready" "$ROOT/02_Robust_Fallback" "$ROOT/03_Pose_Proofs" "$ROOT/Reports/Per_Hero"
+          find "$RUNNER_TEMP/heroes" -path '*/Smooth/*.stl' -type f -exec cp {} "$ROOT/01_Smooth_Print_Ready/" \;
+          find "$RUNNER_TEMP/heroes" -path '*/Robust/*.stl' -type f -exec cp {} "$ROOT/02_Robust_Fallback/" \;
+          find "$RUNNER_TEMP/heroes" -iname '*pose_proof*.jpg' -type f -exec cp {} "$ROOT/03_Pose_Proofs/" \;
+          cp reference_analysis/selected_skin_plan.json "$ROOT/Reports/original_skin_plan.json"
+          find "$RUNNER_TEMP/heroes" -path '*/Reports/*' -type f | while read -r f; do
+            artifact=$(echo "$f" | sed -E 's#^.*/heroes/([^/]+)/.*#\1#')
+            mkdir -p "$ROOT/Reports/Per_Hero/$artifact"
+            cp "$f" "$ROOT/Reports/Per_Hero/$artifact/$(basename "$f")"
+          done
+
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import csv, hashlib, json, re, sys
+          import numpy as np
+          import trimesh
+
+          root = Path(sys.argv[1])
+          folder = root / '01_Smooth_Print_Ready'
+          files = sorted(folder.glob('*.stl'))
+          rows = []
+          failures = []
+          for path in files:
+              mesh = trimesh.load_mesh(path, force='mesh', process=True)
+              if isinstance(mesh, trimesh.Scene):
+                  mesh = trimesh.util.concatenate(tuple(mesh.geometry.values()))
+              extents = [float(v) for v in mesh.extents]
+              row = {
+                  'file': path.name,
+                  'bytes': path.stat().st_size,
+                  'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                  'vertices': int(len(mesh.vertices)),
+                  'triangles': int(len(mesh.faces)),
+                  'watertight': bool(mesh.is_watertight),
+                  'winding_consistent': bool(mesh.is_winding_consistent),
+                  'connected_bodies': int(mesh.body_count),
+                  'finite_coordinates': bool(np.isfinite(mesh.vertices).all()),
+                  'volume_mm3': float(abs(mesh.volume)),
+                  'x_mm': extents[0], 'y_mm': extents[1], 'z_mm': extents[2],
+              }
+              row['passed'] = bool(
+                  row['watertight'] and row['winding_consistent']
+                  and row['connected_bodies'] == 1 and row['finite_coordinates']
+                  and row['volume_mm3'] > 1.0 and 100 <= row['triangles'] <= 900000
+                  and min(extents) >= 2.0 and max(extents) <= 350.0
+              )
+              rows.append(row)
+              if not row['passed']:
+                  failures.append(row)
+
+          expected_names = {
+              'Alarak.stl','Arthas.stl','Blaze.stl','Cho-Gall.stl','Dehaka.stl','ETC.stl',
+              'Fenix.stl','Leoric.stl','Lt_Morales.stl','Lunara.stl','Mal_Ganis.stl',
+              'Nova.stl','Ragnaros.stl','Rexxar.stl','Stukov.stl','Tychus.stl',
+              'Zagara.stl','Zul_jin.stl'
+          }
+          found_names = {p.name for p in files}
+
+          summaries = {}
+          for path in (root / 'Reports' / 'Per_Hero').rglob('photo_pose_quality_summary.json'):
+              try:
+                  data = json.loads(path.read_text(encoding='utf-8'))
+                  summaries[data['hero']] = data
+              except Exception:
+                  pass
+
+          pose_failures = []
+          forbidden = ('sit','seat','chair','throne','crouch','kneel','crawl')
+          for hero in ('Nova', 'Cho-Gall'):
+              summary = summaries.get(hero)
+              if not summary:
+                  pose_failures.append({'hero': hero, 'error': 'missing pose summary'})
+                  continue
+              animation = str(summary.get('selected_animation', '')).casefold()
+              if not animation or any(token in animation for token in forbidden):
+                  pose_failures.append({'hero': hero, 'animation': animation, 'error': 'non-standing pose'})
+
+          ground_reports = []
+          for path in (root / 'Reports' / 'Per_Hero').rglob('photo_posed_build.json'):
+              try:
+                  data = json.loads(path.read_text(encoding='utf-8'))
+              except Exception:
+                  continue
+              if data.get('hero') != 'Cho-Gall':
+                  continue
+              ground = (
+                  data.get('builder_result', {})
+                      .get('normalization', {})
+                      .get('two_foot_grounding')
+              )
+              if ground:
+                  ground_reports.append(ground)
+          ground_ok = bool(
+              ground_reports
+              and any(
+                  item.get('applied')
+                  and float(item.get('foot_height_gap_mm', 999.0)) <= 1.25
+                  for item in ground_reports
+              )
+          )
+
+          report = {
+              'expected_files': 18,
+              'found_files': len(files),
+              'missing_files': sorted(expected_names - found_names),
+              'unexpected_files': sorted(found_names - expected_names),
+              'geometry_failures': failures,
+              'pose_failures': pose_failures,
+              'cho_gall_ground_reports': ground_reports,
+              'cho_gall_two_foot_ground_passed': ground_ok,
+              'passed': bool(
+                  len(files) == 18 and found_names == expected_names
+                  and not failures and not pose_failures and ground_ok
+              ),
+              'files': rows,
+              'pose_summaries': summaries,
+          }
+          reports = root / 'Reports'
+          (reports / 'FINAL_VALIDATION.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+          with (reports / 'FINAL_VALIDATION.csv').open('w', newline='', encoding='utf-8-sig') as handle:
+              writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()) if rows else ['file'])
+              writer.writeheader(); writer.writerows(rows)
+          print(json.dumps(report, indent=2))
+          if not report['passed']:
+              raise SystemExit('Final V4 quality gate failed')
+          PY
+
+          cat > "$ROOT/README_FIRST.txt" <<'EOF'
+          HOTS-04 PHOTO-POSED SMOOTH STL COLLECTION V4
+
+          01_Smooth_Print_Ready contains the recommended models.
+          02_Robust_Fallback contains the less-smoothed watertight fallback models.
+          03_Pose_Proofs contains image comparisons where available.
+
+          Corrections in this build:
+          - Cho-Gall restricted to standing/idle poses and aligned so both foot contact zones meet the base.
+          - Nova restricted to standing/idle poses; seated/crouched animations are excluded.
+          - Rexxar rebuilt with base geometry instead of the incorrect Frost skin.
+          - Lt. Morales rebuilt with Apothecary geometry.
+          - Dehaka rebuilt with Mecha geometry.
+          - All release models receive adaptive fine voxel reconstruction followed by volume-preserving Taubin smoothing.
+
+          STL stores geometry only. Texture colours, glow, transparency and painted normal-map detail are not carried by STL.
+          Inspect support placement in your slicer before printing.
+          EOF
+
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends p7zip-full
+          ARCHIVE="$GITHUB_WORKSPACE/HOTS04_Photo_Posed_Smooth_STL_V4.zip"
+          cd "$RUNNER_TEMP"
+          7z a -tzip -mx=7 "$ARCHIVE" "$(basename "$ROOT")"
+          sha256sum "$ARCHIVE" > "$ARCHIVE.sha256"
+          echo "archive=$ARCHIVE" >> "$GITHUB_OUTPUT"
+          echo "tag=hots04-photo-posed-smooth-v4-${GITHUB_RUN_ID}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload final V4 ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04_Photo_Posed_Smooth_STL_V4
+          path: |
+            HOTS04_Photo_Posed_Smooth_STL_V4.zip
+            HOTS04_Photo_Posed_Smooth_STL_V4.zip.sha256
+          retention-days: 90
+          compression-level: 0
+
+      - name: Publish downloadable V4 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create '${{ steps.package.outputs.tag }}' \
+            '${{ steps.package.outputs.archive }}' \
+            '${{ steps.package.outputs.archive }}.sha256' \
+            "$RUNNER_TEMP/HOTS04_Photo_Posed_Smooth_STL_V4/Reports/FINAL_VALIDATION.json#FINAL_VALIDATION.json" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title 'HOTS-04 photo-posed smooth STL collection V4' \
+            --notes 'All 18 supplied heroes rebuilt from the selected game meshes, posed against the four supplied JPG views, repaired as one watertight body, smoothed, and independently validated. Includes the Cho-Gall grounding, standing Nova, corrected Rexxar, Apothecary Lt. Morales, and Mecha Dehaka corrections.'
