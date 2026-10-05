@@ -1,0 +1,64 @@
+name: Expose Photo Pose Runner V3.2 Source
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/expose-photo-pose-source-v3-2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  expose:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Decode compressed runner source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import ast
+          import base64
+          import zlib
+          from pathlib import Path
+
+          source = Path('tools/run_photo_posed_job_v3_2.py')
+          tree = ast.parse(source.read_text(encoding='utf-8'))
+          payload = None
+          for node in tree.body:
+              if isinstance(node, ast.Assign):
+                  for target in node.targets:
+                      if isinstance(target, ast.Name) and target.id == '_PAYLOAD':
+                          payload = ast.literal_eval(node.value)
+                          break
+          if payload is None:
+              raise SystemExit('Compressed payload was not found')
+          decoded = zlib.decompress(base64.b85decode(payload)).decode('utf-8')
+          destination = Path('tools/exposed_r2/run_photo_posed_job_v3_2_source.py')
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          destination.write_text(decoded, encoding='utf-8')
+          compile(decoded, str(destination), 'exec')
+          print(destination)
+          PY
+
+      - name: Commit decoded source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/exposed_r2/run_photo_posed_job_v3_2_source.py
+          if git diff --cached --quiet; then
+            echo 'Source already exposed.'
+          else
+            git commit -m 'Expose corrected photo-pose runner source [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
