@@ -1,0 +1,69 @@
+name: Expose Photo Pose Pipeline Source R2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/expose-photo-pose-source-r2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  expose:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Decode Python bootstrap payloads using AST
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tools/exposed_r2
+          python - <<'PY'
+          from pathlib import Path
+          import ast, base64, hashlib, zlib
+
+          names = [
+              'build_one_photo_posed_v3.py',
+              'run_photo_posed_job_v3.py',
+              'run_photo_posed_job_v3_1.py',
+          ]
+          for name in names:
+              source = Path('tools') / name
+              text = source.read_text(encoding='utf-8')
+              tree = ast.parse(text, filename=str(source))
+              payload = None
+              for node in tree.body:
+                  if isinstance(node, ast.Assign):
+                      for target in node.targets:
+                          if isinstance(target, ast.Name) and target.id == '_PAYLOAD':
+                              payload = ast.literal_eval(node.value)
+              if payload is None:
+                  decoded = text.encode('utf-8')
+              else:
+                  decoded = zlib.decompress(base64.b85decode(payload.encode('ascii')))
+              output = Path('tools/exposed_r2') / name.replace('.py', '_source.py')
+              output.write_bytes(decoded)
+              print(f'{source} -> {output}: {len(decoded)} bytes sha256={hashlib.sha256(decoded).hexdigest()}')
+          PY
+          python -m py_compile tools/exposed_r2/*.py
+
+      - name: Commit decoded source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/exposed_r2
+          if git diff --cached --quiet; then
+            echo 'No decoded-source changes.'
+          else
+            git commit -m 'Expose all photo-pose pipeline sources [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
