@@ -1,0 +1,208 @@
+name: Build HOTS-04 Photo-Posed STL Collection V4
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-photo-posed-stls-v4.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  build_hero:
+    name: Pose and repair ${{ matrix.hero }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        include:
+          - {hero: 'Alarak', safe: 'Alarak'}
+          - {hero: 'Arthas', safe: 'Arthas'}
+          - {hero: 'Blaze', safe: 'Blaze'}
+          - {hero: 'Cho-Gall', safe: 'Cho-Gall'}
+          - {hero: 'Dehaka', safe: 'Dehaka'}
+          - {hero: 'ETC', safe: 'ETC'}
+          - {hero: 'Fenix', safe: 'Fenix'}
+          - {hero: 'Leoric', safe: 'Leoric'}
+          - {hero: 'Lt Morales', safe: 'Lt_Morales'}
+          - {hero: 'Lunara', safe: 'Lunara'}
+          - {hero: "Mal'Ganis", safe: 'Mal_Ganis'}
+          - {hero: 'Nova', safe: 'Nova'}
+          - {hero: 'Ragnaros', safe: 'Ragnaros'}
+          - {hero: 'Rexxar', safe: 'Rexxar'}
+          - {hero: 'Stukov', safe: 'Stukov'}
+          - {hero: 'Tychus', safe: 'Tychus'}
+          - {hero: 'Zagara', safe: 'Zagara'}
+          - {hero: "Zul'jin", safe: 'Zul_jin'}
+
+    steps:
+      - name: Check out HOTS-04 references and pose tools
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Preinstall runner validation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet \
+            numpy==2.2.6 trimesh==4.8.3
+          python - <<'PY'
+          import numpy, trimesh
+          print('numpy', numpy.__version__)
+          print('trimesh', trimesh.__version__)
+          PY
+
+      - name: Search animations and build photographed pose
+        env:
+          HERO_NAME: ${{ matrix.hero }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v3_2.py \
+            --hero "$HERO_NAME" \
+            --max-animations 28 \
+            --max-coarse-frames 180 \
+            --refine-candidates 12
+
+      - name: Enforce posed and printable quality gate
+        env:
+          HERO_SAFE: ${{ matrix.safe }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-$HERO_SAFE"
+          test -s "$ROOT/HighDetail/$HERO_SAFE.stl"
+          test -s "$ROOT/Robust/$HERO_SAFE.stl"
+          test -s "$ROOT/Reports/$HERO_SAFE/pose_match.json"
+          test -s "$ROOT/Reports/$HERO_SAFE/photo_pose_quality_summary.json"
+          test -s "$ROOT/Reports/$HERO_SAFE/${HERO_SAFE}_pose_proof.jpg"
+          test -s "$ROOT/HERO_COMPLETE.txt"
+          python - "$ROOT" "$HERO_SAFE" <<'PY'
+          import json
+          from pathlib import Path
+          import sys
+          root = Path(sys.argv[1])
+          safe = sys.argv[2]
+          quality = json.loads((root / 'Reports' / safe / 'photo_pose_quality_summary.json').read_text())
+          checks = {
+              'animation': bool(str(quality.get('selected_animation', '')).strip()),
+              'frame': quality.get('selected_frame') is not None,
+              'coarse_frames': int(quality.get('coarse_frames_tested', 0)) >= 2,
+              'refined_frames': int(quality.get('refined_frames_tested', 0)) >= 1,
+              'high_detail': quality.get('high_detail_validation_passed') is True,
+              'robust': quality.get('robust_validation_passed') is True,
+          }
+          print(json.dumps({'quality': quality, 'checks': checks}, indent=2))
+          if not all(checks.values()):
+              raise SystemExit(f'Pose/printability quality gate failed: {checks}')
+          PY
+
+      - name: Upload completed posed hero
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04-photo-posed-v4-${{ matrix.safe }}
+          path: ${{ runner.temp }}/HOTS04-photo-posed-v3-${{ matrix.safe }}
+          retention-days: 90
+          compression-level: 0
+
+  package:
+    name: Validate, ZIP and publish all posed heroes
+    needs: build_hero
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+
+    steps:
+      - name: Check out packaging tools
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Download all 18 posed hero artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: HOTS04-photo-posed-v4-*
+          path: ${{ runner.temp }}/parts
+
+      - name: Independently validate and assemble collection
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet \
+            numpy==2.2.6 trimesh==4.8.3
+          OUTPUT="$RUNNER_TEMP/HOTS04_Photo_Posed_Heroes_STL_V4"
+          python tools/package_photo_posed_collection.py \
+            --parts "$RUNNER_TEMP/parts" \
+            --output "$OUTPUT" \
+            --plan reference_analysis/selected_skin_plan.json \
+            --expected 18
+          test "$(find "$OUTPUT/01_Print_Ready_Photo_Posed" -maxdepth 1 -type f -name '*.stl' | wc -l)" -eq 18
+          test "$(find "$OUTPUT/02_High_Detail_Photo_Posed" -maxdepth 1 -type f -name '*.stl' | wc -l)" -eq 18
+          test "$(find "$OUTPUT/03_Pose_Proofs" -maxdepth 1 -type f -name '*.jpg' | wc -l)" -eq 18
+
+      - name: Create downloadable ZIP and checksum
+        id: archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends p7zip-full
+          OUTPUT="$RUNNER_TEMP/HOTS04_Photo_Posed_Heroes_STL_V4"
+          ZIP="$GITHUB_WORKSPACE/HOTS04_Photo_Posed_Heroes_STL_V4.zip"
+          cd "$RUNNER_TEMP"
+          7z a -tzip -mx=7 "$ZIP" "$(basename "$OUTPUT")"
+          sha256sum "$ZIP" > "$ZIP.sha256"
+          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
+          echo "sha256=$(cut -d' ' -f1 "$ZIP.sha256")" >> "$GITHUB_OUTPUT"
+          ls -lh "$ZIP" "$ZIP.sha256"
+
+      - name: Upload final downloadable collection
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04_Photo_Posed_Heroes_STL_V4
+          path: |
+            HOTS04_Photo_Posed_Heroes_STL_V4.zip
+            HOTS04_Photo_Posed_Heroes_STL_V4.zip.sha256
+          retention-days: 90
+          compression-level: 0
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ZIP_PATH: ${{ steps.archive.outputs.zip }}
+          ZIP_SHA256: ${{ steps.archive.outputs.sha256 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="hots04-photo-posed-v4-${GITHUB_RUN_ID}"
+          REPORTS="$RUNNER_TEMP/HOTS04_Photo_Posed_Heroes_STL_V4/Reports"
+          cat > "$RUNNER_TEMP/release_notes.md" <<EOF
+          All 18 HOTS-04 characters were built from the selected game skin meshes and posed by comparing compatible game-animation frames against all four supplied JPG views.
+
+          Each included print-ready and high-detail STL passed independent checks for watertightness, consistent winding, finite coordinates, positive volume, physical dimensions, triangle count, and exactly one connected body.
+
+          The ZIP includes pose proof sheets and per-character reports recording the chosen animation, frame, comparison score, selected skin, repair method, and checksums.
+
+          ZIP SHA-256: $ZIP_SHA256
+          EOF
+          gh release create "$TAG" \
+            "$ZIP_PATH" \
+            "$ZIP_PATH.sha256" \
+            "$REPORTS/final_validation.json#final_validation.json" \
+            "$REPORTS/package_manifest.csv#package_manifest.csv" \
+            "$REPORTS/package_manifest.json#package_manifest.json" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title 'HOTS-04 photo-posed printable STL collection V4' \
+            --notes-file "$RUNNER_TEMP/release_notes.md"
