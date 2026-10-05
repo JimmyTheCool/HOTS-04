@@ -1,0 +1,492 @@
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	﻿2026-10-05T17:52:57.6935012Z ##[group]Run set -euo pipefail
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.6936504Z ^[[36;1mset -euo pipefail^[[0m
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.6938218Z ^[[36;1mpython tools/run_chogall_grounded_v2.py \^[[0m
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.6939908Z ^[[36;1m  --hero 'Cho-Gall' \^[[0m
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.6941254Z ^[[36;1m  --max-animations 34 \^[[0m
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.6942664Z ^[[36;1m  --max-coarse-frames 260 \^[[0m
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.6944431Z ^[[36;1m  --refine-candidates 18^[[0m
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7308401Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7310252Z env:
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7311222Z   BLENDER_VERSION: 3.6.23
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7312692Z   M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7314804Z ##[endgroup]
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7834583Z [photo-pose-job] {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7836298Z   "hero": "Cho-Gall",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7837356Z   "safe": "Cho-Gall",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7838389Z   "repository": "HOTS-02",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7839979Z   "model_path": "storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7841825Z   "skin_key": "ultimate",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7842870Z   "photos": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7844089Z     "Cho-Gall01.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7845113Z     "Cho-Gall02.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7846104Z     "Cho-Gall03.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7847089Z     "Cho-Gall04.jpg"
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7848337Z   ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7849217Z   "selected_skin_plan": {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7850556Z Cloning into '/home/runner/work/_temp/HOTS-03-tools'...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7852008Z     "skin_key": "ultimate",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7853168Z     "directory": "storm_hero_chogall_ultimate",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7854789Z     "repository": "HOTS-02",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7856409Z     "model_path": "storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7858749Z     "selection_method": "68% multi-angle silhouette plus 32% CLIP appearance",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7860539Z     "reference_images": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7861821Z       "Cho-Gall01.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7862976Z       "Cho-Gall02.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7864496Z       "Cho-Gall03.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7865798Z       "Cho-Gall04.jpg"
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7866790Z     ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7867666Z     "geometry_verification": {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7868814Z       "combined_score": 0.9752425172880502,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7870119Z       "silhouette_score": 0.5051322526896008,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7871590Z       "runner_up": "corruptor",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7872849Z       "runner_up_combined_score": 0.7846568128528518
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7874514Z     }
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7875338Z   }
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7876138Z }
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:57.7879079Z [photo-pose-job] RUN git clone --filter=blob:none --sparse --depth 1 --branch chatgpt-stl-builder https://github.com/JimmyTheCool/HOTS-03.git /home/runner/work/_temp/HOTS-03-tools
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:58.2636312Z [photo-pose-job] RUN git -C /home/runner/work/_temp/HOTS-03-tools sparse-checkout set ci tools/hots_stl
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:58.5708004Z [photo-pose-job] RUN git clone --filter=blob:none --no-checkout --depth 1 --branch main https://github.com/JimmyTheCool/HOTS-02.git /home/runner/work/_temp/source-Cho-Gall
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:58.5721996Z Cloning into '/home/runner/work/_temp/source-Cho-Gall'...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:52:59.1351668Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/resolve_pose_source_v3.py --repo /home/runner/work/_temp/source-Cho-Gall --model storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3 --hero Cho-Gall --output /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/source_resolution.json
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7635520Z {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7635974Z   "hero": "Cho-Gall",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7636857Z   "model_path": "storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7637609Z   "model_directory": "storm_hero_chogall_ultimate",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7638166Z   "model_key": "chogall_ultimate",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7638643Z   "animation_hint": null,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7639884Z   "animation_path": "storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7641057Z   "animation_directory": "storm_hero_chogall_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7641816Z   "animation_paths": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7642409Z     "storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a"
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7643092Z   ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7643689Z   "animation_directories": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7644192Z     "storm_hero_chogall_requiredanims"
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7644593Z   ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7644893Z   "sparse_directories": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7645288Z     "storm_hero_chogall_ultimate",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7645710Z     "storm_hero_chogall_requiredanims"
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7645977Z   ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7646179Z   "top_animation_candidates": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7646440Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7646780Z       "path": "storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7647283Z       "directory": "storm_hero_chogall_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7647625Z       "animation_key": "chogall",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7647886Z       "bytes": 10061904,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7648117Z       "score": 10307.238,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7648336Z       "reasons": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7648633Z         "generic animation key is a prefix of selected skin",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7648969Z         "1 leading token(s) match"
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7649250Z       ]
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7649467Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7649644Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7649980Z       "path": "storm_hero_hogger_requiredanims/storm_hero_hogger_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7650441Z       "directory": "storm_hero_hogger_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7650759Z       "animation_key": "hogger",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7651006Z       "bytes": 17222128,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7651230Z       "score": 324.443,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7651446Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7651644Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7651829Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7652206Z       "path": "storm_hero_brightwing_requiredanims/storm_hero_brightwing_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7652711Z       "directory": "storm_hero_brightwing_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7653039Z       "animation_key": "brightwing",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7653301Z       "bytes": 7930512,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7653796Z       "score": 146.61,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7654012Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7654200Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7654367Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7654691Z       "path": "storm_hero_illidan_requiredanims/storm_hero_illidan_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7655144Z       "directory": "storm_hero_illidan_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7655447Z       "animation_key": "illidan",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7655686Z       "bytes": 5536544,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7655895Z       "score": 92.731,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7656094Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7656282Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7656449Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7656872Z       "path": "storm_hero_brightwing_bright19_requiredanims/storm_hero_brightwing_bright19_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7657494Z       "directory": "storm_hero_brightwing_bright19_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7657866Z       "animation_key": "brightwing_bright19",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7658140Z       "bytes": 4770448,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7658345Z       "score": 89.409,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7658547Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7658732Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7658896Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7659282Z       "path": "storm_hero_d3wizardf_lunar_requiredanims/storm_hero_d3wizardf_lunar_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7659816Z       "directory": "storm_hero_d3wizardf_lunar_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7660172Z       "animation_key": "d3wizardf_lunar",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7660477Z       "bytes": 4516720,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7660684Z       "score": 88.334,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7660883Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7661069Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7661237Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7661813Z       "path": "storm_hero_falstad_requiredanims/storm_hero_falstad_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7662416Z       "directory": "storm_hero_falstad_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7662733Z       "animation_key": "falstad",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7662978Z       "bytes": 5260800,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7663208Z       "score": 87.216,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7663651Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7663931Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7664109Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7664517Z       "path": "storm_hero_azmodan_azmodunk_requiredanims/storm_hero_azmodan_azmodunk_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7665083Z       "directory": "storm_hero_azmodan_azmodunk_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7665434Z       "animation_key": "azmodan_azmodunk",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7665702Z       "bytes": 4351648,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7665911Z       "score": 87.033,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7666112Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7666299Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7666465Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7666773Z       "path": "storm_hero_chen_requiredanims/storm_hero_chen_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7667198Z       "directory": "storm_hero_chen_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7667492Z       "animation_key": "chen",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7667722Z       "bytes": 4203072,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7667929Z       "score": 84.061,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7668132Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7668320Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7668483Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7668785Z       "path": "storm_hero_dryad_requiredanims/storm_hero_dryad_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7669213Z       "directory": "storm_hero_dryad_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7669519Z       "animation_key": "dryad",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7669751Z       "bytes": 5294224,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7669952Z       "score": 83.884,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7670152Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7670332Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7670493Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7670817Z       "path": "storm_hero_diablo_requiredanims/storm_hero_diablo_requiredanims_v01.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7671293Z       "directory": "storm_hero_diablo_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7671599Z       "animation_key": "diablo",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7671844Z       "bytes": 5146336,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7672049Z       "score": 82.927,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7672253Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7672439Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7672608Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7672945Z       "path": "storm_hero_auriel_requiredanims/storm_hero_auriel_requiredanims.m3a",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7673652Z       "directory": "storm_hero_auriel_requiredanims",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7674040Z       "animation_key": "auriel",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7674290Z       "bytes": 5141312,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7674504Z       "score": 82.826,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7674712Z       "reasons": []
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7674900Z     }
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7675066Z   ]
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7675230Z }
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7691549Z [photo-pose-job] RUN git -C /home/runner/work/_temp/source-Cho-Gall sparse-checkout init --cone
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7719149Z [photo-pose-job] RUN git -C /home/runner/work/_temp/source-Cho-Gall sparse-checkout set storm_hero_chogall_ultimate storm_hero_chogall_requiredanims
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.7737766Z [photo-pose-job] RUN git -C /home/runner/work/_temp/source-Cho-Gall checkout main
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.8418753Z Already on 'main'
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.8422835Z Your branch is up to date with 'origin/main'.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:47.8441652Z [photo-pose-job] RUN sudo apt-get update -qq
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:55.4692313Z [photo-pose-job] RUN sudo apt-get install -y --no-install-recommends ca-certificates curl git xz-utils p7zip-full libx11-6 libxi6 libxrender1 libxfixes3 libxkbcommon0 libsm6 libice6 libgl1 libegl1
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:55.5230578Z Reading package lists...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:55.8335637Z Building dependency tree...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:55.8348590Z Reading state information...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0243342Z libgl1 is already the newest version (1.4.0-1).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0244255Z libgl1 set to manually installed.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0245276Z libice6 is already the newest version (2:1.0.10-1build2).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0245958Z libice6 set to manually installed.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0246374Z libsm6 is already the newest version (2:1.2.3-1build2).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0246823Z libsm6 set to manually installed.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0247226Z libxfixes3 is already the newest version (1:6.0.0-1).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0247669Z libxfixes3 set to manually installed.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0248006Z libxi6 is already the newest version (2:1.8-1build1).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0248352Z libxi6 set to manually installed.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0248824Z libxkbcommon0 is already the newest version (1.4.0-1).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0249413Z libxkbcommon0 set to manually installed.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0249988Z libxrender1 is already the newest version (1:0.9.10-1build4).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0250395Z libxrender1 set to manually installed.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0250754Z p7zip-full is already the newest version (16.02+dfsg-8).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0251199Z ca-certificates is already the newest version (20260601~22.04.1).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0251654Z curl is already the newest version (7.81.0-1ubuntu1.29).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0252084Z libx11-6 is already the newest version (2:1.7.5-1ubuntu0.3).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0252456Z libx11-6 set to manually installed.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0252805Z xz-utils is already the newest version (5.2.5-2ubuntu1.1).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0253251Z git is already the newest version (1:2.55.0-0ppa1~ubuntu22.04.2).
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0254012Z The following additional packages will be installed:
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0254381Z   libegl-mesa0
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0454925Z The following NEW packages will be installed:
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0462681Z   libegl-mesa0 libegl1
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0653131Z 0 upgraded, 2 newly installed, 0 to remove and 20 not upgraded.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0653926Z Need to get 147 kB of archives.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0654489Z After this operation, 484 kB of additional disk space will be used.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.0655208Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.1591199Z Get:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libegl-mesa0 amd64 23.2.1-1ubuntu3.1~22.04.4 [118 kB]
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.2328663Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 libegl1 amd64 1.4.0-1 [28.6 kB]
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.5624298Z Fetched 147 kB in 0s (811 kB/s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.5893335Z Selecting previously unselected package libegl-mesa0:amd64.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6237880Z (Reading database ... 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6238484Z (Reading database ... 5%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6238989Z (Reading database ... 10%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6239658Z (Reading database ... 15%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6240207Z (Reading database ... 20%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6240921Z (Reading database ... 25%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6241396Z (Reading database ... 30%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6241862Z (Reading database ... 35%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6242482Z (Reading database ... 40%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6242944Z (Reading database ... 45%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6243649Z (Reading database ... 50%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.6849013Z (Reading database ... 55%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:56.8907999Z (Reading database ... 60%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:57.0809872Z (Reading database ... 65%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:57.3065647Z (Reading database ... 70%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:57.3906460Z (Reading database ... 75%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:57.5045344Z (Reading database ... 80%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:57.6316693Z (Reading database ... 85%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:57.8471697Z (Reading database ... 90%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:57.9945986Z (Reading database ... 95%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:57.9946417Z (Reading database ... 100%
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:57.9946829Z (Reading database ... 260411 files and directories currently installed.)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.0000446Z Preparing to unpack .../libegl-mesa0_23.2.1-1ubuntu3.1~22.04.4_amd64.deb ...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.0036848Z Unpacking libegl-mesa0:amd64 (23.2.1-1ubuntu3.1~22.04.4) ...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.0297015Z Selecting previously unselected package libegl1:amd64.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.0499350Z Preparing to unpack .../libegl1_1.4.0-1_amd64.deb ...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.0507265Z Unpacking libegl1:amd64 (1.4.0-1) ...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.1007994Z Setting up libegl-mesa0:amd64 (23.2.1-1ubuntu3.1~22.04.4) ...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.1027782Z Setting up libegl1:amd64 (1.4.0-1) ...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.1049802Z Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8347042Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8348192Z Running kernel seems to be up-to-date.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8348626Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8348823Z No services need to be restarted.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8349151Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8349337Z No containers need to be restarted.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8349668Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8349880Z No user sessions are running outdated binaries.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8350283Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:56:58.8350650Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:00.1434004Z [photo-pose-job] RUN curl --fail --location --retry 5 --retry-delay 5 https://download.blender.org/release/Blender3.6/blender-3.6.23-linux-x64.tar.xz --output /home/runner/work/_temp/blender-3.6.23-linux-x64.tar.xz
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:00.1503006Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:00.1504197Z                                  Dload  Upload   Total   Spent    Left  Speed
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:00.1504864Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:00.9750183Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:01.1619312Z  80  260M   80  208M    0     0   252M      0  0:00:01 --:--:--  0:00:01  252M
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:01.1620213Z 100  260M  100  260M    0     0   257M      0  0:00:01  0:00:01 --:--:--  257M
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:01.1647647Z [photo-pose-job] RUN tar -xf /home/runner/work/_temp/blender-3.6.23-linux-x64.tar.xz -C /home/runner/work/_temp
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:17.8704870Z [photo-pose-job] RUN git clone https://github.com/SC2Mapster/m3addon.git /home/runner/work/_temp/m3addon-src
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:17.8720833Z Cloning into '/home/runner/work/_temp/m3addon-src'...
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7026438Z [photo-pose-job] RUN git -C /home/runner/work/_temp/m3addon-src checkout 58935005c4465a219a740f6b740253533eda773f
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7079704Z Note: switching to '58935005c4465a219a740f6b740253533eda773f'.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7080185Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7080501Z You are in 'detached HEAD' state. You can look around, make experimental
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7081047Z changes and commit them, and you can discard any commits you make in this
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7081530Z state without impacting any branches by switching back to a branch.
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7081807Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7081991Z If you want to create a new branch to retain commits you create, you may
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7082437Z do so (now or later) by using -c with the switch command. Example:
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7082691Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7082794Z   git switch -c <new-branch-name>
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7082968Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7083058Z Or undo this operation with:
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7083230Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7083343Z   git switch -
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7083691Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7083894Z Turn off this advice by setting config variable advice.detachedHead to false
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7084210Z 
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7084302Z HEAD is now at 5893500 *Farewell*
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:18.7090318Z [photo-pose-job] RUN /usr/bin/python -m pip install --disable-pip-version-check --quiet numpy==2.2.6 scipy==1.15.3 pillow==11.1.0 trimesh==4.8.3 scikit-image==0.25.2 pymeshfix==0.18.1 fast-simplification==0.1.12 matplotlib==3.10.1 opencv-python-headless==4.12.0.88
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:35.0997156Z [photo-pose-job] Verified pose builder payload 17f312b45d5b5d5eabc34ff9566f93737772ca6038ee0b11955328c610793ab3
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:57:35.1000770Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/prepare_pose_reference_masks_v4.py --hero Cho-Gall --photos /home/runner/work/HOTS-04/HOTS-04/Cho-Gall01.jpg /home/runner/work/HOTS-04/HOTS-04/Cho-Gall02.jpg /home/runner/work/HOTS-04/HOTS-04/Cho-Gall03.jpg /home/runner/work/HOTS-04/HOTS-04/Cho-Gall04.jpg --output-npz /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/reference_masks.npz --preview /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/Cho-Gall_reference_masks.jpg --report /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/reference_masks.json
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9604508Z {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9604925Z   "hero": "Cho-Gall",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9605283Z   "version": 4,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9605931Z   "method": "cross-view difference + border appearance + GrabCut + central component filtering",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9606694Z   "canvas": 128,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9607020Z   "inner": 112,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9607335Z   "views": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9607634Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9607914Z       "view": 1,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9608372Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Cho-Gall01.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9608769Z       "source_size": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9608982Z         677,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9609187Z         680
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9609366Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9609566Z       "analysis_size": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9609798Z         677,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9609978Z         680
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9610156Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9610359Z       "method": "cross-view-grabcut",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9610640Z       "analysis_area_pixels": 278053,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9610913Z       "normalized_area_pixels": 8347,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9611194Z       "normalized_aspect": 1.018181818181818,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9611483Z       "background_rgb": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9611702Z         16.0,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9611887Z         17.0,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9612068Z         71.0
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9612254Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9612449Z       "motion_p95": 0.9582558274269104,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9612730Z       "colour_distance_p95": 148.85595703125
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9612999Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9613179Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9613358Z       "view": 2,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9613935Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Cho-Gall02.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9614296Z       "source_size": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9614509Z         554,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9614695Z         687
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9614871Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9615057Z       "analysis_size": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9615281Z         677,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9615459Z         680
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9615636Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9615835Z       "method": "cross-view-grabcut",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9616112Z       "analysis_area_pixels": 285140,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9616383Z       "normalized_area_pixels": 8587,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9616654Z       "normalized_aspect": 1.0,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9616904Z       "background_rgb": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9617121Z         17.0,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9617304Z         19.0,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9617487Z         94.0
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9617670Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9617859Z       "motion_p95": 0.9281885027885437,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9618144Z       "colour_distance_p95": 145.89743041992188
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9618426Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9618608Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9618790Z       "view": 3,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9619064Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Cho-Gall03.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9619405Z       "source_size": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9619598Z         603,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9619767Z         715
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9619934Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9620135Z       "analysis_size": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9620344Z         677,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9620509Z         680
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9620671Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9620854Z       "method": "cross-view-grabcut",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9621127Z       "analysis_area_pixels": 245851,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9621385Z       "normalized_area_pixels": 7352,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9621647Z       "normalized_aspect": 1.0467289719626167,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9621948Z       "background_rgb": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9622157Z         17.0,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9622324Z         20.0,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9622813Z         74.0
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9622982Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9623155Z       "motion_p95": 0.948432445526123,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9623918Z       "colour_distance_p95": 139.34848022460938
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9624183Z     },
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9624342Z     {
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9624507Z       "view": 4,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9624777Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Cho-Gall04.jpg",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9625095Z       "source_size": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9625287Z         558,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9625457Z         755
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9625623Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9625797Z       "analysis_size": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9625998Z         677,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9626167Z         680
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9626327Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9626512Z       "method": "cross-view-grabcut",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9626772Z       "analysis_area_pixels": 294694,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9627025Z       "normalized_area_pixels": 8826,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9627288Z       "normalized_aspect": 1.0769230769230769,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9627562Z       "background_rgb": [
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9627770Z         15.0,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9627941Z         18.0,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9628112Z         66.0
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9628282Z       ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9628467Z       "motion_p95": 0.9381901025772095,
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9628728Z       "colour_distance_p95": 136.9488983154297
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9628978Z     }
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9629135Z   ],
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9629531Z   "npz": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/reference_masks.npz",
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9630292Z   "preview": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/Cho-Gall_reference_masks.jpg"
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9630798Z }
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:02.9956404Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_dimension_retention.py /home/runner/work/_temp/repair-normal-Cho-Gall.py
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.0156708Z Patched /home/runner/work/_temp/repair-normal-Cho-Gall.py with dimensional-retention protection
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.0188284Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_voxel_translation.py /home/runner/work/_temp/repair-normal-Cho-Gall.py
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.0388607Z Patched /home/runner/work/_temp/repair-normal-Cho-Gall.py to use VoxelGrid.translation
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.0418877Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_face_connectivity.py /home/runner/work/_temp/repair-normal-Cho-Gall.py
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.0619217Z Patched /home/runner/work/_temp/repair-normal-Cho-Gall.py for face-connected voxel unions
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.0650842Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_force_voxel.py /home/runner/work/_temp/repair-voxel-Cho-Gall.py
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.0851715Z Patched /home/runner/work/_temp/repair-voxel-Cho-Gall.py to force face-connected voxel reconstruction when needed
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.0885009Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/tools/hots_stl/runtime_patch_v2.py /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/HeroBuild/builder.py
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.1094664Z Patched /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/HeroBuild/builder.py to HOTS STL Builder v2.1.0
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.1125441Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_builder_external_validation.py /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/HeroBuild/builder.py
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.1327077Z Patched builder to defer geometric watertightness to independent trimesh validation
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.1358268Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/patch_builder_ground_weighted_feet_v2.py /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/HeroBuild/builder.py
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.1904858Z Patched rig-aware foot grounding into /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/HeroBuild/builder.py
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.2070782Z Corrected scaled sole-height conversion in /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/HeroBuild/builder.py
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.2116807Z [photo-pose-job] RUN /home/runner/work/_temp/blender-3.6.23-linux-x64/blender --background --factory-startup --python /home/runner/work/HOTS-04/HOTS-04/tools/build_one_photo_posed_v3.py -- --builder /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/HeroBuild/builder.py --model /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3 --animation /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a --hero Cho-Gall --skin-key ultimate --reference-npz /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/reference_masks.npz --output /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/HeroBuild --target-height-mm 120 --base-height-mm 4.5 --base-margin-mm 5.0 --voxel-mm 0.30 --thin-part-mm 0.70 --max-triangles 600000 --max-animations 34 --max-coarse-frames 260 --refine-candidates 18
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.4120882Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.4122056Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.4122912Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.4123948Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.4124662Z ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.4125465Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.4126214Z ALSA lib conf.c:5705:(snd_config_expand) Evaluate error: No such file or directory
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.4126795Z ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:03.4189499Z Failed to open dir (No such file or directory): /run/user/1001/gvfs/
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:04.4225764Z [17:58:04] Enabling m3addon
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:04.6240987Z [POSE] Importing selected skin for pose search: /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:04.6243270Z 2026-10-05 17:58:04,624,624 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:05.9869450Z Info: Removed 100 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:05.9870023Z Info: Removed 211 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:05.9870425Z Info: Removed 41 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:05.9870816Z Info: Removed 93 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:05.9871253Z [POSE] Unposed/rest-pose baseline score: 0.5190
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:05.9872528Z [POSE] Importing pose bank: /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:05.9895336Z 2026-10-05 17:58:05,987,987 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:22.4282902Z [POSE] Pose search will test 260 frames from 34 animations
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:23.1660633Z [POSE] Coarse 1/260; best Stand Ready End frame 1 score 0.6508
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:28.2248498Z [POSE] Coarse 8/260; best Stand Ready End frame 18 score 0.6750
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:33.9702214Z [POSE] Coarse 16/260; best Stand Ready End frame 18 score 0.6750
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:39.7372067Z [POSE] Coarse 24/260; best Stand Ready frame 36 score 0.6756
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:45.4864470Z [POSE] Coarse 32/260; best Stand Ready frame 36 score 0.6756
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:51.2525611Z [POSE] Coarse 40/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:58:57.0252855Z [POSE] Coarse 48/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:02.7967519Z [POSE] Coarse 56/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:08.5554937Z [POSE] Coarse 64/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:14.2977466Z [POSE] Coarse 72/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:20.0429188Z [POSE] Coarse 80/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:25.8147378Z [POSE] Coarse 88/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:31.5905001Z [POSE] Coarse 96/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:37.3748964Z [POSE] Coarse 104/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:43.1389678Z [POSE] Coarse 112/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:48.9038138Z [POSE] Coarse 120/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T17:59:54.6785259Z [POSE] Coarse 128/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:00.4478281Z [POSE] Coarse 136/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:06.2144603Z [POSE] Coarse 144/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:11.9639462Z [POSE] Coarse 152/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:17.7552829Z [POSE] Coarse 160/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:23.5170966Z [POSE] Coarse 168/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:29.2465539Z [POSE] Coarse 176/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:34.9896862Z [POSE] Coarse 184/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:40.7508262Z [POSE] Coarse 192/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:46.5025958Z [POSE] Coarse 200/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:52.2592205Z [POSE] Coarse 208/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:00:58.0155622Z [POSE] Coarse 216/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:01:03.7825800Z [POSE] Coarse 224/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:01:09.5469992Z [POSE] Coarse 232/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:01:15.3829868Z [POSE] Coarse 240/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:01:21.2035403Z [POSE] Coarse 248/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:01:26.9919470Z [POSE] Coarse 256/260; best Stand Ready Start S frame 15 score 0.7475
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:02:20.8767411Z [POSE] Selected pose: Stand Ready Start S frame 13 score 0.7624, source=/home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:02:20.9854265Z [18:02:20] Importing M3: /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:02:20.9879157Z 2026-10-05 18:02:20,987,987 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:02:21.5653577Z Info: Removed 100 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:02:21.5654273Z Info: Removed 211 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:02:21.5654766Z Info: Removed 41 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:02:21.5655164Z Info: Removed 93 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:02:21.5656155Z [18:02:21] Importing required animation: /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:02:21.5675609Z 2026-10-05 18:02:21,565,565 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Cho-Gall/storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8491628Z Info: Removed 449 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8492201Z Info: Removed: 0 vertices, 0 edges, 0 faces
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8492656Z Info: Removed 107 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8493071Z Info: Removed: 0 vertices, 0 edges, 0 faces
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8493743Z Info: Removed 6 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8494172Z Info: Removed: 0 vertices, 0 edges, 0 faces
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8494625Z Info: Removed 185 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8495033Z Info: Removed: 0 vertices, 0 edges, 0 faces
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8495485Z Info: Removed 25 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8496418Z Info: Removed: 0 vertices, 0 edges, 0 faces
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8497109Z Info: Removed 46 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8497516Z Info: Removed: 0 vertices, 0 edges, 0 faces
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8497956Z Info: Removed 13 vertice(s)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8498362Z Info: Removed: 0 vertices, 0 edges, 0 faces
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:03:56.8498976Z [18:03:56] Strict edge test failed; retrying clean voxel union at 0.620 mm
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:11.9654619Z [POSE] Completed posed STL build for Cho-Gall
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:11.9685863Z Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 01:32:54)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:12.1084174Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/make_pose_proof_sheet_v3.py --hero Cho-Gall --photos /home/runner/work/HOTS-04/HOTS-04/Cho-Gall01.jpg /home/runner/work/HOTS-04/HOTS-04/Cho-Gall02.jpg /home/runner/work/HOTS-04/HOTS-04/Cho-Gall03.jpg /home/runner/work/HOTS-04/HOTS-04/Cho-Gall04.jpg --reference-npz /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/reference_masks.npz --matched-dir /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall --pose-report /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/pose_match.json --output /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/Cho-Gall_pose_proof.jpg
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:12.3132197Z /home/runner/work/_temp/HOTS04-photo-posed-v3-Cho-Gall/Reports/Cho-Gall/Cho-Gall_pose_proof.jpg
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:12.3280098Z Traceback (most recent call last):
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:12.3281089Z   File "/home/runner/work/HOTS-04/HOTS-04/tools/exposed_r2/run_photo_posed_job_v3_2_source.py", line 518, in <module>
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:12.3281992Z     except SystemExit:
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:12.3282761Z   File "/home/runner/work/HOTS-04/HOTS-04/tools/exposed_r2/run_photo_posed_job_v3_2_source.py", line 316, in main
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:12.3284073Z     initial_mesh = trimesh.load_mesh(initial_source, force="mesh", process=False)
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:12.3284676Z ModuleNotFoundError: No module named 'trimesh'
+build	Build the photographed Ultimate Cho-Gall pose with grounded feet	2026-10-05T18:04:12.3367348Z ##[error]Process completed with exit code 2.
