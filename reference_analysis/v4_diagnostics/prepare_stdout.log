@@ -1,0 +1,1 @@
+{'runner_sha256': '42c071db5aac321887a2a47273a2baac04bdd3a5cc4df2fa0890d8afd73b6cd5', 'pose_sha256': '1dab465d008b4647ad87d2f086d910b028119fa04098b495c2a21508719584c9', 'voxel_mm': 0.24, 'max_triangles': 900000, 'target_triangles': 820000}
