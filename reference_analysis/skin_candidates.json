@@ -1,0 +1,840 @@
+{
+  "heroes": {
+    "Alarak": [
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_alarak_base",
+        "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+        "all_m3_paths": [
+          "storm_hero_alarak_base/storm_hero_alarak_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_alarak_dark18",
+        "model_path": "storm_hero_alarak_dark18/storm_hero_alarak_dark18.m3",
+        "all_m3_paths": [
+          "storm_hero_alarak_dark18/storm_hero_alarak_dark18.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_alarak_hunter",
+        "model_path": "storm_hero_alarak_hunter/storm_hero_alarak_hunter.m3",
+        "all_m3_paths": [
+          "storm_hero_alarak_hunter/storm_hero_alarak_hunter.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_alarak_ultimate",
+        "model_path": "storm_hero_alarak_ultimate/storm_hero_alarak_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_alarak_ultimate/storm_hero_alarak_ultimate.m3"
+        ]
+      }
+    ],
+    "Arthas": [
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_arthas_base",
+        "model_path": "storm_hero_arthas_base/storm_hero_arthas_base_v15.m3",
+        "all_m3_paths": [
+          "storm_hero_arthas_base/storm_hero_arthas_base_v15.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_arthas_craft20",
+        "model_path": "storm_hero_arthas_craft20/storm_hero_arthas_craft20.m3",
+        "all_m3_paths": [
+          "storm_hero_arthas_craft20/storm_hero_arthas_craft20.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_arthas_crimsoncount",
+        "model_path": "storm_hero_arthas_crimsoncount/storm_hero_arthas_crimsoncount.m3",
+        "all_m3_paths": [
+          "storm_hero_arthas_crimsoncount/storm_hero_arthas_crimsoncount.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_arthas_dragonbone",
+        "model_path": "storm_hero_arthas_dragonbone/storm_hero_arthas_dragonbone_v15.m3",
+        "all_m3_paths": [
+          "storm_hero_arthas_dragonbone/storm_hero_arthas_dragonbone_v15.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_arthas_guanyu",
+        "model_path": "storm_hero_arthas_guanyu/storm_hero_arthas_guanyu_v15.m3",
+        "all_m3_paths": [
+          "storm_hero_arthas_guanyu/storm_hero_arthas_guanyu_v15.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_arthas_lichprince",
+        "model_path": "storm_hero_arthas_lichprince/storm_hero_arthas_lichprince_v15.m3",
+        "all_m3_paths": [
+          "storm_hero_arthas_lichprince/storm_hero_arthas_lichprince_v15.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_arthas_ultimate",
+        "model_path": "storm_hero_arthas_ultimate/storm_hero_arthas_ultimate_v15.m3",
+        "all_m3_paths": [
+          "storm_hero_arthas_ultimate/storm_hero_arthas_ultimate_v15.m3"
+        ]
+      }
+    ],
+    "Blaze": [
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_firebat_army19",
+        "model_path": "storm_hero_firebat_army19/storm_hero_firebat_army19.m3",
+        "all_m3_paths": [
+          "storm_hero_firebat_army19/storm_hero_firebat_army19.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_firebat_base",
+        "model_path": "storm_hero_firebat_base/storm_hero_firebat_base.m3",
+        "all_m3_paths": [
+          "storm_hero_firebat_base/storm_hero_firebat_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_firebat_felreaver",
+        "model_path": "storm_hero_firebat_felreaver/storm_hero_firebat_felreaver.m3",
+        "all_m3_paths": [
+          "storm_hero_firebat_felreaver/storm_hero_firebat_felreaver.m3"
+        ]
+      }
+    ],
+    "Cho-Gall": [
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_chogall_altered20",
+        "model_path": "storm_hero_chogall_altered20/storm_hero_chogall_altered20.m3",
+        "all_m3_paths": [
+          "storm_hero_chogall_altered20/storm_hero_chogall_altered20.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_chogall_base",
+        "model_path": "storm_hero_chogall_base/storm_hero_chogall_base.m3",
+        "all_m3_paths": [
+          "storm_hero_chogall_base/storm_hero_chogall_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_chogall_corruptor",
+        "model_path": "storm_hero_chogall_corruptor/storm_hero_chogall_corruptor.m3",
+        "all_m3_paths": [
+          "storm_hero_chogall_corruptor/storm_hero_chogall_corruptor.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_chogall_pumpkin",
+        "model_path": "storm_hero_chogall_pumpkin/storm_hero_chogall_pumpkin.m3",
+        "all_m3_paths": [
+          "storm_hero_chogall_pumpkin/storm_hero_chogall_pumpkin.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_chogall_ultimate",
+        "model_path": "storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3"
+        ]
+      }
+    ],
+    "Dehaka": [
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dehaka_base",
+        "model_path": "storm_hero_dehaka_base/storm_hero_dehaka_base.m3",
+        "all_m3_paths": [
+          "storm_hero_dehaka_base/storm_hero_dehaka_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dehaka_mecha",
+        "model_path": "storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3",
+        "all_m3_paths": [
+          "storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dehaka_toys18",
+        "model_path": "storm_hero_dehaka_toys18/storm_hero_dehaka_toys18.m3",
+        "all_m3_paths": [
+          "storm_hero_dehaka_toys18/storm_hero_dehaka_toys18.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dehaka_ultimate",
+        "model_path": "storm_hero_dehaka_ultimate/storm_hero_dehaka_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_dehaka_ultimate/storm_hero_dehaka_ultimate.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dehaka_vhaka",
+        "model_path": "storm_hero_dehaka_vhaka/storm_hero_dehaka_vhaka.m3",
+        "all_m3_paths": [
+          "storm_hero_dehaka_vhaka/storm_hero_dehaka_vhaka.m3"
+        ]
+      }
+    ],
+    "ETC": [
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_etc_base",
+        "model_path": "storm_hero_etc_base/storm_hero_etc_base_v07.m3",
+        "all_m3_paths": [
+          "storm_hero_etc_base/storm_hero_etc_base_v07.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_etc_glam",
+        "model_path": "storm_hero_etc_glam/storm_hero_etc_glam_v07.m3",
+        "all_m3_paths": [
+          "storm_hero_etc_glam/storm_hero_etc_glam_v07.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_etc_marine",
+        "model_path": "storm_hero_etc_marine/storm_hero_etc_marine.m3",
+        "all_m3_paths": [
+          "storm_hero_etc_marine/storm_hero_etc_marine.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_etc_purecountry",
+        "model_path": "storm_hero_etc_purecountry/storm_hero_etc_purecountry_v07.m3",
+        "all_m3_paths": [
+          "storm_hero_etc_purecountry/storm_hero_etc_purecountry_v07.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_etc_summer18",
+        "model_path": "storm_hero_etc_summer18/storm_hero_etc_summer18.m3",
+        "all_m3_paths": [
+          "storm_hero_etc_summer18/storm_hero_etc_summer18.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_etc_ultimate",
+        "model_path": "storm_hero_etc_ultimate/storm_hero_etc_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_etc_ultimate/storm_hero_etc_ultimate.m3"
+        ]
+      }
+    ],
+    "Fenix": [
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_fenix_base",
+        "model_path": "storm_hero_fenix_base/storm_hero_fenix_base.m3",
+        "all_m3_paths": [
+          "storm_hero_fenix_base/storm_hero_fenix_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_fenix_base_replace_mat",
+        "model_path": "storm_hero_fenix_base_replace_mat/storm_hero_fenix_base_replace_mat.m3",
+        "all_m3_paths": [
+          "storm_hero_fenix_base_replace_mat/storm_hero_fenix_base_replace_mat.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_fenix_dark20",
+        "model_path": "storm_hero_fenix_dark20/storm_hero_fenix_dark20.m3",
+        "all_m3_paths": [
+          "storm_hero_fenix_dark20/storm_hero_fenix_dark20.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_fenix_dark20_replace_mat",
+        "model_path": "storm_hero_fenix_dark20_replace_mat/storm_hero_fenix_dark20_replace_mat.m3",
+        "all_m3_paths": [
+          "storm_hero_fenix_dark20_replace_mat/storm_hero_fenix_dark20_replace_mat.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_fenix_guardian",
+        "model_path": "storm_hero_fenix_guardian/storm_hero_fenix_guardian.m3",
+        "all_m3_paths": [
+          "storm_hero_fenix_guardian/storm_hero_fenix_guardian.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_fenix_guardian_replace_mat",
+        "model_path": "storm_hero_fenix_guardian_replace_mat/storm_hero_fenix_guardian_replace_mat.m3",
+        "all_m3_paths": [
+          "storm_hero_fenix_guardian_replace_mat/storm_hero_fenix_guardian_replace_mat.m3"
+        ]
+      }
+    ],
+    "Leoric": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_kingleoric_base",
+        "model_path": "storm_hero_kingleoric_base/storm_hero_kingleoric_base.m3",
+        "all_m3_paths": [
+          "storm_hero_kingleoric_base/storm_hero_kingleoric_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_kingleoric_janitor18",
+        "model_path": "storm_hero_kingleoric_janitor18/storm_hero_kingleoric_janitor18.m3",
+        "all_m3_paths": [
+          "storm_hero_kingleoric_janitor18/storm_hero_kingleoric_janitor18.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_kingleoric_janitor18_ghost_mat",
+        "model_path": "storm_hero_kingleoric_janitor18_ghost_mat/storm_hero_kingleoric_janitor18_ghost_mat.m3",
+        "all_m3_paths": [
+          "storm_hero_kingleoric_janitor18_ghost_mat/storm_hero_kingleoric_janitor18_ghost_mat.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_kingleoric_janitor18_shadow_mat",
+        "model_path": "storm_hero_kingleoric_janitor18_shadow_mat/storm_hero_kingleoric_janitor18_shadow_mat.m3",
+        "all_m3_paths": [
+          "storm_hero_kingleoric_janitor18_shadow_mat/storm_hero_kingleoric_janitor18_shadow_mat.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_kingleoric_kingvrykul",
+        "model_path": "storm_hero_kingleoric_kingvrykul/storm_hero_kingleoric_kingvrykul.m3",
+        "all_m3_paths": [
+          "storm_hero_kingleoric_kingvrykul/storm_hero_kingleoric_kingvrykul.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_kingleoric_space",
+        "model_path": "storm_hero_kingleoric_space/storm_hero_kingleoric_space.m3",
+        "all_m3_paths": [
+          "storm_hero_kingleoric_space/storm_hero_kingleoric_space.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_kingleoric_ultimate",
+        "model_path": "storm_hero_kingleoric_ultimate/storm_hero_kingleoric_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_kingleoric_ultimate/storm_hero_kingleoric_ultimate.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_kingleoric_vrykul",
+        "model_path": "storm_hero_kingleoric_vrykul/storm_hero_kingleoric_vrykul.m3",
+        "all_m3_paths": [
+          "storm_hero_kingleoric_vrykul/storm_hero_kingleoric_vrykul.m3"
+        ]
+      }
+    ],
+    "Lt Morales": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_apoth",
+        "model_path": "storm_hero_medic_apoth/storm_hero_medic_apoth.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_apoth/storm_hero_medic_apoth.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_apoth_shield",
+        "model_path": "storm_hero_medic_apoth_shield/storm_hero_medic_apoth_shield.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_apoth_shield/storm_hero_medic_apoth_shield.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_base",
+        "model_path": "storm_hero_medic_base/storm_hero_medic_base.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_base/storm_hero_medic_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_base_shield",
+        "model_path": "storm_hero_medic_base_shield/storm_hero_medic_base_shield.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_base_shield/storm_hero_medic_base_shield.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_enforcer",
+        "model_path": "storm_hero_medic_enforcer/storm_hero_medic_enforcer.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_enforcer/storm_hero_medic_enforcer.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_enforcer_shield",
+        "model_path": "storm_hero_medic_enforcer_shield/storm_hero_medic_enforcer_shield.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_enforcer_shield/storm_hero_medic_enforcer_shield.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_love",
+        "model_path": "storm_hero_medic_love/storm_hero_medic_love.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_love/storm_hero_medic_love.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_love_shield",
+        "model_path": "storm_hero_medic_love_shield/storm_hero_medic_love_shield.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_love_shield/storm_hero_medic_love_shield.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_ultimate",
+        "model_path": "storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_medic_ultimate_shield",
+        "model_path": "storm_hero_medic_ultimate_shield/storm_hero_medic_ultimate_shield.m3",
+        "all_m3_paths": [
+          "storm_hero_medic_ultimate_shield/storm_hero_medic_ultimate_shield.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_uther_medic",
+        "model_path": "storm_hero_uther_medic/storm_hero_uther_medic.m3",
+        "all_m3_paths": [
+          "storm_hero_uther_medic/storm_hero_uther_medic.m3"
+        ]
+      }
+    ],
+    "Lunara": [
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dryad_base",
+        "model_path": "storm_hero_dryad_base/storm_hero_dryad_base.m3",
+        "all_m3_paths": [
+          "storm_hero_dryad_base/storm_hero_dryad_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dryad_sentinel",
+        "model_path": "storm_hero_dryad_sentinel/storm_hero_dryad_sentinel.m3",
+        "all_m3_paths": [
+          "storm_hero_dryad_sentinel/storm_hero_dryad_sentinel.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dryad_summer18",
+        "model_path": "storm_hero_dryad_summer18/storm_hero_dryad_summer18.m3",
+        "all_m3_paths": [
+          "storm_hero_dryad_summer18/storm_hero_dryad_summer18.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dryad_ultimate",
+        "model_path": "storm_hero_dryad_ultimate/storm_hero_dryad_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_dryad_ultimate/storm_hero_dryad_ultimate.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dryad_warden",
+        "model_path": "storm_hero_dryad_warden/storm_hero_dryad_warden.m3",
+        "all_m3_paths": [
+          "storm_hero_dryad_warden/storm_hero_dryad_warden.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-02",
+        "directory": "storm_hero_dryad_winter",
+        "model_path": "storm_hero_dryad_winter/storm_hero_dryad_winter.m3",
+        "all_m3_paths": [
+          "storm_hero_dryad_winter/storm_hero_dryad_winter.m3"
+        ]
+      }
+    ],
+    "Mal'Ganis": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_malganis_base",
+        "model_path": "storm_hero_malganis_base/storm_hero_malganis_base.m3",
+        "all_m3_paths": [
+          "storm_hero_malganis_base/storm_hero_malganis_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_malganis_pilothawk",
+        "model_path": "storm_hero_malganis_pilothawk/storm_hero_malganis_pilothawk.m3",
+        "all_m3_paths": [
+          "storm_hero_malganis_pilothawk/storm_hero_malganis_pilothawk.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_malganis_summer20",
+        "model_path": "storm_hero_malganis_summer20/storm_hero_malganis_summer20.m3",
+        "all_m3_paths": [
+          "storm_hero_malganis_summer20/storm_hero_malganis_summer20.m3"
+        ]
+      }
+    ],
+    "Nova": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_nova_base",
+        "model_path": "storm_hero_nova_base/storm_hero_nova_base_v05.m3",
+        "all_m3_paths": [
+          "storm_hero_nova_base/storm_hero_nova_base_v05.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_nova_base_holo",
+        "model_path": "storm_hero_nova_base_holo/storm_hero_nova_base_holo.m3",
+        "all_m3_paths": [
+          "storm_hero_nova_base_holo/storm_hero_nova_base_holo.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_nova_madaxe18",
+        "model_path": "storm_hero_nova_madaxe18/storm_hero_nova_madaxe18.m3",
+        "all_m3_paths": [
+          "storm_hero_nova_madaxe18/storm_hero_nova_madaxe18.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_nova_novazon",
+        "model_path": "storm_hero_nova_novazon/storm_hero_nova_novazon_v05.m3",
+        "all_m3_paths": [
+          "storm_hero_nova_novazon/storm_hero_nova_novazon_v05.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_nova_rollerderby",
+        "model_path": "storm_hero_nova_rollerderby/storm_hero_nova_rollerderby_v05.m3",
+        "all_m3_paths": [
+          "storm_hero_nova_rollerderby/storm_hero_nova_rollerderby_v05.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_nova_spectre",
+        "model_path": "storm_hero_nova_spectre/storm_hero_nova_spectre_v05.m3",
+        "all_m3_paths": [
+          "storm_hero_nova_spectre/storm_hero_nova_spectre_v05.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_nova_ultimate",
+        "model_path": "storm_hero_nova_ultimate/storm_hero_nova_ultimate_v05.m3",
+        "all_m3_paths": [
+          "storm_hero_nova_ultimate/storm_hero_nova_ultimate_v05.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_nova_widow",
+        "model_path": "storm_hero_nova_widow/storm_hero_nova_widow_v05.m3",
+        "all_m3_paths": [
+          "storm_hero_nova_widow/storm_hero_nova_widow_v05.m3"
+        ]
+      }
+    ],
+    "Ragnaros": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_ragnaros_base",
+        "model_path": "storm_hero_ragnaros_base/storm_hero_ragnaros_base.m3",
+        "all_m3_paths": [
+          "storm_hero_ragnaros_base/storm_hero_ragnaros_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_ragnaros_lil",
+        "model_path": "storm_hero_ragnaros_lil/storm_hero_ragnaros_lil.m3",
+        "all_m3_paths": [
+          "storm_hero_ragnaros_lil/storm_hero_ragnaros_lil.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_ragnaros_ultimate",
+        "model_path": "storm_hero_ragnaros_ultimate/storm_hero_ragnaros_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_ragnaros_ultimate/storm_hero_ragnaros_ultimate.m3"
+        ]
+      }
+    ],
+    "Rexxar": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_rexxar_base",
+        "model_path": "storm_hero_rexxar_base/storm_hero_rexxar_base.m3",
+        "all_m3_paths": [
+          "storm_hero_rexxar_base/storm_hero_rexxar_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_rexxar_frost",
+        "model_path": "storm_hero_rexxar_frost/storm_hero_rexxar_frost.m3",
+        "all_m3_paths": [
+          "storm_hero_rexxar_frost/storm_hero_rexxar_frost.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_rexxar_marine",
+        "model_path": "storm_hero_rexxar_marine/storm_hero_rexxar_marine.m3",
+        "all_m3_paths": [
+          "storm_hero_rexxar_marine/storm_hero_rexxar_marine.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_rexxar_ultimate",
+        "model_path": "storm_hero_rexxar_ultimate/storm_hero_rexxar_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_rexxar_ultimate/storm_hero_rexxar_ultimate.m3"
+        ]
+      }
+    ],
+    "Stukov": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_stukov_army18",
+        "model_path": "storm_hero_stukov_army18/storm_hero_stukov_army18.m3",
+        "all_m3_paths": [
+          "storm_hero_stukov_army18/storm_hero_stukov_army18.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_stukov_base",
+        "model_path": "storm_hero_stukov_base/storm_hero_stukov_base.m3",
+        "all_m3_paths": [
+          "storm_hero_stukov_base/storm_hero_stukov_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_stukov_pirate",
+        "model_path": "storm_hero_stukov_pirate/storm_hero_stukov_pirate.m3",
+        "all_m3_paths": [
+          "storm_hero_stukov_pirate/storm_hero_stukov_pirate.m3"
+        ]
+      }
+    ],
+    "Tychus": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_tychus_base",
+        "model_path": "storm_hero_tychus_base/storm_hero_tychus_base_v13.m3",
+        "all_m3_paths": [
+          "storm_hero_tychus_base/storm_hero_tychus_base_v13.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_tychus_base_morph_odin",
+        "model_path": "storm_hero_tychus_base_morph_odin/storm_hero_tychus_base_morph_odin.m3",
+        "all_m3_paths": [
+          "storm_hero_tychus_base_morph_odin/storm_hero_tychus_base_morph_odin.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_tychus_infested",
+        "model_path": "storm_hero_tychus_infested/storm_hero_tychus_infested.m3",
+        "all_m3_paths": [
+          "storm_hero_tychus_infested/storm_hero_tychus_infested.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_tychus_infested_morph_odin",
+        "model_path": "storm_hero_tychus_infested_morph_odin/storm_hero_tychus_infested_morph_odin.m3",
+        "all_m3_paths": [
+          "storm_hero_tychus_infested_morph_odin/storm_hero_tychus_infested_morph_odin.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_tychus_infested_morph_odin_birth",
+        "model_path": "storm_hero_tychus_infested_morph_odin_birth/storm_hero_tychus_infested_morph_odin_birth.m3",
+        "all_m3_paths": [
+          "storm_hero_tychus_infested_morph_odin_birth/storm_hero_tychus_infested_morph_odin_birth.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_tychus_prisoner",
+        "model_path": "storm_hero_tychus_prisoner/storm_hero_tychus_prisoner_v13.m3",
+        "all_m3_paths": [
+          "storm_hero_tychus_prisoner/storm_hero_tychus_prisoner_v13.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_tychus_ultimate",
+        "model_path": "storm_hero_tychus_ultimate/storm_hero_tychus_ultimate_v13.m3",
+        "all_m3_paths": [
+          "storm_hero_tychus_ultimate/storm_hero_tychus_ultimate_v13.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_tychus_watergun",
+        "model_path": "storm_hero_tychus_watergun/storm_hero_tychus_watergun.m3",
+        "all_m3_paths": [
+          "storm_hero_tychus_watergun/storm_hero_tychus_watergun.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_tychus_watergun_short",
+        "model_path": "storm_hero_tychus_watergun_short/storm_hero_tychus_watergun_short.m3",
+        "all_m3_paths": [
+          "storm_hero_tychus_watergun_short/storm_hero_tychus_watergun_short.m3"
+        ]
+      }
+    ],
+    "Zagara": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_zagara_base",
+        "model_path": "storm_hero_zagara_base/storm_hero_zagara_base.m3",
+        "all_m3_paths": [
+          "storm_hero_zagara_base/storm_hero_zagara_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_zagara_cryptqueen",
+        "model_path": "storm_hero_zagara_cryptqueen/storm_hero_zagara_cryptqueen.m3",
+        "all_m3_paths": [
+          "storm_hero_zagara_cryptqueen/storm_hero_zagara_cryptqueen.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_zagara_insectoid",
+        "model_path": "storm_hero_zagara_insectoid/storm_hero_zagara_insectoid.m3",
+        "all_m3_paths": [
+          "storm_hero_zagara_insectoid/storm_hero_zagara_insectoid.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_zagara_luxqueen",
+        "model_path": "storm_hero_zagara_luxqueen/storm_hero_zagara_luxqueen.m3",
+        "all_m3_paths": [
+          "storm_hero_zagara_luxqueen/storm_hero_zagara_luxqueen.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_zagara_ultimate",
+        "model_path": "storm_hero_zagara_ultimate/storm_hero_zagara_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_zagara_ultimate/storm_hero_zagara_ultimate.m3"
+        ]
+      }
+    ],
+    "Zul'jin": [
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_zuljin_base",
+        "model_path": "storm_hero_zuljin_base/storm_hero_zuljin_base.m3",
+        "all_m3_paths": [
+          "storm_hero_zuljin_base/storm_hero_zuljin_base.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_zuljin_fire",
+        "model_path": "storm_hero_zuljin_fire/storm_hero_zuljin_fire.m3",
+        "all_m3_paths": [
+          "storm_hero_zuljin_fire/storm_hero_zuljin_fire.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_zuljin_lunar",
+        "model_path": "storm_hero_zuljin_lunar/storm_hero_zuljin_lunar.m3",
+        "all_m3_paths": [
+          "storm_hero_zuljin_lunar/storm_hero_zuljin_lunar.m3"
+        ]
+      },
+      {
+        "repository": "HOTS-03",
+        "directory": "storm_hero_zuljin_ultimate",
+        "model_path": "storm_hero_zuljin_ultimate/storm_hero_zuljin_ultimate.m3",
+        "all_m3_paths": [
+          "storm_hero_zuljin_ultimate/storm_hero_zuljin_ultimate.m3"
+        ]
+      }
+    ]
+  }
+}
