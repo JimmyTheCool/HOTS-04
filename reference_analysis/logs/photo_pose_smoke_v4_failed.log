@@ -1,0 +1,954 @@
+smoke	Build Alarak from selected skin and photographed pose	﻿2026-10-05T13:42:28.4118751Z ##[group]Run set -euo pipefail
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4119143Z ^[[36;1mset -euo pipefail^[[0m
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4119442Z ^[[36;1mpython tools/run_photo_posed_job_v3_2.py \^[[0m
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4119821Z ^[[36;1m  --hero 'Alarak' \^[[0m
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4120072Z ^[[36;1m  --max-animations 22 \^[[0m
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4120353Z ^[[36;1m  --max-coarse-frames 144 \^[[0m
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4120628Z ^[[36;1m  --refine-candidates 9^[[0m
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4195871Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4196240Z env:
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4196443Z   BLENDER_VERSION: 3.6.23
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4196731Z   M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4197050Z ##[endgroup]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4691752Z [photo-pose-job] {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4692347Z   "hero": "Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4696509Z   "safe": "Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4697294Z   "repository": "HOTS-02",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4698251Z   "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4699193Z   "skin_key": "base",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4699650Z   "photos": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4700081Z     "Alarak01.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4700506Z     "Alarak02.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4700952Z     "Alarak03.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4701371Z     "Alarak04.jpg"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4701784Z   ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4702177Z   "selected_skin_plan": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4702558Z     "skin_key": "base",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4702953Z     "directory": "storm_hero_alarak_base",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4703735Z     "repository": "HOTS-02",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4704126Z     "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4704610Z     "selection_method": "four-view CLIP appearance classification",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4705035Z     "reference_images": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4705278Z       "Alarak01.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4705498Z       "Alarak02.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4705712Z       "Alarak03.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4705927Z       "Alarak04.jpg"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4706152Z     ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4706331Z   }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4706507Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4707277Z [photo-pose-job] RUN git clone --filter=blob:none --sparse --depth 1 --branch chatgpt-stl-builder https://github.com/JimmyTheCool/HOTS-03.git /home/runner/work/_temp/HOTS-03-tools
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:28.4708621Z Cloning into '/home/runner/work/_temp/HOTS-03-tools'...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:29.2883727Z [photo-pose-job] RUN git -C /home/runner/work/_temp/HOTS-03-tools sparse-checkout set ci tools/hots_stl
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:29.6904100Z [photo-pose-job] RUN git clone --filter=blob:none --no-checkout --depth 1 --branch main https://github.com/JimmyTheCool/HOTS-02.git /home/runner/work/_temp/source-Alarak
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:29.6919385Z Cloning into '/home/runner/work/_temp/source-Alarak'...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:42:30.4809833Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/resolve_pose_source_v3.py --repo /home/runner/work/_temp/source-Alarak --model storm_hero_alarak_base/storm_hero_alarak_base.m3 --hero Alarak --output /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/source_resolution.json
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2227274Z {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2227657Z   "hero": "Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2228154Z   "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2228743Z   "model_directory": "storm_hero_alarak_base",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2229260Z   "model_key": "alarak_base",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2229662Z   "animation_hint": null,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2230296Z   "animation_path": "storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2231117Z   "animation_directory": "storm_hero_alarak_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2231644Z   "animation_paths": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2232197Z     "storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2233051Z     "storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2233945Z   ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2234622Z   "animation_directories": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2235047Z     "storm_hero_alarak_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2235560Z     "storm_hero_alarak_dark18_requiredanims"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2236028Z   ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2236346Z   "sparse_directories": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2236759Z     "storm_hero_alarak_base",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2237197Z     "storm_hero_alarak_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2237699Z     "storm_hero_alarak_dark18_requiredanims"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2238156Z   ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2238474Z   "top_animation_candidates": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2238877Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2239421Z       "path": "storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2240215Z       "directory": "storm_hero_alarak_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2240745Z       "animation_key": "alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2241147Z       "bytes": 4618912,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2241449Z       "score": 10174.378,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2241763Z       "reasons": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2242204Z         "generic animation key is a prefix of selected skin",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2242757Z         "1 leading token(s) match"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2243437Z       ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2243746Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2244042Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2244691Z       "path": "storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2245615Z       "directory": "storm_hero_alarak_dark18_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2246201Z       "animation_key": "alarak_dark18",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2246647Z       "bytes": 3502624,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2247008Z       "score": 1916.719,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2247350Z       "reasons": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2247678Z         "1 leading token(s) match"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2248077Z       ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2248357Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2248647Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2249160Z       "path": "storm_hero_hogger_requiredanims/storm_hero_hogger_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2249904Z       "directory": "storm_hero_hogger_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2250367Z       "animation_key": "hogger",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2250789Z       "bytes": 17222128,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2251185Z       "score": 334.443,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2251555Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2251846Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2252111Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2252804Z       "path": "storm_hero_chen_base_morph_requiredanims/storm_hero_chen_base_morph_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2254110Z       "directory": "storm_hero_chen_base_morph_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2254649Z       "animation_key": "chen_base_morph",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2255029Z       "bytes": 2368944,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2255374Z       "score": 239.379,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2255702Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2256005Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2256285Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2256808Z       "path": "storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2257558Z       "directory": "storm_hero_chogall_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2258071Z       "animation_key": "chogall",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2258748Z       "bytes": 10061904,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2259103Z       "score": 193.238,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2259462Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2259885Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2260158Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2260747Z       "path": "storm_hero_brightwing_requiredanims/storm_hero_brightwing_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2261571Z       "directory": "storm_hero_brightwing_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2262109Z       "animation_key": "brightwing",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2262532Z       "bytes": 7930512,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2262876Z       "score": 156.61,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2263449Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2263764Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2264031Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2264551Z       "path": "storm_hero_auriel_requiredanims/storm_hero_auriel_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2265293Z       "directory": "storm_hero_auriel_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2266055Z       "animation_key": "auriel",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2266465Z       "bytes": 5141312,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2266837Z       "score": 104.826,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2267187Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2267509Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2267791Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2268343Z       "path": "storm_hero_illidan_requiredanims/storm_hero_illidan_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2269181Z       "directory": "storm_hero_illidan_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2269720Z       "animation_key": "illidan",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2270129Z       "bytes": 5536544,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2270499Z       "score": 102.731,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2270834Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2271164Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2271459Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2271993Z       "path": "storm_hero_falstad_requiredanims/storm_hero_falstad_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2272780Z       "directory": "storm_hero_falstad_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2273516Z       "animation_key": "falstad",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2273949Z       "bytes": 5260800,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2274304Z       "score": 97.216,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2274641Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2274969Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2275263Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2275858Z       "path": "storm_hero_dryad_requiredanims/storm_hero_dryad_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2276598Z       "directory": "storm_hero_dryad_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2277109Z       "animation_key": "dryad",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2277520Z       "bytes": 5294224,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2277865Z       "score": 93.884,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2278205Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2278520Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2278792Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2279324Z       "path": "storm_hero_arthas_requiredanims/storm_hero_arthas_requiredanims.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2280069Z       "directory": "storm_hero_arthas_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2280561Z       "animation_key": "arthas",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2280939Z       "bytes": 4584384,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2281296Z       "score": 93.688,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2281610Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2281923Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2282183Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2282695Z       "path": "storm_hero_diablo_requiredanims/storm_hero_diablo_requiredanims_v01.m3a",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2283686Z       "directory": "storm_hero_diablo_requiredanims",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2284171Z       "animation_key": "diablo",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2284550Z       "bytes": 5146336,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2284885Z       "score": 92.927,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2285355Z       "reasons": []
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2285652Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2285914Z   ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2286195Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2292383Z [photo-pose-job] RUN git -C /home/runner/work/_temp/source-Alarak sparse-checkout init --cone
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2319969Z [photo-pose-job] RUN git -C /home/runner/work/_temp/source-Alarak sparse-checkout set storm_hero_alarak_base storm_hero_alarak_requiredanims storm_hero_alarak_dark18_requiredanims
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2337402Z [photo-pose-job] RUN git -C /home/runner/work/_temp/source-Alarak checkout main
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2932278Z Already on 'main'
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2936501Z Your branch is up to date with 'origin/main'.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:47:54.2953865Z [photo-pose-job] RUN sudo apt-get update -qq
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.4576502Z [photo-pose-job] RUN sudo apt-get install -y --no-install-recommends ca-certificates curl git xz-utils p7zip-full libx11-6 libxi6 libxrender1 libxfixes3 libxkbcommon0 libsm6 libice6 libgl1 libegl1
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.5103733Z Reading package lists...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.7776129Z Building dependency tree...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.7787270Z Reading state information...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9597083Z libgl1 is already the newest version (1.4.0-1).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9598058Z libgl1 set to manually installed.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9599067Z libice6 is already the newest version (2:1.0.10-1build2).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9599857Z libice6 set to manually installed.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9601359Z libsm6 is already the newest version (2:1.2.3-1build2).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9602087Z libsm6 set to manually installed.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9602747Z libxfixes3 is already the newest version (1:6.0.0-1).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9603658Z libxfixes3 set to manually installed.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9604229Z libxi6 is already the newest version (2:1.8-1build1).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9604934Z libxi6 set to manually installed.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9605547Z libxkbcommon0 is already the newest version (1.4.0-1).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9606261Z libxkbcommon0 set to manually installed.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9606984Z libxrender1 is already the newest version (1:0.9.10-1build4).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9607714Z libxrender1 set to manually installed.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9608417Z p7zip-full is already the newest version (16.02+dfsg-8).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9609179Z ca-certificates is already the newest version (20260601~22.04.1).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9609931Z curl is already the newest version (7.81.0-1ubuntu1.29).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9610660Z libx11-6 is already the newest version (2:1.7.5-1ubuntu0.3).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9611338Z libx11-6 set to manually installed.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9612005Z xz-utils is already the newest version (5.2.5-2ubuntu1.1).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9612913Z git is already the newest version (1:2.55.0-0ppa1~ubuntu22.04.2).
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9613893Z The following additional packages will be installed:
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9614497Z   libegl-mesa0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9821620Z The following NEW packages will be installed:
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:02.9828312Z   libegl-mesa0 libegl1
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.0020676Z 0 upgraded, 2 newly installed, 0 to remove and 20 not upgraded.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.0021392Z Need to get 147 kB of archives.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.0021956Z After this operation, 484 kB of additional disk space will be used.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.0022685Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.0947337Z Get:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libegl-mesa0 amd64 23.2.1-1ubuntu3.1~22.04.4 [118 kB]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.1606729Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 libegl1 amd64 1.4.0-1 [28.6 kB]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.4869105Z Fetched 147 kB in 0s (854 kB/s)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5135344Z Selecting previously unselected package libegl-mesa0:amd64.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5484462Z (Reading database ... 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5484864Z (Reading database ... 5%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5485188Z (Reading database ... 10%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5485481Z (Reading database ... 15%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5485868Z (Reading database ... 20%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5486149Z (Reading database ... 25%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5494146Z (Reading database ... 30%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5494578Z (Reading database ... 35%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5494972Z (Reading database ... 40%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5495364Z (Reading database ... 45%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.5495627Z (Reading database ... 50%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.6369864Z (Reading database ... 55%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:03.8405613Z (Reading database ... 60%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:04.0905087Z (Reading database ... 65%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:04.3182418Z (Reading database ... 70%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:04.4460125Z (Reading database ... 75%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:04.6418014Z (Reading database ... 80%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:04.7790198Z (Reading database ... 85%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:04.9932369Z (Reading database ... 90%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.1755063Z (Reading database ... 95%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.1755460Z (Reading database ... 100%
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.1755868Z (Reading database ... 260411 files and directories currently installed.)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.1806901Z Preparing to unpack .../libegl-mesa0_23.2.1-1ubuntu3.1~22.04.4_amd64.deb ...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.1843480Z Unpacking libegl-mesa0:amd64 (23.2.1-1ubuntu3.1~22.04.4) ...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.2122777Z Selecting previously unselected package libegl1:amd64.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.2322268Z Preparing to unpack .../libegl1_1.4.0-1_amd64.deb ...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.2329751Z Unpacking libegl1:amd64 (1.4.0-1) ...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.2820472Z Setting up libegl-mesa0:amd64 (23.2.1-1ubuntu3.1~22.04.4) ...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.2840541Z Setting up libegl1:amd64 (1.4.0-1) ...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.2873641Z Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9607396Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9608081Z Running kernel seems to be up-to-date.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9608486Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9608663Z No services need to be restarted.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9608971Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9609170Z No containers need to be restarted.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9609478Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9609681Z No user sessions are running outdated binaries.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9610060Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:05.9610399Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:07.7457047Z [photo-pose-job] RUN curl --fail --location --retry 5 --retry-delay 5 https://download.blender.org/release/Blender3.6/blender-3.6.23-linux-x64.tar.xz --output /home/runner/work/_temp/blender-3.6.23-linux-x64.tar.xz
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:07.7536040Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:07.7537089Z                                  Dload  Upload   Total   Spent    Left  Speed
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:07.7541522Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:08.2425243Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:09.1757854Z  23  260M   23 61.0M    0     0   124M      0  0:00:02 --:--:--  0:00:02  124M
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:09.1758790Z 100  260M  100  260M    0     0   182M      0  0:00:01  0:00:01 --:--:--  182M
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:09.1781797Z [photo-pose-job] RUN tar -xf /home/runner/work/_temp/blender-3.6.23-linux-x64.tar.xz -C /home/runner/work/_temp
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:25.9828187Z [photo-pose-job] RUN git clone https://github.com/SC2Mapster/m3addon.git /home/runner/work/_temp/m3addon-src
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:25.9844698Z Cloning into '/home/runner/work/_temp/m3addon-src'...
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0736961Z [photo-pose-job] RUN git -C /home/runner/work/_temp/m3addon-src checkout 58935005c4465a219a740f6b740253533eda773f
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0790044Z Note: switching to '58935005c4465a219a740f6b740253533eda773f'.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0790508Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0790863Z You are in 'detached HEAD' state. You can look around, make experimental
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0791407Z changes and commit them, and you can discard any commits you make in this
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0791890Z state without impacting any branches by switching back to a branch.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0792173Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0792356Z If you want to create a new branch to retain commits you create, you may
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0792796Z do so (now or later) by using -c with the switch command. Example:
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0793053Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0793412Z   git switch -c <new-branch-name>
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0793589Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0793686Z Or undo this operation with:
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0793844Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0793929Z   git switch -
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0794045Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0794250Z Turn off this advice by setting config variable advice.detachedHead to false
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0794559Z 
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0794660Z HEAD is now at 5893500 *Farewell*
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:27.0800616Z [photo-pose-job] RUN /usr/bin/python -m pip install --disable-pip-version-check --quiet numpy==2.2.6 scipy==1.15.3 pillow==11.1.0 trimesh==4.8.3 scikit-image==0.25.2 pymeshfix==0.18.1 fast-simplification==0.1.12 matplotlib==3.10.1 opencv-python-headless==4.12.0.88
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:40.8296648Z [photo-pose-job] Verified pose builder payload 17f312b45d5b5d5eabc34ff9566f93737772ca6038ee0b11955328c610793ab3
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:48:40.8301136Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/prepare_pose_reference_masks_v4.py --hero Alarak --photos /home/runner/work/HOTS-04/HOTS-04/Alarak01.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak02.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak03.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak04.jpg --output-npz /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.npz --preview /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/Alarak_reference_masks.jpg --report /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.json
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9381123Z {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9381675Z   "hero": "Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9382072Z   "version": 4,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9382924Z   "method": "cross-view difference + border appearance + GrabCut + central component filtering",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9384242Z   "canvas": 128,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9384657Z   "inner": 112,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9385065Z   "views": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9385453Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9385814Z       "view": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9386380Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak01.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9387070Z       "source_size": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9387490Z         521,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9387853Z         779
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9388205Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9388576Z       "analysis_size": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9389008Z         521,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9389362Z         779
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9389747Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9390151Z       "method": "cross-view-grabcut",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9390726Z       "analysis_area_pixels": 243631,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9391249Z       "normalized_area_pixels": 5772,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9391585Z       "normalized_aspect": 0.6875,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9391920Z       "background_rgb": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9392142Z         14.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9392325Z         15.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9392505Z         78.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9392683Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9392870Z       "motion_p95": 0.9125293493270874,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9393400Z       "colour_distance_p95": 124.20547485351562
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9393719Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9393899Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9394075Z       "view": 2,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9394346Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak02.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9394688Z       "source_size": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9394895Z         634,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9395078Z         815
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9395262Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9395450Z       "analysis_size": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9395667Z         521,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9395851Z         779
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9396028Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9396223Z       "method": "cross-view-grabcut",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9396502Z       "analysis_area_pixels": 196568,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9396772Z       "normalized_area_pixels": 4418,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9397053Z       "normalized_aspect": 0.6696428571428571,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9397344Z       "background_rgb": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9397564Z         13.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9397747Z         12.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9397927Z         48.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9398114Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9398305Z       "motion_p95": 0.9285172820091248,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9398583Z       "colour_distance_p95": 135.5986785888672
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9398852Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9399025Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9399198Z       "view": 3,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9399465Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak03.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9399802Z       "source_size": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9400014Z         503,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9400535Z         802
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9400712Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9400897Z       "analysis_size": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9401107Z         521,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9401289Z         779
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9401466Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9401662Z       "method": "cross-view-grabcut",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9401946Z       "analysis_area_pixels": 202110,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9402215Z       "normalized_area_pixels": 5442,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9402492Z       "normalized_aspect": 0.7321428571428571,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9402780Z       "background_rgb": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9402990Z         14.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9403502Z         18.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9403707Z         50.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9403880Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9404062Z       "motion_p95": 0.9307048916816711,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9404340Z       "colour_distance_p95": 131.9090576171875
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9404797Z     },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9404965Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9405131Z       "view": 4,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9405398Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak04.jpg",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9405719Z       "source_size": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9405926Z         557,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9406124Z         794
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9406292Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9406471Z       "analysis_size": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9406676Z         521,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9406848Z         779
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9407016Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9407209Z       "method": "cross-view-grabcut",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9407467Z       "analysis_area_pixels": 153936,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9407722Z       "normalized_area_pixels": 3455,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9407978Z       "normalized_aspect": 0.6607142857142857,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9408242Z       "background_rgb": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9408453Z         13.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9408622Z         12.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9408797Z         46.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9408973Z       ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9409154Z       "motion_p95": 0.9542912840843201,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9409419Z       "colour_distance_p95": 159.67779541015625
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9409673Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9409835Z   ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9410215Z   "npz": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.npz",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9410932Z   "preview": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/Alarak_reference_masks.jpg"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9411414Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9795600Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_dimension_retention.py /home/runner/work/_temp/repair-normal-Alarak.py
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:07.9997498Z Patched /home/runner/work/_temp/repair-normal-Alarak.py with dimensional-retention protection
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.0028807Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_voxel_translation.py /home/runner/work/_temp/repair-normal-Alarak.py
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.0231002Z Patched /home/runner/work/_temp/repair-normal-Alarak.py to use VoxelGrid.translation
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.0262826Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_face_connectivity.py /home/runner/work/_temp/repair-normal-Alarak.py
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.0466321Z Patched /home/runner/work/_temp/repair-normal-Alarak.py for face-connected voxel unions
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.0501962Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_force_voxel.py /home/runner/work/_temp/repair-voxel-Alarak.py
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.0706435Z Patched /home/runner/work/_temp/repair-voxel-Alarak.py to force face-connected voxel reconstruction when needed
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.0740002Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/tools/hots_stl/runtime_patch_v2.py /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/builder.py
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.0955022Z Patched /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/builder.py to HOTS STL Builder v2.1.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.0986884Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_builder_external_validation.py /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/builder.py
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.1188500Z Patched builder to defer geometric watertightness to independent trimesh validation
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.1222104Z [photo-pose-job] RUN /home/runner/work/_temp/blender-3.6.23-linux-x64/blender --background --factory-startup --python /home/runner/work/HOTS-04/HOTS-04/tools/build_one_photo_posed_v3.py -- --builder /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/builder.py --model /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3 --animation /home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a --animation /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a --hero Alarak --skin-key base --reference-npz /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.npz --output /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild --target-height-mm 120 --base-height-mm 4.5 --base-margin-mm 5.0 --voxel-mm 0.30 --thin-part-mm 0.70 --max-triangles 600000 --max-animations 22 --max-coarse-frames 144 --refine-candidates 9
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.3443968Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.3444847Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.3445556Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.3446207Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.3446854Z ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.3447540Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.3448246Z ALSA lib conf.c:5705:(snd_config_expand) Evaluate error: No such file or directory
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.3448792Z ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:08.3652654Z Failed to open dir (No such file or directory): /run/user/1001/gvfs/
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:09.3185316Z [13:49:09] Enabling m3addon
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:09.5027911Z [POSE] Importing selected skin for pose search: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:09.5035074Z 2026-10-05 13:49:09,502,502 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:10.6556360Z Info: Removed 68 vertice(s)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:10.6556939Z Info: Removed 17 vertice(s)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:10.6557419Z [POSE] Unposed/rest-pose baseline score: 0.5359
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:10.6558555Z [POSE] Importing pose bank: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:10.6575681Z 2026-10-05 13:49:10,656,656 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:20.1230122Z [POSE] Importing pose bank: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:20.1275352Z 2026-10-05 13:49:20,126,126 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:27.8047883Z [POSE] Pose search will test 144 frames from 22 animations
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:28.3885514Z [POSE] Coarse 1/144; best Stand Ready frame 1 score 0.6440
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:32.5119870Z [POSE] Coarse 8/144; best Stand Ready frame 2 score 0.6453
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:37.2763717Z [POSE] Coarse 16/144; best Stand Ready frame 2 score 0.6453
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:42.0463658Z [POSE] Coarse 24/144; best Stand Ready frame 2 score 0.6453
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:46.8166946Z [POSE] Coarse 32/144; best Stand Ready frame 2 score 0.6453
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:51.6046780Z [POSE] Coarse 40/144; best Stand Ready frame 2 score 0.6453
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:49:56.3722312Z [POSE] Coarse 48/144; best Stand Ready frame 2 score 0.6453
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:01.1252969Z [POSE] Coarse 56/144; best Stand Ready frame 2 score 0.6453
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:05.8788665Z [POSE] Coarse 64/144; best Stand Ready frame 2 score 0.6453
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:10.6349676Z [POSE] Coarse 72/144; best Stand Ready End 01 frame 44 score 0.6569
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:15.3865725Z [POSE] Coarse 80/144; best Stand Ready End 01 frame 44 score 0.6569
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:20.1179935Z [POSE] Coarse 88/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:24.8785436Z [POSE] Coarse 96/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:29.6829032Z [POSE] Coarse 104/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:34.4688389Z [POSE] Coarse 112/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:39.2280299Z [POSE] Coarse 120/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:43.9884685Z [POSE] Coarse 128/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:48.6882929Z [POSE] Coarse 136/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:50:53.4184697Z [POSE] Coarse 144/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:51:15.6460280Z [POSE] Selected pose: Stand Ready S 01 frame 16 score 0.6694, source=/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:51:15.7535007Z [13:51:15] Importing M3: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:51:15.7554807Z 2026-10-05 13:51:15,755,755 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:51:16.2565115Z Info: Removed 68 vertice(s)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:51:16.2565690Z Info: Removed 17 vertice(s)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:51:16.2566451Z [13:51:16] Importing required animation: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:51:16.2585317Z 2026-10-05 13:51:16,256,256 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:39.6011342Z Info: Removed 73 vertice(s)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:39.6011921Z Info: Removed: 0 vertices, 0 edges, 0 faces
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:39.6012359Z Info: Removed 68 vertice(s)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:39.6012649Z Info: Removed: 0 vertices, 0 edges, 0 faces
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:39.6012964Z Info: Removed 5 vertice(s)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:39.6013571Z Info: Removed: 0 vertices, 0 edges, 0 faces
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:39.6013887Z Info: Removed 2 vertice(s)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:39.6014183Z Info: Removed: 0 vertices, 0 edges, 0 faces
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:39.6014585Z [13:52:39] Strict edge test failed; retrying clean voxel union at 0.620 mm
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:50.5040740Z [POSE] Completed posed STL build for Alarak
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:50.5075015Z Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 01:32:54)
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:50.6376602Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/make_pose_proof_sheet_v3.py --hero Alarak --photos /home/runner/work/HOTS-04/HOTS-04/Alarak01.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak02.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak03.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak04.jpg --reference-npz /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.npz --matched-dir /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak --pose-report /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/pose_match.json --output /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/Alarak_pose_proof.jpg
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:50.8474951Z /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/Alarak_pose_proof.jpg
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:51.8985999Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/repair-voxel-Alarak.py --input /home/runner/work/_temp/one-Alarak --output /home/runner/work/_temp/fine-Alarak --report-json /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/fine_repair.json --report-csv /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/fine_repair.csv --expected 1 --pitch 0.34000 --max-triangles 600000 --target-triangles 575000 --minimum-dimension-retention 0.90 --maximum-dimension-retention 1.10
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:52:52.3587127Z [1/1] Repairing Alarak.stl
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:55:35.2646865Z MeshFix could not fix everything
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1955023Z     PASS via connected_voxel
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1970050Z {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1970466Z   "input_folder": "/home/runner/work/_temp/one-Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1970932Z   "output_folder": "/home/runner/work/_temp/fine-Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1971641Z   "expected_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1971898Z   "found_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1972169Z   "expected_count_passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1972461Z   "all_passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1972722Z   "settings": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1972963Z     "voxel_pitch_mm": 0.34,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1973562Z     "max_triangles": 600000,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1973854Z     "target_triangles": 575000,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1974150Z     "minimum_dimension_mm": 2.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1974676Z     "maximum_dimension_mm": 350.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1975347Z     "minimum_dimension_retention": 0.9,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1976018Z     "maximum_dimension_retention": 1.1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1976646Z     "vertex_weld_digits": 2,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1977124Z     "required_connected_bodies": 1
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1977496Z   },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1977788Z   "failed_files": [],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1978113Z   "files": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1978465Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1978803Z       "file": "Alarak.stl",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1979227Z       "input_bytes": 26554484,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1979987Z       "input_sha256": "305bc188ce63d631e1c4978b01c7ad35ee9e4639077e11eb1cf20871ab27097e",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1980753Z       "attempts": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1981148Z         "rounded_vertex_merge": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1981610Z           "vertices": 262789,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1982037Z           "triangles": 531088,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1982467Z           "watertight": false,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1982918Z           "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1983654Z           "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1984141Z           "volume_mm3": 99194.25370696491,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1984620Z           "x_mm": 148.0266571044922,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1985065Z           "y_mm": 148.02638244628906,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1985433Z           "z_mm": 123.10595703125,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1985726Z           "connected_bodies": 608,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1986022Z           "dimension_retention": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1986313Z             "x_mm": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1986562Z             "y_mm": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1986818Z             "z_mm": 1.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1987058Z           }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1987266Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1987481Z         "pymeshfix": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1987738Z           "vertices": 101851,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1988012Z           "triangles": 203714,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1988287Z           "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1988574Z           "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1988885Z           "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1989204Z           "volume_mm3": 78765.31556976137,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1989518Z           "x_mm": 148.0266571044922,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1989799Z           "y_mm": 148.02638244628906,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1990036Z           "z_mm": 23.34326934814453,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1990274Z           "connected_bodies": 1
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1990493Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1990682Z         "connected_voxel": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1990903Z           "vertices": 283110,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1991398Z           "triangles": 574620,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1991627Z           "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1991878Z           "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1992140Z           "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1992389Z           "volume_mm3": 42716.67952366671,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1992639Z           "x_mm": 147.90000000000023,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1992877Z           "y_mm": 147.90000000000015,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1993110Z           "z_mm": 122.74000000000018,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1993649Z           "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1993896Z           "dimension_retention": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1994137Z             "x_mm": 0.9991443628670035,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1994380Z             "y_mm": 0.9991462167473101,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1994617Z             "z_mm": 0.9970273003835475
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1994850Z           }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1995193Z         }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1995362Z       },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1995543Z       "passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1995766Z       "voxel_connectivity": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1996000Z         "initial_components": 154,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1996251Z         "removed_tiny_components": 143,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1996500Z         "bridges_added": 87,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1996725Z         "final_components": 1
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1996940Z       },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1997131Z       "selected_method": "connected_voxel",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1997414Z       "output_bytes": 28731084,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1997799Z       "output_sha256": "a8446cd51a89c35208ab25a42a27611c6aed00d8d1b0f475a77d7e7ecc2f6380",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1998224Z       "final": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1998418Z         "vertices": 283110,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1998637Z         "triangles": 574620,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1998856Z         "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1999081Z         "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1999335Z         "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1999588Z         "volume_mm3": 42716.68209182665,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.1999843Z         "x_mm": 147.89999389648438,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2000067Z         "y_mm": 147.89999389648438,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2000289Z         "z_mm": 122.74000366032124,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2000521Z         "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2000758Z         "dimension_retention": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2000990Z           "x_mm": 0.999144321634458,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2001221Z           "y_mm": 0.9991461755146888,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2001451Z           "z_mm": 0.997027330116642
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2001665Z         }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2001835Z       }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2001999Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2002163Z   ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.2002324Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:48.3741783Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/validate_stl_collection.py --input /home/runner/work/_temp/fine-Alarak --report-json /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/fine_topology.json --report-csv /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/fine_topology.csv --checksums /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/FINE_SHA256SUMS.txt --expected 1 --max-triangles 600000
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9635563Z [1/1] Alarak.stl: PASS
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9644088Z {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9644853Z   "input_folder": "/home/runner/work/_temp/fine-Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9645304Z   "expected_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9645565Z   "found_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9645828Z   "duplicate_filenames": [],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9646108Z   "passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9646364Z   "quality_requirements": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9646644Z     "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9646915Z     "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9647214Z     "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9647511Z     "positive_volume_mm3": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9647798Z     "triangle_range": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9648068Z       100,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9648276Z       600000
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9648491Z     ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9649089Z     "dimension_range_mm": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9649356Z       2.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9649564Z       350.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9649766Z     ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9649985Z     "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9650284Z     "vertex_weld_tolerance_approx_mm": 0.01
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9650608Z   },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9650824Z   "failed_files": [],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9651078Z   "files": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9651292Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9651506Z       "file": "Alarak.stl",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9651768Z       "bytes": 28731084,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9652188Z       "sha256": "a8446cd51a89c35208ab25a42a27611c6aed00d8d1b0f475a77d7e7ecc2f6380",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9652672Z       "vertices": 283110,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9652935Z       "triangles": 574620,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9653547Z       "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9653841Z       "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9654337Z       "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9654633Z       "volume_mm3": 42716.68209182665,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9654956Z       "x_mm": 147.89999389648438,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9655227Z       "y_mm": 147.89999389648438,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9655496Z       "z_mm": 122.74000366032124,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9655777Z       "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9656049Z       "error": "",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9656287Z       "passed": true
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9656520Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9656720Z   ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:50.9656916Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:51.0587888Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/compare_stl_silhouette.py --raw /home/runner/work/_temp/one-Alarak --repaired /home/runner/work/_temp/fine-Alarak --report-json /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/fine_silhouette.json --report-csv /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/fine_silhouette.csv --image /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/fine_silhouette.png --expected 1 --pixel-mm 0.45 --tolerance-mm 1.35 --minimum-raw-coverage 0.980 --minimum-repaired-coverage 0.900 --minimum-iou 0.850 --maximum-points 800000
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:54.9112808Z [1/1] Alarak.stl: PASS
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2937219Z {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2937703Z   "raw_folder": "/home/runner/work/_temp/one-Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2938239Z   "repaired_folder": "/home/runner/work/_temp/fine-Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2938678Z   "expected_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2938956Z   "found_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2939217Z   "passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2939478Z   "requirements": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2939747Z     "pixel_mm": 0.45,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2940025Z     "tolerance_mm": 1.35,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2940330Z     "minimum_raw_coverage": 0.98,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2940669Z     "minimum_repaired_coverage": 0.9,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2941009Z     "minimum_iou": 0.85,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2941288Z     "views": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2941564Z       "front_xz",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2941806Z       "side_yz",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2942057Z       "top_xy"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2942316Z     ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2942521Z   },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2942716Z   "failed_files": [],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2942940Z   "files": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2943451Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2943771Z       "file": "Alarak.stl",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2944171Z       "passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2944522Z       "views": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2944829Z         "front_xz": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2945065Z           "raw_pixel_count": 31223,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2945358Z           "repaired_pixel_count": 31973,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2945650Z           "raw_coverage": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2945909Z           "repaired_coverage": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2946180Z           "iou": 0.9765020733464694,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2946447Z           "passed": true
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2946675Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2946871Z         "side_yz": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2947099Z           "raw_pixel_count": 29352,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2947387Z           "repaired_pixel_count": 29804,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2947991Z           "raw_coverage": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2948252Z           "repaired_coverage": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2948528Z           "iou": 0.9834336869604001,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2948792Z           "passed": true
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2949019Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2949213Z         "top_xy": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2949440Z           "raw_pixel_count": 86508,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2949717Z           "repaired_pixel_count": 87029,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2950004Z           "raw_coverage": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2950270Z           "repaired_coverage": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2950533Z           "iou": 0.9940322598979232,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2950795Z           "passed": true
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2951027Z         }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2951225Z       },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2951420Z       "error": ""
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2951626Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2951814Z   ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.2952191Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.4951889Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/repair-voxel-Alarak.py --input /home/runner/work/_temp/high-input-Alarak --output /home/runner/work/_temp/robust-Alarak --report-json /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/robust_repair.json --report-csv /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/robust_repair.csv --expected 1 --pitch 0.58000 --max-triangles 450000 --target-triangles 400000 --minimum-dimension-retention 0.90 --maximum-dimension-retention 1.10
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:56:55.9461665Z [1/1] Repairing Alarak.stl
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:35.1089684Z MeshFix could not fix everything
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6320592Z     PASS via connected_voxel
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6512674Z {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6513863Z   "input_folder": "/home/runner/work/_temp/high-input-Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6515084Z   "output_folder": "/home/runner/work/_temp/robust-Alarak",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6515854Z   "expected_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6516479Z   "found_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6516978Z   "expected_count_passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6517564Z   "all_passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6517929Z   "settings": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6518226Z     "voxel_pitch_mm": 0.58,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6518568Z     "max_triangles": 450000,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6518913Z     "target_triangles": 400000,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6519270Z     "minimum_dimension_mm": 2.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6519642Z     "maximum_dimension_mm": 350.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6520030Z     "minimum_dimension_retention": 0.9,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6520437Z     "maximum_dimension_retention": 1.1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6520826Z     "vertex_weld_digits": 2,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6521181Z     "required_connected_bodies": 1
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6521541Z   },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6521796Z   "failed_files": [],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6522102Z   "files": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6522343Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6522557Z       "file": "Alarak.stl",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6522832Z       "input_bytes": 28731084,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6523647Z       "input_sha256": "a8446cd51a89c35208ab25a42a27611c6aed00d8d1b0f475a77d7e7ecc2f6380",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6524180Z       "attempts": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6524429Z         "rounded_vertex_merge": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6524726Z           "vertices": 283110,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6525001Z           "triangles": 574620,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6525279Z           "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6525565Z           "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6525886Z           "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6526196Z           "volume_mm3": 42716.68209182665,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6526502Z           "x_mm": 147.89999389648438,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6526796Z           "y_mm": 147.89999389648438,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6527098Z           "z_mm": 122.74000366032124,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6527399Z           "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6527694Z           "dimension_retention": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6527983Z             "x_mm": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6528238Z             "y_mm": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6528484Z             "z_mm": 1.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6528719Z           }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6529235Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6529460Z         "pymeshfix": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6529719Z           "vertices": 197138,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6529990Z           "triangles": 399984,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6530264Z           "watertight": false,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6530547Z           "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6530856Z           "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6531157Z           "volume_mm3": 41985.38804696833,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6531460Z           "x_mm": 147.89999389648443,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6531744Z           "y_mm": 147.9000268820322,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6532029Z           "z_mm": 122.74012699637315,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6532323Z           "connected_bodies": 1
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6532591Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6532791Z         "connected_voxel": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6533012Z           "vertices": 199226,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6533843Z           "triangles": 398868,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6534081Z           "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6534336Z           "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6534604Z           "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6534867Z           "volume_mm3": 81185.12763999999,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6535122Z           "x_mm": 146.74000000000007,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6535363Z           "y_mm": 146.7400000000001,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6535606Z           "z_mm": 122.38000000000056,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6535850Z           "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6536095Z           "dimension_retention": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6536339Z             "x_mm": 0.9921569036892849,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6536585Z             "y_mm": 0.992156903689285,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6536823Z             "z_mm": 0.9970669410983809
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6537049Z           }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6537219Z         }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6537387Z       },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6537566Z       "passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6537792Z       "voxel_connectivity": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6538040Z         "initial_components": 5,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6538292Z         "removed_tiny_components": 4,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6538540Z         "bridges_added": 0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6538768Z         "final_components": 1
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6538982Z       },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6539176Z       "selected_method": "connected_voxel",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6539447Z       "output_bytes": 19943484,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6539837Z       "output_sha256": "fd8b2c1bdae720b6502f0355464a1eb1214d55dc321e3089e1aea7c8cd21718f",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6540254Z       "final": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6540450Z         "vertices": 199226,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6540673Z         "triangles": 398868,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6540899Z         "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6541126Z         "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6541374Z         "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6541617Z         "volume_mm3": 81185.12394899243,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6541864Z         "x_mm": 146.74000549316406,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6542087Z         "y_mm": 146.74000549316406,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6542324Z         "z_mm": 122.37999817728996,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6542553Z         "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6542790Z         "dimension_retention": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6543024Z           "x_mm": 0.9921569408303547,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6543538Z           "y_mm": 0.9921569408303547,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6543788Z           "z_mm": 0.9970669262482053
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6544012Z         }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6544180Z       }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6544342Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6544503Z   ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.6544662Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:54.7744838Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/validate_stl_collection.py --input /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HighDetail --report-json /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/high_detail_validation.json --report-csv /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/high_detail_validation.csv --checksums /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/HIGH_DETAIL_SHA256SUMS.txt --expected 1 --max-triangles 600000
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2885446Z [1/1] Alarak.stl: PASS
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2892550Z {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2893537Z   "input_folder": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HighDetail",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2894210Z   "expected_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2894495Z   "found_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2894808Z   "duplicate_filenames": [],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2895151Z   "passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2895412Z   "quality_requirements": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2895732Z     "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2896016Z     "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2896357Z     "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2896643Z     "positive_volume_mm3": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2896978Z     "triangle_range": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2897237Z       100,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2897849Z       600000
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2898067Z     ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2898297Z     "dimension_range_mm": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2898619Z       2.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2898833Z       350.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2899035Z     ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2899295Z     "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2899598Z     "vertex_weld_tolerance_approx_mm": 0.01
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2899961Z   },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2900174Z   "failed_files": [],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2900461Z   "files": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2900683Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2900902Z       "file": "Alarak.stl",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2901215Z       "bytes": 28731084,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2901644Z       "sha256": "a8446cd51a89c35208ab25a42a27611c6aed00d8d1b0f475a77d7e7ecc2f6380",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2902178Z       "vertices": 283110,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2902455Z       "triangles": 574620,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2902741Z       "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2903056Z       "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2903523Z       "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2903883Z       "volume_mm3": 42716.68209182665,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2904186Z       "x_mm": 147.89999389648438,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2904506Z       "y_mm": 147.89999389648438,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2904792Z       "z_mm": 122.74000366032124,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2905072Z       "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2905392Z       "error": "",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2905636Z       "passed": true
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2905916Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2906122Z   ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.2906330Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:57.3621644Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/validate_stl_collection.py --input /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Robust --report-json /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/robust_validation.json --report-csv /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/robust_validation.csv --checksums /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/ROBUST_SHA256SUMS.txt --expected 1 --max-triangles 500000
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0933025Z [1/1] Alarak.stl: PASS
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0940362Z {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0940929Z   "input_folder": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Robust",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0941400Z   "expected_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0941771Z   "found_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0942031Z   "duplicate_filenames": [],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0942344Z   "passed": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0942587Z   "quality_requirements": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0942898Z     "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0943454Z     "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0943864Z     "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0946302Z     "positive_volume_mm3": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0946814Z     "triangle_range": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0947198Z       100,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0947495Z       500000
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0947805Z     ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0948120Z     "dimension_range_mm": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0948506Z       2.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0948826Z       350.0
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0949121Z     ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0949429Z     "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0950190Z     "vertex_weld_tolerance_approx_mm": 0.01
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0950650Z   },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0950927Z   "failed_files": [],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0951159Z   "files": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0951350Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0951548Z       "file": "Alarak.stl",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0951792Z       "bytes": 19943484,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0952190Z       "sha256": "fd8b2c1bdae720b6502f0355464a1eb1214d55dc321e3089e1aea7c8cd21718f",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0952653Z       "vertices": 199226,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0952913Z       "triangles": 398868,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0953446Z       "watertight": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0953815Z       "winding_consistent": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0954098Z       "finite_coordinates": true,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0954370Z       "volume_mm3": 81185.12394899243,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0954647Z       "x_mm": 146.74000549316406,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0955095Z       "y_mm": 146.74000549316406,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0955349Z       "z_mm": 122.37999817728996,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0955618Z       "connected_bodies": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0955873Z       "error": "",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0956093Z       "passed": true
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0956322Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0956499Z   ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.0956665Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:58:59.1731286Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/compare_stl_silhouette.py --raw /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Raw --repaired /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HighDetail --report-json /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/raw_to_high_detail.json --report-csv /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/raw_to_high_detail.csv --image /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/raw_to_high_detail.png --expected 1 --pixel-mm 0.40 --tolerance-mm 1.20 --minimum-raw-coverage 0.940 --minimum-repaired-coverage 0.850 --minimum-iou 0.780 --maximum-points 800000
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.4619550Z [1/1] Alarak.stl: FAIL
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8679109Z {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8680011Z   "raw_folder": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Raw",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8681356Z   "repaired_folder": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HighDetail",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8682437Z   "expected_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8682870Z   "found_files": 1,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8683535Z   "passed": false,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8683887Z   "requirements": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8684191Z     "pixel_mm": 0.4,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8684507Z     "tolerance_mm": 1.2,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8684848Z     "minimum_raw_coverage": 0.94,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8685231Z     "minimum_repaired_coverage": 0.85,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8685624Z     "minimum_iou": 0.78,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8685939Z     "views": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8686212Z       "front_xz",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8686503Z       "side_yz",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8686815Z       "top_xy"
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8687079Z     ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8687325Z   },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8687556Z   "failed_files": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8687793Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8688011Z       "file": "Alarak.stl",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8688281Z       "passed": false,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8688525Z       "views": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8688756Z         "front_xz": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8689012Z           "raw_pixel_count": 28360,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8689322Z           "repaired_pixel_count": 39907,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8689654Z           "raw_coverage": 0.9525035260930889,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8689998Z           "repaired_coverage": 0.7981807702909264,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8690333Z           "iou": 0.6348278534263257,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8690627Z           "passed": false
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8690876Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8691088Z         "side_yz": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8691336Z           "raw_pixel_count": 27758,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8691641Z           "repaired_pixel_count": 37290,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8691966Z           "raw_coverage": 0.98022191800562,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8692300Z           "repaired_coverage": 0.8168141592920354,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8693101Z           "iou": 0.6997633602839677,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8693554Z           "passed": false
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8693806Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8694020Z         "top_xy": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8694266Z           "raw_pixel_count": 22653,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8694574Z           "repaired_pixel_count": 109839,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8694892Z           "raw_coverage": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8695196Z           "repaired_coverage": 0.29918335017616693,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8695528Z           "iou": 0.2344767263611607,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8695821Z           "passed": false
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8696072Z         }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8696275Z       },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8696488Z       "error": ""
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8696712Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8696910Z   ],
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8697111Z   "files": [
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8697519Z     {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8697732Z       "file": "Alarak.stl",
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8697995Z       "passed": false,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8698201Z       "views": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8698393Z         "front_xz": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8698605Z           "raw_pixel_count": 28360,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8698866Z           "repaired_pixel_count": 39907,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8699144Z           "raw_coverage": 0.9525035260930889,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8699432Z           "repaired_coverage": 0.7981807702909264,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8699698Z           "iou": 0.6348278534263257,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8699930Z           "passed": false
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8700137Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8700317Z         "side_yz": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8700528Z           "raw_pixel_count": 27758,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8700782Z           "repaired_pixel_count": 37290,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8701062Z           "raw_coverage": 0.98022191800562,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8701341Z           "repaired_coverage": 0.8168141592920354,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8701612Z           "iou": 0.6997633602839677,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8701852Z           "passed": false
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8702055Z         },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8702226Z         "top_xy": {
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8702421Z           "raw_pixel_count": 22653,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8702667Z           "repaired_pixel_count": 109839,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8702924Z           "raw_coverage": 1.0,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8703317Z           "repaired_coverage": 0.29918335017616693,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8703588Z           "iou": 0.2344767263611607,
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8703819Z           "passed": false
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8704019Z         }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8704185Z       },
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8704357Z       "error": ""
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8704538Z     }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8704705Z   ]
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.8704867Z }
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.9964059Z Traceback (most recent call last):
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.9965277Z   File "/home/runner/work/HOTS-04/HOTS-04/tools/run_photo_posed_job_v3_2.py", line 517, in <module>
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.9966275Z   File "/home/runner/work/HOTS-04/HOTS-04/tools/run_photo_posed_job_v3_2.py", line 443, in main
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.9967247Z   File "/home/runner/work/HOTS-04/HOTS-04/tools/run_photo_posed_job_v3_2.py", line 71, in run_tee
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:01.9972141Z subprocess.CalledProcessError: Command '['/usr/bin/python', '/home/runner/work/_temp/HOTS-03-tools/ci/compare_stl_silhouette.py', '--raw', '/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Raw', '--repaired', '/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HighDetail', '--report-json', '/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/raw_to_high_detail.json', '--report-csv', '/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/raw_to_high_detail.csv', '--image', '/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/raw_to_high_detail.png', '--expected', '1', '--pixel-mm', '0.40', '--tolerance-mm', '1.20', '--minimum-raw-coverage', '0.940', '--minimum-repaired-coverage', '0.850', '--minimum-iou', '0.780', '--maximum-points', '800000']' returned non-zero exit status 1.
+smoke	Build Alarak from selected skin and photographed pose	2026-10-05T13:59:02.0673847Z ##[error]Process completed with exit code 2.
