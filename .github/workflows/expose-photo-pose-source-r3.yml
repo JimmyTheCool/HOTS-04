@@ -1,0 +1,57 @@
+name: Expose Photo Pose Pipeline Source R3
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/expose-photo-pose-source-r3.yml'
+      - 'tools/run_photo_posed_job_v3_2.py'
+
+permissions:
+  contents: write
+
+jobs:
+  expose:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Decode v3.2 bootstrap payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tools/exposed_r3
+          python - <<'PY'
+          import ast, base64, pathlib, zlib
+          src = pathlib.Path('tools/run_photo_posed_job_v3_2.py')
+          tree = ast.parse(src.read_text(encoding='utf-8'))
+          payload = None
+          for node in tree.body:
+              if isinstance(node, ast.Assign):
+                  for target in node.targets:
+                      if isinstance(target, ast.Name) and target.id == '_PAYLOAD':
+                          payload = ast.literal_eval(node.value)
+          if payload is None:
+              raise SystemExit('No _PAYLOAD in v3_2 runner')
+          out = pathlib.Path('tools/exposed_r3/run_photo_posed_job_v3_2_source.py')
+          out.write_bytes(zlib.decompress(base64.b85decode(payload)))
+          compile(out.read_text(encoding='utf-8'), str(out), 'exec')
+          print(out)
+          PY
+      - name: Commit decoded source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/exposed_r3
+          if git diff --cached --quiet; then
+            echo 'No changes.'
+          else
+            git commit -m 'Expose corrected photo-pose runner source [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
