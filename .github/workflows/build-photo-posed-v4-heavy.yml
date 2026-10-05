@@ -1,0 +1,126 @@
+name: Build HOTS-04 Photo-Posed V4 Heavy Heroes
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-photo-posed-v4-heavy.yml'
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {id: '05', hero: 'Dehaka'}
+          - {id: '07', hero: 'Fenix'}
+          - {id: '14', hero: 'Rexxar'}
+    env:
+      HERO_NAME: ${{ matrix.hero }}
+
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Prepare corrected skins and memory-safe V4 pipeline
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          plan=json.loads(Path('reference_analysis/selected_skin_plan.json').read_text(encoding='utf-8'))
+          plan['heroes']['Rexxar'].update({'skin_key':'base','directory':'storm_hero_rexxar_base','repository':'HOTS-03','model_path':'storm_hero_rexxar_base/storm_hero_rexxar_base.m3','selection_method':'user correction: base skin'})
+          plan['heroes']['Dehaka'].update({'skin_key':'mecha','directory':'storm_hero_dehaka_mecha','repository':'HOTS-02','model_path':'storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3','selection_method':'user-confirmed Mecha skin'})
+          Path('reference_analysis/selected_skin_plan_v4.json').write_text(json.dumps(plan,indent=2),encoding='utf-8')
+          PY
+          cp tools/exposed_r2/run_photo_posed_job_v3_1_source.py tools/run_photo_posed_job_v4_heavy.py
+          cp tools/exposed_r2/build_one_photo_posed_v3_source.py tools/build_one_photo_posed_v4_heavy.py
+          python tools/patch_photo_pose_v4.py --runner tools/run_photo_posed_job_v4_heavy.py --builder tools/build_one_photo_posed_v4_heavy.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tools/run_photo_posed_job_v4_heavy.py')
+          s=p.read_text(encoding='utf-8')
+          def replace_once(old,new,label):
+              global s
+              count=s.count(old)
+              if count!=1: raise SystemExit(f'{label}: expected one target, found {count}')
+              s=s.replace(old,new,1)
+          replace_once('"--voxel-mm", "0.30", "--thin-part-mm", "0.70", "--max-triangles", "600000",', '"--voxel-mm", "0.55", "--thin-part-mm", "0.70", "--max-triangles", "600000",', 'memory-safe builder voxel')
+          replace_once('''    if any(token in safe.casefold() for token in ("fenix", "dehaka", "zagara", "cho-gall", "cho_gall")):
+        fine_pitch = "0.24"
+    else:
+        fine_pitch = "0.20"
+''','''    folded_safe = safe.casefold()
+    if "fenix" in folded_safe:
+        fine_pitch = "0.42"
+    elif "dehaka" in folded_safe:
+        fine_pitch = "0.36"
+    elif "rexxar" in folded_safe:
+        fine_pitch = "0.30"
+    else:
+        fine_pitch = "0.28"
+''','heavy fine pitch')
+          replace_once('shutil.copy2(initial_source, fine_input / f"{safe}.stl")','shutil.copy2(raw_source, fine_input / f"{safe}.stl")','fine input raw frozen mesh')
+          replace_once('"--expected", "1", "--pitch", fine_pitch, "--max-triangles", "1500000", "--target-triangles", "1200000",','"--expected", "1", "--pitch", fine_pitch, "--max-triangles", "2000000", "--target-triangles", "2000000",','high triangle gate')
+          replace_once('"--expected", "1", "--max-triangles", "1500000",','"--expected", "1", "--max-triangles", "2000000",','high validation gate')
+          replace_once('"high_detail_triangle_limit": 1500000,','"high_detail_triangle_limit": 2000000,','quality limit')
+          p.write_text(s,encoding='utf-8')
+          compile(s,str(p),'exec')
+          PY
+          python -m py_compile tools/run_photo_posed_job_v4_heavy.py tools/build_one_photo_posed_v4_heavy.py
+
+      - name: Build exact skin in photographed pose
+        id: build
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v4_heavy.py --hero "$HERO_NAME" --max-animations 28 --max-coarse-frames 184 --refine-candidates 12
+
+      - name: Stage all completed and partial posed outputs
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          SAFE=$(python - <<'PY'
+          import os,re
+          value=os.environ['HERO_NAME'].strip()
+          value=re.sub(r'[^A-Za-z0-9._-]+','_',value)
+          value=re.sub(r'_+','_',value).strip('_.')
+          print(value or 'hero')
+          PY
+          )
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-$SAFE"
+          STAGE="$RUNNER_TEMP/heavy-${{ matrix.id }}"
+          mkdir -p "$STAGE"
+          if [[ -d "$ROOT" ]]; then cp -a "$ROOT"/. "$STAGE"/; fi
+          printf '%s\n' "$HERO_NAME" > "$STAGE/HERO_REQUESTED.txt"
+          printf '%s\n' "$SAFE" > "$STAGE/HERO_SAFE.txt"
+          printf '%s\n' '${{ steps.build.outcome }}' > "$STAGE/BUILD_OUTCOME.txt"
+          find "$STAGE" -maxdepth 5 -type f -printf '%P\n' | sort > "$STAGE/STAGED_FILES.txt"
+          test -f "$STAGE/HeroBuild/Raw/$SAFE.stl" -o -f "$STAGE/HighDetail/$SAFE.stl"
+
+      - name: Upload heavy hero package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-posed-v4-heavy-${{ matrix.id }}
+          path: ${{ runner.temp }}/heavy-${{ matrix.id }}
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: error
