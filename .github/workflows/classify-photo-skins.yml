@@ -1,0 +1,60 @@
+name: Classify HOTS-04 Photo Skins
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/classify_skins_clip.py'
+      - '.github/workflows/classify-photo-skins.yml'
+      - 'reference_analysis/inventory.json'
+      - 'reference_analysis/skin_candidates.json'
+
+permissions:
+  contents: write
+
+jobs:
+  classify:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install CPU vision dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet \
+            --index-url https://download.pytorch.org/whl/cpu \
+            torch torchvision
+          python -m pip install --disable-pip-version-check --quiet \
+            transformers==4.56.2 safetensors pillow numpy sentencepiece
+
+      - name: Classify all multi-view hero sets
+        env:
+          HF_HOME: ${{ runner.temp }}/huggingface
+          TOKENIZERS_PARALLELISM: 'false'
+        run: python tools/classify_skins_clip.py
+
+      - name: Commit classification reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/skin_match_clip.json reference_analysis/skin_match_clip.tsv
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add multi-view skin classification [skip ci]'
+            git push origin HEAD:main
+          fi
+
+      - name: Upload classification artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04-Skin-Classification
+          path: |
+            reference_analysis/skin_match_clip.json
+            reference_analysis/skin_match_clip.tsv
+          retention-days: 90
