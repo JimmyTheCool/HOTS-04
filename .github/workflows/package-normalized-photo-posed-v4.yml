@@ -1,0 +1,155 @@
+name: Package Normalized HOTS-04 Photo-Posed V4
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/package-normalized-photo-posed-v4.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+env:
+  NORMALIZE_RUN_ID: '37352695065'
+
+jobs:
+  package:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Wait for normalization and download all validated heroes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 1200); do
+            status=$(gh run view "$NORMALIZE_RUN_ID" --repo "$GITHUB_REPOSITORY" --json status --jq '.status')
+            echo "Normalization run status: $status"
+            if [[ "$status" == "completed" ]]; then break; fi
+            sleep 15
+          done
+          mkdir -p "$RUNNER_TEMP/normalized"
+          gh run download "$NORMALIZE_RUN_ID" --repo "$GITHUB_REPOSITORY" --dir "$RUNNER_TEMP/normalized"
+          count=$(find "$RUNNER_TEMP/normalized" -maxdepth 1 -type d -name 'normalized-photo-posed-v4-*' | wc -l)
+          echo "Downloaded normalized hero artifacts: $count"
+          test "$count" -eq 18
+
+      - name: Assemble and independently validate final collection
+        id: assemble
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet trimesh==4.8.3 numpy==2.2.6
+          ROOT="$RUNNER_TEMP/HOTS04_Photo_Posed_High_Detail_V4_Final"
+          mkdir -p "$ROOT/01_High_Detail_Print_Ready" "$ROOT/02_Robust_Print_Ready" "$ROOT/03_Pose_Proofs" "$ROOT/Reports"
+          find "$RUNNER_TEMP/normalized" -type f -path '*/HighDetail/*.stl' -exec cp -f {} "$ROOT/01_High_Detail_Print_Ready/" \;
+          find "$RUNNER_TEMP/normalized" -type f -path '*/Robust/*.stl' -exec cp -f {} "$ROOT/02_Robust_Print_Ready/" \;
+          find "$RUNNER_TEMP/normalized" -type f \( -name '*_pose_proof.jpg' -o -name '*_reference_masks.jpg' -o -name 'matched_pose_view_*.pgm' \) -exec cp -f {} "$ROOT/03_Pose_Proofs/" \;
+          python - "$RUNNER_TEMP/normalized" "$ROOT" <<'PY'
+          from __future__ import annotations
+          import csv, hashlib, json, re, shutil, sys
+          from pathlib import Path
+          import numpy as np
+          import trimesh
+
+          parts=Path(sys.argv[1]); root=Path(sys.argv[2])
+          heroes=['Alarak','Arthas','Blaze','Cho-Gall','Dehaka','ETC','Fenix','Leoric','Lt Morales','Lunara',"Mal'Ganis",'Nova','Ragnaros','Rexxar','Stukov','Tychus','Zagara',"Zul'jin"]
+          def safe(v): return re.sub(r'_+','_',re.sub(r'[^A-Za-z0-9._-]+','_',v.strip())).strip('_.') or 'hero'
+          exact={'Cho-Gall':'ultimate','Dehaka':'mecha','Lt Morales':'ultimate','Rexxar':'base'}
+          forbidden=('sit','seated','chair','throne','bench','crouch','kneel')
+          failures=[]; rows=[]; metadata={}
+          for hero in heroes:
+              hs=safe(hero)
+              reports=list(parts.rglob(f'*/Reports/{hs}/photo_pose_quality_summary.json'))
+              if len(reports)!=1:
+                  failures.append({'hero':hero,'reason':f'expected one quality report, found {len(reports)}'}); continue
+              q=json.loads(reports[0].read_text(encoding='utf-8')); metadata[hero]=q
+              target=root/'Reports'/hs; target.mkdir(parents=True,exist_ok=True)
+              for item in reports[0].parent.iterdir():
+                  if item.is_file(): shutil.copy2(item,target/item.name)
+              if not q.get('high_detail_validation_passed'): failures.append({'hero':hero,'reason':'high-detail quality flag failed'})
+              if not q.get('robust_validation_passed'): failures.append({'hero':hero,'reason':'robust quality flag failed'})
+              if hero in exact and q.get('skin_key')!=exact[hero]: failures.append({'hero':hero,'reason':f"wrong skin {q.get('skin_key')} != {exact[hero]}"})
+              animation=str(q.get('selected_animation') or '').casefold()
+              if hero=='Nova' and any(t in animation for t in forbidden): failures.append({'hero':hero,'reason':f'Nova forbidden pose {animation}'})
+              if hero=='Cho-Gall' and float(q.get('ground_support_score') or 0)<0.45: failures.append({'hero':hero,'reason':f"Cho-Gall ground support {q.get('ground_support_score')}"})
+
+          for variant,folder,max_triangles in [('high_detail',root/'01_High_Detail_Print_Ready',2000000),('robust',root/'02_Robust_Print_Ready',500000)]:
+              files=list(folder.glob('*.stl'))
+              if len(files)!=18: failures.append({'variant':variant,'reason':f'expected 18 files, found {len(files)}'})
+              for hero in heroes:
+                  f=folder/f'{safe(hero)}.stl'
+                  if not f.is_file(): failures.append({'hero':hero,'variant':variant,'reason':'missing STL'}); continue
+                  mesh=trimesh.load_mesh(f,force='mesh',process=True,validate=True)
+                  mesh.merge_vertices(digits_vertex=3)
+                  finite=bool(np.isfinite(mesh.vertices).all()); ext=[float(x) for x in mesh.extents]
+                  row={'hero':hero,'variant':variant,'file':f.name,'bytes':f.stat().st_size,'sha256':hashlib.sha256(f.read_bytes()).hexdigest(),'vertices':int(len(mesh.vertices)),'triangles':int(len(mesh.faces)),'watertight':bool(mesh.is_watertight),'winding_consistent':bool(mesh.is_winding_consistent),'finite_coordinates':finite,'volume_mm3':float(abs(mesh.volume)),'x_mm':ext[0],'y_mm':ext[1],'z_mm':ext[2],'connected_bodies':int(mesh.body_count),'min_z_mm':float(mesh.bounds[0,2])}
+                  rows.append(row)
+                  ok=row['watertight'] and row['winding_consistent'] and finite and row['volume_mm3']>1 and row['connected_bodies']==1 and 100<=row['triangles']<=max_triangles and min(ext)>=2 and max(ext)<=350 and abs(row['min_z_mm'])<=0.25
+                  if not ok: failures.append({'hero':hero,'variant':variant,'reason':'independent STL validation failed','metrics':row})
+
+          validation={'expected_heroes':18,'high_detail_count':len(list((root/'01_High_Detail_Print_Ready').glob('*.stl'))),'robust_count':len(list((root/'02_Robust_Print_Ready').glob('*.stl'))),'passed':not failures,'required_skins':exact,'required_pose_rules':{'Nova':'not seated/crouched','Cho-Gall':'bilateral ground support >= 0.45'},'detail_policy':'validated existing dense mesh or 0.25-0.36 mm direct watertight union without destructive decimation; up to 2,000,000 triangles','failures':failures,'files':rows,'pose_metadata':metadata}
+          validation['passed']=validation['passed'] and validation['high_detail_count']==18 and validation['robust_count']==18
+          (root/'Reports'/'FINAL_VALIDATION.json').write_text(json.dumps(validation,indent=2),encoding='utf-8')
+          with (root/'Reports'/'FINAL_MANIFEST.csv').open('w',newline='',encoding='utf-8-sig') as h:
+              w=csv.DictWriter(h,fieldnames=list(rows[0].keys()) if rows else ['hero']); w.writeheader(); w.writerows(rows)
+          (root/'Reports'/'POSE_AND_SKIN_METADATA.json').write_text(json.dumps(metadata,indent=2),encoding='utf-8')
+          (root/'Reports'/'FAILURES.json').write_text(json.dumps(failures,indent=2),encoding='utf-8')
+          print(json.dumps(validation,indent=2))
+          if not validation['passed']: raise SystemExit(1)
+          PY
+          cat > "$ROOT/README_FIRST.txt" <<'EOF'
+          HOTS-04 PHOTOGRAPHED-POSE HIGH-DETAIL STL COLLECTION V4 FINAL
+
+          Every model uses the selected Heroes of the Storm game mesh for proportions and skin geometry. The rigged mesh was frozen at the skeletal animation frame that best matched all four supplied JPG silhouettes.
+
+          01_High_Detail_Print_Ready: dense validated printable models, using validated existing geometry or 0.25-0.36 mm watertight reconstruction without destructive decimation.
+          02_Robust_Print_Ready: lighter conservative slicer-ready versions.
+          03_Pose_Proofs: available reference-mask and matched-view images.
+          Reports: exact animation/frame, skin, checksums and independent STL validation.
+
+          Required corrections enforced by the final quality gate:
+          - Cho-Gall: Ultimate skin and bilateral ground support, with the model grounded on its base.
+          - Rexxar: base skin, not Frost.
+          - Nova: seated/crouched animations excluded.
+          - Lt. Morales: Ultimate skin.
+          - Dehaka: Mecha skin.
+
+          STL stores geometry only; texture colours, transparency, normal maps and glow are not embedded. Inspect support placement and orientation in your slicer. Personal, non-commercial fan use only.
+          EOF
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends p7zip-full
+          cd "$RUNNER_TEMP"
+          ZIP="$GITHUB_WORKSPACE/HOTS04_Photo_Posed_High_Detail_V4_Final.zip"
+          7z a -tzip -mx=7 "$ZIP" "$(basename "$ROOT")"
+          sha256sum "$ZIP" > "$ZIP.sha256"
+          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
+          echo "root=$ROOT" >> "$GITHUB_OUTPUT"
+
+      - name: Upload final validated ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04_Photo_Posed_High_Detail_V4_Final
+          path: |
+            HOTS04_Photo_Posed_High_Detail_V4_Final.zip
+            HOTS04_Photo_Posed_High_Detail_V4_Final.zip.sha256
+          retention-days: 90
+          compression-level: 0
+
+      - name: Publish permanent downloadable release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="hots04-photo-posed-v4-final-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "${{ steps.assemble.outputs.zip }}" "${{ steps.assemble.outputs.zip }}.sha256" "${{ steps.assemble.outputs.root }}/Reports/FINAL_VALIDATION.json#FINAL_VALIDATION.json" "${{ steps.assemble.outputs.root }}/Reports/FINAL_MANIFEST.csv#FINAL_MANIFEST.csv" "${{ steps.assemble.outputs.root }}/Reports/POSE_AND_SKIN_METADATA.json#POSE_AND_SKIN_METADATA.json" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "HOTS-04 photographed-pose high-detail STL collection V4 Final" --notes "All 18 models passed independent geometry validation and the requested skin/pose rules: grounded Cho-Gall, base Rexxar, non-seated Nova, Ultimate Lt. Morales, and Mecha Dehaka."
