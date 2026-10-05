@@ -1,0 +1,529 @@
+name: Build HOTS-04 Selected Hero STLs V2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-selected-hero-stls-v2.yml'
+      - 'tools/build_one_selected.py'
+      - 'reference_analysis/selected_skin_plan.json'
+
+permissions:
+  actions: read
+  contents: write
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  build_group:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        include:
+          - group: 1
+            hero1: Alarak
+            safe1: Alarak
+            repo1: HOTS-02
+            model1: storm_hero_alarak_base/storm_hero_alarak_base.m3
+            skin1: base
+            hero2: Arthas
+            safe2: Arthas
+            repo2: HOTS-02
+            model2: storm_hero_arthas_craft20/storm_hero_arthas_craft20.m3
+            skin2: craft20
+            hero3: Blaze
+            safe3: Blaze
+            repo3: HOTS-02
+            model3: storm_hero_firebat_felreaver/storm_hero_firebat_felreaver.m3
+            skin3: felreaver
+          - group: 2
+            hero1: Cho-Gall
+            safe1: Cho-Gall
+            repo1: HOTS-02
+            model1: storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3
+            skin1: ultimate
+            hero2: Dehaka
+            safe2: Dehaka
+            repo2: HOTS-02
+            model2: storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3
+            skin2: mecha
+            hero3: ETC
+            safe3: ETC
+            repo3: HOTS-02
+            model3: storm_hero_etc_base/storm_hero_etc_base_v07.m3
+            skin3: base
+          - group: 3
+            hero1: Fenix
+            safe1: Fenix
+            repo1: HOTS-02
+            model1: storm_hero_fenix_guardian/storm_hero_fenix_guardian.m3
+            skin1: guardian
+            hero2: Leoric
+            safe2: Leoric
+            repo2: HOTS-03
+            model2: storm_hero_kingleoric_base/storm_hero_kingleoric_base.m3
+            skin2: base
+            hero3: Lt Morales
+            safe3: Lt_Morales
+            repo3: HOTS-03
+            model3: storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3
+            skin3: ultimate
+          - group: 4
+            hero1: Lunara
+            safe1: Lunara
+            repo1: HOTS-02
+            model1: storm_hero_dryad_base/storm_hero_dryad_base.m3
+            skin1: base
+            hero2: "Mal'Ganis"
+            safe2: Mal_Ganis
+            repo2: HOTS-03
+            model2: storm_hero_malganis_base/storm_hero_malganis_base.m3
+            skin2: base
+            hero3: Nova
+            safe3: Nova
+            repo3: HOTS-03
+            model3: storm_hero_nova_base/storm_hero_nova_base_v05.m3
+            skin3: base
+          - group: 5
+            hero1: Ragnaros
+            safe1: Ragnaros
+            repo1: HOTS-03
+            model1: storm_hero_ragnaros_base/storm_hero_ragnaros_base.m3
+            skin1: base
+            hero2: Rexxar
+            safe2: Rexxar
+            repo2: HOTS-03
+            model2: storm_hero_rexxar_frost/storm_hero_rexxar_frost.m3
+            skin2: frost
+            hero3: Stukov
+            safe3: Stukov
+            repo3: HOTS-03
+            model3: storm_hero_stukov_base/storm_hero_stukov_base.m3
+            skin3: base
+          - group: 6
+            hero1: Tychus
+            safe1: Tychus
+            repo1: HOTS-03
+            model1: storm_hero_tychus_base/storm_hero_tychus_base_v13.m3
+            skin1: base
+            hero2: Zagara
+            safe2: Zagara
+            repo2: HOTS-03
+            model2: storm_hero_zagara_insectoid/storm_hero_zagara_insectoid.m3
+            skin2: insectoid
+            hero3: "Zul'jin"
+            safe3: Zul_jin
+            repo3: HOTS-03
+            model3: storm_hero_zuljin_base/storm_hero_zuljin_base.m3
+            skin3: base
+
+    env:
+      HERO1: ${{ matrix.hero1 }}
+      SAFE1: ${{ matrix.safe1 }}
+      REPO1: ${{ matrix.repo1 }}
+      MODEL1: ${{ matrix.model1 }}
+      SKIN1: ${{ matrix.skin1 }}
+      HERO2: ${{ matrix.hero2 }}
+      SAFE2: ${{ matrix.safe2 }}
+      REPO2: ${{ matrix.repo2 }}
+      MODEL2: ${{ matrix.model2 }}
+      SKIN2: ${{ matrix.skin2 }}
+      HERO3: ${{ matrix.hero3 }}
+      SAFE3: ${{ matrix.safe3 }}
+      REPO3: ${{ matrix.repo3 }}
+      MODEL3: ${{ matrix.model3 }}
+      SKIN3: ${{ matrix.skin3 }}
+
+    steps:
+      - name: Check out HOTS-04 references and exact-source builder
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Clone proven repair toolchain sparsely
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none --sparse --depth 1 \
+            --branch chatgpt-stl-builder \
+            https://github.com/JimmyTheCool/HOTS-03.git \
+            "$RUNNER_TEMP/HOTS-03-tools"
+          git -C "$RUNNER_TEMP/HOTS-03-tools" sparse-checkout set ci tools/hots_stl
+
+      - name: Clone only the three selected source directories
+        shell: bash
+        run: |
+          set -euo pipefail
+          for index in 1 2 3; do
+            repo_var="REPO${index}"
+            model_var="MODEL${index}"
+            safe_var="SAFE${index}"
+            repo="${!repo_var}"
+            model="${!model_var}"
+            safe="${!safe_var}"
+            source_root="$RUNNER_TEMP/source-${safe}"
+            url="https://github.com/JimmyTheCool/${repo}.git"
+            git clone --filter=blob:none --sparse --depth 1 --branch main "$url" "$source_root"
+            git -C "$source_root" sparse-checkout set "$(dirname "$model")"
+            test -f "$source_root/$model"
+          done
+
+      - name: Install Blender and native libraries
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            ca-certificates curl git xz-utils p7zip-full \
+            libx11-6 libxi6 libxrender1 libxfixes3 libxkbcommon0 \
+            libsm6 libice6 libgl1 libegl1
+          cd "$RUNNER_TEMP"
+          archive="blender-${BLENDER_VERSION}-linux-x64.tar.xz"
+          curl --fail --location --retry 5 --retry-delay 5 \
+            "https://download.blender.org/release/Blender3.6/${archive}" \
+            --output "$archive"
+          tar -xf "$archive"
+          blender="$RUNNER_TEMP/blender-${BLENDER_VERSION}-linux-x64/blender"
+          test -x "$blender"
+          echo "BLENDER=$blender" >> "$GITHUB_ENV"
+
+      - name: Install pinned M3 importer
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone https://github.com/SC2Mapster/m3addon.git "$RUNNER_TEMP/m3addon-src"
+          git -C "$RUNNER_TEMP/m3addon-src" checkout "$M3ADDON_COMMIT"
+          addon_dir="$HOME/.config/blender/3.6/scripts/addons"
+          mkdir -p "$addon_dir"
+          ln -s "$RUNNER_TEMP/m3addon-src" "$addon_dir/m3addon"
+
+      - name: Install repair and validation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet \
+            trimesh==4.8.3 numpy==2.2.6 scipy==1.15.3 \
+            scikit-image==0.25.2 pymeshfix==0.18.1 \
+            fast-simplification==0.1.12 matplotlib==3.10.1
+
+      - name: Prepare repair engines
+        shell: bash
+        run: |
+          set -euo pipefail
+          tools="$RUNNER_TEMP/HOTS-03-tools"
+          cp "$tools/ci/repair_stl_collection.py" "$RUNNER_TEMP/repair_normal.py"
+          python "$tools/ci/patch_repair_dimension_retention.py" "$RUNNER_TEMP/repair_normal.py"
+          python "$tools/ci/patch_repair_voxel_translation.py" "$RUNNER_TEMP/repair_normal.py"
+          python "$tools/ci/patch_repair_face_connectivity.py" "$RUNNER_TEMP/repair_normal.py"
+          cp "$RUNNER_TEMP/repair_normal.py" "$RUNNER_TEMP/repair_voxel.py"
+          python "$tools/ci/patch_repair_force_voxel.py" "$RUNNER_TEMP/repair_voxel.py"
+          python -m py_compile \
+            "$RUNNER_TEMP/repair_normal.py" \
+            "$RUNNER_TEMP/repair_voxel.py" \
+            "$tools/ci/repair_one_adaptive.py" \
+            "$tools/ci/validate_stl_collection.py" \
+            "$tools/ci/compare_stl_silhouette.py"
+
+      - name: Build exact selected skins
+        shell: bash
+        run: |
+          set -euo pipefail
+          tools="$RUNNER_TEMP/HOTS-03-tools"
+          group_root="$RUNNER_TEMP/HOTS04-v2-group-${{ matrix.group }}"
+          mkdir -p "$group_root/Final" "$group_root/Reports"
+
+          for index in 1 2 3; do
+            hero_var="HERO${index}"
+            safe_var="SAFE${index}"
+            model_var="MODEL${index}"
+            skin_var="SKIN${index}"
+            hero="${!hero_var}"
+            safe="${!safe_var}"
+            model="${!model_var}"
+            skin="${!skin_var}"
+            source_root="$RUNNER_TEMP/source-${safe}"
+            hero_root="$group_root/HeroBuilds/$safe"
+            mkdir -p "$hero_root"
+
+            cp "$tools/tools/hots_stl/runtime_extracted/build_hots_stls.py" "$hero_root/builder.py"
+            python "$tools/tools/hots_stl/runtime_patch_v2.py" "$hero_root/builder.py"
+            python "$tools/ci/patch_builder_external_validation.py" "$hero_root/builder.py"
+
+            "$BLENDER" --background --factory-startup \
+              --python tools/build_one_selected.py -- \
+              --builder "$hero_root/builder.py" \
+              --model "$source_root/$model" \
+              --hero "$hero" \
+              --skin-key "$skin" \
+              --output "$hero_root" \
+              --target-height-mm 120 \
+              --base-height-mm 4.5 \
+              --base-margin-mm 5.0 \
+              --voxel-mm 0.38 \
+              --thin-part-mm 0.80 \
+              --max-triangles 600000 \
+              2>&1 | tee "$group_root/Reports/${safe}_builder.log"
+
+            test -f "$hero_root/Raw/${safe}.stl"
+            test -f "$hero_root/Initial/${safe}.stl"
+
+            one_input="$RUNNER_TEMP/one-${safe}"
+            rm -rf "$one_input"
+            mkdir -p "$one_input"
+            cp "$hero_root/Initial/${safe}.stl" "$one_input/${safe}.stl"
+
+            set +e
+            python "$tools/ci/repair_one_adaptive.py" \
+              --input-file "$one_input/${safe}.stl" \
+              --output "$hero_root/AdaptiveFinal" \
+              --report-dir "$hero_root/Reports/Adaptive" \
+              --normal-script "$RUNNER_TEMP/repair_normal.py" \
+              --voxel-script "$RUNNER_TEMP/repair_voxel.py" \
+              --validator "$tools/ci/validate_stl_collection.py" \
+              --silhouette "$tools/ci/compare_stl_silhouette.py" \
+              --max-triangles 600000 \
+              --target-triangles 500000 \
+              --minimum-dimension-retention 0.88 \
+              --maximum-dimension-retention 1.12 \
+              2>&1 | tee "$group_root/Reports/${safe}_adaptive.log"
+            adaptive_status=${PIPESTATUS[0]}
+            set -e
+
+            final_source="$hero_root/AdaptiveFinal/${safe}.stl"
+            if [[ "$adaptive_status" -ne 0 || ! -f "$final_source" ]]; then
+              echo "Adaptive repair failed for $hero; using forced connected voxel fallback."
+              fallback="$hero_root/FallbackFinal"
+              mkdir -p "$fallback"
+              python "$RUNNER_TEMP/repair_voxel.py" \
+                --input "$one_input" \
+                --output "$fallback" \
+                --report-json "$hero_root/Reports/fallback.json" \
+                --report-csv "$hero_root/Reports/fallback.csv" \
+                --expected 1 \
+                --pitch 0.42 \
+                --max-triangles 600000 \
+                --target-triangles 500000 \
+                2>&1 | tee "$group_root/Reports/${safe}_fallback.log"
+              final_source="$fallback/${safe}.stl"
+            fi
+            test -f "$final_source"
+            cp "$final_source" "$group_root/Final/${safe}.stl"
+            cp "$hero_root/Raw/${safe}.stl" "$group_root/Raw_${safe}.stl"
+            cp "$hero_root/Reports/exact_source_build.json" "$group_root/Reports/${safe}_exact_source.json"
+          done
+
+      - name: Validate each completed group
+        shell: bash
+        run: |
+          set -euo pipefail
+          tools="$RUNNER_TEMP/HOTS-03-tools"
+          group_root="$RUNNER_TEMP/HOTS04-v2-group-${{ matrix.group }}"
+          python "$tools/ci/validate_stl_collection.py" \
+            --input "$group_root/Final" \
+            --report-json "$group_root/Reports/final_validation.json" \
+            --report-csv "$group_root/Reports/final_validation.csv" \
+            --checksums "$group_root/Reports/SHA256SUMS.txt" \
+            --expected 3 \
+            2>&1 | tee "$group_root/Reports/final_validation.log"
+
+          raw_dir="$group_root/RawForComparison"
+          mkdir -p "$raw_dir"
+          for raw in "$group_root"/Raw_*.stl; do
+            cp "$raw" "$raw_dir/${raw##*/Raw_}"
+          done
+          set +e
+          python "$tools/ci/compare_stl_silhouette.py" \
+            --raw "$raw_dir" \
+            --repaired "$group_root/Final" \
+            --report-json "$group_root/Reports/silhouette_validation.json" \
+            --report-csv "$group_root/Reports/silhouette_validation.csv" \
+            --image "$group_root/Reports/silhouette_contact_sheet.png" \
+            --expected 3 \
+            --pixel-mm 0.55 \
+            --tolerance-mm 1.65 \
+            --minimum-raw-coverage 0.955 \
+            --minimum-repaired-coverage 0.840 \
+            --minimum-iou 0.760 \
+            --maximum-points 600000 \
+            2>&1 | tee "$group_root/Reports/silhouette_validation.log"
+          silhouette_status=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$silhouette_status" > "$group_root/Reports/silhouette_exit_code.txt"
+
+      - name: Upload completed group
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04-v2-group-${{ matrix.group }}
+          path: ${{ runner.temp }}/HOTS04-v2-group-${{ matrix.group }}
+          retention-days: 90
+          compression-level: 0
+
+  package:
+    needs: build_group
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    steps:
+      - name: Check out reference repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Download all completed groups
+        uses: actions/download-artifact@v4
+        with:
+          pattern: HOTS04-v2-group-*
+          path: ${{ runner.temp }}/groups
+
+      - name: Install final validation tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none --sparse --depth 1 \
+            --branch chatgpt-stl-builder \
+            https://github.com/JimmyTheCool/HOTS-03.git \
+            "$RUNNER_TEMP/HOTS-03-tools"
+          git -C "$RUNNER_TEMP/HOTS-03-tools" sparse-checkout set ci
+          python -m pip install --disable-pip-version-check --quiet \
+            trimesh==4.8.3 numpy==2.2.6 scipy==1.15.3
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends p7zip-full
+
+      - name: Assemble and validate the final 18-hero ZIP
+        id: assemble
+        shell: bash
+        run: |
+          set -euo pipefail
+          package="$RUNNER_TEMP/HOTS04_Selected_Heroes_STL_V2"
+          mkdir -p "$package/01_Print_Ready" "$package/02_High_Detail_Reference" "$package/Reports" "$package/Reference"
+
+          find "$RUNNER_TEMP/groups" -path '*/Final/*.stl' -type f -exec cp {} "$package/01_Print_Ready/" \;
+          find "$RUNNER_TEMP/groups" -name 'Raw_*.stl' -type f -exec sh -c 'file="$1"; base="$(basename "$file")"; cp "$file" "$2/${base#Raw_}"' sh {} "$package/02_High_Detail_Reference" \;
+          cp reference_analysis/selected_skin_plan.json "$package/Reports/"
+          cp reference_analysis/skin_match_clip.json "$package/Reports/" || true
+          cp reference_analysis/skin_match_clip.tsv "$package/Reports/" || true
+          cp reference_analysis/inventory.json "$package/Reports/reference_inventory.json"
+          cp reference_analysis/geometry_verification/Cho-Gall.json "$package/Reports/Cho-Gall_geometry_verification.json"
+          cp reference_analysis/HOTS04_Reference_Sheets.pdf "$package/Reference/" || true
+
+          test "$(find "$package/01_Print_Ready" -maxdepth 1 -name '*.stl' -type f | wc -l)" -eq 18
+          test "$(find "$package/02_High_Detail_Reference" -maxdepth 1 -name '*.stl' -type f | wc -l)" -eq 18
+
+          tools="$RUNNER_TEMP/HOTS-03-tools"
+          python "$tools/ci/validate_stl_collection.py" \
+            --input "$package/01_Print_Ready" \
+            --report-json "$package/Reports/final_validation.json" \
+            --report-csv "$package/Reports/final_validation.csv" \
+            --checksums "$package/Reports/SHA256SUMS.txt" \
+            --expected 18
+
+          python - "$package" <<'PY'
+          from pathlib import Path
+          import csv, hashlib, json, re, sys
+          import trimesh
+
+          package = Path(sys.argv[1])
+          plan = json.loads((package / 'Reports' / 'selected_skin_plan.json').read_text(encoding='utf-8'))
+          def safe(value):
+              value = re.sub(r'[^A-Za-z0-9._-]+', '_', value.strip())
+              return re.sub(r'_+', '_', value).strip('_.') or 'hero'
+          rows = []
+          for hero, selected in plan['heroes'].items():
+              path = package / '01_Print_Ready' / f'{safe(hero)}.stl'
+              mesh = trimesh.load_mesh(path, force='mesh', process=False)
+              extents = [float(value) for value in mesh.extents]
+              rows.append({
+                  'hero': hero,
+                  'skin_key': selected['skin_key'],
+                  'source_model': selected['model_path'],
+                  'selection_method': selected['selection_method'],
+                  'file': path.name,
+                  'bytes': path.stat().st_size,
+                  'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                  'triangles': int(len(mesh.faces)),
+                  'watertight': bool(mesh.is_watertight),
+                  'winding_consistent': bool(mesh.is_winding_consistent),
+                  'body_count': int(mesh.body_count),
+                  'volume_mm3': float(abs(mesh.volume)),
+                  'x_mm': extents[0],
+                  'y_mm': extents[1],
+                  'z_mm': extents[2],
+              })
+          with (package / 'Reports' / 'package_manifest.csv').open('w', newline='', encoding='utf-8-sig') as handle:
+              writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+              writer.writeheader()
+              writer.writerows(rows)
+          (package / 'Reports' / 'package_manifest.json').write_text(json.dumps(rows, indent=2), encoding='utf-8')
+          PY
+
+          cat > "$package/README_FIRST.txt" <<'EOF'
+          HOTS-04 PHOTO-SELECTED HERO STL COLLECTION V2
+
+          This archive contains the 18 heroes represented by the four-angle HOTS-04
+          screenshot sets. The exact selected skin M3 path was used for every character.
+          Cho-Gall uses the Ultimate geometry selected by a five-model, four-angle
+          silhouette comparison.
+
+          01_Print_Ready contains adaptively repaired, independently validated STL files.
+          02_High_Detail_Reference contains less-destructive source geometry for comparison
+          or expert editing and may include open or separate shells.
+
+          STL stores geometry only. It cannot preserve colour, textures, transparency,
+          glow, particles, or normal-map detail. Review orientation and supports in your
+          slicer before printing.
+
+          These derivative models are intended for personal, non-commercial fan use.
+          Heroes of the Storm and its characters/assets are Blizzard Entertainment IP.
+          EOF
+
+          archive="$GITHUB_WORKSPACE/HOTS04_Selected_Heroes_STL_V2.zip"
+          cd "$RUNNER_TEMP"
+          7z a -tzip -mx=7 "$archive" "$(basename "$package")"
+          sha256sum "$archive" > "$archive.sha256"
+          echo "package=$package" >> "$GITHUB_OUTPUT"
+          echo "archive=$archive" >> "$GITHUB_OUTPUT"
+          echo "checksum=$archive.sha256" >> "$GITHUB_OUTPUT"
+
+      - name: Upload final ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04_Selected_Heroes_STL_V2
+          path: |
+            HOTS04_Selected_Heroes_STL_V2.zip
+            HOTS04_Selected_Heroes_STL_V2.zip.sha256
+          retention-days: 90
+          compression-level: 0
+
+      - name: Publish downloadable release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="hots04-selected-heroes-v2-${GITHUB_RUN_ID}"
+          notes="$RUNNER_TEMP/release_notes.txt"
+          cat > "$notes" <<'EOF'
+          Photo-selected Heroes of the Storm printable STL collection.
+
+          Includes all 18 heroes represented in HOTS-04, with exact selected source meshes,
+          adaptive repair, watertightness checks, connected-body checks, checksums and source
+          provenance. Cho-Gall uses the Ultimate skin geometry selected from five candidates.
+          EOF
+          gh release create "$tag" \
+            "${{ steps.assemble.outputs.archive }}" \
+            "${{ steps.assemble.outputs.checksum }}" \
+            "${{ steps.assemble.outputs.package }}/Reports/package_manifest.csv#package_manifest.csv" \
+            "${{ steps.assemble.outputs.package }}/Reports/package_manifest.json#package_manifest.json" \
+            "${{ steps.assemble.outputs.package }}/Reports/final_validation.json#validation.json" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title 'HOTS-04 selected hero printable STL collection V2' \
+            --notes-file "$notes" \
+            --prerelease
