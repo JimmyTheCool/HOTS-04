@@ -1,0 +1,26 @@
+{
+  "hero": "Alarak",
+  "safe": "Alarak",
+  "repository": "HOTS-02",
+  "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+  "skin_key": "base",
+  "photos": [
+    "Alarak01.jpg",
+    "Alarak02.jpg",
+    "Alarak03.jpg",
+    "Alarak04.jpg"
+  ],
+  "selected_skin_plan": {
+    "skin_key": "base",
+    "directory": "storm_hero_alarak_base",
+    "repository": "HOTS-02",
+    "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+    "selection_method": "four-view CLIP appearance classification",
+    "reference_images": [
+      "Alarak01.jpg",
+      "Alarak02.jpg",
+      "Alarak03.jpg",
+      "Alarak04.jpg"
+    ]
+  }
+}

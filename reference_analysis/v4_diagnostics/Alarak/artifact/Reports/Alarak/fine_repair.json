@@ -1,0 +1,179 @@
+{
+  "input_folder": "/home/runner/work/_temp/fine-input-Alarak",
+  "output_folder": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HighDetail",
+  "expected_files": 1,
+  "found_files": 1,
+  "expected_count_passed": true,
+  "all_passed": false,
+  "settings": {
+    "voxel_pitch_mm": 0.2,
+    "max_triangles": 1500000,
+    "target_triangles": 1200000,
+    "minimum_dimension_mm": 2.0,
+    "maximum_dimension_mm": 350.0,
+    "minimum_dimension_retention": 0.9,
+    "maximum_dimension_retention": 1.1,
+    "vertex_weld_digits": 2,
+    "required_connected_bodies": 1
+  },
+  "failed_files": [
+    {
+      "file": "Alarak.stl",
+      "input_bytes": 26557084,
+      "input_sha256": "0fd82f5690c44e1b3e22c44b2361107d84fa9186661a46b5eb18c773f31225c0",
+      "attempts": {
+        "rounded_vertex_merge": {
+          "vertices": 262790,
+          "triangles": 531140,
+          "watertight": false,
+          "winding_consistent": true,
+          "finite_coordinates": true,
+          "volume_mm3": 99105.78325883519,
+          "x_mm": 148.02664184570312,
+          "y_mm": 148.02638244628906,
+          "z_mm": 123.10596466064453,
+          "connected_bodies": 604,
+          "dimension_retention": {
+            "x_mm": 1.0,
+            "y_mm": 1.0,
+            "z_mm": 1.0
+          }
+        },
+        "pymeshfix": {
+          "vertices": 102092,
+          "triangles": 204196,
+          "watertight": true,
+          "winding_consistent": true,
+          "finite_coordinates": true,
+          "volume_mm3": 78751.65527117987,
+          "x_mm": 148.02664184570312,
+          "y_mm": 148.02638244628906,
+          "z_mm": 23.328872680664062,
+          "connected_bodies": 1
+        },
+        "connected_voxel": {
+          "vertices": 592833,
+          "triangles": 1199833,
+          "watertight": false,
+          "winding_consistent": true,
+          "finite_coordinates": true,
+          "volume_mm3": 33019.62623651939,
+          "x_mm": 147.80000000000013,
+          "y_mm": 147.80000000000018,
+          "z_mm": 123.0101694915256,
+          "connected_bodies": 1,
+          "dimension_retention": {
+            "x_mm": 0.998468911792654,
+            "y_mm": 0.9984706614959599,
+            "z_mm": 0.9992218478659178
+          }
+        },
+        "connected_voxel_plus_meshfix": {
+          "vertices": 566437,
+          "triangles": 1144303,
+          "watertight": false,
+          "winding_consistent": true,
+          "finite_coordinates": true,
+          "volume_mm3": 32845.14524792833,
+          "x_mm": 147.8000030517578,
+          "y_mm": 147.5999984741211,
+          "z_mm": 123.0101674720645,
+          "connected_bodies": 1,
+          "dimension_retention": {
+            "x_mm": 0.9984689324089271,
+            "y_mm": 0.9971195406851027,
+            "z_mm": 0.9992218314616671
+          }
+        }
+      },
+      "passed": false,
+      "voxel_connectivity": {
+        "initial_components": 244,
+        "removed_tiny_components": 151,
+        "bridges_added": 181,
+        "final_components": 1
+      },
+      "error": "All repair methods failed the quality gate"
+    }
+  ],
+  "files": [
+    {
+      "file": "Alarak.stl",
+      "input_bytes": 26557084,
+      "input_sha256": "0fd82f5690c44e1b3e22c44b2361107d84fa9186661a46b5eb18c773f31225c0",
+      "attempts": {
+        "rounded_vertex_merge": {
+          "vertices": 262790,
+          "triangles": 531140,
+          "watertight": false,
+          "winding_consistent": true,
+          "finite_coordinates": true,
+          "volume_mm3": 99105.78325883519,
+          "x_mm": 148.02664184570312,
+          "y_mm": 148.02638244628906,
+          "z_mm": 123.10596466064453,
+          "connected_bodies": 604,
+          "dimension_retention": {
+            "x_mm": 1.0,
+            "y_mm": 1.0,
+            "z_mm": 1.0
+          }
+        },
+        "pymeshfix": {
+          "vertices": 102092,
+          "triangles": 204196,
+          "watertight": true,
+          "winding_consistent": true,
+          "finite_coordinates": true,
+          "volume_mm3": 78751.65527117987,
+          "x_mm": 148.02664184570312,
+          "y_mm": 148.02638244628906,
+          "z_mm": 23.328872680664062,
+          "connected_bodies": 1
+        },
+        "connected_voxel": {
+          "vertices": 592833,
+          "triangles": 1199833,
+          "watertight": false,
+          "winding_consistent": true,
+          "finite_coordinates": true,
+          "volume_mm3": 33019.62623651939,
+          "x_mm": 147.80000000000013,
+          "y_mm": 147.80000000000018,
+          "z_mm": 123.0101694915256,
+          "connected_bodies": 1,
+          "dimension_retention": {
+            "x_mm": 0.998468911792654,
+            "y_mm": 0.9984706614959599,
+            "z_mm": 0.9992218478659178
+          }
+        },
+        "connected_voxel_plus_meshfix": {
+          "vertices": 566437,
+          "triangles": 1144303,
+          "watertight": false,
+          "winding_consistent": true,
+          "finite_coordinates": true,
+          "volume_mm3": 32845.14524792833,
+          "x_mm": 147.8000030517578,
+          "y_mm": 147.5999984741211,
+          "z_mm": 123.0101674720645,
+          "connected_bodies": 1,
+          "dimension_retention": {
+            "x_mm": 0.9984689324089271,
+            "y_mm": 0.9971195406851027,
+            "z_mm": 0.9992218314616671
+          }
+        }
+      },
+      "passed": false,
+      "voxel_connectivity": {
+        "initial_components": 244,
+        "removed_tiny_components": 151,
+        "bridges_added": 181,
+        "final_components": 1
+      },
+      "error": "All repair methods failed the quality gate"
+    }
+  ]
+}

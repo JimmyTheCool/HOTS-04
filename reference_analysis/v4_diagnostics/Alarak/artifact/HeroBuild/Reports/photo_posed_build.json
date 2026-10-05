@@ -1,0 +1,2696 @@
+{
+  "hero": "Alarak",
+  "hero_safe": "Alarak",
+  "skin_key": "base",
+  "model_path": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3",
+  "candidate_animation_paths": [
+    "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+    "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+  ],
+  "source_key": "alarak_base",
+  "status": "success",
+  "pose_match": {
+    "selected": {
+      "animation_index": 100,
+      "animation_name": "Stand Ready End S 01",
+      "name_occurrence": 0,
+      "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+      "animation_start": 0,
+      "animation_end_exclusive": 200,
+      "animation_priority": 1950,
+      "frame": 6,
+      "progress": 0.03015075376884422,
+      "ground_support_score": 1.0,
+      "pose_score": 0.6654850955003349,
+      "adjusted_score": 0.7054850955003349,
+      "camera": {
+        "score": 0.6654850955003349,
+        "mean_score": 0.6698362787700236,
+        "consistency_std": 0.07251972116147963,
+        "base_angle": 270,
+        "direction": -1,
+        "elevation": -10,
+        "angles": [
+          270,
+          180,
+          90,
+          0
+        ],
+        "per_view_scores": [
+          0.7923035447331706,
+          0.6191032348206611,
+          0.6128567597463105,
+          0.6550815757799522
+        ]
+      }
+    },
+    "confidence_margin": 0.0012864266863255036,
+    "coarse_frames_tested": 184,
+    "refined_frames_tested": 95,
+    "elapsed_pose_search_seconds": 80.12,
+    "rest_pose_baseline": {
+      "score": 0.5359262543647653,
+      "mean_score": 0.5453546653774713,
+      "consistency_std": 0.15714018354510054,
+      "base_angle": 30,
+      "direction": -1,
+      "elevation": 20,
+      "angles": [
+        30,
+        300,
+        210,
+        120
+      ],
+      "per_view_scores": [
+        0.7744756942080494,
+        0.4966775447276387,
+        0.5726619400164662,
+        0.3376034825577312
+      ]
+    },
+    "improvement_over_rest_pose": 0.1295588411355696,
+    "animation_imports": [
+      {
+        "path": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+        "before_count": 0,
+        "after_count": 51,
+        "status": "success",
+        "added": 51
+      },
+      {
+        "path": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "before_count": 51,
+        "after_count": 104,
+        "status": "success",
+        "added": 53
+      }
+    ],
+    "animation_inventory": [
+      {
+        "index": 0,
+        "name": "Walk A",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 34,
+        "duration": 34,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 1,
+        "name": "Attack Z",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -160,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 2,
+        "name": "Attack W",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -160,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 3,
+        "name": "Attack X",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -160,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 4,
+        "name": "Stand",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 90,
+        "duration": 90,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 5,
+        "name": "Stand 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 362,
+        "duration": 362,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 6,
+        "name": "Spell A",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 50,
+        "duration": 50,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 7,
+        "name": "Spell B Right",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 31,
+        "duration": 31,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 8,
+        "name": "Spell C",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 58,
+        "duration": 58,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 9,
+        "name": "Spell D",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 40,
+        "duration": 40,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 10,
+        "name": "Spell D End",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 11,
+        "name": "Spell E",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 42,
+        "duration": 42,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 12,
+        "name": "Spell F",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 13,
+        "name": "Spell G",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 14,
+        "name": "Spell H",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 14,
+        "duration": 14,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 15,
+        "name": "Flail",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 18,
+        "duration": 18,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 16,
+        "name": "Flail Forward",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 18,
+        "duration": 18,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 17,
+        "name": "Flail Back",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 18,
+        "duration": 18,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 18,
+        "name": "Spell Channel",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 40,
+        "duration": 40,
+        "priority": -270,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 19,
+        "name": "Stun",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 20,
+        "name": "Stand Start",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 35,
+        "duration": 35,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 21,
+        "name": "Stand Ready",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 60,
+        "duration": 60,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 22,
+        "name": "Stand Start Ready",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 23,
+        "name": "Stand Ready End",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 48,
+        "duration": 48,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 24,
+        "name": "Stand Victory",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 169,
+        "duration": 169,
+        "priority": 1700,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 25,
+        "name": "Walk A Ridesurf Start",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 40,
+        "duration": 40,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 26,
+        "name": "Walk A Ridesurf",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 27,
+        "name": "Stand Ridesurf",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 80,
+        "duration": 80,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 28,
+        "name": "Stand Ridesurf Start",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 60,
+        "duration": 60,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 29,
+        "name": "Stand S",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 91,
+        "duration": 91,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 30,
+        "name": "Stand Ready S",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 64,
+        "duration": 64,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 31,
+        "name": "Stand Ready Start S",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 66,
+        "duration": 66,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 32,
+        "name": "Taunt",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 75,
+        "duration": 75,
+        "priority": 420,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 33,
+        "name": "Stand Dance",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 190,
+        "duration": 190,
+        "priority": 1330,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 34,
+        "name": "Channel Hearth",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 180,
+        "duration": 180,
+        "priority": -100,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 35,
+        "name": "Channel Mount",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 32,
+        "duration": 32,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 36,
+        "name": "Spell D Start",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 57,
+        "duration": 57,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 37,
+        "name": "Walk A Ready",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 28,
+        "duration": 28,
+        "priority": 1020,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 38,
+        "name": "Attack Y",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -160,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 39,
+        "name": "Walk A 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 102,
+        "duration": 102,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 40,
+        "name": "Spell B Left",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 39,
+        "duration": 39,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 41,
+        "name": "Spell B",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 35,
+        "duration": 35,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 42,
+        "name": "Walk A Ridenone Start",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 44,
+        "duration": 44,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 43,
+        "name": "Walk A Ridenone",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 60,
+        "duration": 60,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 44,
+        "name": "Stand Ridenone Start",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 36,
+        "duration": 36,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 45,
+        "name": "Stand Ridenone",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 60,
+        "duration": 60,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 46,
+        "name": "Walk A Start",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 22,
+        "duration": 22,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 47,
+        "name": "Walk A Start Ready",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 15,
+        "duration": 15,
+        "priority": 1020,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 48,
+        "name": "Spell Omni",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 16,
+        "duration": 16,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 49,
+        "name": "Stand Ready End S",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 200,
+        "duration": 200,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 50,
+        "name": "Draft Pose S",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 1,
+        "duration": 1,
+        "priority": 0,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a"
+      },
+      {
+        "index": 51,
+        "name": "Walk A 02",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 34,
+        "duration": 34,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 52,
+        "name": "Attack Z 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -160,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 53,
+        "name": "Attack W 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -160,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 54,
+        "name": "Attack X 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -160,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 55,
+        "name": "Stand 02",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 90,
+        "duration": 90,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 56,
+        "name": "Stand 03",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 362,
+        "duration": 362,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 57,
+        "name": "Spell A 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 50,
+        "duration": 50,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 58,
+        "name": "Spell B Right 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 31,
+        "duration": 31,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 59,
+        "name": "Spell C 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 58,
+        "duration": 58,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 60,
+        "name": "Spell D 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 40,
+        "duration": 40,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 61,
+        "name": "Spell D End 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 62,
+        "name": "Spell E 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 42,
+        "duration": 42,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 63,
+        "name": "Spell F 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 64,
+        "name": "Spell G 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 65,
+        "name": "Spell H 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 14,
+        "duration": 14,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 66,
+        "name": "Flail 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 18,
+        "duration": 18,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 67,
+        "name": "Flail Forward 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 18,
+        "duration": 18,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 68,
+        "name": "Flail Back 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 18,
+        "duration": 18,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 69,
+        "name": "Spell Channel 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 40,
+        "duration": 40,
+        "priority": -270,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 70,
+        "name": "Stun 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 71,
+        "name": "Stand Start 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 35,
+        "duration": 35,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 72,
+        "name": "Stand Ready 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 60,
+        "duration": 60,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 73,
+        "name": "Stand Start Ready 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 74,
+        "name": "Stand Ready End 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 48,
+        "duration": 48,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 75,
+        "name": "Stand Victory 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 169,
+        "duration": 169,
+        "priority": 1700,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 76,
+        "name": "Walk A Ridesurf Start 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 40,
+        "duration": 40,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 77,
+        "name": "Walk A Ridesurf 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 78,
+        "name": "Stand Ridesurf 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 80,
+        "duration": 80,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 79,
+        "name": "Stand Ridesurf Start 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 60,
+        "duration": 60,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 80,
+        "name": "Taunt 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 75,
+        "duration": 75,
+        "priority": 420,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 81,
+        "name": "Stand Dance 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 190,
+        "duration": 190,
+        "priority": 1330,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 82,
+        "name": "Channel Hearth 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 180,
+        "duration": 180,
+        "priority": -100,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 83,
+        "name": "Channel Mount 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 32,
+        "duration": 32,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 84,
+        "name": "Spell D Start 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 57,
+        "duration": 57,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 85,
+        "name": "Walk A Ready 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 28,
+        "duration": 28,
+        "priority": 1020,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 86,
+        "name": "Attack Y 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 30,
+        "duration": 30,
+        "priority": -160,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 87,
+        "name": "Walk A 03",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 102,
+        "duration": 102,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 88,
+        "name": "Spell B Left 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 39,
+        "duration": 39,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 89,
+        "name": "Spell B 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 35,
+        "duration": 35,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 90,
+        "name": "Walk A Ridenone Start 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 44,
+        "duration": 44,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 91,
+        "name": "Walk A Ridenone 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 60,
+        "duration": 60,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 92,
+        "name": "Stand Ridenone Start 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 36,
+        "duration": 36,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 93,
+        "name": "Stand Ridenone 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 60,
+        "duration": 60,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 94,
+        "name": "Walk A Start 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 22,
+        "duration": 22,
+        "priority": 120,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 95,
+        "name": "Walk A Start Ready 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 15,
+        "duration": 15,
+        "priority": 1020,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 96,
+        "name": "Spell Omni 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 16,
+        "duration": 16,
+        "priority": -170,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 97,
+        "name": "Stand Ready Start S 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 66,
+        "duration": 66,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 98,
+        "name": "Stand S 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 120,
+        "duration": 120,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 99,
+        "name": "Stand Ready S 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 50,
+        "duration": 50,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 100,
+        "name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 200,
+        "duration": 200,
+        "priority": 1950,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 101,
+        "name": "GLstand",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 300,
+        "duration": 300,
+        "priority": 1050,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 102,
+        "name": "Death",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 70,
+        "duration": 70,
+        "priority": -100000,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      },
+      {
+        "index": 103,
+        "name": "Draft Pose S 01",
+        "name_occurrence": 0,
+        "start": 0,
+        "end_exclusive": 1,
+        "duration": 1,
+        "priority": 0,
+        "source_animation": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      }
+    ],
+    "top_coarse_candidates": [
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "frame": 8,
+        "progress": 0.04020100502512563,
+        "animation_priority": 1950,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6626226503530538,
+        "adjusted_score": 0.7026226503530538,
+        "camera": {
+          "score": 0.6626226503530538,
+          "mean_score": 0.6666921101601635,
+          "consistency_std": 0.06782433011849474,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -10,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7784518170341439,
+            0.612733877706046,
+            0.6120199656215219,
+            0.6635627802789423
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "frame": 27,
+        "progress": 0.30337078651685395,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6600867945630084,
+        "adjusted_score": 0.6985867945630084,
+        "camera": {
+          "score": 0.6600867945630084,
+          "mean_score": 0.6638328282892034,
+          "consistency_std": 0.06243389543658244,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7594877207210866,
+            0.645170138799446,
+            0.5857772076384447,
+            0.6648962459978364
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "frame": 14,
+        "progress": 0.15730337078651685,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6600243356805675,
+        "adjusted_score": 0.6985243356805675,
+        "camera": {
+          "score": 0.6600243356805675,
+          "mean_score": 0.6638956290681518,
+          "consistency_std": 0.06452155645973774,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7630445664630453,
+            0.6496833584835959,
+            0.5826168210084635,
+            0.6602377703175023
+          ]
+        }
+      },
+      {
+        "animation_index": 56,
+        "animation_name": "Stand 03",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 362,
+        "frame": 14,
+        "progress": 0.038781163434903045,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6594444876253953,
+        "adjusted_score": 0.6979444876253953,
+        "camera": {
+          "score": 0.6594444876253953,
+          "mean_score": 0.6632802248723051,
+          "consistency_std": 0.0639289541151628,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7614798245250067,
+            0.6494207365192297,
+            0.5826668946438496,
+            0.6595534438011342
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "frame": 4,
+        "progress": 0.0449438202247191,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6592518001707731,
+        "adjusted_score": 0.6977518001707731,
+        "camera": {
+          "score": 0.6592518001707731,
+          "mean_score": 0.6630958979392514,
+          "consistency_std": 0.06406829614130476,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7641213687501323,
+            0.6475294059863195,
+            0.5863156645845036,
+            0.6544171524360503
+          ]
+        }
+      },
+      {
+        "animation_index": 74,
+        "animation_name": "Stand Ready End 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 48,
+        "frame": 44,
+        "progress": 0.9361702127659575,
+        "animation_priority": 1950,
+        "ground_support_score": 1.0,
+        "pose_score": 0.656888155237155,
+        "adjusted_score": 0.6968881552371551,
+        "camera": {
+          "score": 0.656888155237155,
+          "mean_score": 0.6606793722086425,
+          "consistency_std": 0.06318694952479041,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7592601418578238,
+            0.6375580992665131,
+            0.5850647117378668,
+            0.6608345359723664
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "frame": 1,
+        "progress": 0.011235955056179775,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.658068701522783,
+        "adjusted_score": 0.6965687015227829,
+        "camera": {
+          "score": 0.658068701522783,
+          "mean_score": 0.6619637940643176,
+          "consistency_std": 0.06491820902557753,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7663780113194015,
+            0.6453296902476712,
+            0.5878595095711925,
+            0.6482879651190051
+          ]
+        }
+      },
+      {
+        "animation_index": 56,
+        "animation_name": "Stand 03",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 362,
+        "frame": 1,
+        "progress": 0.002770083102493075,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6578224466274792,
+        "adjusted_score": 0.6963224466274792,
+        "camera": {
+          "score": 0.6578224466274792,
+          "mean_score": 0.6617046469844683,
+          "consistency_std": 0.06470333928315043,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7657767513872621,
+            0.6464886654573444,
+            0.5878159833578283,
+            0.6467371877354386
+          ]
+        }
+      },
+      {
+        "animation_index": 74,
+        "animation_name": "Stand Ready End 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 48,
+        "frame": 29,
+        "progress": 0.6170212765957447,
+        "animation_priority": 1950,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6553947673153064,
+        "adjusted_score": 0.6953947673153065,
+        "camera": {
+          "score": 0.6553947673153064,
+          "mean_score": 0.660230982561907,
+          "consistency_std": 0.08060358744334382,
+          "base_angle": 240,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            240,
+            150,
+            60,
+            330
+          ],
+          "per_view_scores": [
+            0.7787444025214804,
+            0.6368534585510081,
+            0.5540524785990184,
+            0.6712735905761213
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "frame": 41,
+        "progress": 0.4606741573033708,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6565503413536932,
+        "adjusted_score": 0.6950503413536931,
+        "camera": {
+          "score": 0.6565503413536932,
+          "mean_score": 0.6603861501288787,
+          "consistency_std": 0.06393014625309192,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7609603089909316,
+            0.6413839336622633,
+            0.5839279359036249,
+            0.6552724219586951
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "frame": 55,
+        "progress": 0.6179775280898876,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6543017255803214,
+        "adjusted_score": 0.6928017255803214,
+        "camera": {
+          "score": 0.6543017255803214,
+          "mean_score": 0.6580636557533964,
+          "consistency_std": 0.06269883621791683,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7608645433742351,
+            0.6367204064407288,
+            0.5910351593570211,
+            0.6436345138416005
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "frame": 84,
+        "progress": 0.9438202247191011,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.654258751114291,
+        "adjusted_score": 0.692758751114291,
+        "camera": {
+          "score": 0.654258751114291,
+          "mean_score": 0.6581107955706422,
+          "consistency_std": 0.06420074093918764,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7636428389037806,
+            0.6406684342592901,
+            0.5899226700790712,
+            0.6382092390404273
+          ]
+        }
+      },
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "frame": 32,
+        "progress": 0.16080402010050251,
+        "animation_priority": 1950,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6516380779034641,
+        "adjusted_score": 0.6916380779034641,
+        "camera": {
+          "score": 0.6516380779034641,
+          "mean_score": 0.6564446914643393,
+          "consistency_std": 0.08011022601458652,
+          "base_angle": 285,
+          "direction": 1,
+          "elevation": 10,
+          "angles": [
+            285,
+            15,
+            105,
+            195
+          ],
+          "per_view_scores": [
+            0.7900169431737475,
+            0.5926273674349253,
+            0.595842521526748,
+            0.6472919337219363
+          ]
+        }
+      },
+      {
+        "animation_index": 99,
+        "animation_name": "Stand Ready S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 50,
+        "frame": 15,
+        "progress": 0.30612244897959184,
+        "animation_priority": 1950,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6515826375662838,
+        "adjusted_score": 0.6915826375662838,
+        "camera": {
+          "score": 0.6515826375662838,
+          "mean_score": 0.656509956005681,
+          "consistency_std": 0.08212197398995287,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -10,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7935405761404754,
+            0.594856307531459,
+            0.5909228385337052,
+            0.6467201018170843
+          ]
+        }
+      },
+      {
+        "animation_index": 97,
+        "animation_name": "Stand Ready Start S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 66,
+        "frame": 61,
+        "progress": 0.9384615384615385,
+        "animation_priority": 1950,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6512909609810754,
+        "adjusted_score": 0.6912909609810755,
+        "camera": {
+          "score": 0.6512909609810754,
+          "mean_score": 0.6548259664608522,
+          "consistency_std": 0.058916757996280746,
+          "base_angle": 255,
+          "direction": -1,
+          "elevation": -10,
+          "angles": [
+            255,
+            165,
+            75,
+            345
+          ],
+          "per_view_scores": [
+            0.7502775664254111,
+            0.6253021521739954,
+            0.5924610746326152,
+            0.6512630726113872
+          ]
+        }
+      },
+      {
+        "animation_index": 81,
+        "animation_name": "Stand Dance 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 190,
+        "frame": 1,
+        "progress": 0.005291005291005291,
+        "animation_priority": 1330,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6511678466370764,
+        "adjusted_score": 0.6911678466370764,
+        "camera": {
+          "score": 0.6511678466370764,
+          "mean_score": 0.6548295029191136,
+          "consistency_std": 0.061027604700618944,
+          "base_angle": 255,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            255,
+            165,
+            75,
+            345
+          ],
+          "per_view_scores": [
+            0.752341208101004,
+            0.6445905989157988,
+            0.584028461465888,
+            0.6383577431937637
+          ]
+        }
+      },
+      {
+        "animation_index": 97,
+        "animation_name": "Stand Ready Start S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 66,
+        "frame": 10,
+        "progress": 0.15384615384615385,
+        "animation_priority": 1950,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6509109294939295,
+        "adjusted_score": 0.6909109294939295,
+        "camera": {
+          "score": 0.6509109294939295,
+          "mean_score": 0.6559126180316587,
+          "consistency_std": 0.08336147562882065,
+          "base_angle": 300,
+          "direction": 1,
+          "elevation": 20,
+          "angles": [
+            300,
+            30,
+            120,
+            210
+          ],
+          "per_view_scores": [
+            0.7994209242068447,
+            0.5965493802676967,
+            0.6221382242201774,
+            0.6055419434319158
+          ]
+        }
+      },
+      {
+        "animation_index": 74,
+        "animation_name": "Stand Ready End 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 48,
+        "frame": 37,
+        "progress": 0.7872340425531915,
+        "animation_priority": 1950,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6507714482380001,
+        "adjusted_score": 0.6907714482380002,
+        "camera": {
+          "score": 0.6507714482380001,
+          "mean_score": 0.6550829988419261,
+          "consistency_std": 0.07185917673209932,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7555372361676018,
+            0.6280610971743125,
+            0.5586275047865983,
+            0.6781061572391921
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "frame": 69,
+        "progress": 0.7752808988764045,
+        "animation_priority": 1050,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6516619181188372,
+        "adjusted_score": 0.6901619181188372,
+        "camera": {
+          "score": 0.6516619181188372,
+          "mean_score": 0.6551725274407983,
+          "consistency_std": 0.058510155366019584,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -20,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.752936679347903,
+            0.63709194633374,
+            0.5975223088584924,
+            0.633139175223058
+          ]
+        }
+      },
+      {
+        "animation_index": 99,
+        "animation_name": "Stand Ready S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 50,
+        "frame": 23,
+        "progress": 0.46938775510204084,
+        "animation_priority": 1950,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6497445437224625,
+        "adjusted_score": 0.6897445437224625,
+        "camera": {
+          "score": 0.6497445437224625,
+          "mean_score": 0.6536664288924281,
+          "consistency_std": 0.06536475283276078,
+          "base_angle": 270,
+          "direction": 1,
+          "elevation": 20,
+          "angles": [
+            270,
+            0,
+            90,
+            180
+          ],
+          "per_view_scores": [
+            0.7668725627347412,
+            0.6162552966252819,
+            0.6168960844001775,
+            0.6146417718095116
+          ]
+        }
+      }
+    ],
+    "top_refined_candidates": [
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "animation_priority": 1950,
+        "frame": 6,
+        "progress": 0.03015075376884422,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6654850955003349,
+        "adjusted_score": 0.7054850955003349,
+        "camera": {
+          "score": 0.6654850955003349,
+          "mean_score": 0.6698362787700236,
+          "consistency_std": 0.07251972116147963,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -10,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7923035447331706,
+            0.6191032348206611,
+            0.6128567597463105,
+            0.6550815757799522
+          ]
+        }
+      },
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "animation_priority": 1950,
+        "frame": 7,
+        "progress": 0.035175879396984924,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6641986688140094,
+        "adjusted_score": 0.7041986688140094,
+        "camera": {
+          "score": 0.6641986688140094,
+          "mean_score": 0.6682623260677729,
+          "consistency_std": 0.0677276208960585,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -10,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7813638080357969,
+            0.6154325889804615,
+            0.6163451018626577,
+            0.6599078053921756
+          ]
+        }
+      },
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "animation_priority": 1950,
+        "frame": 8,
+        "progress": 0.04020100502512563,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6640757378459141,
+        "adjusted_score": 0.7040757378459142,
+        "camera": {
+          "score": 0.6640757378459141,
+          "mean_score": 0.6682584957914792,
+          "consistency_std": 0.06971263242608604,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -4,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7867688807885511,
+            0.6275329931580482,
+            0.610512903678902,
+            0.6482192055404152
+          ]
+        }
+      },
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "animation_priority": 1950,
+        "frame": 12,
+        "progress": 0.06030150753768844,
+        "ground_support_score": 1.0,
+        "pose_score": 0.663729018570118,
+        "adjusted_score": 0.703729018570118,
+        "camera": {
+          "score": 0.663729018570118,
+          "mean_score": 0.6678176717614669,
+          "consistency_std": 0.06814421985581509,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -4,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7825337732194565,
+            0.6248559615972431,
+            0.6096391309745852,
+            0.6542418212545827
+          ]
+        }
+      },
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "animation_priority": 1950,
+        "frame": 11,
+        "progress": 0.05527638190954774,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6632696358574285,
+        "adjusted_score": 0.7032696358574285,
+        "camera": {
+          "score": 0.6632696358574285,
+          "mean_score": 0.667383755731038,
+          "consistency_std": 0.06856866456015956,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -4,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7834442106411842,
+            0.6268270372948945,
+            0.6091213618641532,
+            0.6501424131239201
+          ]
+        }
+      },
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "animation_priority": 1950,
+        "frame": 5,
+        "progress": 0.02512562814070352,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6630618970962546,
+        "adjusted_score": 0.7030618970962547,
+        "camera": {
+          "score": 0.6630618970962546,
+          "mean_score": 0.6674449012857875,
+          "consistency_std": 0.07305006982554774,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -10,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7921370499347153,
+            0.618693114832244,
+            0.6130900797619478,
+            0.6458593606142428
+          ]
+        }
+      },
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "animation_priority": 1950,
+        "frame": 9,
+        "progress": 0.04522613065326633,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6626803601081517,
+        "adjusted_score": 0.7026803601081517,
+        "camera": {
+          "score": 0.6626803601081517,
+          "mean_score": 0.6668776252633704,
+          "consistency_std": 0.06995441925364376,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -4,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7860182841526375,
+            0.6242959848556707,
+            0.610763476460089,
+            0.6464327555850842
+          ]
+        }
+      },
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "animation_priority": 1950,
+        "frame": 10,
+        "progress": 0.05025125628140704,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6626139219796742,
+        "adjusted_score": 0.7026139219796742,
+        "camera": {
+          "score": 0.6626139219796742,
+          "mean_score": 0.6666745774240227,
+          "consistency_std": 0.06767759073914134,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -4,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7818717852562088,
+            0.6262431035608695,
+            0.6116711699543792,
+            0.6469122509246329
+          ]
+        }
+      },
+      {
+        "animation_index": 100,
+        "animation_name": "Stand Ready End S 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 200,
+        "animation_priority": 1950,
+        "frame": 4,
+        "progress": 0.020100502512562814,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6625727320655066,
+        "adjusted_score": 0.7025727320655066,
+        "camera": {
+          "score": 0.6625727320655066,
+          "mean_score": 0.6669759222659822,
+          "consistency_std": 0.0733865033412605,
+          "base_angle": 265,
+          "direction": -1,
+          "elevation": -10,
+          "angles": [
+            265,
+            175,
+            85,
+            355
+          ],
+          "per_view_scores": [
+            0.7936541740260524,
+            0.6278813544206435,
+            0.6150877866322472,
+            0.6312803739849858
+          ]
+        }
+      },
+      {
+        "animation_index": 56,
+        "animation_name": "Stand 03",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 362,
+        "animation_priority": 1050,
+        "frame": 10,
+        "progress": 0.027700831024930747,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6632547785023549,
+        "adjusted_score": 0.7017547785023549,
+        "camera": {
+          "score": 0.6632547785023549,
+          "mean_score": 0.6672990228554565,
+          "consistency_std": 0.06740407255169321,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7718266535724964,
+            0.6552015684763518,
+            0.58347281098942,
+            0.658695058383558
+          ]
+        }
+      },
+      {
+        "animation_index": 56,
+        "animation_name": "Stand 03",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 362,
+        "animation_priority": 1050,
+        "frame": 11,
+        "progress": 0.030470914127423823,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6629950272240974,
+        "adjusted_score": 0.7014950272240974,
+        "camera": {
+          "score": 0.6629950272240974,
+          "mean_score": 0.6670239866206147,
+          "consistency_std": 0.0671493232752886,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7709178314337407,
+            0.65555736667466,
+            0.5831320239447835,
+            0.6584887244292746
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "animation_priority": 1050,
+        "frame": 10,
+        "progress": 0.11235955056179775,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6626483446210866,
+        "adjusted_score": 0.7011483446210865,
+        "camera": {
+          "score": 0.6626483446210866,
+          "mean_score": 0.6666882736244265,
+          "consistency_std": 0.06733215005566555,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7709178314337407,
+            0.6550148322514959,
+            0.582653848890311,
+            0.6581665819221584
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "animation_priority": 1050,
+        "frame": 8,
+        "progress": 0.0898876404494382,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6624977848075368,
+        "adjusted_score": 0.7009977848075368,
+        "camera": {
+          "score": 0.6624977848075368,
+          "mean_score": 0.6665518721403195,
+          "consistency_std": 0.06756812221304463,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7717648327280531,
+            0.6554303141675295,
+            0.5831623102289856,
+            0.6558500314367096
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "animation_priority": 1050,
+        "frame": 11,
+        "progress": 0.12359550561797752,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6623753130142545,
+        "adjusted_score": 0.7008753130142544,
+        "camera": {
+          "score": 0.6623753130142545,
+          "mean_score": 0.6664066470224265,
+          "consistency_std": 0.06718890013620007,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7700048173979506,
+            0.6558032404313315,
+            0.5819068505760288,
+            0.6579116796843949
+          ]
+        }
+      },
+      {
+        "animation_index": 56,
+        "animation_name": "Stand 03",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 362,
+        "animation_priority": 1050,
+        "frame": 12,
+        "progress": 0.0332409972299169,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6623205252982112,
+        "adjusted_score": 0.7008205252982111,
+        "camera": {
+          "score": 0.6623205252982112,
+          "mean_score": 0.6663557049698691,
+          "consistency_std": 0.06725299452763235,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7700048173979506,
+            0.6558032404313315,
+            0.5817030823657992,
+            0.6579116796843949
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "animation_priority": 1050,
+        "frame": 12,
+        "progress": 0.1348314606741573,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6620040702442628,
+        "adjusted_score": 0.7005040702442628,
+        "camera": {
+          "score": 0.6620040702442628,
+          "mean_score": 0.6660762789821761,
+          "consistency_std": 0.0678701456318888,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.770858608347485,
+            0.655889241176777,
+            0.5809092537958043,
+            0.6566480126086384
+          ]
+        }
+      },
+      {
+        "animation_index": 56,
+        "animation_name": "Stand 03",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 362,
+        "animation_priority": 1050,
+        "frame": 13,
+        "progress": 0.036011080332409975,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6619470904055987,
+        "adjusted_score": 0.7004470904055987,
+        "camera": {
+          "score": 0.6619470904055987,
+          "mean_score": 0.6660134833407303,
+          "consistency_std": 0.06777321558552585,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7706074257817013,
+            0.655889241176777,
+            0.5809092537958043,
+            0.6566480126086384
+          ]
+        }
+      },
+      {
+        "animation_index": 74,
+        "animation_name": "Stand Ready End 01",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 48,
+        "animation_priority": 1950,
+        "frame": 28,
+        "progress": 0.5957446808510638,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6600505631068997,
+        "adjusted_score": 0.7000505631068997,
+        "camera": {
+          "score": 0.6600505631068997,
+          "mean_score": 0.6649819730842101,
+          "consistency_std": 0.0821901662885076,
+          "base_angle": 245,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            245,
+            155,
+            65,
+            335
+          ],
+          "per_view_scores": [
+            0.7848820922256821,
+            0.6521140134490131,
+            0.5533654234597818,
+            0.6695663632023638
+          ]
+        }
+      },
+      {
+        "animation_index": 56,
+        "animation_name": "Stand 03",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 362,
+        "animation_priority": 1050,
+        "frame": 14,
+        "progress": 0.038781163434903045,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6615423504012895,
+        "adjusted_score": 0.7000423504012895,
+        "camera": {
+          "score": 0.6615423504012895,
+          "mean_score": 0.6656264499564326,
+          "consistency_std": 0.0680683259190517,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.770956181191757,
+            0.6548148785333998,
+            0.5805844086271994,
+            0.6561503314733745
+          ]
+        }
+      },
+      {
+        "animation_index": 55,
+        "animation_name": "Stand 02",
+        "name_occurrence": 0,
+        "animation_source": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+        "animation_start": 0,
+        "animation_end_exclusive": 90,
+        "animation_priority": 1050,
+        "frame": 13,
+        "progress": 0.14606741573033707,
+        "ground_support_score": 1.0,
+        "pose_score": 0.6614670538170849,
+        "adjusted_score": 0.6999670538170849,
+        "camera": {
+          "score": 0.6614670538170849,
+          "mean_score": 0.6655583323693408,
+          "consistency_std": 0.06818797587093174,
+          "base_angle": 225,
+          "direction": -1,
+          "elevation": -26,
+          "angles": [
+            225,
+            135,
+            45,
+            315
+          ],
+          "per_view_scores": [
+            0.7712074902828807,
+            0.6541355250923291,
+            0.5805844086271994,
+            0.6563059054749542
+          ]
+        }
+      }
+    ]
+  },
+  "selected_animation_path": "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+  "settings": {
+    "target_height_mm": 120.0,
+    "base_height_mm": 4.5,
+    "base_margin_mm": 5.0,
+    "voxel_mm": 0.3,
+    "thin_part_mm": 0.7,
+    "max_triangles": 600000,
+    "skip_animation": false,
+    "keep_blend": false
+  },
+  "detail_stl": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/Raw/Alarak.stl",
+  "initial_print_stl": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/Initial/Alarak.stl",
+  "builder_result": {
+    "source_key": "alarak_base",
+    "source_paths": [
+      "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3"
+    ],
+    "import": {
+      "imported_paths": [
+        "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3"
+      ],
+      "animation_paths": [
+        "/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+      ],
+      "pose": {
+        "animation": "Draft Pose S",
+        "index": 52,
+        "frame": 0,
+        "reason": "four-JPG multi-view photographed-pose match",
+        "target_animation": "Stand Ready End S 01",
+        "target_progress": 0.03015075376884422,
+        "pose_match_score": 0.6654850955003349,
+        "camera_match": {
+          "score": 0.6654850955003349,
+          "mean_score": 0.6698362787700236,
+          "consistency_std": 0.07251972116147963,
+          "base_angle": 270,
+          "direction": -1,
+          "elevation": -10,
+          "angles": [
+            270,
+            180,
+            90,
+            0
+          ],
+          "per_view_scores": [
+            0.7923035447331706,
+            0.6191032348206611,
+            0.6128567597463105,
+            0.6550815757799522
+          ]
+        },
+        "animation_count": 53
+      }
+    },
+    "normalization": {
+      "scale_factor": 33.12029558155637,
+      "bounds_before": [
+        [
+          -60.53986358642578,
+          -35.7362174987793,
+          11.516373634338379
+        ],
+        [
+          77.37830352783203,
+          60.029571533203125,
+          131.51637268066406
+        ]
+      ],
+      "bounds_after": [
+        [
+          -68.9590835571289,
+          -47.882896423339844,
+          0.0
+        ],
+        [
+          68.9590835571289,
+          47.882896423339844,
+          120.0
+        ]
+      ],
+      "dimensions_mm": [
+        137.9181671142578,
+        95.76579284667969,
+        120.0
+      ]
+    },
+    "components": [
+      {
+        "name": "mesh",
+        "sheet_solidified": false,
+        "topology_before": {
+          "boundary_edges": 120,
+          "nonmanifold_edges": 0,
+          "edges": 4155,
+          "boundary_ratio": 0.02888086642599278,
+          "dimensions": [
+            137.9181671142578,
+            58.716949462890625,
+            103.42648315429688
+          ],
+          "min_dimension": 58.716949462890625,
+          "max_dimension": 137.9181671142578
+        }
+      },
+      {
+        "name": "mesh.001",
+        "sheet_solidified": false,
+        "topology_before": {
+          "boundary_edges": 357,
+          "nonmanifold_edges": 10,
+          "edges": 12700,
+          "boundary_ratio": 0.028110236220472443,
+          "dimensions": [
+            91.65657043457031,
+            95.76579284667969,
+            103.0165786743164
+          ],
+          "min_dimension": 91.65657043457031,
+          "max_dimension": 103.0165786743164
+        }
+      }
+    ],
+    "detail": {
+      "path": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/.build_cache/detail/alarak_base.stl",
+      "bytes": 554134,
+      "sha256": "39a841f55cd7c1403cf6d003888503e6f3245fdfd2cae84106c3a6b752b7c2ca",
+      "triangles": 11081,
+      "bounds_mm": [
+        [
+          -68.9590835571289,
+          -47.882896423339844,
+          0.0
+        ],
+        [
+          68.9590835571289,
+          47.882896423339844,
+          120.0
+        ]
+      ],
+      "dimensions_mm": [
+        137.9181671142578,
+        95.76579284667969,
+        120.0
+      ],
+      "validation": {
+        "valid_binary_stl": true,
+        "watertight_edge_test": false,
+        "boundary_edges": 477,
+        "nonmanifold_edges": 10,
+        "degenerate_triangles": 0,
+        "triangles": 11081
+      }
+    },
+    "print_ready": {
+      "path": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/.build_cache/print_ready/alarak_base.stl",
+      "bytes": 26557084,
+      "sha256": "0fd82f5690c44e1b3e22c44b2361107d84fa9186661a46b5eb18c773f31225c0",
+      "triangles": 531140,
+      "bounds_mm": [
+        [
+          -74.01314544677734,
+          -74.01313781738281,
+          0.0
+        ],
+        [
+          74.01349639892578,
+          74.01324462890625,
+          123.10596466064453
+        ]
+      ],
+      "dimensions_mm": [
+        148.02664184570312,
+        148.02638244628906,
+        123.10596466064453
+      ],
+      "validation": {
+        "valid_binary_stl": true,
+        "watertight_edge_test": false,
+        "boundary_edges": 271,
+        "nonmanifold_edges": 2406,
+        "degenerate_triangles": 0,
+        "triangles": 531140
+      }
+    },
+    "decimation": {
+      "triangles_before_decimate": 2414628,
+      "decimated": true,
+      "decimate_ratio": 0.24848548099334555,
+      "triangles_after_decimate": 599999,
+      "retry_voxel_mm": 0.62,
+      "retry": {
+        "triangles_before_decimate": 531140,
+        "decimated": false,
+        "triangles_after_decimate": 531140
+      }
+    },
+    "blend_path": null,
+    "elapsed_seconds": 64.3
+  }
+}

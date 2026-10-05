@@ -1,0 +1,103 @@
+{
+  "hero": "Alarak",
+  "version": 4,
+  "method": "cross-view difference + border appearance + GrabCut + central component filtering",
+  "canvas": 128,
+  "inner": 112,
+  "views": [
+    {
+      "view": 1,
+      "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak01.jpg",
+      "source_size": [
+        521,
+        779
+      ],
+      "analysis_size": [
+        521,
+        779
+      ],
+      "method": "cross-view-grabcut",
+      "analysis_area_pixels": 243631,
+      "normalized_area_pixels": 5772,
+      "normalized_aspect": 0.6875,
+      "background_rgb": [
+        14.0,
+        15.0,
+        78.0
+      ],
+      "motion_p95": 0.9125293493270874,
+      "colour_distance_p95": 124.20547485351562
+    },
+    {
+      "view": 2,
+      "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak02.jpg",
+      "source_size": [
+        634,
+        815
+      ],
+      "analysis_size": [
+        521,
+        779
+      ],
+      "method": "cross-view-grabcut",
+      "analysis_area_pixels": 196568,
+      "normalized_area_pixels": 4418,
+      "normalized_aspect": 0.6696428571428571,
+      "background_rgb": [
+        13.0,
+        12.0,
+        48.0
+      ],
+      "motion_p95": 0.9285172820091248,
+      "colour_distance_p95": 135.5986785888672
+    },
+    {
+      "view": 3,
+      "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak03.jpg",
+      "source_size": [
+        503,
+        802
+      ],
+      "analysis_size": [
+        521,
+        779
+      ],
+      "method": "cross-view-grabcut",
+      "analysis_area_pixels": 202110,
+      "normalized_area_pixels": 5442,
+      "normalized_aspect": 0.7321428571428571,
+      "background_rgb": [
+        14.0,
+        18.0,
+        50.0
+      ],
+      "motion_p95": 0.9307048916816711,
+      "colour_distance_p95": 131.9090576171875
+    },
+    {
+      "view": 4,
+      "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak04.jpg",
+      "source_size": [
+        557,
+        794
+      ],
+      "analysis_size": [
+        521,
+        779
+      ],
+      "method": "cross-view-grabcut",
+      "analysis_area_pixels": 153936,
+      "normalized_area_pixels": 3455,
+      "normalized_aspect": 0.6607142857142857,
+      "background_rgb": [
+        13.0,
+        12.0,
+        46.0
+      ],
+      "motion_p95": 0.9542912840843201,
+      "colour_distance_p95": 159.67779541015625
+    }
+  ],
+  "npz": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.npz",
+  "preview": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/Alarak_reference_masks.jpg"
+}

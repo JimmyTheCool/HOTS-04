@@ -1,0 +1,2 @@
+﻿file,passed,selected_method,vertices,triangles,watertight,winding_consistent,finite_coordinates,volume_mm3,x_mm,y_mm,z_mm,connected_bodies,x_retention,y_retention,z_retention,input_sha256,output_sha256,error
+Alarak.stl,False,,,,,,,,,,,,,,,0fd82f5690c44e1b3e22c44b2361107d84fa9186661a46b5eb18c773f31225c0,,All repair methods failed the quality gate

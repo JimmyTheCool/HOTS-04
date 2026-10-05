@@ -1,0 +1,125 @@
+{
+  "hero": "Alarak",
+  "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+  "model_directory": "storm_hero_alarak_base",
+  "model_key": "alarak_base",
+  "animation_hint": null,
+  "animation_path": "storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+  "animation_directory": "storm_hero_alarak_requiredanims",
+  "animation_paths": [
+    "storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+    "storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+  ],
+  "animation_directories": [
+    "storm_hero_alarak_requiredanims",
+    "storm_hero_alarak_dark18_requiredanims"
+  ],
+  "sparse_directories": [
+    "storm_hero_alarak_base",
+    "storm_hero_alarak_requiredanims",
+    "storm_hero_alarak_dark18_requiredanims"
+  ],
+  "top_animation_candidates": [
+    {
+      "path": "storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+      "directory": "storm_hero_alarak_requiredanims",
+      "animation_key": "alarak",
+      "bytes": 4618912,
+      "score": 10174.378,
+      "reasons": [
+        "generic animation key is a prefix of selected skin",
+        "1 leading token(s) match"
+      ]
+    },
+    {
+      "path": "storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+      "directory": "storm_hero_alarak_dark18_requiredanims",
+      "animation_key": "alarak_dark18",
+      "bytes": 3502624,
+      "score": 1916.719,
+      "reasons": [
+        "1 leading token(s) match"
+      ]
+    },
+    {
+      "path": "storm_hero_hogger_requiredanims/storm_hero_hogger_requiredanims.m3a",
+      "directory": "storm_hero_hogger_requiredanims",
+      "animation_key": "hogger",
+      "bytes": 17222128,
+      "score": 334.443,
+      "reasons": []
+    },
+    {
+      "path": "storm_hero_chen_base_morph_requiredanims/storm_hero_chen_base_morph_requiredanims.m3a",
+      "directory": "storm_hero_chen_base_morph_requiredanims",
+      "animation_key": "chen_base_morph",
+      "bytes": 2368944,
+      "score": 239.379,
+      "reasons": []
+    },
+    {
+      "path": "storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a",
+      "directory": "storm_hero_chogall_requiredanims",
+      "animation_key": "chogall",
+      "bytes": 10061904,
+      "score": 193.238,
+      "reasons": []
+    },
+    {
+      "path": "storm_hero_brightwing_requiredanims/storm_hero_brightwing_requiredanims.m3a",
+      "directory": "storm_hero_brightwing_requiredanims",
+      "animation_key": "brightwing",
+      "bytes": 7930512,
+      "score": 156.61,
+      "reasons": []
+    },
+    {
+      "path": "storm_hero_auriel_requiredanims/storm_hero_auriel_requiredanims.m3a",
+      "directory": "storm_hero_auriel_requiredanims",
+      "animation_key": "auriel",
+      "bytes": 5141312,
+      "score": 104.826,
+      "reasons": []
+    },
+    {
+      "path": "storm_hero_illidan_requiredanims/storm_hero_illidan_requiredanims.m3a",
+      "directory": "storm_hero_illidan_requiredanims",
+      "animation_key": "illidan",
+      "bytes": 5536544,
+      "score": 102.731,
+      "reasons": []
+    },
+    {
+      "path": "storm_hero_falstad_requiredanims/storm_hero_falstad_requiredanims.m3a",
+      "directory": "storm_hero_falstad_requiredanims",
+      "animation_key": "falstad",
+      "bytes": 5260800,
+      "score": 97.216,
+      "reasons": []
+    },
+    {
+      "path": "storm_hero_dryad_requiredanims/storm_hero_dryad_requiredanims.m3a",
+      "directory": "storm_hero_dryad_requiredanims",
+      "animation_key": "dryad",
+      "bytes": 5294224,
+      "score": 93.884,
+      "reasons": []
+    },
+    {
+      "path": "storm_hero_arthas_requiredanims/storm_hero_arthas_requiredanims.m3a",
+      "directory": "storm_hero_arthas_requiredanims",
+      "animation_key": "arthas",
+      "bytes": 4584384,
+      "score": 93.688,
+      "reasons": []
+    },
+    {
+      "path": "storm_hero_diablo_requiredanims/storm_hero_diablo_requiredanims_v01.m3a",
+      "directory": "storm_hero_diablo_requiredanims",
+      "animation_key": "diablo",
+      "bytes": 5146336,
+      "score": 92.927,
+      "reasons": []
+    }
+  ]
+}

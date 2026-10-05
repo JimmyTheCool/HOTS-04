@@ -1,0 +1,62 @@
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5705:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+Failed to open dir (No such file or directory): /run/user/1001/gvfs/
+[17:40:15] Enabling m3addon
+[POSE] Importing selected skin for pose search: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+2026-10-05 17:40:15,962,962 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+Info: Removed 68 vertice(s)
+Info: Removed 17 vertice(s)
+[POSE] Unposed/rest-pose baseline score: 0.5359
+[POSE] Importing pose bank: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a
+2026-10-05 17:40:16,606,606 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a
+[POSE] Importing pose bank: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+2026-10-05 17:40:21,781,781 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+[POSE] Pose search will test 184 frames from 28 animations
+[POSE] Coarse 1/184; best Stand Ready frame 1 score 0.6440
+[POSE] Coarse 8/184; best Stand Ready frame 2 score 0.6453
+[POSE] Coarse 16/184; best Stand Ready frame 2 score 0.6453
+[POSE] Coarse 24/184; best Stand Ready frame 2 score 0.6453
+[POSE] Coarse 32/184; best Stand Ready frame 2 score 0.6453
+[POSE] Coarse 40/184; best Stand Ready frame 2 score 0.6453
+[POSE] Coarse 48/184; best Stand Ready frame 2 score 0.6453
+[POSE] Coarse 56/184; best Stand Ready frame 2 score 0.6453
+[POSE] Coarse 64/184; best Stand Ready frame 2 score 0.6453
+[POSE] Coarse 72/184; best Stand Ready End 01 frame 44 score 0.6569
+[POSE] Coarse 80/184; best Stand Ready End 01 frame 44 score 0.6569
+[POSE] Coarse 88/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 96/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 104/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 112/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 120/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 128/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 136/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 144/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 152/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 160/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 168/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 176/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Coarse 184/184; best Stand Ready End S 01 frame 8 score 0.6626
+[POSE] Selected pose: Stand Ready End S 01 frame 6 score 0.6655, source=/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+[17:41:46] Importing M3: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+2026-10-05 17:41:46,125,125 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+Info: Removed 68 vertice(s)
+Info: Removed 17 vertice(s)
+[17:41:46] Importing required animation: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+2026-10-05 17:41:46,412,412 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+Info: Removed 73 vertice(s)
+Info: Removed: 0 vertices, 0 edges, 0 faces
+Info: Removed 68 vertice(s)
+Info: Removed: 0 vertices, 0 edges, 0 faces
+Info: Removed 5 vertice(s)
+Info: Removed: 0 vertices, 0 edges, 0 faces
+Info: Removed 2 vertice(s)
+Info: Removed: 0 vertices, 0 edges, 0 faces
+[17:42:43] Strict edge test failed; retrying clean voxel union at 0.620 mm
+[POSE] Completed posed STL build for Alarak
+Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 01:32:54)
