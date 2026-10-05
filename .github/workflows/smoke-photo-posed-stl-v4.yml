@@ -1,0 +1,80 @@
+name: Smoke Test Photo-Posed STL V4
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/smoke-photo-posed-stl-v4.yml'
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  smoke:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 300
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Preinstall runner validation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet \
+            numpy==2.2.6 trimesh==4.8.3
+          python - <<'PY'
+          import numpy, trimesh
+          print('numpy', numpy.__version__)
+          print('trimesh', trimesh.__version__)
+          PY
+
+      - name: Build Alarak from selected skin and photographed pose
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v3_2.py \
+            --hero 'Alarak' \
+            --max-animations 22 \
+            --max-coarse-frames 144 \
+            --refine-candidates 9
+
+      - name: Verify posed package contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT='${{ runner.temp }}/HOTS04-photo-posed-v3-Alarak'
+          test -s "$ROOT/HighDetail/Alarak.stl"
+          test -s "$ROOT/Robust/Alarak.stl"
+          test -s "$ROOT/Reports/Alarak/pose_match.json"
+          test -s "$ROOT/Reports/Alarak/photo_pose_quality_summary.json"
+          test -s "$ROOT/Reports/Alarak/Alarak_pose_proof.jpg"
+          test -s "$ROOT/HERO_COMPLETE.txt"
+          python - "$ROOT" <<'PY'
+          import json, pathlib, sys
+          root = pathlib.Path(sys.argv[1])
+          quality = json.loads((root/'Reports/Alarak/photo_pose_quality_summary.json').read_text())
+          assert quality['selected_animation']
+          assert quality['coarse_frames_tested'] >= 2
+          assert quality['refined_frames_tested'] >= 1
+          assert quality['high_detail_validation_passed'] is True
+          assert quality['robust_validation_passed'] is True
+          print(json.dumps(quality, indent=2))
+          PY
+
+      - name: Upload complete posed-model smoke package
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04-photo-posed-v4-smoke-Alarak
+          path: ${{ runner.temp }}/HOTS04-photo-posed-v3-Alarak
+          retention-days: 90
+          compression-level: 0
