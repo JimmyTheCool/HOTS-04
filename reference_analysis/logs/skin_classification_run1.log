@@ -1,0 +1,182 @@
+classify	Set up job	﻿2026-10-05T09:16:26.9304728Z Current runner version: '2.337.0'
+classify	Set up job	2026-10-05T09:16:26.9343458Z ##[group]Runner Image Provisioner
+classify	Set up job	2026-10-05T09:16:26.9344888Z Hosted Compute Agent
+classify	Set up job	2026-10-05T09:16:26.9345909Z Version: 20260901.588
+classify	Set up job	2026-10-05T09:16:26.9347009Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+classify	Set up job	2026-10-05T09:16:26.9348432Z Build Date: 2026-09-01T19:56:44Z
+classify	Set up job	2026-10-05T09:16:26.9350010Z Worker ID: {dd736e04-01ec-40f5-b4ce-a609fa8651c5}
+classify	Set up job	2026-10-05T09:16:26.9351419Z Azure Region: eastus
+classify	Set up job	2026-10-05T09:16:26.9352514Z ##[endgroup]
+classify	Set up job	2026-10-05T09:16:26.9354710Z ##[group]Operating System
+classify	Set up job	2026-10-05T09:16:26.9356014Z Ubuntu
+classify	Set up job	2026-10-05T09:16:26.9356978Z 22.04.5
+classify	Set up job	2026-10-05T09:16:26.9357915Z LTS
+classify	Set up job	2026-10-05T09:16:26.9358813Z ##[endgroup]
+classify	Set up job	2026-10-05T09:16:26.9360007Z ##[group]Runner Image
+classify	Set up job	2026-10-05T09:16:26.9361974Z Image: ubuntu-22.04
+classify	Set up job	2026-10-05T09:16:26.9363142Z Version: 20260927.309.1
+classify	Set up job	2026-10-05T09:16:26.9365291Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20260927.309/images/ubuntu/Ubuntu2204-Readme.md
+classify	Set up job	2026-10-05T09:16:26.9368612Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20260927.309
+classify	Set up job	2026-10-05T09:16:26.9370994Z ##[endgroup]
+classify	Set up job	2026-10-05T09:16:26.9373062Z ##[group]GITHUB_TOKEN Permissions
+classify	Set up job	2026-10-05T09:16:26.9376457Z Contents: write
+classify	Set up job	2026-10-05T09:16:26.9377504Z Metadata: read
+classify	Set up job	2026-10-05T09:16:26.9378568Z ##[endgroup]
+classify	Set up job	2026-10-05T09:16:26.9382264Z Secret source: Actions
+classify	Set up job	2026-10-05T09:16:26.9383966Z Cache mode: write
+classify	Set up job	2026-10-05T09:16:26.9385090Z Prepare workflow directory
+classify	Set up job	2026-10-05T09:16:26.9880960Z Prepare all required actions
+classify	Set up job	2026-10-05T09:16:26.9953671Z Getting action download info
+classify	Set up job	2026-10-05T09:16:27.1984231Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+classify	Set up job	2026-10-05T09:16:27.2885274Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+classify	Set up job	2026-10-05T09:16:27.5091400Z Complete job name: classify
+classify	Run actions/checkout@v4	﻿2026-10-05T09:16:27.5997335Z ##[group]Run actions/checkout@v4
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.5998245Z with:
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.5998673Z   fetch-depth: 1
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.5999156Z   repository: JimmyTheCool/HOTS-04
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6003280Z   token: ***
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6003726Z   ssh-strict: true
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6004152Z   ssh-user: git
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6004592Z   persist-credentials: true
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6005075Z   clean: true
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6005525Z   sparse-checkout-cone-mode: true
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6006047Z   fetch-tags: false
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6006528Z   show-progress: true
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6006979Z   lfs: false
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6007385Z   submodules: false
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6007827Z   set-safe-directory: true
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6008328Z   allow-unsafe-pr-checkout: false
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.6009142Z ##[endgroup]
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7110336Z Syncing repository: JimmyTheCool/HOTS-04
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7112953Z ##[group]Getting Git version info
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7114102Z Working directory is '/home/runner/work/HOTS-04/HOTS-04'
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7115799Z [command]/usr/bin/git version
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7160377Z git version 2.55.0
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7191051Z ##[endgroup]
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7198879Z Temporarily overriding HOME='/home/runner/work/_temp/541b77ab-72fe-4715-9d60-644a759dad06' before making global git config changes
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7201555Z Adding repository directory to the temporary git global config as a safe directory
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7204891Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/HOTS-04/HOTS-04
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7248800Z Deleting the contents of '/home/runner/work/HOTS-04/HOTS-04'
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7255196Z ##[group]Initializing the repository
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7258934Z [command]/usr/bin/git init /home/runner/work/HOTS-04/HOTS-04
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7376260Z hint: Using 'master' as the name for the initial branch. This default branch name
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7378272Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7380829Z hint: to use in all of your new repositories, which will suppress this warning,
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7383099Z hint: call:
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7385141Z hint:
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7386440Z hint: 	git config --global init.defaultBranch <name>
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7387764Z hint:
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7389021Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7391393Z hint: 'development'. The just-created branch can be renamed via this command:
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7393110Z hint:
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7394218Z hint: 	git branch -m <name>
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7395343Z hint:
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7396744Z hint: Disable this message with "git config set advice.defaultBranchName false"
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7398652Z Initialized empty Git repository in /home/runner/work/HOTS-04/HOTS-04/.git/
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7401993Z [command]/usr/bin/git remote add origin https://github.com/JimmyTheCool/HOTS-04
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7441476Z ##[endgroup]
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7442714Z ##[group]Disabling automatic garbage collection
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7451987Z [command]/usr/bin/git config --local gc.auto 0
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7489129Z ##[endgroup]
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7491391Z ##[group]Setting up auth
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7497217Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7536632Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7940686Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.7990790Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.8278428Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.8320146Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.8582102Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.8629016Z ##[endgroup]
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.8630265Z ##[group]Fetching the repository
+classify	Run actions/checkout@v4	2026-10-05T09:16:27.8638969Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +774881e0814cd090eb33bb02208fa5e137e725fd:refs/remotes/origin/main
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.0787921Z From https://github.com/JimmyTheCool/HOTS-04
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.0790403Z  * [new ref]         774881e0814cd090eb33bb02208fa5e137e725fd -> origin/main
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.0794445Z ##[endgroup]
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.0795858Z ##[group]Determining the checkout info
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.0797440Z ##[endgroup]
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.0801611Z [command]/usr/bin/git sparse-checkout disable
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.0856255Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.0893357Z ##[group]Checking out the ref
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.0897562Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.2247373Z Switched to a new branch 'main'
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.2249570Z branch 'main' set up to track 'origin/main'.
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.2265028Z ##[endgroup]
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.2313444Z [command]/usr/bin/git log -1 --format=%H
+classify	Run actions/checkout@v4	2026-10-05T09:16:30.2346718Z 774881e0814cd090eb33bb02208fa5e137e725fd
+classify	Install CPU vision dependencies	﻿2026-10-05T09:16:30.2616583Z ##[group]Run set -euo pipefail
+classify	Install CPU vision dependencies	2026-10-05T09:16:30.2618034Z ^[[36;1mset -euo pipefail^[[0m
+classify	Install CPU vision dependencies	2026-10-05T09:16:30.2619907Z ^[[36;1mpython -m pip install --disable-pip-version-check --quiet \^[[0m
+classify	Install CPU vision dependencies	2026-10-05T09:16:30.2622073Z ^[[36;1m  --index-url https://download.pytorch.org/whl/cpu \^[[0m
+classify	Install CPU vision dependencies	2026-10-05T09:16:30.2623745Z ^[[36;1m  torch torchvision^[[0m
+classify	Install CPU vision dependencies	2026-10-05T09:16:30.2625372Z ^[[36;1mpython -m pip install --disable-pip-version-check --quiet \^[[0m
+classify	Install CPU vision dependencies	2026-10-05T09:16:30.2627884Z ^[[36;1m  transformers==4.56.2 safetensors pillow numpy sentencepiece^[[0m
+classify	Install CPU vision dependencies	2026-10-05T09:16:30.2985019Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+classify	Install CPU vision dependencies	2026-10-05T09:16:30.2986707Z ##[endgroup]
+classify	Classify all multi-view hero sets	﻿2026-10-05T09:17:05.4028288Z ##[group]Run python tools/classify_skins_clip.py
+classify	Classify all multi-view hero sets	2026-10-05T09:17:05.4028794Z ^[[36;1mpython tools/classify_skins_clip.py^[[0m
+classify	Classify all multi-view hero sets	2026-10-05T09:17:05.4104542Z shell: /usr/bin/bash -e {0}
+classify	Classify all multi-view hero sets	2026-10-05T09:17:05.4104885Z env:
+classify	Classify all multi-view hero sets	2026-10-05T09:17:05.4105165Z   HF_HOME: /home/runner/work/_temp/huggingface
+classify	Classify all multi-view hero sets	2026-10-05T09:17:05.4105567Z   TOKENIZERS_PARALLELISM: false
+classify	Classify all multi-view hero sets	2026-10-05T09:17:05.4105890Z ##[endgroup]
+classify	Classify all multi-view hero sets	2026-10-05T09:17:08.6566917Z Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2728627Z Loading CLIP on cpu...
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2729646Z Loading BLIP captioner...
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2731340Z Alarak -> base margin=0.0098 ['an image of a character from the mobile game starcraft', 'a screenshot of a knight in a space setting', 'a screenshot of a female in a red dress', 'a screenshot of a character in a game']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2734222Z Arthas -> craft20 margin=0.0045 ['an image of a character from the game overwatch', 'a screenshot of a warrior with a sword in front of a planet', 'an image of a purple cloak with wings flying out of it', 'an image of a man with a sword in front of a blue and purple background']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2737661Z Blaze -> felreaver margin=0.0060 ['a screenshot of a giant robot in a space setting', "a screenshot of a giant robot, with the text, ' click to charge hero '", 'a screenshot of a giant robot in a space setting', 'a screenshot of a giant robot in a space setting']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2741434Z Cho-Gall -> base margin=0.0028 ['an image of a character from the game world of warcraft', 'an image of a character in the mobile game mobile legends', 'a screenshot of a character in the game world of war', 'a screenshot of a giant, a giant, a giant, a giant, a giant, a giant']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2744619Z Dehaka -> mecha margin=0.0055 ['a yellow and black robot standing in front of a planet', 'an image of a yellow and black robot standing in front of a planet', 'an image of a giant robot in a space setting', 'an image of a yellow and black robot in a space setting']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2748163Z ETC -> base margin=0.0045 ['an image of a character from the league league league league league league league league league league league league league league', 'a screenshot of a character in a game', 'an image of a character with a guitar in front of a planet', 'a screenshot of a character with a guitar in front of a planet']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2751668Z Fenix -> guardian margin=0.0151 ['an image of a giant robot in a space setting', 'an image of a robot in a space setting', 'an image of a robot in the game overwatch', 'an image of a robot in a space station']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2754859Z Leoric -> base margin=0.0023 ['an image of a male character in a space setting', 'a screenshot of a knight in a space setting', 'a screenshot of a knight with a sword in his hand', 'an image of a character from the game starcraft']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2757902Z Lt Morales -> ultimate margin=0.0142 ['an image of a giant robot in a space setting', 'an image of a man in a suit with a green light on his chest', 'a screenshot of a giant robot with green glowing eyes', 'a screenshot of a giant robot and a giant robot in a screenshot of a giant robot']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2762441Z Lunara -> base margin=0.0020 ['league league league league league league league league league league league league league league league league league league league league league', 'an image of a woman riding on a horse', 'league league league league league league league league league league league league league league league league league league league league league', "an image of a horse with a sword on it ' s back"]
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2766185Z Mal'Ganis -> base margin=0.0216 ['a screenshot image of a character in a game', 'a screenshot of a giant, a giant, and a giant, in a screenshot of a giant', "a screenshot of a dragon with wings on it ' s back", 'a screenshot of a giant, a giant, a giant, and a giant']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2768113Z Nova -> base margin=0.0096 ['a woman in a futuristic suit holding a gun', 'a screenshot of a female with a gun in her hand', 'a screenshot of a female with a gun in her hand', 'an image of a woman with a gun in front of a planet']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2770006Z Ragnaros -> base margin=0.0135 ['a screenshot of a character in a game', 'a screenshot of a fire breathing in a space setting', 'a screenshot of a demon in a screenshot of a demon in a screenshot of a demon in', 'a screenshot of an orange and black character in a space setting']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2772014Z Rexxar -> frost margin=0.0011 ['league league league league league league league league league league league league league league league league league league league league league', 'a screenshot of two dogs in a space setting', 'a screenshot of a group of bears in a space setting', 'an image of a group of monsters in a space setting']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2774149Z Stukov -> base margin=0.0072 ['an image of a man in a space suit', 'an image of a man in a purple outfit and a purple hat, standing in front of a blue background', 'an image of a man with a green ball in his hand', 'a screenshot of an overwatching character in overwatch']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2775773Z Tychus -> base margin=0.0002 ['an image of a man in a space suit sitting on top of a giant robot', 'an image of a robot in a space setting', 'an image of a giant robot in a space setting', 'an image of a robot with a gun in front of a planet']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2778025Z Zagara -> insectoid margin=0.0067 ['an image of a giant creature in a space setting with planets and stars in the background', "a screenshot of a demon with horns and horns on it ' s back", 'a screenshot of a monster in a space setting', 'a screenshot of a monster in a space setting with the moon in the background']
+classify	Classify all multi-view hero sets	2026-10-05T09:20:37.2781472Z Zul'jin -> base margin=0.0157 ['an image of a character from the league league league league league league league league league league league league league league', 'a screenshot of a male with a long white hair and purple hair, standing in front of a blue', 'an image of a character in the mobile game league league league league league league league league league league league league', 'an image of a character from the game league league league league league league league league league league league league league']
+classify	Commit classification reports	﻿2026-10-05T09:20:37.9422256Z ##[group]Run set -euo pipefail
+classify	Commit classification reports	2026-10-05T09:20:37.9422630Z ^[[36;1mset -euo pipefail^[[0m
+classify	Commit classification reports	2026-10-05T09:20:37.9422935Z ^[[36;1mgit config user.name 'github-actions[bot]'^[[0m
+classify	Commit classification reports	2026-10-05T09:20:37.9423402Z ^[[36;1mgit config user.email '41898282+github-actions[bot]@users.noreply.github.com'^[[0m
+classify	Commit classification reports	2026-10-05T09:20:37.9424038Z ^[[36;1mgit add reference_analysis/skin_match_clip.json reference_analysis/skin_match_clip.tsv^[[0m
+classify	Commit classification reports	2026-10-05T09:20:37.9424534Z ^[[36;1mif ! git diff --cached --quiet; then^[[0m
+classify	Commit classification reports	2026-10-05T09:20:37.9424926Z ^[[36;1m  git commit -m 'Add multi-view skin classification [skip ci]'^[[0m
+classify	Commit classification reports	2026-10-05T09:20:37.9425295Z ^[[36;1m  git push origin HEAD:main^[[0m
+classify	Commit classification reports	2026-10-05T09:20:37.9425585Z ^[[36;1mfi^[[0m
+classify	Commit classification reports	2026-10-05T09:20:37.9498356Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+classify	Commit classification reports	2026-10-05T09:20:37.9498732Z ##[endgroup]
+classify	Commit classification reports	2026-10-05T09:20:38.0485762Z [main 58c3187] Add multi-view skin classification [skip ci]
+classify	Commit classification reports	2026-10-05T09:20:38.0486480Z  2 files changed, 3365 insertions(+)
+classify	Commit classification reports	2026-10-05T09:20:38.0487057Z  create mode 100644 reference_analysis/skin_match_clip.json
+classify	Commit classification reports	2026-10-05T09:20:38.0487834Z  create mode 100644 reference_analysis/skin_match_clip.tsv
+classify	Commit classification reports	2026-10-05T09:20:38.4764630Z To https://github.com/JimmyTheCool/HOTS-04
+classify	Commit classification reports	2026-10-05T09:20:38.4765250Z  ! [rejected]        HEAD -> main (fetch first)
+classify	Commit classification reports	2026-10-05T09:20:38.4766272Z error: failed to push some refs to 'https://github.com/JimmyTheCool/HOTS-04'
+classify	Commit classification reports	2026-10-05T09:20:38.4780338Z hint: Updates were rejected because the remote contains work that you do not
+classify	Commit classification reports	2026-10-05T09:20:38.4780993Z hint: have locally. This is usually caused by another repository pushing to
+classify	Commit classification reports	2026-10-05T09:20:38.4781689Z hint: the same ref. If you want to integrate the remote changes, use
+classify	Commit classification reports	2026-10-05T09:20:38.4782137Z hint: 'git pull' before pushing again.
+classify	Commit classification reports	2026-10-05T09:20:38.4782586Z hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+classify	Commit classification reports	2026-10-05T09:20:38.4797573Z ##[error]Process completed with exit code 1.
+classify	Post Run actions/checkout@v4	﻿2026-10-05T09:20:38.4936838Z Post job cleanup.
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.5873130Z [command]/usr/bin/git version
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.5921416Z git version 2.55.0
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.5966603Z Temporarily overriding HOME='/home/runner/work/_temp/7523e290-fe1f-4193-87d1-4f5ed37ab662' before making global git config changes
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.5968268Z Adding repository directory to the temporary git global config as a safe directory
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.5973536Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/HOTS-04/HOTS-04
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.6052431Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.6120793Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.6384535Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.6416299Z http.https://github.com/.extraheader
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.6432835Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.6476194Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.6785145Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+classify	Post Run actions/checkout@v4	2026-10-05T09:20:38.6827862Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+classify	Complete job	﻿2026-10-05T09:20:38.7349135Z Cleaning up orphan processes
+classify	Complete job	2026-10-05T09:20:38.7772390Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
