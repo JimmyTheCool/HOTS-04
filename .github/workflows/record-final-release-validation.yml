@@ -1,0 +1,66 @@
+name: Record Final HOTS-04 STL Validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/record-final-release-validation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download final release reports
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reference_analysis/final_release'
+          rm -rf "$out"
+          mkdir -p "$out"
+          gh release download hots04-selected-heroes-v2-37292356862 \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern 'final_validation.json' \
+            --pattern 'package_manifest.csv' \
+            --pattern 'package_manifest.json' \
+            --pattern 'HOTS04_Selected_Heroes_STL_V2.zip.sha256' \
+            --dir "$out"
+          python - "$out" <<'PY'
+          from pathlib import Path
+          import json, sys
+          root = Path(sys.argv[1])
+          validation = json.loads((root / 'final_validation.json').read_text(encoding='utf-8'))
+          manifest = json.loads((root / 'package_manifest.json').read_text(encoding='utf-8'))
+          summary = {
+              'validation': validation,
+              'manifest_count': len(manifest),
+              'heroes': [row['hero'] for row in manifest],
+              'all_manifest_watertight': all(row['watertight'] for row in manifest),
+              'all_manifest_winding_consistent': all(row['winding_consistent'] for row in manifest),
+              'body_counts': {row['hero']: row['body_count'] for row in manifest},
+              'skin_keys': {row['hero']: row['skin_key'] for row in manifest},
+          }
+          (root / 'verification_summary.json').write_text(json.dumps(summary, indent=2), encoding='utf-8')
+          print(json.dumps(summary, indent=2))
+          PY
+
+      - name: Commit final reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/final_release
+          git commit -m 'Record final HOTS-04 STL release validation [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
