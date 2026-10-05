@@ -1,0 +1,248 @@
+name: Build HOTS-04 Photo-Posed High Detail V4
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-photo-posed-v4.yml'
+      - 'tools/patch_photo_pose_v4.py'
+
+permissions:
+  actions: read
+  contents: write
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        include:
+          - {id: '01', hero: 'Alarak'}
+          - {id: '02', hero: 'Arthas'}
+          - {id: '03', hero: 'Blaze'}
+          - {id: '04', hero: 'Cho-Gall'}
+          - {id: '05', hero: 'Dehaka'}
+          - {id: '06', hero: 'ETC'}
+          - {id: '07', hero: 'Fenix'}
+          - {id: '08', hero: 'Leoric'}
+          - {id: '09', hero: 'Lt Morales'}
+          - {id: '10', hero: 'Lunara'}
+          - {id: '11', hero: "Mal'Ganis"}
+          - {id: '12', hero: 'Nova'}
+          - {id: '13', hero: 'Ragnaros'}
+          - {id: '14', hero: 'Rexxar'}
+          - {id: '15', hero: 'Stukov'}
+          - {id: '16', hero: 'Tychus'}
+          - {id: '17', hero: 'Zagara'}
+          - {id: '18', hero: "Zul'jin"}
+
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Prepare corrected skins and V4 pose pipeline
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src = Path('reference_analysis/selected_skin_plan.json')
+          dst = Path('reference_analysis/selected_skin_plan_v4.json')
+          plan = json.loads(src.read_text(encoding='utf-8'))
+          plan['selection_policy'] = (
+              'User-corrected exact skin selection plus four-JPG animation-frame pose matching; '
+              'Rexxar changed from frost to base, Lt Morales retained as ultimate, Dehaka retained as mecha.'
+          )
+          plan['heroes']['Rexxar'].update({
+              'skin_key': 'base',
+              'directory': 'storm_hero_rexxar_base',
+              'repository': 'HOTS-03',
+              'model_path': 'storm_hero_rexxar_base/storm_hero_rexxar_base.m3',
+              'selection_method': 'user correction: photographed Rexxar is not the frost skin',
+          })
+          plan['heroes']['Lt Morales'].update({
+              'skin_key': 'ultimate',
+              'directory': 'storm_hero_medic_ultimate',
+              'repository': 'HOTS-03',
+              'model_path': 'storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3',
+              'selection_method': 'user-confirmed non-base skin: ultimate',
+          })
+          plan['heroes']['Dehaka'].update({
+              'skin_key': 'mecha',
+              'directory': 'storm_hero_dehaka_mecha',
+              'repository': 'HOTS-02',
+              'model_path': 'storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3',
+              'selection_method': 'user-confirmed non-base skin: mecha',
+          })
+          dst.write_text(json.dumps(plan, indent=2), encoding='utf-8')
+          PY
+          cp tools/exposed_r2/run_photo_posed_job_v3_1_source.py tools/run_photo_posed_job_v4_runtime.py
+          cp tools/exposed_r2/build_one_photo_posed_v3_source.py tools/build_one_photo_posed_v4_runtime.py
+          python tools/patch_photo_pose_v4.py --runner tools/run_photo_posed_job_v4_runtime.py --builder tools/build_one_photo_posed_v4_runtime.py
+          python -m py_compile tools/run_photo_posed_job_v4_runtime.py tools/build_one_photo_posed_v4_runtime.py
+
+      - name: Build ${{ matrix.hero }} in the photographed pose
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v4_runtime.py --hero '${{ matrix.hero }}' --max-animations 28 --max-coarse-frames 184 --refine-candidates 12
+
+      - name: Stage completed hero package
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          SAFE=$(python - <<'PY'
+          import re
+          value = '''${{ matrix.hero }}'''.strip()
+          value = re.sub(r'[^A-Za-z0-9._-]+', '_', value)
+          value = re.sub(r'_+', '_', value).strip('_.')
+          print(value or 'hero')
+          PY
+          )
+          ROOT="$RUNNER_TEMP/HOTS04-photo-posed-v3-$SAFE"
+          STAGE="$RUNNER_TEMP/stage-${{ matrix.id }}"
+          mkdir -p "$STAGE"
+          if [[ -d "$ROOT" ]]; then cp -a "$ROOT"/. "$STAGE"/; fi
+          printf '%s\n' '${{ matrix.hero }}' > "$STAGE/HERO_REQUESTED.txt"
+          printf '%s\n' "$SAFE" > "$STAGE/HERO_SAFE.txt"
+          find "$STAGE" -maxdepth 3 -type f -printf '%P\n' | sort > "$STAGE/STAGED_FILES.txt"
+
+      - name: Upload completed hero package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-posed-v4-${{ matrix.id }}
+          path: ${{ runner.temp }}/stage-${{ matrix.id }}
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: error
+
+  package:
+    if: always()
+    needs: build
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Download all V4 hero packages
+        uses: actions/download-artifact@v4
+        with:
+          pattern: photo-posed-v4-*
+          path: ${{ runner.temp }}/parts
+
+      - name: Assemble, independently validate and package
+        id: assemble
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet trimesh==4.8.3 numpy==2.2.6
+          ROOT="$RUNNER_TEMP/HOTS04_Photo_Posed_High_Detail_V4"
+          mkdir -p "$ROOT/01_High_Detail_Print_Ready" "$ROOT/02_Robust_Print_Ready" "$ROOT/03_Pose_Proofs" "$ROOT/Reports"
+          find "$RUNNER_TEMP/parts" -type f -path '*/HighDetail/*.stl' -exec cp {} "$ROOT/01_High_Detail_Print_Ready/" \;
+          find "$RUNNER_TEMP/parts" -type f -path '*/Robust/*.stl' -exec cp {} "$ROOT/02_Robust_Print_Ready/" \;
+          find "$RUNNER_TEMP/parts" -type f \( -name '*_pose_proof.jpg' -o -name '*_reference_masks.jpg' \) -exec cp {} "$ROOT/03_Pose_Proofs/" \;
+          python - "$RUNNER_TEMP/parts" "$ROOT" <<'PY'
+          from __future__ import annotations
+          import csv, hashlib, json, re, shutil, sys
+          from pathlib import Path
+          import numpy as np
+          import trimesh
+          parts = Path(sys.argv[1]); root = Path(sys.argv[2])
+          expected = ['Alarak','Arthas','Blaze','Cho-Gall','Dehaka','ETC','Fenix','Leoric','Lt Morales','Lunara',"Mal'Ganis",'Nova','Ragnaros','Rexxar','Stukov','Tychus','Zagara',"Zul'jin"]
+          def safe(value):
+              return re.sub(r'_+', '_', re.sub(r'[^A-Za-z0-9._-]+', '_', value.strip())).strip('_.') or 'hero'
+          exact_skins = {'Cho-Gall':'ultimate','Dehaka':'mecha','Lt Morales':'ultimate','Rexxar':'base'}
+          forbidden_nova = ('sit','seated','chair','throne','bench','crouch','kneel')
+          rows=[]; failures=[]; metadata={}
+          for hero in expected:
+              hs=safe(hero)
+              candidates=list(parts.rglob(f'Reports/{hs}/photo_pose_quality_summary.json'))
+              if not candidates: candidates=list(parts.rglob(f'*/{hs}/photo_pose_quality_summary.json'))
+              if not candidates:
+                  failures.append({'hero':hero,'reason':'missing quality report'}); continue
+              quality=json.loads(candidates[0].read_text(encoding='utf-8')); metadata[hero]=quality
+              target=root/'Reports'/hs; target.mkdir(parents=True,exist_ok=True)
+              for item in candidates[0].parent.iterdir():
+                  if item.is_file(): shutil.copy2(item,target/item.name)
+              if hero in exact_skins and quality.get('skin_key') != exact_skins[hero]:
+                  failures.append({'hero':hero,'reason':f"wrong skin {quality.get('skin_key')} != {exact_skins[hero]}"})
+              animation=str(quality.get('selected_animation') or '').casefold()
+              if hero=='Nova' and any(token in animation for token in forbidden_nova): failures.append({'hero':hero,'reason':f'forbidden Nova pose {animation}'})
+              if hero=='Cho-Gall' and float(quality.get('ground_support_score') or 0.0) < 0.45: failures.append({'hero':hero,'reason':f"insufficient Cho-Gall ground support {quality.get('ground_support_score')}"})
+          for variant,folder,max_triangles in (('high_detail',root/'01_High_Detail_Print_Ready',1500000),('robust',root/'02_Robust_Print_Ready',500000)):
+              for hero in expected:
+                  filename=f'{safe(hero)}.stl'; path=folder/filename
+                  if not path.is_file(): failures.append({'hero':hero,'variant':variant,'reason':'missing STL'}); continue
+                  mesh=trimesh.load_mesh(path,force='mesh',process=False); finite=bool(np.isfinite(mesh.vertices).all()); extents=[float(x) for x in mesh.extents]
+                  row={'hero':hero,'variant':variant,'file':filename,'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'vertices':int(len(mesh.vertices)),'triangles':int(len(mesh.faces)),'watertight':bool(mesh.is_watertight),'winding_consistent':bool(mesh.is_winding_consistent),'finite_coordinates':finite,'volume_mm3':float(abs(mesh.volume)),'x_mm':extents[0],'y_mm':extents[1],'z_mm':extents[2],'connected_bodies':int(mesh.body_count),'min_z_mm':float(mesh.bounds[0,2])}
+                  rows.append(row)
+                  valid=row['watertight'] and row['winding_consistent'] and finite and row['volume_mm3']>1.0 and row['connected_bodies']==1 and 100<=row['triangles']<=max_triangles and min(extents)>=2.0 and max(extents)<=350.0 and abs(row['min_z_mm'])<=0.20
+                  if not valid: failures.append({'hero':hero,'variant':variant,'reason':'geometry validation failed','metrics':row})
+          found_high=len(list((root/'01_High_Detail_Print_Ready').glob('*.stl'))); found_robust=len(list((root/'02_Robust_Print_Ready').glob('*.stl')))
+          report={'expected_heroes':18,'high_detail_files':found_high,'robust_files':found_robust,'passed':found_high==18 and found_robust==18 and not failures,'exact_skin_requirements':exact_skins,'pose_requirements':{'Nova':'not seated/crouched','Cho-Gall':'bilateral ground support >= 0.45'},'failures':failures,'files':rows,'pose_metadata':metadata}
+          (root/'Reports'/'FINAL_VALIDATION.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+          with (root/'Reports'/'FINAL_MANIFEST.csv').open('w',newline='',encoding='utf-8-sig') as handle:
+              writer=csv.DictWriter(handle,fieldnames=list(rows[0].keys()) if rows else ['hero']); writer.writeheader(); writer.writerows(rows)
+          (root/'Reports'/'MISSING_OR_FAILED.json').write_text(json.dumps(failures,indent=2),encoding='utf-8')
+          print(json.dumps(report,indent=2))
+          if not report['passed']: raise SystemExit(1)
+          PY
+          cp reference_analysis/selected_skin_plan_v4.json "$ROOT/Reports/SELECTED_SKIN_PLAN_V4.json"
+          cat > "$ROOT/README_FIRST.txt" <<'EOF'
+          HOTS-04 PHOTOGRAPHED-POSE STL COLLECTION V4
+
+          01_High_Detail_Print_Ready contains the finest validated watertight models.
+          02_Robust_Print_Ready contains lighter, conservative slicer-ready models.
+          03_Pose_Proofs contains four-view pose comparison images.
+          Reports contains per-character animation, skin, geometry and validation records.
+
+          Corrections: Cho-Gall Ultimate skin with bilateral ground support; Rexxar base skin; Nova excludes seated/crouched animations; Lt. Morales Ultimate; Dehaka Mecha; fine 0.20-0.24 mm high-detail union up to 1.5M triangles.
+
+          STL stores geometry only; colours, textures, transparency and glow are not embedded. Inspect supports and orientation in your slicer. Personal, non-commercial fan use only.
+          EOF
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends p7zip-full
+          cd "$RUNNER_TEMP"
+          ZIP="$GITHUB_WORKSPACE/HOTS04_Photo_Posed_High_Detail_V4.zip"
+          7z a -tzip -mx=7 "$ZIP" "$(basename "$ROOT")"
+          sha256sum "$ZIP" > "$ZIP.sha256"
+          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
+          echo "root=$ROOT" >> "$GITHUB_OUTPUT"
+
+      - name: Upload final V4 ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04_Photo_Posed_High_Detail_V4
+          path: |
+            HOTS04_Photo_Posed_High_Detail_V4.zip
+            HOTS04_Photo_Posed_High_Detail_V4.zip.sha256
+          retention-days: 90
+          compression-level: 0
+
+      - name: Publish downloadable V4 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="hots04-photo-posed-v4-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "${{ steps.assemble.outputs.zip }}" "${{ steps.assemble.outputs.zip }}.sha256" "${{ steps.assemble.outputs.root }}/Reports/FINAL_VALIDATION.json#FINAL_VALIDATION.json" "${{ steps.assemble.outputs.root }}/Reports/FINAL_MANIFEST.csv#FINAL_MANIFEST.csv" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "HOTS-04 photographed-pose high-detail STL collection V4" --notes "All 18 selected-skin hero models are frozen in animation poses matched to the four supplied JPG views. This build corrects Cho-Gall ground contact, Rexxar's skin, Nova's seated pose, Lt. Morales' skin, Dehaka's skin, and increases mesh detail."
