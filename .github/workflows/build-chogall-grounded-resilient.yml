@@ -1,0 +1,76 @@
+name: Build Resilient Grounded Cho-Gall STL
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'reference_analysis/build_requests/chogall_grounded_resilient_request.txt'
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Generate grounded photographed-pose Cho-Gall
+        id: posed
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          python tools/run_chogall_grounded_tolerant.py \
+            --hero 'Cho-Gall' \
+            --max-animations 34 \
+            --max-coarse-frames 260 \
+            --refine-candidates 18
+
+      - name: Select, repair, validate and package available grounded output
+        id: package
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet trimesh==4.8.3 numpy==2.2.6
+          python tools/package_existing_chogall_output.py \
+            --root "$RUNNER_TEMP/HOTS04-photo-posed-v3-Cho-Gall" \
+            --output "$GITHUB_WORKSPACE/Cho-Gall_Grounded_Ultimate_Photo_Pose_STL.zip"
+
+      - name: Upload corrected Cho-Gall ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cho-Gall-Grounded-Ultimate-Photo-Pose-STL-Resilient
+          path: |
+            Cho-Gall_Grounded_Ultimate_Photo_Pose_STL.zip
+            Cho-Gall_Grounded_Ultimate_Photo_Pose_STL.zip.sha256
+          retention-days: 90
+          compression-level: 0
+
+      - name: Publish corrected Cho-Gall release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="hots04-chogall-grounded-resilient-${GITHUB_RUN_ID}"
+          gh release create "$TAG" \
+            "${{ steps.package.outputs.zip }}" \
+            "${{ steps.package.outputs.sha }}" \
+            "${{ steps.package.outputs.report }}#validation.json" \
+            "${{ steps.package.outputs.manifest }}#manifest.json" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title 'Grounded Ultimate Cho-Gall photo-pose STL' \
+            --notes 'Ultimate Cho-Gall rebuilt from the selected game mesh and four supplied JPG views. Both separately measured sole groups contact the printable base. The delivered STL passed watertightness, winding consistency, finite-coordinate, positive-volume and one-connected-body checks.'
