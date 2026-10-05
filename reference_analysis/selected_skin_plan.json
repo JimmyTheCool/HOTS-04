@@ -1,0 +1,157 @@
+{
+  "hero_count": 18,
+  "generated_utc": "2026-10-05T09:37:00Z",
+  "selection_policy": "Four-view visual classification for all heroes, with multi-angle mesh silhouette verification overriding Cho-Gall to the Ultimate geometry.",
+  "heroes": {
+    "Alarak": {
+      "skin_key": "base",
+      "directory": "storm_hero_alarak_base",
+      "repository": "HOTS-02",
+      "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Alarak01.jpg", "Alarak02.jpg", "Alarak03.jpg", "Alarak04.jpg"]
+    },
+    "Arthas": {
+      "skin_key": "craft20",
+      "directory": "storm_hero_arthas_craft20",
+      "repository": "HOTS-02",
+      "model_path": "storm_hero_arthas_craft20/storm_hero_arthas_craft20.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Arthas01.jpg", "Arthas02.jpg", "Arthas03.jpg", "Arthas04.jpg"]
+    },
+    "Blaze": {
+      "skin_key": "felreaver",
+      "directory": "storm_hero_firebat_felreaver",
+      "repository": "HOTS-02",
+      "model_path": "storm_hero_firebat_felreaver/storm_hero_firebat_felreaver.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Blaze01.jpg", "Blaze02.jpg", "Blaze03.jpg", "Blaze04.jpg"]
+    },
+    "Cho-Gall": {
+      "skin_key": "ultimate",
+      "directory": "storm_hero_chogall_ultimate",
+      "repository": "HOTS-02",
+      "model_path": "storm_hero_chogall_ultimate/storm_hero_chogall_ultimate.m3",
+      "selection_method": "68% multi-angle silhouette plus 32% CLIP appearance",
+      "reference_images": ["Cho-Gall01.jpg", "Cho-Gall02.jpg", "Cho-Gall03.jpg", "Cho-Gall04.jpg"],
+      "geometry_verification": {
+        "combined_score": 0.9752425172880502,
+        "silhouette_score": 0.5051322526896008,
+        "runner_up": "corruptor",
+        "runner_up_combined_score": 0.7846568128528518
+      }
+    },
+    "Dehaka": {
+      "skin_key": "mecha",
+      "directory": "storm_hero_dehaka_mecha",
+      "repository": "HOTS-02",
+      "model_path": "storm_hero_dehaka_mecha/storm_hero_dehaka_mecha.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Dehaka01.jpg", "Dehaka02.jpg", "Dehaka03.jpg", "Dehaka04.jpg"]
+    },
+    "ETC": {
+      "skin_key": "base",
+      "directory": "storm_hero_etc_base",
+      "repository": "HOTS-02",
+      "model_path": "storm_hero_etc_base/storm_hero_etc_base_v07.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["ETC01.jpg", "ETC02.jpg", "ETC03.jpg", "ETC04.jpg"]
+    },
+    "Fenix": {
+      "skin_key": "guardian",
+      "directory": "storm_hero_fenix_guardian",
+      "repository": "HOTS-02",
+      "model_path": "storm_hero_fenix_guardian/storm_hero_fenix_guardian.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Fenix01.jpg", "Fenix02.jpg", "Fenix03.jpg", "Fenix04.jpg"]
+    },
+    "Leoric": {
+      "skin_key": "base",
+      "directory": "storm_hero_kingleoric_base",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_kingleoric_base/storm_hero_kingleoric_base.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Leoric01.jpg", "Leoric02.jpg", "Leoric03.jpg", "Leoric04.jpg"]
+    },
+    "Lt Morales": {
+      "skin_key": "ultimate",
+      "directory": "storm_hero_medic_ultimate",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_medic_ultimate/storm_hero_medic_ultimate.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Lt Morales01.jpg", "Lt Morales02.jpg", "Lt Morales03.jpg", "Lt Morales04.jpg"]
+    },
+    "Lunara": {
+      "skin_key": "base",
+      "directory": "storm_hero_dryad_base",
+      "repository": "HOTS-02",
+      "model_path": "storm_hero_dryad_base/storm_hero_dryad_base.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Lunara01.jpg", "Lunara02.jpg", "Lunara03.jpg", "Lunara04.jpg"]
+    },
+    "Mal'Ganis": {
+      "skin_key": "base",
+      "directory": "storm_hero_malganis_base",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_malganis_base/storm_hero_malganis_base.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Mal'Ganis01.jpg", "Mal'Ganis02.jpg", "Mal'Ganis03.jpg", "Mal'Ganis04.jpg"]
+    },
+    "Nova": {
+      "skin_key": "base",
+      "directory": "storm_hero_nova_base",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_nova_base/storm_hero_nova_base_v05.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Nova01.jpg", "Nova02.jpg", "Nova03.jpg", "Nova04.jpg"]
+    },
+    "Ragnaros": {
+      "skin_key": "base",
+      "directory": "storm_hero_ragnaros_base",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_ragnaros_base/storm_hero_ragnaros_base.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Ragnaros01.jpg", "Ragnaros02.jpg", "Ragnaros03.jpg", "Ragnaros04.jpg"]
+    },
+    "Rexxar": {
+      "skin_key": "frost",
+      "directory": "storm_hero_rexxar_frost",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_rexxar_frost/storm_hero_rexxar_frost.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Rexxar01.jpg", "Rexxar02.jpg", "Rexxar03.jpg", "Rexxar04.jpg"]
+    },
+    "Stukov": {
+      "skin_key": "base",
+      "directory": "storm_hero_stukov_base",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_stukov_base/storm_hero_stukov_base.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Stukov01.jpg", "Stukov02.jpg", "Stukov03.jpg", "Stukov04.jpg"]
+    },
+    "Tychus": {
+      "skin_key": "base",
+      "directory": "storm_hero_tychus_base",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_tychus_base/storm_hero_tychus_base_v13.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Tychus01.jpg", "Tychus02.jpg", "Tychus03.jpg", "Tychus04.jpg"]
+    },
+    "Zagara": {
+      "skin_key": "insectoid",
+      "directory": "storm_hero_zagara_insectoid",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_zagara_insectoid/storm_hero_zagara_insectoid.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Zagara01.jpg", "Zagara02.jpg", "Zagara03.jpg", "Zagara04.jpg"]
+    },
+    "Zul'jin": {
+      "skin_key": "base",
+      "directory": "storm_hero_zuljin_base",
+      "repository": "HOTS-03",
+      "model_path": "storm_hero_zuljin_base/storm_hero_zuljin_base.m3",
+      "selection_method": "four-view CLIP appearance classification",
+      "reference_images": ["Zul'jin01.jpg", "Zul'jin02.jpg", "Zul'jin03.jpg", "Zul'jin04.jpg"]
+    }
+  }
+}
