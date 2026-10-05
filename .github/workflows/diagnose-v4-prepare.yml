@@ -1,0 +1,46 @@
+name: Diagnose V4 Preparation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [photo-pose-v4]
+    paths:
+      - '.github/workflows/diagnose-v4-prepare.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: photo-pose-v4
+          fetch-depth: 0
+      - name: Run preparation with captured diagnostics
+        shell: bash
+        run: |
+          set +e
+          mkdir -p reference_analysis/v4_diagnostics
+          python tools/prepare_photo_pose_v4.py \
+            --runner-bootstrap tools/run_photo_posed_job_v3_2.py \
+            --pose-source tools/exposed_r2/build_one_photo_posed_v3_source.py \
+            --output-runner /tmp/run_photo_posed_job_v4.py \
+            --output-pose /tmp/build_one_photo_posed_v4.py \
+            --voxel 0.240 \
+            --max-triangles 900000 \
+            --target-triangles 820000 \
+            > reference_analysis/v4_diagnostics/prepare_stdout.log \
+            2> reference_analysis/v4_diagnostics/prepare_stderr.log
+          status=$?
+          echo "$status" > reference_analysis/v4_diagnostics/prepare_exit_code.txt
+          [[ -f /tmp/run_photo_posed_job_v4.py ]] && cp /tmp/run_photo_posed_job_v4.py reference_analysis/v4_diagnostics/generated_runner.py
+          [[ -f /tmp/build_one_photo_posed_v4.py ]] && cp /tmp/build_one_photo_posed_v4.py reference_analysis/v4_diagnostics/generated_pose.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/v4_diagnostics
+          git commit -m 'Add V4 preparation diagnostics [skip ci]' || true
+          git pull --rebase origin photo-pose-v4
+          git push origin HEAD:photo-pose-v4
+          exit 0
