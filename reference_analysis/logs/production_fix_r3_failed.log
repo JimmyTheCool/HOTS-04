@@ -1,0 +1,23 @@
+fix	Commit corrected production workflow	﻿2026-10-05T09:42:44.3562469Z ##[group]Run set -euo pipefail
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3563731Z ^[[36;1mset -euo pipefail^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3564933Z ^[[36;1mgit config user.name 'github-actions[bot]'^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3566831Z ^[[36;1mgit config user.email '41898282+github-actions[bot]@users.noreply.github.com'^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3568913Z ^[[36;1mgit add .github/workflows/build-selected-hero-stls.yml^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3570489Z ^[[36;1mif git diff --cached --quiet; then^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3571894Z ^[[36;1m  echo 'Production workflow already corrected.'^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3573411Z ^[[36;1melse^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3574704Z ^[[36;1m  git commit -m 'Make selected hero matrix safe for apostrophes'^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3576341Z ^[[36;1m  git pull --rebase origin main^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3577553Z ^[[36;1m  git push origin HEAD:main^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3578648Z ^[[36;1mfi^[[0m
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3661254Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+fix	Commit corrected production workflow	2026-10-05T09:42:44.3663099Z ##[endgroup]
+fix	Commit corrected production workflow	2026-10-05T09:42:44.5500963Z [main 8477163] Make selected hero matrix safe for apostrophes
+fix	Commit corrected production workflow	2026-10-05T09:42:44.5503354Z  1 file changed, 3 insertions(+), 1 deletion(-)
+fix	Commit corrected production workflow	2026-10-05T09:42:44.8708467Z From https://github.com/JimmyTheCool/HOTS-04
+fix	Commit corrected production workflow	2026-10-05T09:42:44.8709861Z  * branch            main       -> FETCH_HEAD
+fix	Commit corrected production workflow	2026-10-05T09:42:44.9562460Z Current branch main is up to date.
+fix	Commit corrected production workflow	2026-10-05T09:42:45.9125672Z To https://github.com/JimmyTheCool/HOTS-04
+fix	Commit corrected production workflow	2026-10-05T09:42:45.9126857Z  ! [remote rejected] HEAD -> main (refusing to allow a GitHub App to create or update workflow `.github/workflows/build-selected-hero-stls.yml` without `workflows` permission)
+fix	Commit corrected production workflow	2026-10-05T09:42:45.9127874Z error: failed to push some refs to 'https://github.com/JimmyTheCool/HOTS-04'
+fix	Commit corrected production workflow	2026-10-05T09:42:45.9161204Z ##[error]Process completed with exit code 1.
