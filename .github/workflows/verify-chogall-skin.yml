@@ -1,0 +1,162 @@
+name: Verify Cho-Gall Skin Geometry
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'reference_analysis/skin_match_clip.json'
+
+permissions:
+  contents: write
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  verify:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Clone sources and toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch main https://github.com/JimmyTheCool/HOTS-02.git "$RUNNER_TEMP/HOTS-02"
+          git clone --depth 1 --branch chatgpt-stl-builder https://github.com/JimmyTheCool/HOTS-03.git "$RUNNER_TEMP/HOTS-03"
+
+      - name: Install Blender, importer and scoring dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ca-certificates curl git xz-utils libx11-6 libxi6 libxrender1 libxfixes3 libxkbcommon0 libsm6 libice6 libgl1 libegl1
+          cd "$RUNNER_TEMP"
+          ARCHIVE="blender-${BLENDER_VERSION}-linux-x64.tar.xz"
+          curl --fail --location --retry 5 --retry-delay 5 "https://download.blender.org/release/Blender3.6/${ARCHIVE}" --output "$ARCHIVE"
+          tar -xf "$ARCHIVE"
+          echo "BLENDER=$RUNNER_TEMP/blender-${BLENDER_VERSION}-linux-x64/blender" >> "$GITHUB_ENV"
+          git clone https://github.com/SC2Mapster/m3addon.git "$RUNNER_TEMP/m3addon-src"
+          git -C "$RUNNER_TEMP/m3addon-src" checkout "$M3ADDON_COMMIT"
+          mkdir -p "$HOME/.config/blender/3.6/scripts/addons"
+          ln -s "$RUNNER_TEMP/m3addon-src" "$HOME/.config/blender/3.6/scripts/addons/m3addon"
+          python -m pip install --disable-pip-version-check --quiet trimesh==4.8.3 numpy==2.2.6 scipy==1.15.3 pillow rembg==2.0.67 onnxruntime==1.20.1
+
+      - name: Build every Cho-Gall skin candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          TOOLCHAIN="$RUNNER_TEMP/HOTS-03"
+          ROOT="$RUNNER_TEMP/chogall-verify"
+          mkdir -p "$ROOT/candidates" "$ROOT/builds" "$ROOT/reports"
+
+          python - reference_analysis/skin_candidates.json > "$ROOT/candidates.tsv" <<'PY'
+          import json, pathlib, re, sys
+          data = json.load(open(sys.argv[1], encoding='utf-8'))['heroes']['Cho-Gall']
+          seen = set()
+          for item in data:
+              directory = item['directory'].casefold()
+              canonical = re.sub(r'_(replace_mat|ghost_mat|shadow_mat|shield|holo)$', '', directory)
+              if canonical in seen:
+                  continue
+              seen.add(canonical)
+              key = re.sub(r'^storm_hero_chogall_', '', canonical)
+              print('\t'.join((key, item['repository'], item['directory'], item['model_path'])))
+          PY
+
+          while IFS=$'\t' read -r key repository directory model_path; do
+            echo "=== Cho-Gall candidate: $key ($model_path) ==="
+            candidate_root="$ROOT/builds/$key"
+            mkdir -p "$candidate_root"
+            python - "$ROOT/plan-$key.json" "$key" "$repository" "$directory" "$model_path" <<'PY'
+          import json, sys
+          path, key, repository, directory, model_path = sys.argv[1:]
+          plan = {'heroes': {'Cho-Gall': {
+              'skin_key': key,
+              'directory': directory,
+              'repository': repository,
+              'model_path': model_path,
+              'selection_method': 'candidate silhouette verification',
+              'reference_images': [f'Cho-Gall0{i}.jpg' for i in range(1, 5)],
+          }}}
+          open(path, 'w', encoding='utf-8').write(json.dumps(plan, indent=2))
+          PY
+
+            cp "$TOOLCHAIN/tools/hots_stl/runtime_extracted/build_hots_stls.py" "$candidate_root/builder.py"
+            python "$TOOLCHAIN/tools/hots_stl/runtime_patch_v2.py" "$candidate_root/builder.py"
+            python "$TOOLCHAIN/ci/patch_builder_external_validation.py" "$candidate_root/builder.py"
+            export HOTS_SELECTED_MODEL_PATH="$model_path"
+            python tools/patch_builder_for_selected_skin.py \
+              --builder "$candidate_root/builder.py" \
+              --plan "$ROOT/plan-$key.json" \
+              --hero 'Cho-Gall' \
+              --report "$ROOT/reports/${key}_selection.json"
+
+            "$BLENDER" --background --factory-startup --python "$candidate_root/builder.py" -- \
+              --source "$RUNNER_TEMP/HOTS-02" \
+              --source "$RUNNER_TEMP/HOTS-03" \
+              --output "$candidate_root/output" \
+              --target-height-mm 120 \
+              --base-height-mm 4.5 \
+              --base-margin-mm 5 \
+              --voxel-mm 0.42 \
+              --thin-part-mm 0.80 \
+              --max-triangles 600000 \
+              --only 'Cho-Gall' \
+              2>&1 | tee "$ROOT/reports/${key}_builder.log"
+
+            detail="$(find "$candidate_root/output/01_Detail_Preserving" -maxdepth 1 -type f -name '*.stl' | head -n 1)"
+            test -n "$detail" && test -f "$detail"
+            cp "$detail" "$ROOT/candidates/${key}.stl"
+          done < "$ROOT/candidates.tsv"
+
+          test "$(find "$ROOT/candidates" -maxdepth 1 -type f -name '*.stl' | wc -l)" -ge 4
+
+      - name: Score all skin silhouettes against the four screenshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/chogall-verify"
+          mkdir -p reference_analysis/geometry_verification
+          python tools/score_stl_against_photos.py \
+            --photos Cho-Gall01.jpg Cho-Gall02.jpg Cho-Gall03.jpg Cho-Gall04.jpg \
+            --candidates "$ROOT/candidates" \
+            --clip-report reference_analysis/skin_match_clip.json \
+            --hero 'Cho-Gall' \
+            --output-json reference_analysis/geometry_verification/Cho-Gall.json \
+            --output-csv reference_analysis/geometry_verification/Cho-Gall.csv \
+            --contact-sheet reference_analysis/geometry_verification/Cho-Gall.jpg \
+            2>&1 | tee "$ROOT/reports/scoring.log"
+
+      - name: Upload candidate comparison artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cho-Gall-Skin-Geometry-Verification
+          path: |
+            ${{ runner.temp }}/chogall-verify/candidates
+            ${{ runner.temp }}/chogall-verify/reports
+            reference_analysis/geometry_verification/Cho-Gall.json
+            reference_analysis/geometry_verification/Cho-Gall.csv
+            reference_analysis/geometry_verification/Cho-Gall.jpg
+          retention-days: 90
+          compression-level: 0
+
+      - name: Commit geometry verification safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/geometry_verification
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Add Cho-Gall multi-angle geometry verification [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
