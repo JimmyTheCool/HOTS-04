@@ -1,0 +1,101 @@
+repair	Rebuild high-detail and robust Alarak meshes	﻿2026-10-05T17:57:59.2678417Z ##[group]Run set -euo pipefail
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2678841Z ^[[36;1mset -euo pipefail^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2679173Z ^[[36;1mROOT="$RUNNER_TEMP/HOTS04-photo-posed-v4-fix-Alarak"^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2679842Z ^[[36;1mmkdir -p "$ROOT/HighDetail" "$ROOT/Robust" "$ROOT/Raw" "$ROOT/Reports/Alarak" "$RUNNER_TEMP/high-input" "$RUNNER_TEMP/robust-input"^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2680556Z ^[[36;1mcp "$RUNNER_TEMP/source/HeroBuild/Raw/Alarak.stl" "$ROOT/Raw/Alarak.stl"^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2681155Z ^[[36;1mcp "$RUNNER_TEMP/source/HeroBuild/Initial/Alarak.stl" "$RUNNER_TEMP/high-input/Alarak.stl"^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2681829Z ^[[36;1mcp "$RUNNER_TEMP/source/HeroBuild/Initial/Alarak.stl" "$RUNNER_TEMP/robust-input/Alarak.stl"^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2682426Z ^[[36;1mcp -a "$RUNNER_TEMP/source/Reports/Alarak/." "$ROOT/Reports/Alarak/" || true^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2683207Z ^[[36;1mcp -a "$RUNNER_TEMP/source/HeroBuild/Reports/." "$ROOT/Reports/Alarak/"^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2683586Z ^[[36;1m^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2683964Z ^[[36;1m# At 0.20 mm the source exceeded the target and simplification opened the mesh.^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2684556Z ^[[36;1m# A 0.25 mm direct marching-cubes union remains dense while avoiding destructive decimation.^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2685380Z ^[[36;1mpython "$RUNNER_TEMP/repair-voxel.py" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2685828Z ^[[36;1m  --input "$RUNNER_TEMP/high-input" --output "$ROOT/HighDetail" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2686293Z ^[[36;1m  --report-json "$ROOT/Reports/Alarak/fine_repair_r2.json" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2686722Z ^[[36;1m  --report-csv "$ROOT/Reports/Alarak/fine_repair_r2.csv" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2687194Z ^[[36;1m  --expected 1 --pitch 0.25 --max-triangles 1500000 --target-triangles 1500000^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2687613Z ^[[36;1m^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2687841Z ^[[36;1mpython "$RUNNER_TEMP/repair-voxel.py" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2688262Z ^[[36;1m  --input "$RUNNER_TEMP/robust-input" --output "$ROOT/Robust" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2688755Z ^[[36;1m  --report-json "$ROOT/Reports/Alarak/robust_repair.json" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2689173Z ^[[36;1m  --report-csv "$ROOT/Reports/Alarak/robust_repair.csv" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2689631Z ^[[36;1m  --expected 1 --pitch 0.62 --max-triangles 500000 --target-triangles 440000^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2690015Z ^[[36;1m^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2690320Z ^[[36;1mpython "$RUNNER_TEMP/HOTS-03-tools/ci/validate_stl_collection.py" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2690909Z ^[[36;1m  --input "$ROOT/HighDetail" --report-json "$ROOT/Reports/Alarak/high_detail_validation.json" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2691484Z ^[[36;1m  --report-csv "$ROOT/Reports/Alarak/high_detail_validation.csv" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2692070Z ^[[36;1m  --checksums "$ROOT/Reports/Alarak/HIGH_DETAIL_SHA256SUMS.txt" --expected 1 --max-triangles 1500000^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2692679Z ^[[36;1mpython "$RUNNER_TEMP/HOTS-03-tools/ci/validate_stl_collection.py" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2693224Z ^[[36;1m  --input "$ROOT/Robust" --report-json "$ROOT/Reports/Alarak/robust_validation.json" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2693755Z ^[[36;1m  --report-csv "$ROOT/Reports/Alarak/robust_validation.csv" \^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2694311Z ^[[36;1m  --checksums "$ROOT/Reports/Alarak/ROBUST_SHA256SUMS.txt" --expected 1 --max-triangles 500000^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2695111Z ^[[36;1m^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2695404Z ^[[36;1mpython - "$ROOT" <<'PY'^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2695667Z ^[[36;1mimport json,sys^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2695912Z ^[[36;1mfrom pathlib import Path^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2696240Z ^[[36;1mroot=Path(sys.argv[1]); reports=root/'Reports'/'Alarak'^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2696701Z ^[[36;1mpose=json.loads((reports/'pose_match.json').read_text(encoding='utf-8'))^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2697116Z ^[[36;1mselected=pose['selected']^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2697547Z ^[[36;1mhigh=json.loads((reports/'high_detail_validation.json').read_text(encoding='utf-8'))^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2698163Z ^[[36;1mrobust=json.loads((reports/'robust_validation.json').read_text(encoding='utf-8'))^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2698582Z ^[[36;1mquality={^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2699072Z ^[[36;1m  'hero':'Alarak','safe':'Alarak','skin_key':'base',^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2699493Z ^[[36;1m  'model_path':'storm_hero_alarak_base/storm_hero_alarak_base.m3',^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2700050Z ^[[36;1m  'selected_animation':selected.get('animation_name'),'selected_frame':selected.get('frame'),^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2700722Z ^[[36;1m  'pose_score':selected.get('pose_score'),'ground_support_score':selected.get('ground_support_score'),^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2701339Z ^[[36;1m  'rest_pose_baseline_score':(pose.get('rest_pose_baseline') or {}).get('score'),^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2701875Z ^[[36;1m  'improvement_over_rest_pose':pose.get('improvement_over_rest_pose'),^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2702428Z ^[[36;1m  'camera':selected.get('camera'),'coarse_frames_tested':pose.get('coarse_frames_tested'),^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2703092Z ^[[36;1m  'refined_frames_tested':pose.get('refined_frames_tested'),^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2703507Z ^[[36;1m  'high_detail_validation_passed':high.get('passed'),^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2703895Z ^[[36;1m  'robust_validation_passed':robust.get('passed'),^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2704328Z ^[[36;1m  'high_detail_voxel_pitch_mm':0.25,'high_detail_triangle_limit':1500000,^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2705163Z ^[[36;1m  'repair_note':'0.25 mm direct watertight voxel union; no destructive high-detail decimation',^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2705617Z ^[[36;1m}^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2706035Z ^[[36;1m(reports/'photo_pose_quality_summary.json').write_text(json.dumps(quality,indent=2),encoding='utf-8')^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2706971Z ^[[36;1m(root/'HERO_COMPLETE.txt').write_text(f"Alarak\nbase\n{selected.get('animation_name')}\nframe={selected.get('frame')}\nscore={selected.get('pose_score')}\n",encoding='utf-8')^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2707821Z ^[[36;1mif not (high.get('passed') and robust.get('passed')): raise SystemExit(1)^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2708212Z ^[[36;1mPY^[[0m
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2780649Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2781014Z env:
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2781251Z   SOURCE_RUN_ID: 37349602397
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.2781555Z ##[endgroup]
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:57:59.7450025Z [1/1] Repairing Alarak.stl
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9799095Z     FAIL via none
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9809807Z {
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9810543Z   "input_folder": "/home/runner/work/_temp/high-input",
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9811372Z   "output_folder": "/home/runner/work/_temp/HOTS04-photo-posed-v4-fix-Alarak/HighDetail",
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9812134Z   "expected_files": 1,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9812514Z   "found_files": 1,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9812852Z   "expected_count_passed": true,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9813271Z   "all_passed": false,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9813650Z   "settings": {
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9814082Z     "voxel_pitch_mm": 0.25,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9814583Z     "max_triangles": 1500000,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9815352Z     "target_triangles": 1500000,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9815897Z     "minimum_dimension_mm": 2.0,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9816468Z     "maximum_dimension_mm": 350.0,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9817094Z     "minimum_dimension_retention": 0.9,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9817724Z     "maximum_dimension_retention": 1.1,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9818275Z     "vertex_weld_digits": 2,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9818786Z     "required_connected_bodies": 1
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9819324Z   },
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9819735Z   "failed_files": [
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9820166Z     {
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9820592Z       "file": "Alarak.stl",
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9821148Z       "passed": false,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9821841Z       "fatal_error": "ModuleNotFoundError(\"No module named 'networkx'\")",
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9829438Z       "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/_temp/repair-voxel.py\", line 438, in main\n    result = process_one(path, args.output, args)\n  File \"/home/runner/work/_temp/repair-voxel.py\", line 344, in process_one\n    original = clean_mesh(original)\n  File \"/home/runner/work/_temp/repair-voxel.py\", line 75, in clean_mesh\n    trimesh.repair.fix_normals(cleaned, multibody=True)\n  File \"/home/runner/.local/lib/python3.10/site-packages/trimesh/repair.py\", line 165, in fix_normals\n    fix_winding(mesh)\n  File \"/home/runner/.local/lib/python3.10/site-packages/trimesh/repair.py\", line 47, in fix_winding\n    graph_all = nx.from_edgelist(mesh.face_adjacency)\n  File \"/home/runner/.local/lib/python3.10/site-packages/trimesh/exceptions.py\", line 35, in __getattribute__\n    raise exc_type(*exc_args)\nModuleNotFoundError: No module named 'networkx'\n"
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9837705Z     }
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9838043Z   ],
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9838357Z   "files": [
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9838710Z     {
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9839056Z       "file": "Alarak.stl",
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9839483Z       "passed": false,
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9840381Z       "fatal_error": "ModuleNotFoundError(\"No module named 'networkx'\")",
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9846203Z       "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/_temp/repair-voxel.py\", line 438, in main\n    result = process_one(path, args.output, args)\n  File \"/home/runner/work/_temp/repair-voxel.py\", line 344, in process_one\n    original = clean_mesh(original)\n  File \"/home/runner/work/_temp/repair-voxel.py\", line 75, in clean_mesh\n    trimesh.repair.fix_normals(cleaned, multibody=True)\n  File \"/home/runner/.local/lib/python3.10/site-packages/trimesh/repair.py\", line 165, in fix_normals\n    fix_winding(mesh)\n  File \"/home/runner/.local/lib/python3.10/site-packages/trimesh/repair.py\", line 47, in fix_winding\n    graph_all = nx.from_edgelist(mesh.face_adjacency)\n  File \"/home/runner/.local/lib/python3.10/site-packages/trimesh/exceptions.py\", line 35, in __getattribute__\n    raise exc_type(*exc_args)\nModuleNotFoundError: No module named 'networkx'\n"
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9851579Z     }
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9851882Z   ]
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:00.9852186Z }
+repair	Rebuild high-detail and robust Alarak meshes	2026-10-05T17:58:01.0451750Z ##[error]Process completed with exit code 1.
