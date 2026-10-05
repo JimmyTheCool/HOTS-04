@@ -1,0 +1,38 @@
+name: Collect Photo-Posed Packager Log
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ci/trigger-collect-photo-posed-packager-log.txt'
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Record failed packager log
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p reference_analysis/logs
+          gh run view 37345469187 --repo "$GITHUB_REPOSITORY" --log-failed \
+            > reference_analysis/logs/photo_posed_packager_r3_failed.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference_analysis/logs/photo_posed_packager_r3_failed.log
+          git commit -m "Record failed photo-posed packager log [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
