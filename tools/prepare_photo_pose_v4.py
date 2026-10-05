@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Prepare the HOTS-04 V4 photo-pose runner.
+"""Prepare the HOTS-04 V4 photo-pose runner without rewriting core functions.
 
-This revision uses structural regular-expression patches rather than exact large
-string matches. It rejects seated poses, strongly prefers standing display poses,
-adds bilateral Cho-Gall foot grounding, increases mesh detail, and keeps the
-repaired print mesh as the release quality gate.
+The existing pose builder is decoded and retained intact. Runtime overrides are
+appended for standing-pose filtering and Cho-Gall bilateral foot grounding. This
+approach is resilient to formatting changes in the proven importer/search code.
 """
 from __future__ import annotations
 
@@ -15,13 +14,6 @@ import hashlib
 from pathlib import Path
 import re
 import zlib
-
-
-def sub_once(text: str, pattern: str, replacement: str, label: str, flags: int = 0) -> str:
-    updated, count = re.subn(pattern, replacement, text, count=1, flags=flags)
-    if count != 1:
-        raise RuntimeError(f"Expected one {label} target, found {count}")
-    return updated
 
 
 def decode_bootstrap(path: Path) -> str:
@@ -44,9 +36,47 @@ def decode_bootstrap(path: Path) -> str:
     return source
 
 
-GROUND_HELPER = r'''
+POSE_OVERRIDES = r'''
 
-def _evaluated_world_points(objects: list[bpy.types.Object], max_points: int = 240000) -> np.ndarray:
+# ---------------------------------------------------------------------------
+# HOTS-04 V4 runtime overrides
+# ---------------------------------------------------------------------------
+CURRENT_HERO = ""
+_ORIGINAL_PARSE_ARGS = parse_args
+_ORIGINAL_ANIMATION_PRIORITY = animation_priority
+_ORIGINAL_LOAD_BUILDER = load_builder
+
+
+def parse_args() -> argparse.Namespace:
+    global CURRENT_HERO
+    args = _ORIGINAL_PARSE_ARGS()
+    CURRENT_HERO = args.hero
+    return args
+
+
+def animation_priority(name: str) -> int:
+    lower = name.casefold()
+    forbidden = (
+        "death", "dead", "ragdoll", "corpse", "dismember", "mount", "vehicle",
+        "knock", "stun", "hitreact", "flail", "fall", "despawn", "lowpoly",
+        "sit", "seated", "chair", "throne", "crouch", "kneel", "sleep", "crawl",
+    )
+    if any(token in lower for token in forbidden):
+        return -100000
+
+    score = _ORIGINAL_ANIMATION_PRIORITY(name)
+    hero_key = CURRENT_HERO.casefold().replace("'", "").replace("-", "").replace(" ", "")
+    standing_tokens = ("stand", "idle", "ready")
+    if hero_key in {"nova", "chogall"}:
+        if not any(token in lower for token in standing_tokens):
+            return -100000
+        score += 7000
+    elif any(token in lower for token in standing_tokens):
+        score += 1800
+    return score
+
+
+def _evaluated_world_points(objects: list[bpy.types.Object], max_points: int = 260000) -> np.ndarray:
     chunks: list[np.ndarray] = []
     for obj in objects:
         if obj.type != "MESH" or not obj.data.vertices:
@@ -71,11 +101,11 @@ def _contact_pair(points: np.ndarray) -> tuple[np.ndarray, np.ndarray] | None:
         return None
     z0, z1 = np.percentile(points[:, 2], [0.2, 99.8])
     height = max(1e-6, float(z1 - z0))
-    lower = points[points[:, 2] <= z0 + height * 0.24]
-    if len(lower) < 60:
+    lower = points[points[:, 2] <= z0 + height * 0.25]
+    if len(lower) < 80:
         return None
     x_mid = float(np.median(points[:, 0]))
-    x_lo, x_hi = np.percentile(points[:, 0], [7.0, 93.0])
+    x_lo, x_hi = np.percentile(points[:, 0], [6.0, 94.0])
     lower = lower[(lower[:, 0] >= x_lo) & (lower[:, 0] <= x_hi)]
     left = lower[lower[:, 0] < x_mid]
     right = lower[lower[:, 0] >= x_mid]
@@ -83,17 +113,17 @@ def _contact_pair(points: np.ndarray) -> tuple[np.ndarray, np.ndarray] | None:
         return None
 
     def contact(side: np.ndarray) -> np.ndarray:
-        z_cut = float(np.percentile(side[:, 2], 3.0))
-        band = side[side[:, 2] <= z_cut + max(0.35, height * 0.006)]
+        z_cut = float(np.percentile(side[:, 2], 2.5))
+        band = side[side[:, 2] <= z_cut + max(0.30, height * 0.005)]
         if len(band) < 4:
-            band = side[np.argsort(side[:, 2])[: max(4, min(40, len(side)))]]
+            band = side[np.argsort(side[:, 2])[: max(4, min(50, len(side)))]]
         return np.median(band, axis=0)
 
     return contact(left), contact(right)
 
 
 def enforce_two_foot_ground(objects: list[bpy.types.Object]) -> dict[str, float | bool | str]:
-    """Tilt and lower Cho-Gall until both lateral lower contact regions meet the base."""
+    """Tilt and lower Cho-Gall until both lateral lower foot zones meet the base."""
     from mathutils import Matrix, Vector
 
     points = _evaluated_world_points(objects)
@@ -142,6 +172,7 @@ def enforce_two_foot_ground(objects: list[bpy.types.Object]) -> dict[str, float 
     for obj in objects:
         obj.location.z -= ground_z
     bpy.context.view_layer.update()
+
     final_pair = _contact_pair(_evaluated_world_points(objects))
     final_gap = abs(float(final_pair[1][2] - final_pair[0][2])) if final_pair else float(gap)
     log(
@@ -154,106 +185,54 @@ def enforce_two_foot_ground(objects: list[bpy.types.Object]) -> dict[str, float 
         "foot_height_gap_mm": float(final_gap),
         "ground_translation_mm": float(-ground_z),
     }
+
+
+def load_builder(path: Path):
+    builder = _ORIGINAL_LOAD_BUILDER(path)
+    hero_key = CURRENT_HERO.casefold().replace("'", "").replace("-", "").replace(" ", "")
+    if hero_key == "chogall":
+        original_normalize = builder.normalize_object_group
+
+        def normalize_and_ground(objects, target_height):
+            result = original_normalize(objects, target_height)
+            result["two_foot_grounding"] = enforce_two_foot_ground(list(objects))
+            return result
+
+        builder.normalize_object_group = normalize_and_ground
+    return builder
 '''
 
 
 def patch_pose_source(source: str) -> str:
-    if "CURRENT_HERO =" not in source:
-        source = sub_once(
-            source,
-            r'(HARD_EXCLUDES\s*=\s*\(.*?\n\))',
-            r'\1\n\nCURRENT_HERO = ""',
-            "CURRENT_HERO insertion",
-            flags=re.S,
-        )
-
-    source = sub_once(
-        source,
-        r'HARD_EXCLUDES\s*=\s*\((.*?)\n\)',
-        lambda match: (
-            'HARD_EXCLUDES = ('
-            + match.group(1)
-            + '\n    "sit", "seated", "chair", "throne", "crouch", "kneel", "sleep", "crawl",\n)'
-        ),
-        "pose exclusion list",
-        flags=re.S,
+    main_pattern = re.compile(
+        r'\nif __name__ == ["\']__main__["\']:\n\s+raise SystemExit\(main\(\)\)\s*$',
+        re.S,
     )
-
-    source = sub_once(
-        source,
-        r'    weighted\s*=\s*\(.*?\n    \)\n    for token, value in weighted:',
-        '''    weighted = (
-        ("stand", 3300), ("idle", 3100), ("ready", 2900), ("select", 2600),
-        ("portrait", 1600), ("hero", 500), ("intro", 700), ("victory", 550),
-        ("taunt", 100), ("dance", -200), ("walk", -100), ("run", -300),
-        ("attack", -650), ("spell", -650), ("ability", -650), ("channel", -450),
-    )
-    for token, value in weighted:''',
-        "animation priorities",
-        flags=re.S,
-    )
-
-    source = sub_once(
-        source,
-        r'(    eligible\.sort\(key=lambda row: \(-int\(row\["priority"\]\), -int\(row\["duration"\]\), int\(row\["index"\]\)\)\)\n)(    selected_animations = eligible\[:max_animations\]\n)',
-        r'''\1    hero_key = CURRENT_HERO.casefold().replace("'", "").replace("-", "").replace(" ", "")
-    if hero_key in {"nova", "chogall"}:
-        standing_tokens = ("stand", "idle", "ready", "select")
-        standing = [
-            row for row in eligible
-            if any(token in str(row["name"]).casefold() for token in standing_tokens)
-        ]
-        if standing:
-            eligible = standing
-            log(f"Standing-only pose policy retained {len(eligible)} animations for {CURRENT_HERO}")
-\2''',
-        "standing-only animation filter",
-    )
-
-    source = sub_once(
-        source,
-        r'def main\(\) -> int:\n    args = parse_args\(\)\n',
-        'def main() -> int:\n    args = parse_args()\n    globals()["CURRENT_HERO"] = args.hero\n',
-        "hero context initialization",
-    )
-
-    if "def enforce_two_foot_ground" not in source:
-        source = sub_once(
-            source,
-            r'\ndef forced_pose_selector\(selected: dict\[str, Any\]\):\n',
-            GROUND_HELPER + '\n\ndef forced_pose_selector(selected: dict[str, Any]):\n',
-            "ground helper insertion",
-        )
-
-    source = sub_once(
-        source,
-        r'(        builder = load_builder\(args\.builder\)\n)',
-        r'''\1        hero_key = args.hero.casefold().replace("'", "").replace("-", "").replace(" ", "")
-        if hero_key == "chogall":
-            original_normalize = builder.normalize_object_group
-            def normalize_and_ground(objects, target_height):
-                result = original_normalize(objects, target_height)
-                result["two_foot_grounding"] = enforce_two_foot_ground(list(objects))
-                return result
-            builder.normalize_object_group = normalize_and_ground
-''',
-        "Cho-Gall normalization hook",
-    )
-
+    source, count = main_pattern.subn("\n", source, count=1)
+    if count != 1:
+        raise RuntimeError(f"Expected one pose-builder main block, found {count}")
+    source = source.rstrip() + POSE_OVERRIDES + '\n\nif __name__ == "__main__":\n    raise SystemExit(main())\n'
     compile(source, "build_one_photo_posed_v4.py", "exec")
     return source
 
 
+def replace_once(text: str, pattern: str, replacement: str, label: str, flags: int = 0) -> str:
+    updated, count = re.subn(pattern, replacement, text, count=1, flags=flags)
+    if count != 1:
+        raise RuntimeError(f"Expected one {label} target, found {count}")
+    return updated
+
+
 def patch_runner(source: str, pose_path: Path, voxel: float, max_triangles: int, target_triangles: int) -> str:
-    source = sub_once(
+    source = replace_once(
         source,
-        r'    pose_builder = workspace / "tools" / "build_one_photo_posed_v3\.py"\n',
+        r'    pose_builder\s*=\s*workspace\s*/\s*"tools"\s*/\s*"build_one_photo_posed_v3\.py"\n',
         f'    pose_builder = Path({str(pose_path)!r})\n',
         "pose builder path",
     )
-    source = sub_once(
+    source = replace_once(
         source,
-        r'    payload_hash = verify_pose_builder\(pose_builder\)\n',
+        r'    payload_hash\s*=\s*verify_pose_builder\(pose_builder\)\n',
         '    payload_hash = hashlib.sha256(pose_builder.read_bytes()).hexdigest()\n',
         "pose builder verification",
     )
@@ -261,15 +240,21 @@ def patch_runner(source: str, pose_path: Path, voxel: float, max_triangles: int,
     source = source.replace('"--voxel-mm", "0.30"', f'"--voxel-mm", "{voxel:.3f}"')
     source = source.replace('"--max-triangles", "600000"', f'"--max-triangles", "{max_triangles}"')
     source = source.replace('"--max-triangles", "500000"', f'"--max-triangles", "{max_triangles}"')
-    source = source.replace('"--target-triangles", "500000"', f'"--target-triangles", "{target_triangles}"')
-    source = source.replace('"--target-triangles", "440000"', f'"--target-triangles", "{target_triangles}"')
-    source = source.replace('"--pitch", "0.32"', f'"--pitch", "{max(voxel, 0.22):.3f}"')
+    source = source.replace('"--max-triangles", "450000"', f'"--max-triangles", "{max_triangles}"')
+    source = source.replace('"--target-triangles", "575000"', f'"--target-triangles", "{target_triangles}"')
+    source = source.replace('"--target-triangles", "550000"', f'"--target-triangles", "{target_triangles}"')
+    source = source.replace('"--target-triangles", "420000"', f'"--target-triangles", "{target_triangles}"')
+    source = source.replace('"--target-triangles", "400000"', f'"--target-triangles", "{target_triangles}"')
 
-    # Keep the raw/high-detail reference for inspection, but do not fail the whole
-    # job on it; the repaired robust/smooth STL remains the mandatory quality gate.
+    # Fine pitch is driven by the requested per-character voxel value, while the
+    # conservative fallback remains no coarser than 0.42 mm.
     source = source.replace(
-        '], reports / "high_detail_validation.log")',
-        '], reports / "high_detail_validation.log", check=False)',
+        'high_pitch = max(0.34, max_extent / 520.0)',
+        f'high_pitch = max({voxel:.5f}, max_extent / 760.0)',
+    )
+    source = source.replace(
+        'robust_pitch = max(0.58, max_extent / 360.0)',
+        f'robust_pitch = max({max(voxel + 0.10, 0.34):.5f}, max_extent / 560.0)',
     )
     compile(source, "run_photo_posed_job_v4.py", "exec")
     return source
@@ -288,9 +273,8 @@ def main() -> int:
 
     pose = patch_pose_source(args.pose_source.read_text(encoding="utf-8"))
     args.output_pose.write_text(pose, encoding="utf-8")
-    runner = decode_bootstrap(args.runner_bootstrap)
     runner = patch_runner(
-        runner,
+        decode_bootstrap(args.runner_bootstrap),
         args.output_pose.resolve(),
         args.voxel,
         args.max_triangles,
