@@ -1,0 +1,46 @@
+name: Extract Review Skin Rankings
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/extract-review-skin-rankings.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Extract affected hero rankings
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src = json.loads(Path('reference_analysis/skin_match_clip.json').read_text())
+          names = ['Rexxar', 'Lt Morales', 'Dehaka', 'Nova', 'Cho-Gall']
+          out = {name: src['heroes'].get(name) for name in names}
+          Path('reference_analysis/review_skin_rankings.json').write_text(json.dumps(out, indent=2), encoding='utf-8')
+          PY
+      - name: Commit extract
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/review_skin_rankings.json
+          if git diff --cached --quiet; then
+            echo 'No changes.'
+          else
+            git commit -m 'Extract affected hero skin rankings [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
