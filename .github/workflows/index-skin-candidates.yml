@@ -1,0 +1,141 @@
+name: Index HOTS Skin Mesh Candidates
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/index-skin-candidates.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  index:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Clone source trees without blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none --no-checkout --depth 1 --branch main https://github.com/JimmyTheCool/HOTS-02.git "$RUNNER_TEMP/HOTS-02"
+          git clone --filter=blob:none --no-checkout --depth 1 --branch main https://github.com/JimmyTheCool/HOTS-03.git "$RUNNER_TEMP/HOTS-03"
+
+      - name: Build candidate index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json, re, subprocess
+
+          roots = {
+              'HOTS-02': Path.home() / 'work' / '_temp' / 'HOTS-02',
+              'HOTS-03': Path.home() / 'work' / '_temp' / 'HOTS-03',
+          }
+          # GitHub hosted runners expose RUNNER_TEMP; use environment if path differs.
+          import os
+          roots = {
+              'HOTS-02': Path(os.environ['RUNNER_TEMP']) / 'HOTS-02',
+              'HOTS-03': Path(os.environ['RUNNER_TEMP']) / 'HOTS-03',
+          }
+          aliases = {
+              'Alarak': ['alarak'],
+              'Arthas': ['arthas'],
+              'Blaze': ['firebat', 'blaze'],
+              'Cho-Gall': ['chogall', 'cho_gall', 'cho-gall'],
+              'Dehaka': ['dehaka'],
+              'ETC': ['etc'],
+              'Fenix': ['fenix'],
+              'Leoric': ['kingleoric', 'leoric'],
+              'Lt Morales': ['medic', 'morales'],
+              'Lunara': ['dryad', 'lunara'],
+              "Mal'Ganis": ['malganis'],
+              'Nova': ['nova'],
+              'Ragnaros': ['ragnaros'],
+              'Rexxar': ['rexxar'],
+              'Stukov': ['stukov'],
+              'Tychus': ['tychus'],
+              'Zagara': ['zagara'],
+              "Zul'jin": ['zuljin'],
+          }
+          reject_tokens = (
+              'death', 'ragdoll', 'requiredanim', 'facialanim', 'portrait',
+              'low', 'mount', 'vehicle', 'ability', 'missile', 'summon',
+              'effect', 'fx', 'preview', 'announcer', 'masterytaunt', 'dance',
+          )
+          result = {'heroes': {}}
+          for hero, keys in aliases.items():
+              candidates = []
+              for repo, root in roots.items():
+                  dirs = subprocess.check_output(
+                      ['git', '-C', str(root), 'ls-tree', '-d', '--name-only', 'HEAD'],
+                      text=True,
+                  ).splitlines()
+                  for directory in dirs:
+                      lower = directory.casefold()
+                      if not lower.startswith('storm_hero_'):
+                          continue
+                      if not any(key in lower for key in keys):
+                          continue
+                      if any(token in lower for token in reject_tokens):
+                          continue
+                      files = subprocess.check_output(
+                          ['git', '-C', str(root), 'ls-tree', '-r', '--name-only', 'HEAD', directory],
+                          text=True,
+                      ).splitlines()
+                      m3s = [f for f in files if f.casefold().endswith('.m3') and not f.casefold().endswith('_low.m3')]
+                      if not m3s:
+                          continue
+                      # Prefer the model whose filename mirrors the directory.
+                      preferred = sorted(
+                          m3s,
+                          key=lambda p: (
+                              Path(p).stem.casefold() != Path(directory).name.casefold(),
+                              '_low' in p.casefold(),
+                              len(p),
+                              p.casefold(),
+                          ),
+                      )[0]
+                      candidates.append({
+                          'repository': repo,
+                          'directory': directory,
+                          'model_path': preferred,
+                          'all_m3_paths': m3s,
+                      })
+              # Deduplicate same directory/path combinations.
+              seen = set()
+              unique = []
+              for candidate in sorted(candidates, key=lambda c: (c['directory'].casefold(), c['repository'])):
+                  key = (candidate['repository'], candidate['model_path'])
+                  if key not in seen:
+                      seen.add(key)
+                      unique.append(candidate)
+              result['heroes'][hero] = unique
+
+          out = Path('reference_analysis')
+          out.mkdir(parents=True, exist_ok=True)
+          (out / 'skin_candidates.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
+          with (out / 'skin_candidates.tsv').open('w', encoding='utf-8') as handle:
+              handle.write('Hero\tRepository\tDirectory\tModel Path\n')
+              for hero, candidates in result['heroes'].items():
+                  for candidate in candidates:
+                      handle.write(f"{hero}\t{candidate['repository']}\t{candidate['directory']}\t{candidate['model_path']}\n")
+          print(json.dumps({hero: len(items) for hero, items in result['heroes'].items()}, indent=2))
+          PY
+
+      - name: Commit candidate index
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/skin_candidates.json reference_analysis/skin_candidates.tsv
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add HOTS skin mesh candidate index [skip ci]'
+            git push origin HEAD:main
+          fi
