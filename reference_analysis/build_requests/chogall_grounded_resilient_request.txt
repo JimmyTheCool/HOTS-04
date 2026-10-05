@@ -1,0 +1,1 @@
+Build, salvage, validate and package the grounded Ultimate Cho-Gall photo-pose STL.
