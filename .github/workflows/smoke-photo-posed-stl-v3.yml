@@ -1,0 +1,366 @@
+name: Smoke Test Photo-Posed STL V3
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/smoke-photo-posed-stl-v3.yml'
+      - 'tools/resolve_pose_source_v3.py'
+      - 'tools/prepare_pose_reference_masks_v3.py'
+      - 'tools/build_one_photo_posed_v3.py'
+      - 'tools/make_pose_proof_sheet_v3.py'
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  smoke:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    steps:
+      - name: Check out HOTS-04 reference repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Resolve Alarak skin and photo configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, pathlib
+          hero = 'Alarak'
+          plan = json.load(open('reference_analysis/selected_skin_plan.json', encoding='utf-8'))['heroes'][hero]
+          config = {
+              'hero': hero,
+              'safe': 'Alarak',
+              'repository': plan['repository'],
+              'model_path': plan['model_path'],
+              'skin_key': plan['skin_key'],
+              'photos': plan['reference_images'],
+          }
+          pathlib.Path('smoke_config.json').write_text(json.dumps(config, indent=2), encoding='utf-8')
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as handle:
+              for key in ('hero', 'safe', 'repository', 'model_path', 'skin_key'):
+                  handle.write(f'{key.upper()}={config[key]}\n')
+          print(json.dumps(config, indent=2))
+          PY
+
+      - name: Clone proven repair and validation toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none --sparse --depth 1 \
+            --branch chatgpt-stl-builder \
+            https://github.com/JimmyTheCool/HOTS-03.git \
+            "$RUNNER_TEMP/HOTS-03-tools"
+          git -C "$RUNNER_TEMP/HOTS-03-tools" sparse-checkout set ci tools/hots_stl
+
+      - name: Resolve and check out selected model plus compatible animations
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_root="$RUNNER_TEMP/HOTS-source"
+          git clone --filter=blob:none --no-checkout --depth 1 --branch main \
+            "https://github.com/JimmyTheCool/${REPOSITORY}.git" "$source_root"
+          python tools/resolve_pose_source_v3.py \
+            --repo "$source_root" \
+            --model "$MODEL_PATH" \
+            --hero "$HERO" \
+            --output source_resolution.json
+          mapfile -t sparse_dirs < <(python - <<'PY'
+          import json
+          for value in json.load(open('source_resolution.json', encoding='utf-8'))['sparse_directories']:
+              print(value)
+          PY
+          )
+          test "${#sparse_dirs[@]}" -ge 2
+          git -C "$source_root" sparse-checkout init --cone
+          git -C "$source_root" sparse-checkout set "${sparse_dirs[@]}"
+          git -C "$source_root" checkout main
+          test -f "$source_root/$MODEL_PATH"
+          animation_count="$(python - <<'PY'
+          import json
+          print(len(json.load(open('source_resolution.json', encoding='utf-8'))['animation_paths']))
+          PY
+          )"
+          test "$animation_count" -ge 1
+          echo "SOURCE_ROOT=$source_root" >> "$GITHUB_ENV"
+
+      - name: Install Blender and native libraries
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            ca-certificates curl git xz-utils p7zip-full \
+            libx11-6 libxi6 libxrender1 libxfixes3 libxkbcommon0 \
+            libsm6 libice6 libgl1 libegl1
+          cd "$RUNNER_TEMP"
+          archive="blender-${BLENDER_VERSION}-linux-x64.tar.xz"
+          curl --fail --location --retry 5 --retry-delay 5 \
+            "https://download.blender.org/release/Blender3.6/${archive}" \
+            --output "$archive"
+          tar -xf "$archive"
+          blender="$RUNNER_TEMP/blender-${BLENDER_VERSION}-linux-x64/blender"
+          test -x "$blender"
+          echo "BLENDER=$blender" >> "$GITHUB_ENV"
+
+      - name: Install pinned M3 importer
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone https://github.com/SC2Mapster/m3addon.git "$RUNNER_TEMP/m3addon-src"
+          git -C "$RUNNER_TEMP/m3addon-src" checkout "$M3ADDON_COMMIT"
+          addon_dir="$HOME/.config/blender/3.6/scripts/addons"
+          mkdir -p "$addon_dir"
+          ln -s "$RUNNER_TEMP/m3addon-src" "$addon_dir/m3addon"
+
+      - name: Install scoring, repair and validation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet \
+            numpy==2.2.6 scipy==1.15.3 pillow==11.1.0 \
+            trimesh==4.8.3 scikit-image==0.25.2 pymeshfix==0.18.1 \
+            fast-simplification==0.1.12 matplotlib==3.10.1
+
+      - name: Verify compressed pose builder payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import ast, base64, hashlib, pathlib, re, zlib
+          path = pathlib.Path('tools/build_one_photo_posed_v3.py')
+          text = path.read_text(encoding='utf-8')
+          expected = re.search(r'Uncompressed source SHA-256:\n([0-9a-f]{64})', text).group(1)
+          tree = ast.parse(text)
+          payload = next(
+              ast.literal_eval(node.value)
+              for node in tree.body
+              if isinstance(node, ast.Assign)
+              for target in node.targets
+              if isinstance(target, ast.Name) and target.id == '_PAYLOAD'
+          )
+          source = zlib.decompress(base64.b85decode(payload)).decode('utf-8')
+          actual = hashlib.sha256(source.encode('utf-8')).hexdigest()
+          assert actual == expected, (actual, expected)
+          compile(source, str(path), 'exec')
+          print(f'Pose builder verified: {actual}')
+          PY
+
+      - name: Prepare four-view photograph masks
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t photos < <(python - <<'PY'
+          import json
+          for value in json.load(open('smoke_config.json', encoding='utf-8'))['photos']:
+              print(value)
+          PY
+          )
+          test "${#photos[@]}" -eq 4
+          mkdir -p "$RUNNER_TEMP/smoke/Reports"
+          python tools/prepare_pose_reference_masks_v3.py \
+            --hero "$HERO" \
+            --photos "${photos[@]}" \
+            --output-npz "$RUNNER_TEMP/smoke/Reports/reference_masks.npz" \
+            --preview "$RUNNER_TEMP/smoke/Reports/reference_masks_preview.jpg" \
+            --report "$RUNNER_TEMP/smoke/Reports/reference_masks.json"
+
+      - name: Prepare adaptive repair engines
+        shell: bash
+        run: |
+          set -euo pipefail
+          tools="$RUNNER_TEMP/HOTS-03-tools"
+          cp "$tools/ci/repair_stl_collection.py" "$RUNNER_TEMP/repair_normal.py"
+          python "$tools/ci/patch_repair_dimension_retention.py" "$RUNNER_TEMP/repair_normal.py"
+          python "$tools/ci/patch_repair_voxel_translation.py" "$RUNNER_TEMP/repair_normal.py"
+          python "$tools/ci/patch_repair_face_connectivity.py" "$RUNNER_TEMP/repair_normal.py"
+          cp "$RUNNER_TEMP/repair_normal.py" "$RUNNER_TEMP/repair_voxel.py"
+          python "$tools/ci/patch_repair_force_voxel.py" "$RUNNER_TEMP/repair_voxel.py"
+          python -m py_compile \
+            "$RUNNER_TEMP/repair_normal.py" \
+            "$RUNNER_TEMP/repair_voxel.py" \
+            "$tools/ci/repair_one_adaptive.py" \
+            "$tools/ci/validate_stl_collection.py" \
+            "$tools/ci/compare_stl_silhouette.py"
+
+      - name: Search animations and build photographed pose
+        shell: bash
+        run: |
+          set -euo pipefail
+          tools="$RUNNER_TEMP/HOTS-03-tools"
+          root="$RUNNER_TEMP/smoke"
+          hero_root="$root/HeroBuild"
+          mkdir -p "$hero_root"
+          cp "$tools/tools/hots_stl/runtime_extracted/build_hots_stls.py" "$hero_root/builder.py"
+          python "$tools/tools/hots_stl/runtime_patch_v2.py" "$hero_root/builder.py"
+          python "$tools/ci/patch_builder_external_validation.py" "$hero_root/builder.py"
+
+          mapfile -t animation_paths < <(python - <<'PY'
+          import json
+          for value in json.load(open('source_resolution.json', encoding='utf-8'))['animation_paths']:
+              print(value)
+          PY
+          )
+          animation_args=()
+          for relative in "${animation_paths[@]}"; do
+            test -f "$SOURCE_ROOT/$relative"
+            animation_args+=(--animation "$SOURCE_ROOT/$relative")
+          done
+          test "${#animation_args[@]}" -ge 2
+
+          "$BLENDER" --background --factory-startup \
+            --python tools/build_one_photo_posed_v3.py -- \
+            --builder "$hero_root/builder.py" \
+            --model "$SOURCE_ROOT/$MODEL_PATH" \
+            "${animation_args[@]}" \
+            --hero "$HERO" \
+            --skin-key "$SKIN_KEY" \
+            --reference-npz "$root/Reports/reference_masks.npz" \
+            --output "$hero_root" \
+            --target-height-mm 120 \
+            --base-height-mm 4.5 \
+            --base-margin-mm 5.0 \
+            --voxel-mm 0.30 \
+            --thin-part-mm 0.70 \
+            --max-triangles 600000 \
+            --max-animations 20 \
+            --max-coarse-frames 128 \
+            --refine-candidates 8 \
+            2>&1 | tee "$root/Reports/photo_pose_builder.log"
+
+          test -f "$hero_root/Raw/$SAFE.stl"
+          test -f "$hero_root/Initial/$SAFE.stl"
+          cp -a "$hero_root/Reports/." "$root/Reports/"
+          cp "$hero_root/Raw/$SAFE.stl" "$root/Raw_$SAFE.stl"
+          cp "$hero_root/Initial/$SAFE.stl" "$root/Initial_$SAFE.stl"
+
+      - name: Create four-view pose proof sheet
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t photos < <(python - <<'PY'
+          import json
+          for value in json.load(open('smoke_config.json', encoding='utf-8'))['photos']:
+              print(value)
+          PY
+          )
+          python tools/make_pose_proof_sheet_v3.py \
+            --hero "$HERO" \
+            --photos "${photos[@]}" \
+            --reference-npz "$RUNNER_TEMP/smoke/Reports/reference_masks.npz" \
+            --matched-dir "$RUNNER_TEMP/smoke/Reports" \
+            --pose-report "$RUNNER_TEMP/smoke/Reports/pose_match.json" \
+            --output "$RUNNER_TEMP/smoke/Reports/${SAFE}_pose_proof.jpg"
+
+      - name: Repair photographed-pose STL without changing pose
+        shell: bash
+        run: |
+          set -euo pipefail
+          tools="$RUNNER_TEMP/HOTS-03-tools"
+          root="$RUNNER_TEMP/smoke"
+          one_input="$RUNNER_TEMP/smoke-one"
+          mkdir -p "$one_input" "$root/Final"
+          cp "$root/Initial_$SAFE.stl" "$one_input/$SAFE.stl"
+
+          set +e
+          python "$tools/ci/repair_one_adaptive.py" \
+            --input-file "$one_input/$SAFE.stl" \
+            --output "$root/Final" \
+            --report-dir "$root/Reports/Adaptive" \
+            --normal-script "$RUNNER_TEMP/repair_normal.py" \
+            --voxel-script "$RUNNER_TEMP/repair_voxel.py" \
+            --validator "$tools/ci/validate_stl_collection.py" \
+            --silhouette "$tools/ci/compare_stl_silhouette.py" \
+            --max-triangles 600000 \
+            --target-triangles 500000 \
+            --minimum-dimension-retention 0.90 \
+            --maximum-dimension-retention 1.10 \
+            2>&1 | tee "$root/Reports/adaptive_repair.log"
+          adaptive_status=${PIPESTATUS[0]}
+          set -e
+
+          if [[ "$adaptive_status" -ne 0 || ! -f "$root/Final/$SAFE.stl" ]]; then
+            echo 'Adaptive repair failed; applying high-resolution connected voxel fallback.'
+            fallback="$RUNNER_TEMP/smoke-fallback"
+            mkdir -p "$fallback"
+            python "$RUNNER_TEMP/repair_voxel.py" \
+              --input "$one_input" \
+              --output "$fallback" \
+              --report-json "$root/Reports/fallback.json" \
+              --report-csv "$root/Reports/fallback.csv" \
+              --expected 1 \
+              --pitch 0.32 \
+              --max-triangles 600000 \
+              --target-triangles 500000 \
+              2>&1 | tee "$root/Reports/fallback.log"
+            cp "$fallback/$SAFE.stl" "$root/Final/$SAFE.stl"
+          fi
+          test -f "$root/Final/$SAFE.stl"
+
+      - name: Independently validate pose and printability
+        shell: bash
+        run: |
+          set -euo pipefail
+          tools="$RUNNER_TEMP/HOTS-03-tools"
+          root="$RUNNER_TEMP/smoke"
+          raw_dir="$RUNNER_TEMP/smoke-raw"
+          mkdir -p "$raw_dir"
+          cp "$root/Raw_$SAFE.stl" "$raw_dir/$SAFE.stl"
+
+          python "$tools/ci/validate_stl_collection.py" \
+            --input "$root/Final" \
+            --report-json "$root/Reports/final_validation.json" \
+            --report-csv "$root/Reports/final_validation.csv" \
+            --checksums "$root/Reports/SHA256SUMS.txt" \
+            --expected 1 \
+            2>&1 | tee "$root/Reports/final_validation.log"
+
+          python "$tools/ci/compare_stl_silhouette.py" \
+            --raw "$raw_dir" \
+            --repaired "$root/Final" \
+            --report-json "$root/Reports/pose_preservation.json" \
+            --report-csv "$root/Reports/pose_preservation.csv" \
+            --image "$root/Reports/pose_preservation.png" \
+            --expected 1 \
+            --pixel-mm 0.45 \
+            --tolerance-mm 1.35 \
+            --minimum-raw-coverage 0.940 \
+            --minimum-repaired-coverage 0.840 \
+            --minimum-iou 0.760 \
+            --maximum-points 700000 \
+            2>&1 | tee "$root/Reports/pose_preservation.log"
+
+          python - <<'PY'
+          import json, pathlib
+          report = json.load(open(pathlib.Path(__import__('os').environ['RUNNER_TEMP']) / 'smoke/Reports/pose_match.json', encoding='utf-8'))
+          selected = report['selected']
+          assert selected['pose_score'] > 0.20, selected
+          assert selected['animation_name'], selected
+          assert report['tested_pose_count'] > 1, report
+          print(json.dumps({
+              'selected_animation': selected['animation_name'],
+              'selected_frame': selected['frame'],
+              'pose_score': selected['pose_score'],
+              'rest_pose_score': report.get('rest_pose', {}).get('pose_score'),
+              'improvement_over_rest_pose': report.get('improvement_over_rest_pose'),
+              'tested_pose_count': report['tested_pose_count'],
+          }, indent=2))
+          PY
+
+      - name: Upload photographed-pose smoke result
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04-photo-posed-v3-smoke-Alarak
+          path: ${{ runner.temp }}/smoke
+          retention-days: 90
+          compression-level: 0
