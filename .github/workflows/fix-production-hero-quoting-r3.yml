@@ -1,0 +1,72 @@
+name: Apply Production Quoting Fix R3
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-production-hero-quoting-r3.yml'
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Patch hero-list transport
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('.github/workflows/build-selected-hero-stls.yml')
+          text = path.read_text(encoding='utf-8')
+          expression = '$' + '{{ matrix.heroes }}'
+          old_header = "      - name: Convert selected M3 skins to detailed and print-prepared STL\n        shell: bash\n        run: |"
+          new_header = "      - name: Convert selected M3 skins to detailed and print-prepared STL\n        shell: bash\n        env:\n          HERO_LIST: " + expression + "\n        run: |"
+          if old_header in text:
+              text = text.replace(old_header, new_header, 1)
+          elif ('          HERO_LIST: ' + expression) not in text:
+              raise SystemExit('conversion step header not found')
+
+          old_read = "          IFS='|' read -ra HERO_ITEMS <<< '" + expression + "'"
+          new_read = "          IFS='|' read -ra HERO_ITEMS <<< \"$HERO_LIST\""
+          if old_read in text:
+              text = text.replace(old_read, new_read, 1)
+          elif new_read not in text:
+              raise SystemExit('unsafe hero parsing line not found')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+          git diff -- .github/workflows/build-selected-hero-stls.yml
+
+      - name: Commit corrected production workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/build-selected-hero-stls.yml
+          if git diff --cached --quiet; then
+            echo 'Production workflow already corrected.'
+          else
+            git commit -m 'Make selected hero matrix safe for apostrophes'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Dispatch corrected production build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run build-selected-hero-stls.yml --repo "$GITHUB_REPOSITORY" --ref main
