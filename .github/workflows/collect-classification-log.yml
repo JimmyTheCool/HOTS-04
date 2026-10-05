@@ -1,0 +1,36 @@
+name: Collect Skin Classification Log
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/collect-classification-log.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Collect completed classifier log
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reference_analysis/logs
+          gh run view 37288935541 --repo "$GITHUB_REPOSITORY" --log \
+            > reference_analysis/logs/skin_classification_run1.log
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/logs/skin_classification_run1.log
+          git commit -m 'Add completed skin classification log [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
