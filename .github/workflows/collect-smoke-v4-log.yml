@@ -1,0 +1,43 @@
+name: Collect Photo-Pose Smoke V4 Log
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/collect-smoke-v4-log.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download failed smoke V4 log
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reference_analysis/logs
+          gh run view 37318856678 --repo "$GITHUB_REPOSITORY" --log-failed \
+            > reference_analysis/logs/photo_pose_smoke_v4_failed.log
+          test -s reference_analysis/logs/photo_pose_smoke_v4_failed.log
+
+      - name: Commit failure log
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/logs/photo_pose_smoke_v4_failed.log
+          git commit -m 'Record photo-pose smoke V4 failure log [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
