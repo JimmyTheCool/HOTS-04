@@ -1,0 +1,46 @@
+name: Smoke Test Photo-Posed STL V3 R3
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/smoke-photo-posed-stl-v3-r3.yml'
+      - 'tools/run_photo_posed_job_v3_2.py'
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  BLENDER_VERSION: 3.6.23
+  M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+
+jobs:
+  smoke:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 300
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Build Alarak from selected skin and photographed pose
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_photo_posed_job_v3_2.py \
+            --hero Alarak \
+            --max-animations 22 \
+            --max-coarse-frames 144 \
+            --refine-candidates 9
+
+      - name: Upload complete posed-model smoke package
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04-photo-posed-v3-r3-smoke-Alarak
+          path: ${{ runner.temp }}/HOTS04-photo-posed-v3-Alarak
+          retention-days: 90
+          compression-level: 0
