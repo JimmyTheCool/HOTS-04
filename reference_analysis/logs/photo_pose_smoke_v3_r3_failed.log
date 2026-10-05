@@ -1,0 +1,592 @@
+smoke	UNKNOWN STEP	﻿2026-10-05T11:08:01.6242365Z Current runner version: '2.337.0'
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6269792Z ##[group]Runner Image Provisioner
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6270887Z Hosted Compute Agent
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6271552Z Version: 20260901.588
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6272699Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6273536Z Build Date: 2026-09-01T19:56:44Z
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6274330Z Worker ID: {ae54b1ef-77ac-46d4-8d62-292aa0a29a3b}
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6275170Z Azure Region: westus2
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6275811Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6277779Z ##[group]Operating System
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6278560Z Ubuntu
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6279146Z 22.04.5
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6279775Z LTS
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6280366Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6280952Z ##[group]Runner Image
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6281691Z Image: ubuntu-22.04
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6282771Z Version: 20260927.309.1
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6284219Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20260927.309/images/ubuntu/Ubuntu2204-Readme.md
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6285857Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20260927.309
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6287083Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6288699Z ##[group]GITHUB_TOKEN Permissions
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6291111Z Actions: read
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6291988Z Contents: read
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6292760Z Metadata: read
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6293393Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6295633Z Secret source: Actions
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6296847Z Cache mode: write
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6297581Z Prepare workflow directory
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6788951Z Prepare all required actions
+smoke	UNKNOWN STEP	2026-10-05T11:08:01.6838950Z Getting action download info
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.0380915Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.1324438Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.3471319Z Complete job name: smoke
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4279381Z ##[group]Run actions/checkout@v4
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4280302Z with:
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4280739Z   ref: main
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4281166Z   fetch-depth: 1
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4281641Z   repository: JimmyTheCool/HOTS-04
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4285954Z   token: ***
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4286407Z   ssh-strict: true
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4286857Z   ssh-user: git
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4287313Z   persist-credentials: true
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4287811Z   clean: true
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4288263Z   sparse-checkout-cone-mode: true
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4288805Z   fetch-tags: false
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4289257Z   show-progress: true
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4289707Z   lfs: false
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4290131Z   submodules: false
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4290587Z   set-safe-directory: true
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4291102Z   allow-unsafe-pr-checkout: false
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4292079Z env:
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4292525Z   BLENDER_VERSION: 3.6.23
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4293152Z   M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.4293823Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5398817Z Syncing repository: JimmyTheCool/HOTS-04
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5400725Z ##[group]Getting Git version info
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5401450Z Working directory is '/home/runner/work/HOTS-04/HOTS-04'
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5403073Z [command]/usr/bin/git version
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5506298Z git version 2.55.0
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5541711Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5556262Z Temporarily overriding HOME='/home/runner/work/_temp/4a0a5122-303f-45f5-9dfb-ceae59fca1fa' before making global git config changes
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5558979Z Adding repository directory to the temporary git global config as a safe directory
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5563545Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/HOTS-04/HOTS-04
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5615490Z Deleting the contents of '/home/runner/work/HOTS-04/HOTS-04'
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5620036Z ##[group]Initializing the repository
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5624622Z [command]/usr/bin/git init /home/runner/work/HOTS-04/HOTS-04
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5756317Z hint: Using 'master' as the name for the initial branch. This default branch name
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5758211Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5759993Z hint: to use in all of your new repositories, which will suppress this warning,
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5761467Z hint: call:
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5762682Z hint:
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5763791Z hint: 	git config --global init.defaultBranch <name>
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5764978Z hint:
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5766062Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5767858Z hint: 'development'. The just-created branch can be renamed via this command:
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5769316Z hint:
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5770372Z hint: 	git branch -m <name>
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5771339Z hint:
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5772850Z hint: Disable this message with "git config set advice.defaultBranchName false"
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5774768Z Initialized empty Git repository in /home/runner/work/HOTS-04/HOTS-04/.git/
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5778048Z [command]/usr/bin/git remote add origin https://github.com/JimmyTheCool/HOTS-04
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5819054Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5820402Z ##[group]Disabling automatic garbage collection
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5825977Z [command]/usr/bin/git config --local gc.auto 0
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5864844Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5866124Z ##[group]Setting up auth
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5875107Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.5917499Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.6368591Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.6417849Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.6709897Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.6750431Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.7039411Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.7085985Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.7087674Z ##[group]Fetching the repository
+smoke	UNKNOWN STEP	2026-10-05T11:08:02.7096836Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5548855Z From https://github.com/JimmyTheCool/HOTS-04
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5551015Z  * [new branch]      main       -> origin/main
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5555618Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5557846Z ##[group]Determining the checkout info
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5564734Z [command]/usr/bin/git branch --list --remote origin/main
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5598367Z   origin/main
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5604513Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5611069Z [command]/usr/bin/git sparse-checkout disable
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5666305Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5706515Z ##[group]Checking out the ref
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.5711563Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7096863Z Switched to a new branch 'main'
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7098409Z branch 'main' set up to track 'origin/main'.
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7113658Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7161290Z [command]/usr/bin/git log -1 --format=%H
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7195040Z ccddfd6cb0524dc0ecc92afe24e9775c2f81531b
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7410750Z ##[group]Run set -euo pipefail
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7411219Z ^[[36;1mset -euo pipefail^[[0m
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7412147Z ^[[36;1mpython tools/run_photo_posed_job_v3_2.py \^[[0m
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7412606Z ^[[36;1m  --hero Alarak \^[[0m
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7412913Z ^[[36;1m  --max-animations 22 \^[[0m
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7413239Z ^[[36;1m  --max-coarse-frames 144 \^[[0m
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7413563Z ^[[36;1m  --refine-candidates 9^[[0m
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7757511Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7757985Z env:
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7758249Z   BLENDER_VERSION: 3.6.23
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7758602Z   M3ADDON_COMMIT: 58935005c4465a219a740f6b740253533eda773f
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.7758977Z ##[endgroup]
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8284652Z [photo-pose-job] {
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8285307Z   "hero": "Alarak",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8285680Z   "safe": "Alarak",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8286021Z   "repository": "HOTS-02",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8286586Z   "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8287082Z   "skin_key": "base",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8287398Z   "photos": [
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8287705Z     "Alarak01.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8288008Z     "Alarak02.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8288302Z     "Alarak03.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8288598Z     "Alarak04.jpg"
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8288885Z   ],
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8289166Z   "selected_skin_plan": {
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8289495Z     "skin_key": "base",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8289836Z     "directory": "storm_hero_alarak_base",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8290232Z     "repository": "HOTS-02",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8290688Z     "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8291279Z     "selection_method": "four-view CLIP appearance classification",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8292126Z     "reference_images": [
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8292489Z       "Alarak01.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8292796Z       "Alarak02.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8293102Z       "Alarak03.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8293412Z       "Alarak04.jpg"
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8293710Z     ]
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8293973Z   }
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8294235Z }
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8295421Z [photo-pose-job] RUN git clone --filter=blob:none --sparse --depth 1 --branch chatgpt-stl-builder https://github.com/JimmyTheCool/HOTS-03.git /home/runner/work/_temp/HOTS-03-tools
+smoke	UNKNOWN STEP	2026-10-05T11:08:04.8300426Z Cloning into '/home/runner/work/_temp/HOTS-03-tools'...
+smoke	UNKNOWN STEP	2026-10-05T11:08:05.6906994Z [photo-pose-job] RUN git -C /home/runner/work/_temp/HOTS-03-tools sparse-checkout set ci tools/hots_stl
+smoke	UNKNOWN STEP	2026-10-05T11:08:05.8947816Z [photo-pose-job] RUN git clone --filter=blob:none --no-checkout --depth 1 --branch main https://github.com/JimmyTheCool/HOTS-02.git /home/runner/work/_temp/source-Alarak
+smoke	UNKNOWN STEP	2026-10-05T11:08:05.8964521Z Cloning into '/home/runner/work/_temp/source-Alarak'...
+smoke	UNKNOWN STEP	2026-10-05T11:08:06.1985888Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/resolve_pose_source_v3.py --repo /home/runner/work/_temp/source-Alarak --model storm_hero_alarak_base/storm_hero_alarak_base.m3 --hero Alarak --output /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/source_resolution.json
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0568448Z {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0568995Z   "hero": "Alarak",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0569819Z   "model_path": "storm_hero_alarak_base/storm_hero_alarak_base.m3",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0570618Z   "model_directory": "storm_hero_alarak_base",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0571202Z   "model_key": "alarak_base",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0571646Z   "animation_hint": null,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0573102Z   "animation_path": "storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0574063Z   "animation_directory": "storm_hero_alarak_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0575004Z   "animation_paths": [
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0575666Z     "storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0576805Z     "storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a"
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0578264Z   ],
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0579532Z   "animation_directories": [
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0580140Z     "storm_hero_alarak_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0581092Z     "storm_hero_alarak_dark18_requiredanims"
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0581651Z   ],
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0582371Z   "sparse_directories": [
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0582855Z     "storm_hero_alarak_base",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0583393Z     "storm_hero_alarak_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0583989Z     "storm_hero_alarak_dark18_requiredanims"
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0584548Z   ],
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0584939Z   "top_animation_candidates": [
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0585417Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0586019Z       "path": "storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0586802Z       "directory": "storm_hero_alarak_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0587402Z       "animation_key": "alarak",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0587867Z       "bytes": 4618912,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0588229Z       "score": 10174.378,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0588600Z       "reasons": [
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0589054Z         "generic animation key is a prefix of selected skin",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0589432Z         "1 leading token(s) match"
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0589682Z       ]
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0589856Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0590033Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0590399Z       "path": "storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0590926Z       "directory": "storm_hero_alarak_dark18_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0591257Z       "animation_key": "alarak_dark18",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0591524Z       "bytes": 3502624,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0591741Z       "score": 1916.719,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0592370Z       "reasons": [
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0592595Z         "1 leading token(s) match"
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0592835Z       ]
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0593010Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0593184Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0593503Z       "path": "storm_hero_hogger_requiredanims/storm_hero_hogger_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0593957Z       "directory": "storm_hero_hogger_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0594270Z       "animation_key": "hogger",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0594526Z       "bytes": 17222128,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0594744Z       "score": 334.443,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0594953Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0595147Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0595328Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0595743Z       "path": "storm_hero_chen_base_morph_requiredanims/storm_hero_chen_base_morph_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0678962Z       "directory": "storm_hero_chen_base_morph_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0679832Z       "animation_key": "chen_base_morph",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0680360Z       "bytes": 2368944,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0680725Z       "score": 239.379,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0681059Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0681410Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0682907Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0683463Z       "path": "storm_hero_chogall_requiredanims/storm_hero_chogall_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0684264Z       "directory": "storm_hero_chogall_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0684754Z       "animation_key": "chogall",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0685190Z       "bytes": 10061904,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0685556Z       "score": 193.238,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0685927Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0686286Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0686579Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0687255Z       "path": "storm_hero_brightwing_requiredanims/storm_hero_brightwing_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0688070Z       "directory": "storm_hero_brightwing_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0688648Z       "animation_key": "brightwing",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0689097Z       "bytes": 7930512,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0689492Z       "score": 156.61,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0689861Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0690204Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0690494Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0691052Z       "path": "storm_hero_auriel_requiredanims/storm_hero_auriel_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0692541Z       "directory": "storm_hero_auriel_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0693159Z       "animation_key": "auriel",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0693876Z       "bytes": 5141312,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0694284Z       "score": 104.826,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0694657Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0695000Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0695310Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0695877Z       "path": "storm_hero_illidan_requiredanims/storm_hero_illidan_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0696675Z       "directory": "storm_hero_illidan_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0697249Z       "animation_key": "illidan",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0697681Z       "bytes": 5536544,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0698051Z       "score": 102.731,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0698421Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0698764Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0699061Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0699627Z       "path": "storm_hero_falstad_requiredanims/storm_hero_falstad_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0700412Z       "directory": "storm_hero_falstad_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0701046Z       "animation_key": "falstad",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0701488Z       "bytes": 5260800,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0702838Z       "score": 97.216,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0703110Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0703324Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0703505Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0703831Z       "path": "storm_hero_dryad_requiredanims/storm_hero_dryad_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0704280Z       "directory": "storm_hero_dryad_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0704585Z       "animation_key": "dryad",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0704822Z       "bytes": 5294224,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0705032Z       "score": 93.884,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0705237Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0705429Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0705611Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0705926Z       "path": "storm_hero_arthas_requiredanims/storm_hero_arthas_requiredanims.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0706374Z       "directory": "storm_hero_arthas_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0706675Z       "animation_key": "arthas",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0706925Z       "bytes": 4584384,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0707134Z       "score": 93.688,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0707341Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0707529Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0707697Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0708018Z       "path": "storm_hero_diablo_requiredanims/storm_hero_diablo_requiredanims_v01.m3a",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0708470Z       "directory": "storm_hero_diablo_requiredanims",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0708766Z       "animation_key": "diablo",
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0709001Z       "bytes": 5146336,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0709207Z       "score": 92.927,
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0709409Z       "reasons": []
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0709597Z     }
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0709765Z   ]
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0709937Z }
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0710374Z [photo-pose-job] RUN git -C /home/runner/work/_temp/source-Alarak sparse-checkout init --cone
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0711303Z [photo-pose-job] RUN git -C /home/runner/work/_temp/source-Alarak sparse-checkout set storm_hero_alarak_base storm_hero_alarak_requiredanims storm_hero_alarak_dark18_requiredanims
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.0712698Z [photo-pose-job] RUN git -C /home/runner/work/_temp/source-Alarak checkout main
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.1314185Z Already on 'main'
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.1317995Z Your branch is up to date with 'origin/main'.
+smoke	UNKNOWN STEP	2026-10-05T11:10:57.1337017Z [photo-pose-job] RUN sudo apt-get update -qq
+smoke	UNKNOWN STEP	2026-10-05T11:11:05.9782194Z [photo-pose-job] RUN sudo apt-get install -y --no-install-recommends ca-certificates curl git xz-utils p7zip-full libx11-6 libxi6 libxrender1 libxfixes3 libxkbcommon0 libsm6 libice6 libgl1 libegl1
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.0328973Z Reading package lists...
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.3528573Z Building dependency tree...
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.3540551Z Reading state information...
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6372229Z libgl1 is already the newest version (1.4.0-1).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6372868Z libgl1 set to manually installed.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6373497Z libice6 is already the newest version (2:1.0.10-1build2).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6374703Z libice6 set to manually installed.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6375293Z libsm6 is already the newest version (2:1.2.3-1build2).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6375883Z libsm6 set to manually installed.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6376815Z libxfixes3 is already the newest version (1:6.0.0-1).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6377451Z libxfixes3 set to manually installed.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6378127Z libxi6 is already the newest version (2:1.8-1build1).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6378804Z libxi6 set to manually installed.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6379341Z libxkbcommon0 is already the newest version (1.4.0-1).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6379943Z libxkbcommon0 set to manually installed.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6380556Z libxrender1 is already the newest version (1:0.9.10-1build4).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6381183Z libxrender1 set to manually installed.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6381969Z p7zip-full is already the newest version (16.02+dfsg-8).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6382708Z ca-certificates is already the newest version (20260601~22.04.1).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6383422Z curl is already the newest version (7.81.0-1ubuntu1.29).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6384043Z libx11-6 is already the newest version (2:1.7.5-1ubuntu0.3).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6384612Z libx11-6 set to manually installed.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6385136Z xz-utils is already the newest version (5.2.5-2ubuntu1.1).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6385777Z git is already the newest version (1:2.55.0-0ppa1~ubuntu22.04.2).
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6386416Z The following additional packages will be installed:
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6387129Z   libegl-mesa0
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6635403Z The following NEW packages will be installed:
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6652871Z   libegl-mesa0 libegl1
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6875762Z 0 upgraded, 2 newly installed, 0 to remove and 20 not upgraded.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6877025Z Need to get 147 kB of archives.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6877754Z After this operation, 484 kB of additional disk space will be used.
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.6878428Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+smoke	UNKNOWN STEP	2026-10-05T11:11:06.8555379Z Get:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libegl-mesa0 amd64 23.2.1-1ubuntu3.1~22.04.4 [118 kB]
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.1786466Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 libegl1 amd64 1.4.0-1 [28.6 kB]
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5307169Z Fetched 147 kB in 1s (284 kB/s)
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5582737Z Selecting previously unselected package libegl-mesa0:amd64.
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5902859Z (Reading database ... 
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5903298Z (Reading database ... 5%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5903661Z (Reading database ... 10%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5904074Z (Reading database ... 15%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5904483Z (Reading database ... 20%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5904974Z (Reading database ... 25%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5905481Z (Reading database ... 30%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5905917Z (Reading database ... 35%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5906275Z (Reading database ... 40%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5906618Z (Reading database ... 45%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.5906965Z (Reading database ... 50%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.6595978Z (Reading database ... 55%
+smoke	UNKNOWN STEP	2026-10-05T11:11:07.8667828Z (Reading database ... 60%
+smoke	UNKNOWN STEP	2026-10-05T11:11:08.0703041Z (Reading database ... 65%
+smoke	UNKNOWN STEP	2026-10-05T11:11:08.2784473Z (Reading database ... 70%
+smoke	UNKNOWN STEP	2026-10-05T11:11:08.4578037Z (Reading database ... 75%
+smoke	UNKNOWN STEP	2026-10-05T11:11:08.6097313Z (Reading database ... 80%
+smoke	UNKNOWN STEP	2026-10-05T11:11:08.8376994Z (Reading database ... 85%
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.0673277Z (Reading database ... 90%
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.2811386Z (Reading database ... 95%
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.2812206Z (Reading database ... 100%
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.2812682Z (Reading database ... 260411 files and directories currently installed.)
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.2866779Z Preparing to unpack .../libegl-mesa0_23.2.1-1ubuntu3.1~22.04.4_amd64.deb ...
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.2902807Z Unpacking libegl-mesa0:amd64 (23.2.1-1ubuntu3.1~22.04.4) ...
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.3195911Z Selecting previously unselected package libegl1:amd64.
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.3406421Z Preparing to unpack .../libegl1_1.4.0-1_amd64.deb ...
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.3413929Z Unpacking libegl1:amd64 (1.4.0-1) ...
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.3937086Z Setting up libegl-mesa0:amd64 (23.2.1-1ubuntu3.1~22.04.4) ...
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.3956678Z Setting up libegl1:amd64 (1.4.0-1) ...
+smoke	UNKNOWN STEP	2026-10-05T11:11:09.3979021Z Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0887450Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0888072Z Running kernel seems to be up-to-date.
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0888487Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0888661Z No services need to be restarted.
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0888977Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0889147Z No containers need to be restarted.
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0889445Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0889660Z No user sessions are running outdated binaries.
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0890028Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:10.0890373Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+smoke	UNKNOWN STEP	2026-10-05T11:11:12.2102977Z [photo-pose-job] RUN curl --fail --location --retry 5 --retry-delay 5 https://download.blender.org/release/Blender3.6/blender-3.6.23-linux-x64.tar.xz --output /home/runner/work/_temp/blender-3.6.23-linux-x64.tar.xz
+smoke	UNKNOWN STEP	2026-10-05T11:11:12.2175981Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+smoke	UNKNOWN STEP	2026-10-05T11:11:12.2177188Z                                  Dload  Upload   Total   Spent    Left  Speed
+smoke	UNKNOWN STEP	2026-10-05T11:11:12.2178205Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:12.3696004Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+smoke	UNKNOWN STEP	2026-10-05T11:11:13.3542406Z   2  260M    2 6983k    0     0  44.7M      0  0:00:05 --:--:--  0:00:05 44.5M
+smoke	UNKNOWN STEP	2026-10-05T11:11:13.3542977Z 100  260M  100  260M    0     0   228M      0  0:00:01  0:00:01 --:--:--  229M
+smoke	UNKNOWN STEP	2026-10-05T11:11:13.3569457Z [photo-pose-job] RUN tar -xf /home/runner/work/_temp/blender-3.6.23-linux-x64.tar.xz -C /home/runner/work/_temp
+smoke	UNKNOWN STEP	2026-10-05T11:11:30.3682224Z [photo-pose-job] RUN git clone https://github.com/SC2Mapster/m3addon.git /home/runner/work/_temp/m3addon-src
+smoke	UNKNOWN STEP	2026-10-05T11:11:30.3697540Z Cloning into '/home/runner/work/_temp/m3addon-src'...
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1225050Z [photo-pose-job] RUN git -C /home/runner/work/_temp/m3addon-src checkout 58935005c4465a219a740f6b740253533eda773f
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1279483Z Note: switching to '58935005c4465a219a740f6b740253533eda773f'.
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1279968Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1280293Z You are in 'detached HEAD' state. You can look around, make experimental
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1281097Z changes and commit them, and you can discard any commits you make in this
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1282094Z state without impacting any branches by switching back to a branch.
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1282581Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1282892Z If you want to create a new branch to retain commits you create, you may
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1283623Z do so (now or later) by using -c with the switch command. Example:
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1283907Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1284019Z   git switch -c <new-branch-name>
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1284201Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1284308Z Or undo this operation with:
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1284476Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1284618Z   git switch -
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1284813Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1285156Z Turn off this advice by setting config variable advice.detachedHead to false
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1285642Z 
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1285823Z HEAD is now at 5893500 *Farewell*
+smoke	UNKNOWN STEP	2026-10-05T11:11:31.1290773Z [photo-pose-job] RUN /usr/bin/python -m pip install --disable-pip-version-check --quiet numpy==2.2.6 scipy==1.15.3 pillow==11.1.0 trimesh==4.8.3 scikit-image==0.25.2 pymeshfix==0.18.1 fast-simplification==0.1.12 matplotlib==3.10.1 opencv-python-headless==4.12.0.88
+smoke	UNKNOWN STEP	2026-10-05T11:11:47.6297036Z [photo-pose-job] Verified pose builder payload 17f312b45d5b5d5eabc34ff9566f93737772ca6038ee0b11955328c610793ab3
+smoke	UNKNOWN STEP	2026-10-05T11:11:47.6300490Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/prepare_pose_reference_masks_v4.py --hero Alarak --photos /home/runner/work/HOTS-04/HOTS-04/Alarak01.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak02.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak03.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak04.jpg --output-npz /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.npz --preview /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/Alarak_reference_masks.jpg --report /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.json
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8120555Z {
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8120919Z   "hero": "Alarak",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8121254Z   "version": 4,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8122082Z   "method": "cross-view difference + border appearance + GrabCut + central component filtering",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8122771Z   "canvas": 128,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8123082Z   "inner": 112,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8123351Z   "views": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8123615Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8123861Z       "view": 1,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8124259Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak01.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8124735Z       "source_size": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8125030Z         521,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8125281Z         779
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8125526Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8125804Z       "analysis_size": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8126118Z         521,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8126401Z         779
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8126645Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8126920Z       "method": "cross-view-grabcut",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8127353Z       "analysis_area_pixels": 243631,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8127785Z       "normalized_area_pixels": 5772,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8128162Z       "normalized_aspect": 0.6875,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8128511Z       "background_rgb": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8128824Z         14.0,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8129085Z         15.0,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8129355Z         78.0
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8129601Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8129859Z       "motion_p95": 0.9125293493270874,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8130254Z       "colour_distance_p95": 124.20547485351562
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8130648Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8130889Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8131136Z       "view": 2,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8131513Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak02.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8132210Z       "source_size": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8132498Z         634,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8132750Z         815
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8132995Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8133259Z       "analysis_size": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8133561Z         521,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8133809Z         779
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8134053Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8134325Z       "method": "cross-view-grabcut",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8134707Z       "analysis_area_pixels": 196568,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8135094Z       "normalized_area_pixels": 4418,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8135481Z       "normalized_aspect": 0.6696428571428571,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8135875Z       "background_rgb": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8136178Z         13.0,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8136444Z         12.0,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8136696Z         48.0
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8136951Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8137203Z       "motion_p95": 0.9285172820091248,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8137591Z       "colour_distance_p95": 135.5986785888672
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8137976Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8138219Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8138461Z       "view": 3,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8138833Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak03.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8139313Z       "source_size": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8139634Z         503,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8139913Z         802
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8140176Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8140455Z       "analysis_size": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8140782Z         521,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8141053Z         779
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8141308Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8141604Z       "method": "cross-view-grabcut",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8142280Z       "analysis_area_pixels": 202110,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8142691Z       "normalized_area_pixels": 5442,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8143123Z       "normalized_aspect": 0.7321428571428571,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8143553Z       "background_rgb": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8143892Z         14.0,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8144170Z         18.0,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8144442Z         50.0
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8144718Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8145018Z       "motion_p95": 0.9307048916816711,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8145793Z       "colour_distance_p95": 131.9090576171875
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8146232Z     },
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8146490Z     {
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8147040Z       "view": 4,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8147461Z       "photo": "/home/runner/work/HOTS-04/HOTS-04/Alarak04.jpg",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8147951Z       "source_size": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8148259Z         557,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8148530Z         794
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8148798Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8149078Z       "analysis_size": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8149404Z         521,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8149800Z         779
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8150064Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8150360Z       "method": "cross-view-grabcut",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8150770Z       "analysis_area_pixels": 153936,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8151188Z       "normalized_area_pixels": 3455,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8151617Z       "normalized_aspect": 0.6607142857142857,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8152260Z       "background_rgb": [
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8152592Z         13.0,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8152860Z         12.0,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8153142Z         46.0
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8153426Z       ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8153724Z       "motion_p95": 0.9542912840843201,
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8154161Z       "colour_distance_p95": 159.67779541015625
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8154598Z     }
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8154874Z   ],
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8155466Z   "npz": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.npz",
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8156572Z   "preview": "/home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/Alarak_reference_masks.jpg"
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8157329Z }
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8500611Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_dimension_retention.py /home/runner/work/_temp/repair-normal-Alarak.py
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8702916Z Patched /home/runner/work/_temp/repair-normal-Alarak.py with dimensional-retention protection
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8734385Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_voxel_translation.py /home/runner/work/_temp/repair-normal-Alarak.py
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8933356Z Patched /home/runner/work/_temp/repair-normal-Alarak.py to use VoxelGrid.translation
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.8963218Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_face_connectivity.py /home/runner/work/_temp/repair-normal-Alarak.py
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.9168030Z Patched /home/runner/work/_temp/repair-normal-Alarak.py for face-connected voxel unions
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.9205954Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_repair_force_voxel.py /home/runner/work/_temp/repair-voxel-Alarak.py
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.9409113Z Patched /home/runner/work/_temp/repair-voxel-Alarak.py to force face-connected voxel reconstruction when needed
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.9443385Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/tools/hots_stl/runtime_patch_v2.py /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/builder.py
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.9655287Z Patched /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/builder.py to HOTS STL Builder v2.1.0
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.9688070Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/_temp/HOTS-03-tools/ci/patch_builder_external_validation.py /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/builder.py
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.9886738Z Patched builder to defer geometric watertightness to independent trimesh validation
+smoke	UNKNOWN STEP	2026-10-05T11:12:14.9922782Z [photo-pose-job] RUN /home/runner/work/_temp/blender-3.6.23-linux-x64/blender --background --factory-startup --python /home/runner/work/HOTS-04/HOTS-04/tools/build_one_photo_posed_v3.py -- --builder /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild/builder.py --model /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3 --animation /home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a --animation /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a --hero Alarak --skin-key base --reference-npz /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.npz --output /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/HeroBuild --target-height-mm 120 --base-height-mm 4.5 --base-margin-mm 5.0 --voxel-mm 0.30 --thin-part-mm 0.70 --max-triangles 600000 --max-animations 22 --max-coarse-frames 144 --refine-candidates 9
+smoke	UNKNOWN STEP	2026-10-05T11:12:15.2577900Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+smoke	UNKNOWN STEP	2026-10-05T11:12:15.2578762Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+smoke	UNKNOWN STEP	2026-10-05T11:12:15.2579620Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+smoke	UNKNOWN STEP	2026-10-05T11:12:15.2580436Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+smoke	UNKNOWN STEP	2026-10-05T11:12:15.2581270Z ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+smoke	UNKNOWN STEP	2026-10-05T11:12:15.2582451Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+smoke	UNKNOWN STEP	2026-10-05T11:12:15.2583355Z ALSA lib conf.c:5705:(snd_config_expand) Evaluate error: No such file or directory
+smoke	UNKNOWN STEP	2026-10-05T11:12:15.2584088Z ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+smoke	UNKNOWN STEP	2026-10-05T11:12:15.2867777Z Failed to open dir (No such file or directory): /run/user/1001/gvfs/
+smoke	UNKNOWN STEP	2026-10-05T11:12:16.2574009Z [11:12:16] Enabling m3addon
+smoke	UNKNOWN STEP	2026-10-05T11:12:16.4410672Z [POSE] Importing selected skin for pose search: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+smoke	UNKNOWN STEP	2026-10-05T11:12:16.4412867Z 2026-10-05 11:12:16,441,441 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+smoke	UNKNOWN STEP	2026-10-05T11:12:17.5233733Z Info: Removed 68 vertice(s)
+smoke	UNKNOWN STEP	2026-10-05T11:12:17.5234621Z Info: Removed 17 vertice(s)
+smoke	UNKNOWN STEP	2026-10-05T11:12:17.5235461Z [POSE] Unposed/rest-pose baseline score: 0.5359
+smoke	UNKNOWN STEP	2026-10-05T11:12:17.5236781Z [POSE] Importing pose bank: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a
+smoke	UNKNOWN STEP	2026-10-05T11:12:17.5243578Z 2026-10-05 11:12:17,523,523 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_requiredanims/storm_hero_alarak_requiredanims.m3a
+smoke	UNKNOWN STEP	2026-10-05T11:12:26.9355903Z [POSE] Importing pose bank: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	UNKNOWN STEP	2026-10-05T11:12:26.9390969Z 2026-10-05 11:12:26,938,938 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	UNKNOWN STEP	2026-10-05T11:12:34.5138241Z [POSE] Pose search will test 144 frames from 22 animations
+smoke	UNKNOWN STEP	2026-10-05T11:12:35.0983386Z [POSE] Coarse 1/144; best Stand Ready frame 1 score 0.6440
+smoke	UNKNOWN STEP	2026-10-05T11:12:39.1644741Z [POSE] Coarse 8/144; best Stand Ready frame 2 score 0.6453
+smoke	UNKNOWN STEP	2026-10-05T11:12:43.8381435Z [POSE] Coarse 16/144; best Stand Ready frame 2 score 0.6453
+smoke	UNKNOWN STEP	2026-10-05T11:12:48.4833415Z [POSE] Coarse 24/144; best Stand Ready frame 2 score 0.6453
+smoke	UNKNOWN STEP	2026-10-05T11:12:53.1308246Z [POSE] Coarse 32/144; best Stand Ready frame 2 score 0.6453
+smoke	UNKNOWN STEP	2026-10-05T11:12:57.7724161Z [POSE] Coarse 40/144; best Stand Ready frame 2 score 0.6453
+smoke	UNKNOWN STEP	2026-10-05T11:13:02.4541548Z [POSE] Coarse 48/144; best Stand Ready frame 2 score 0.6453
+smoke	UNKNOWN STEP	2026-10-05T11:13:07.1089777Z [POSE] Coarse 56/144; best Stand Ready frame 2 score 0.6453
+smoke	UNKNOWN STEP	2026-10-05T11:13:11.7575539Z [POSE] Coarse 64/144; best Stand Ready frame 2 score 0.6453
+smoke	UNKNOWN STEP	2026-10-05T11:13:16.4011286Z [POSE] Coarse 72/144; best Stand Ready End 01 frame 44 score 0.6569
+smoke	UNKNOWN STEP	2026-10-05T11:13:21.0651473Z [POSE] Coarse 80/144; best Stand Ready End 01 frame 44 score 0.6569
+smoke	UNKNOWN STEP	2026-10-05T11:13:25.7448366Z [POSE] Coarse 88/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	UNKNOWN STEP	2026-10-05T11:13:30.4173326Z [POSE] Coarse 96/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	UNKNOWN STEP	2026-10-05T11:13:35.0999807Z [POSE] Coarse 104/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	UNKNOWN STEP	2026-10-05T11:13:39.8022846Z [POSE] Coarse 112/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	UNKNOWN STEP	2026-10-05T11:13:44.5159932Z [POSE] Coarse 120/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	UNKNOWN STEP	2026-10-05T11:13:49.2173767Z [POSE] Coarse 128/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	UNKNOWN STEP	2026-10-05T11:13:53.8837394Z [POSE] Coarse 136/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	UNKNOWN STEP	2026-10-05T11:13:58.5927489Z [POSE] Coarse 144/144; best Stand Ready End S 01 frame 8 score 0.6626
+smoke	UNKNOWN STEP	2026-10-05T11:14:20.3013891Z [POSE] Selected pose: Stand Ready S 01 frame 16 score 0.6694, source=/home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	UNKNOWN STEP	2026-10-05T11:14:20.3948910Z [11:14:20] Importing M3: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+smoke	UNKNOWN STEP	2026-10-05T11:14:20.3973633Z 2026-10-05 11:14:20,396,396 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_base/storm_hero_alarak_base.m3
+smoke	UNKNOWN STEP	2026-10-05T11:14:20.8623878Z Info: Removed 68 vertice(s)
+smoke	UNKNOWN STEP	2026-10-05T11:14:20.8624415Z Info: Removed 17 vertice(s)
+smoke	UNKNOWN STEP	2026-10-05T11:14:20.8625576Z [11:14:20] Importing required animation: /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	UNKNOWN STEP	2026-10-05T11:14:20.8629305Z 2026-10-05 11:14:20,862,862 DEBUG  base.py:152 Import /home/runner/work/_temp/source-Alarak/storm_hero_alarak_dark18_requiredanims/storm_hero_alarak_dark18_requiredanims.m3a
+smoke	UNKNOWN STEP	2026-10-05T11:15:34.4175872Z Info: Removed 73 vertice(s)
+smoke	UNKNOWN STEP	2026-10-05T11:15:34.4176363Z Info: Removed: 0 vertices, 0 edges, 0 faces
+smoke	UNKNOWN STEP	2026-10-05T11:15:34.4176826Z Info: Removed 68 vertice(s)
+smoke	UNKNOWN STEP	2026-10-05T11:15:34.4177228Z Info: Removed: 0 vertices, 0 edges, 0 faces
+smoke	UNKNOWN STEP	2026-10-05T11:15:34.4177679Z Info: Removed 5 vertice(s)
+smoke	UNKNOWN STEP	2026-10-05T11:15:34.4178078Z Info: Removed: 0 vertices, 0 edges, 0 faces
+smoke	UNKNOWN STEP	2026-10-05T11:15:34.4178548Z Info: Removed 2 vertice(s)
+smoke	UNKNOWN STEP	2026-10-05T11:15:34.4178941Z Info: Removed: 0 vertices, 0 edges, 0 faces
+smoke	UNKNOWN STEP	2026-10-05T11:15:34.4179534Z [11:15:34] Strict edge test failed; retrying clean voxel union at 0.620 mm
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.3221116Z [POSE] Completed posed STL build for Alarak
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.3254256Z Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 01:32:54)
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.4250156Z [photo-pose-job] RUN /usr/bin/python /home/runner/work/HOTS-04/HOTS-04/tools/make_pose_proof_sheet_v3.py --hero Alarak --photos /home/runner/work/HOTS-04/HOTS-04/Alarak01.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak02.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak03.jpg /home/runner/work/HOTS-04/HOTS-04/Alarak04.jpg --reference-npz /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/reference_masks.npz --matched-dir /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak --pose-report /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/pose_match.json --output /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/Alarak_pose_proof.jpg
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.6291025Z /home/runner/work/_temp/HOTS04-photo-posed-v3-Alarak/Reports/Alarak/Alarak_pose_proof.jpg
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.6447206Z Traceback (most recent call last):
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.6447997Z   File "/home/runner/work/HOTS-04/HOTS-04/tools/run_photo_posed_job_v3_2.py", line 517, in <module>
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.6448920Z   File "/home/runner/work/HOTS-04/HOTS-04/tools/run_photo_posed_job_v3_2.py", line 315, in main
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.6449627Z ModuleNotFoundError: No module named 'trimesh'
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.6529906Z ##[error]Process completed with exit code 2.
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.6676575Z Post job cleanup.
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.7624520Z [command]/usr/bin/git version
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.7678830Z git version 2.55.0
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.7727468Z Temporarily overriding HOME='/home/runner/work/_temp/9a616c87-7400-4e56-aca6-c9feb3d280be' before making global git config changes
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.7728774Z Adding repository directory to the temporary git global config as a safe directory
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.7734762Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/HOTS-04/HOTS-04
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.7785391Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.7829142Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.8134965Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.8168659Z http.https://github.com/.extraheader
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.8178812Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.8224024Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.8607829Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.8697783Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.9211518Z Cleaning up orphan processes
+smoke	UNKNOWN STEP	2026-10-05T11:15:44.9587039Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
