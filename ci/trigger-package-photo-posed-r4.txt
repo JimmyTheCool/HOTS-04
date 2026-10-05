@@ -1,0 +1,1 @@
+Trigger corrected packaging with stripped cross-host authentication headers.
