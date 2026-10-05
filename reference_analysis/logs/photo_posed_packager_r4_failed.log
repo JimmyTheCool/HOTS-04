@@ -1,0 +1,43 @@
+package	Collect, validate, and package retained posed STLs	﻿2026-10-05T17:05:07.1274625Z ##[group]Run set -euo pipefail
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1275096Z ^[[36;1mset -euo pipefail^[[0m
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1275492Z ^[[36;1mpython tools/run_photo_posed_packager_with_redirect_fix.py \^[[0m
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1276020Z ^[[36;1m  --working-directory "$RUNNER_TEMP/HOTS04_posed_artifacts" \^[[0m
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1276583Z ^[[36;1m  --package-directory "$RUNNER_TEMP/HOTS04_Photo_Posed_STLs_Available_So_Far" \^[[0m
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1277112Z ^[[36;1m  --archive "$GITHUB_WORKSPACE/$ARCHIVE_NAME"^[[0m
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1353548Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1354036Z env:
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1354381Z   ARCHIVE_NAME: HOTS04_Photo_Posed_STLs_Available_So_Far.zip
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1354875Z   RELEASE_TAG: hots04-photo-posed-available-20261006-r4
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1358175Z   GH_TOKEN: ***
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.1358463Z ##[endgroup]
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:07.5834507Z [posed-packager] Matched 14 photo-pose artifact(s) from 26 retained artifact records
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:11.3905942Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Cho-Gall: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:14.5171430Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Stukov: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:17.3748457Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Arthas: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:22.2905188Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Lt_Morales: 7 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:26.0558475Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Leoric: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:29.3252405Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Nova: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:32.7650721Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Zul_jin: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:36.6351584Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Rexxar: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:45.0876601Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Zagara: 10 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:48.8672255Z [posed-packager] Downloaded HOTS04-photo-posed-v5-ETC: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:52.2866593Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Ragnaros: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:55.8547356Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Lunara: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:05:58.8606217Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Alarak: 5 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:07.0728396Z [posed-packager] Downloaded HOTS04-photo-posed-v5-Tychus: 10 STL file(s)
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:10.1909563Z [posed-packager] No strict printable candidate passed for Alarak
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:12.2443486Z [posed-packager] No strict printable candidate passed for Arthas
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:15.0850866Z [posed-packager] No strict printable candidate passed for Cho-Gall
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:17.8782187Z [posed-packager] No strict printable candidate passed for ETC
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:20.1978976Z [posed-packager] No strict printable candidate passed for Leoric
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:23.6588945Z [posed-packager] No strict printable candidate passed for Lt_Morales
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:25.9272739Z [posed-packager] No strict printable candidate passed for Lunara
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:28.0599981Z [posed-packager] No strict printable candidate passed for Nova
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:30.8146187Z [posed-packager] No strict printable candidate passed for Ragnaros
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:33.4174516Z [posed-packager] No strict printable candidate passed for Rexxar
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:35.5666861Z [posed-packager] No strict printable candidate passed for Stukov
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:42.2757020Z [posed-packager] No strict printable candidate passed for Tychus
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:49.1107936Z [posed-packager] No strict printable candidate passed for Zagara
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:51.1370439Z No photo-posed STL passed strict printable validation
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:51.1371312Z [posed-packager] No strict printable candidate passed for Zul_jin
+package	Collect, validate, and package retained posed STLs	2026-10-05T17:06:51.2059298Z ##[error]Process completed with exit code 1.
