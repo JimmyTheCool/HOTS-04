@@ -1,0 +1,26 @@
+name: Cancel Stale V4 Runs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [photo-pose-v4]
+    paths:
+      - '.github/workflows/cancel-stale-v4-runs.yml'
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cancel:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Cancel superseded V4 matrix runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set +e
+          gh run cancel 37367107746 --repo "$GITHUB_REPOSITORY"
+          gh run cancel 37367486099 --repo "$GITHUB_REPOSITORY"
+          exit 0
