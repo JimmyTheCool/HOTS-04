@@ -1,0 +1,71 @@
+name: Expose Photo Pose Pipeline Source
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/expose-photo-pose-source.yml'
+      - 'tools/build_one_photo_posed_v3.py'
+      - 'tools/run_photo_posed_job_v3.py'
+      - 'tools/run_photo_posed_job_v3_1.py'
+
+permissions:
+  contents: write
+
+jobs:
+  expose:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Decode compressed Python sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tools/exposed
+          python - <<'PY'
+          from pathlib import Path
+          import base64, hashlib, re, zlib
+
+          sources = [
+              Path('tools/build_one_photo_posed_v3.py'),
+              Path('tools/run_photo_posed_job_v3.py'),
+              Path('tools/run_photo_posed_job_v3_1.py'),
+          ]
+          for source in sources:
+              if not source.exists():
+                  continue
+              text = source.read_text(encoding='utf-8')
+              match = re.search(r"_PAYLOAD\s*=\s*r?'''(.*?)'''", text, re.S)
+              if match is None:
+                  match = re.search(r'_PAYLOAD\s*=\s*r?"""(.*?)"""', text, re.S)
+              if match is None:
+                  print(f'{source}: no compressed payload; copying as-is')
+                  decoded = text.encode('utf-8')
+              else:
+                  payload = match.group(1).encode('ascii')
+                  decoded = zlib.decompress(base64.b85decode(payload))
+              output = Path('tools/exposed') / source.name.replace('.py', '_source.py')
+              output.write_bytes(decoded)
+              print(f'{source} -> {output}: {len(decoded)} bytes, sha256={hashlib.sha256(decoded).hexdigest()}')
+          PY
+          python -m py_compile tools/exposed/*.py
+
+      - name: Commit exposed sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/exposed
+          if git diff --cached --quiet; then
+            echo 'No exposed-source changes.'
+          else
+            git commit -m 'Expose photo-pose pipeline source [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
