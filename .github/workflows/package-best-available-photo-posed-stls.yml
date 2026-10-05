@@ -1,0 +1,71 @@
+name: Package Best Available Photo-Posed STLs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ci/trigger-package-best-available-posed.txt'
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    env:
+      ARCHIVE_NAME: HOTS04_Photo_Posed_STLs_Available_So_Far.zip
+      RELEASE_TAG: hots04-photo-posed-available-so-far-20261006
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Install STL inspection libraries
+        shell: bash
+        run: python -m pip install --disable-pip-version-check --quiet numpy==2.2.6 trimesh==4.8.3
+
+      - name: Recover and package all usable posed models
+        id: package
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python tools/package_best_available_photo_posed_stls.py \
+            --work "$RUNNER_TEMP/HOTS04_best_available_artifacts" \
+            --package "$RUNNER_TEMP/HOTS04_Photo_Posed_STLs_Available_So_Far" \
+            --archive "$GITHUB_WORKSPACE/$ARCHIVE_NAME"
+
+      - name: Upload ZIP as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04-Photo-Posed-STLs-Available-So-Far
+          path: |
+            ${{ steps.package.outputs.archive }}
+            ${{ steps.package.outputs.checksum }}
+          retention-days: 90
+          compression-level: 0
+
+      - name: Publish downloadable release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release delete "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --cleanup-tag --yes
+          fi
+          gh release create "$RELEASE_TAG" \
+            "${{ steps.package.outputs.archive }}" \
+            "${{ steps.package.outputs.checksum }}" \
+            "${{ steps.package.outputs.manifest_json }}#manifest.json" \
+            "${{ steps.package.outputs.manifest_csv }}#manifest.csv" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "HOTS-04 photo-posed STL models available so far" \
+            --notes "Contains ${{ steps.package.outputs.hero_count }} best-available V5 photo-posed STL models: ${{ steps.package.outputs.heroes }}. Strict print-ready passes: ${{ steps.package.outputs.strict_count }}. Models that failed strict topology checks are included with warnings because this release is specifically the work completed so far. ZIP SHA-256: ${{ steps.package.outputs.archive_sha256 }}"
