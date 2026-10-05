@@ -1,0 +1,56 @@
+name: Create HOTS-04 Selected Skin Plan R2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'reference_analysis/geometry_verification/Cho-Gall.json'
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Create final selected source plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/create_selected_skin_plan.py \
+            --clip reference_analysis/skin_match_clip.json \
+            --inventory reference_analysis/inventory.json \
+            --geometry-dir reference_analysis/geometry_verification \
+            --output reference_analysis/selected_skin_plan.json
+          python - <<'PY'
+          from pathlib import Path
+          import json, os
+          path = Path('reference_analysis/selected_skin_plan.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          data['plan_generation_run_id'] = os.environ['GITHUB_RUN_ID']
+          data['plan_source_commit'] = os.environ['GITHUB_SHA']
+          path.write_text(json.dumps(data, indent=2), encoding='utf-8')
+          PY
+
+      - name: Commit final plan and trigger production build
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/selected_skin_plan.json
+          git commit -m 'Prepare final photo-selected skin STL production plan'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HOTS04-Selected-Skin-Plan-R2
+          path: reference_analysis/selected_skin_plan.json
+          retention-days: 90
