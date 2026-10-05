@@ -1,1 +1,2 @@
 Build and validate the final grounded Ultimate Cho-Gall photo-pose STL.
+Retry request after workflow registration.
