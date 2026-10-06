@@ -1,0 +1,281 @@
+name: Build ETC Super Smooth Printable STL R2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-etc-super-smooth-r2.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+env:
+  BLENDER_VERSION: 3.6.23
+  SOURCE_RELEASE_TAG: hots04-photo-posed-as-generated-20261006
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+
+    steps:
+      - name: Check out HOTS-04
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Install system and Python dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            ca-certificates curl git xz-utils unzip p7zip-full \
+            libx11-6 libxi6 libxrender1 libxfixes3 libxkbcommon0 \
+            libsm6 libice6 libgl1 libegl1
+          python -m pip install --disable-pip-version-check --quiet \
+            numpy==2.2.6 trimesh==4.8.3 scipy==1.15.3 pillow==11.1.0 rtree==1.4.1
+
+      - name: Download photographed-pose ETC source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE_DIR="$RUNNER_TEMP/etc_source_release"
+          EXTRACT_DIR="$RUNNER_TEMP/etc_source_extracted"
+          mkdir -p "$SOURCE_DIR" "$EXTRACT_DIR"
+          gh release download "$SOURCE_RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern 'HOTS04_Photo_Posed_STLs_Available_So_Far.zip' \
+            --dir "$SOURCE_DIR"
+          unzip -q "$SOURCE_DIR/HOTS04_Photo_Posed_STLs_Available_So_Far.zip" -d "$EXTRACT_DIR"
+          ETC_SOURCE_STL="$EXTRACT_DIR/HOTS04_Photo_Posed_STLs_Available_So_Far/STL_Photo_Posed_As_Generated/ETC.stl"
+          test -s "$ETC_SOURCE_STL"
+          echo "ETC_SOURCE_STL=$ETC_SOURCE_STL" >> "$GITHUB_ENV"
+          ls -lh "$ETC_SOURCE_STL"
+
+      - name: Install Blender 3.6 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP"
+          ARCHIVE="blender-${BLENDER_VERSION}-linux-x64.tar.xz"
+          curl --fail --location --retry 5 --retry-delay 5 \
+            "https://download.blender.org/release/Blender3.6/${ARCHIVE}" \
+            --output "$ARCHIVE"
+          tar -xf "$ARCHIVE"
+          BLENDER="$RUNNER_TEMP/blender-${BLENDER_VERSION}-linux-x64/blender"
+          test -x "$BLENDER"
+          "$BLENDER" --version | head -n 2
+          echo "BLENDER_EXE=$BLENDER" >> "$GITHUB_ENV"
+
+      - name: Build high resolution smoothed ETC variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUTPUT="$RUNNER_TEMP/ETC_Super_Smooth_Build"
+          rm -rf "$OUTPUT"
+          mkdir -p "$OUTPUT"
+          set +e
+          "$BLENDER_EXE" --background --factory-startup \
+            --python tools/build_etc_super_smooth_blender.py -- \
+            --source "$ETC_SOURCE_STL" \
+            --output-dir "$OUTPUT" \
+            --high-pitch-mm 0.16 \
+            --print-pitch-mm 0.22 \
+            --high-target-triangles 1400000 \
+            --print-target-triangles 750000 \
+            2>&1 | tee "$OUTPUT/blender_build.log"
+          STATUS=${PIPESTATUS[0]}
+          set -e
+          if [ "$STATUS" -ne 0 ]; then
+            echo "Ultra-fine pass failed; retrying at memory-safe high resolution."
+            rm -rf "$OUTPUT"
+            mkdir -p "$OUTPUT"
+            "$BLENDER_EXE" --background --factory-startup \
+              --python tools/build_etc_super_smooth_blender.py -- \
+              --source "$ETC_SOURCE_STL" \
+              --output-dir "$OUTPUT" \
+              --high-pitch-mm 0.18 \
+              --print-pitch-mm 0.25 \
+              --high-target-triangles 1250000 \
+              --print-target-triangles 650000 \
+              2>&1 | tee "$OUTPUT/blender_build.log"
+          fi
+          test -s "$OUTPUT/ETC_High_Detail_Super_Smooth.stl"
+          test -s "$OUTPUT/ETC_Print_Ready_Smooth.stl"
+
+      - name: Validate topology grounding and mesh quality
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUTPUT="$RUNNER_TEMP/ETC_Super_Smooth_Build"
+          python tools/validate_etc_super_smooth.py \
+            --high "$OUTPUT/ETC_High_Detail_Super_Smooth.stl" \
+            --print-ready "$OUTPUT/ETC_Print_Ready_Smooth.stl" \
+            --report "$OUTPUT/validation.json" \
+            | tee "$OUTPUT/validation.log"
+
+      - name: Validate pose and silhouette retention
+        shell: bash
+        run: |
+          set -euo pipefail
+          TOOLS="$RUNNER_TEMP/HOTS-03-ci"
+          git clone --filter=blob:none --sparse --depth 1 \
+            --branch chatgpt-stl-builder \
+            https://github.com/JimmyTheCool/HOTS-03.git "$TOOLS"
+          git -C "$TOOLS" sparse-checkout set ci
+          OUTPUT="$RUNNER_TEMP/ETC_Super_Smooth_Build"
+          COMPARE="$RUNNER_TEMP/etc_compare"
+          mkdir -p "$COMPARE/source" "$COMPARE/high" "$COMPARE/print"
+          cp "$ETC_SOURCE_STL" "$COMPARE/source/ETC.stl"
+          cp "$OUTPUT/ETC_High_Detail_Super_Smooth.stl" "$COMPARE/high/ETC.stl"
+          cp "$OUTPUT/ETC_Print_Ready_Smooth.stl" "$COMPARE/print/ETC.stl"
+          python "$TOOLS/ci/compare_stl_silhouette.py" \
+            --raw "$COMPARE/source" --repaired "$COMPARE/high" \
+            --report-json "$OUTPUT/high_silhouette.json" \
+            --report-csv "$OUTPUT/high_silhouette.csv" \
+            --image "$OUTPUT/high_silhouette.png" \
+            --expected 1 --pixel-mm 0.32 --tolerance-mm 1.10 \
+            --minimum-raw-coverage 0.950 \
+            --minimum-repaired-coverage 0.880 \
+            --minimum-iou 0.820 \
+            --maximum-points 1000000
+          python "$TOOLS/ci/compare_stl_silhouette.py" \
+            --raw "$COMPARE/source" --repaired "$COMPARE/print" \
+            --report-json "$OUTPUT/print_silhouette.json" \
+            --report-csv "$OUTPUT/print_silhouette.csv" \
+            --image "$OUTPUT/print_silhouette.png" \
+            --expected 1 --pixel-mm 0.38 --tolerance-mm 1.30 \
+            --minimum-raw-coverage 0.940 \
+            --minimum-repaired-coverage 0.860 \
+            --minimum-iou 0.790 \
+            --maximum-points 1000000
+
+      - name: Create ETC pose and smoothing inspection sheet
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUTPUT="$RUNNER_TEMP/ETC_Super_Smooth_Build"
+          python - "$OUTPUT" "$GITHUB_WORKSPACE" <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+          import sys
+
+          output = Path(sys.argv[1])
+          repo = Path(sys.argv[2])
+          references = [repo / f'ETC{i:02d}.jpg' for i in range(1, 5)]
+          renders = sorted((output / 'Previews').glob('ETC_High_Detail_view_*.png'))
+          if len(renders) != 4:
+              raise SystemExit(f'Expected four rendered views, found {len(renders)}')
+          images = references + renders
+          labels = [f'Reference photo {i}' for i in range(1, 5)] + [f'Smoothed STL view {i}' for i in range(1, 5)]
+          cell = 480
+          header = 70
+          canvas = Image.new('RGB', (cell * 4, header + cell * 2), 'white')
+          draw = ImageDraw.Draw(canvas)
+          font = ImageFont.load_default()
+          draw.text((20, 20), 'E.T.C. photographed pose compared with the super-smooth high-detail STL', fill='black', font=font)
+          for index, (path, label) in enumerate(zip(images, labels)):
+              image = Image.open(path).convert('RGB')
+              image.thumbnail((cell - 24, cell - 48), Image.Resampling.LANCZOS)
+              x0 = (index % 4) * cell
+              y0 = header + (index // 4) * cell
+              x = x0 + (cell - image.width) // 2
+              y = y0 + 28 + (cell - 48 - image.height) // 2
+              canvas.paste(image, (x, y))
+              draw.text((x0 + 12, y0 + 8), label, fill='black', font=font)
+          target = output / 'ETC_Pose_and_Smoothness_Proof.jpg'
+          canvas.save(target, quality=94, subsampling=0)
+          print(target)
+          PY
+          test -s "$OUTPUT/ETC_Pose_and_Smoothness_Proof.jpg"
+
+      - name: Package printable files
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD="$RUNNER_TEMP/ETC_Super_Smooth_Build"
+          PACKAGE="$RUNNER_TEMP/ETC_Super_High_Quality_Printable_STL"
+          rm -rf "$PACKAGE"
+          mkdir -p "$PACKAGE/01_High_Detail" "$PACKAGE/02_Print_Ready" \
+                   "$PACKAGE/03_Previews" "$PACKAGE/04_Reference_Photos" "$PACKAGE/Reports"
+          cp "$BUILD/ETC_High_Detail_Super_Smooth.stl" "$PACKAGE/01_High_Detail/"
+          cp "$BUILD/ETC_Print_Ready_Smooth.stl" "$PACKAGE/02_Print_Ready/"
+          cp "$BUILD/Previews"/*.png "$PACKAGE/03_Previews/"
+          cp "$BUILD/ETC_Pose_and_Smoothness_Proof.jpg" "$PACKAGE/03_Previews/"
+          cp ETC0*.jpg "$PACKAGE/04_Reference_Photos/"
+          cp "$BUILD"/*.json "$PACKAGE/Reports/"
+          cp "$BUILD"/*.csv "$PACKAGE/Reports/" 2>/dev/null || true
+          cp "$BUILD"/*.png "$PACKAGE/Reports/" 2>/dev/null || true
+          cp "$BUILD"/*.log "$PACKAGE/Reports/" 2>/dev/null || true
+          cat > "$PACKAGE/README_FIRST.txt" <<'EOF'
+          E.T.C. SUPER-HIGH-QUALITY SMOOTH PRINTABLE STL
+
+          01_High_Detail/ETC_High_Detail_Super_Smooth.stl
+              Recommended for resin printing and detailed large-format FDM printing.
+              Uses a fine connected remesh and mild volume-preserving geometric smoothing
+              to remove voxel/block stepping while retaining the photographed pose and
+              game-mesh proportions.
+
+          02_Print_Ready/ETC_Print_Ready_Smooth.stl
+              Lighter single-body model for general slicers and FDM printers.
+
+          Both files are in millimetres, include a grounded flat base, and were checked
+          for watertightness, consistent winding, finite coordinates, positive volume,
+          one connected body, dimensions, triangle count, and silhouette retention.
+
+          STL stores geometry only. Game textures, colour, glow, transparency and normal
+          maps are not embedded and must be reproduced by painting after printing.
+          Personal, non-commercial fan use only.
+          EOF
+          ZIP="$GITHUB_WORKSPACE/ETC_Super_High_Quality_Printable_STL.zip"
+          cd "$RUNNER_TEMP"
+          7z a -tzip -mx=7 "$ZIP" "$(basename "$PACKAGE")"
+          sha256sum "$ZIP" > "$ZIP.sha256"
+          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
+          echo "sha256=$(cut -d' ' -f1 "$ZIP.sha256")" >> "$GITHUB_OUTPUT"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ETC_Super_High_Quality_Printable_STL_R2
+          path: |
+            ETC_Super_High_Quality_Printable_STL.zip
+            ETC_Super_High_Quality_Printable_STL.zip.sha256
+          retention-days: 90
+          compression-level: 0
+
+      - name: Publish downloadable ETC release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ZIP_PATH: ${{ steps.package.outputs.zip }}
+          ZIP_SHA256: ${{ steps.package.outputs.sha256 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD="$RUNNER_TEMP/ETC_Super_Smooth_Build"
+          TAG="hots04-etc-super-smooth-r2-${GITHUB_RUN_ID}"
+          cat > "$RUNNER_TEMP/etc_release_notes.md" <<EOF
+          E.T.C. only, using the photo-matched game-mesh pose from the four HOTS-04 reference images.
+
+          This edition replaces the visibly blocky coarse surface with a much finer connected remesh plus mild volume-preserving geometric smoothing. It includes a super-high-detail STL and a lighter print-ready STL. Both passed topology, grounding and multi-view silhouette-retention checks.
+
+          ZIP SHA-256: $ZIP_SHA256
+          EOF
+          gh release create "$TAG" \
+            "$ZIP_PATH" \
+            "$ZIP_PATH.sha256" \
+            "$BUILD/ETC_High_Detail_Super_Smooth.stl#ETC_High_Detail_Super_Smooth.stl" \
+            "$BUILD/ETC_Print_Ready_Smooth.stl#ETC_Print_Ready_Smooth.stl" \
+            "$BUILD/validation.json#validation.json" \
+            "$BUILD/ETC_Pose_and_Smoothness_Proof.jpg#ETC_Pose_and_Smoothness_Proof.jpg" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title 'E.T.C. super-high-quality smooth printable STL' \
+            --notes-file "$RUNNER_TEMP/etc_release_notes.md"
