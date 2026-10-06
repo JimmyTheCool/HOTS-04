@@ -1,0 +1,53 @@
+build	Build high resolution smoothed ETC variants	﻿2026-10-06T05:21:12.5317753Z ##[group]Run set -euo pipefail
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5318294Z ^[[36;1mset -euo pipefail^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5318800Z ^[[36;1mOUTPUT="$RUNNER_TEMP/ETC_Super_Smooth_Build"^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5319330Z ^[[36;1mrm -rf "$OUTPUT"^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5319727Z ^[[36;1mmkdir -p "$OUTPUT"^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5320111Z ^[[36;1mset +e^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5320537Z ^[[36;1m"$BLENDER_EXE" --background --factory-startup \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5322328Z ^[[36;1m  --python tools/build_etc_super_smooth_blender.py -- \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5322943Z ^[[36;1m  --source "$ETC_SOURCE_STL" \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5323427Z ^[[36;1m  --output-dir "$OUTPUT" \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5323878Z ^[[36;1m  --high-pitch-mm 0.16 \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5324312Z ^[[36;1m  --print-pitch-mm 0.22 \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5324790Z ^[[36;1m  --high-target-triangles 1400000 \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5325315Z ^[[36;1m  --print-target-triangles 750000 \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5325799Z ^[[36;1m  2>&1 | tee "$OUTPUT/blender_build.log"^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5326350Z ^[[36;1mSTATUS=${PIPESTATUS[0]}^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5326766Z ^[[36;1mset -e^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5327121Z ^[[36;1mif [ "$STATUS" -ne 0 ]; then^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5327797Z ^[[36;1m  echo "Ultra-fine pass failed; retrying at memory-safe high resolution."^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5328501Z ^[[36;1m  rm -rf "$OUTPUT"^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5328936Z ^[[36;1m  mkdir -p "$OUTPUT"^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5329437Z ^[[36;1m  "$BLENDER_EXE" --background --factory-startup \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5330119Z ^[[36;1m    --python tools/build_etc_super_smooth_blender.py -- \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5331130Z ^[[36;1m    --source "$ETC_SOURCE_STL" \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5331626Z ^[[36;1m    --output-dir "$OUTPUT" \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5332099Z ^[[36;1m    --high-pitch-mm 0.18 \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5332557Z ^[[36;1m    --print-pitch-mm 0.25 \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5333039Z ^[[36;1m    --high-target-triangles 1250000 \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5333579Z ^[[36;1m    --print-target-triangles 650000 \^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5334122Z ^[[36;1m    2>&1 | tee "$OUTPUT/blender_build.log"^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5334888Z ^[[36;1mfi^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5335330Z ^[[36;1mtest -s "$OUTPUT/ETC_High_Detail_Super_Smooth.stl"^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5335974Z ^[[36;1mtest -s "$OUTPUT/ETC_Print_Ready_Smooth.stl"^[[0m
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5414380Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5414731Z env:
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5414919Z   BLENDER_VERSION: 3.6.23
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5415234Z   SOURCE_RELEASE_TAG: hots04-photo-posed-as-generated-20261006
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5415939Z   ETC_SOURCE_STL: /home/runner/work/_temp/etc_source_extracted/HOTS04_Photo_Posed_STLs_Available_So_Far/STL_Photo_Posed_As_Generated/ETC.stl
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5416650Z   BLENDER_EXE: /home/runner/work/_temp/blender-3.6.23-linux-x64/blender
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.5417007Z ##[endgroup]
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.8184449Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.8185147Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.8185840Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.8186450Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.8187061Z ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.8187644Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.8188310Z ALSA lib conf.c:5705:(snd_config_expand) Evaluate error: No such file or directory
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.8188830Z ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:12.9172307Z Failed to open dir (No such file or directory): /run/user/1001/gvfs/
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:15.5274747Z Import finished in 1.1355 sec.
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:15.5275349Z [ETC-SMOOTH] Existing broad base detected; preserving it
+build	Build high resolution smoothed ETC variants	2026-10-06T05:21:15.5428915Z [ETC-SMOOTH] Running fine voxel union at 0.1600 mm
+build	Build high resolution smoothed ETC variants	2026-10-06T05:24:33.9158145Z ##[error]Process completed with exit code 143.
