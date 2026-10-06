@@ -1,0 +1,38 @@
+name: Collect ETC Super Smooth R2 Failure Log
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/collect-etc-super-smooth-r2-log.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Collect failed run log
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reference_analysis/logs
+          gh run view 37418009451 --repo "$GITHUB_REPOSITORY" --log-failed \
+            > reference_analysis/logs/etc_super_smooth_r2_failed.log
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference_analysis/logs/etc_super_smooth_r2_failed.log
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add ETC super smooth R2 failure log [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
