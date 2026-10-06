@@ -1,0 +1,36 @@
+build	Build physically subdivided smooth ETC models	﻿2026-10-06T05:29:01.3994030Z ##[group]Run set -euo pipefail
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3994240Z ^[[36;1mset -euo pipefail^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3994389Z ^[[36;1mOUTPUT="$RUNNER_TEMP/ETC_Super_Smooth_Build"^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3994570Z ^[[36;1mrm -rf "$OUTPUT" && mkdir -p "$OUTPUT"^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3994755Z ^[[36;1m"$BLENDER_EXE" --background --factory-startup \^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3994965Z ^[[36;1m  --python tools/build_etc_super_smooth_blender_r3.py -- \^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3995160Z ^[[36;1m  --source "$ETC_SOURCE_STL" \^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3995305Z ^[[36;1m  --output-dir "$OUTPUT" \^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3995458Z ^[[36;1m  --high-pitch-mm 0.26 \^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3995594Z ^[[36;1m  --print-pitch-mm 0.34 \^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3995744Z ^[[36;1m  --high-target-triangles 1350000 \^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3995902Z ^[[36;1m  --print-target-triangles 720000 \^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3996061Z ^[[36;1m  2>&1 | tee "$OUTPUT/blender_build.log"^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3996246Z ^[[36;1mtest -s "$OUTPUT/ETC_High_Detail_Super_Smooth.stl"^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.3996470Z ^[[36;1mtest -s "$OUTPUT/ETC_Print_Ready_Smooth.stl"^[[0m
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.4025577Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.4025758Z env:
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.4025865Z   BLENDER_VERSION: 3.6.23
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.4026036Z   SOURCE_RELEASE_TAG: hots04-photo-posed-as-generated-20261006
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.4026394Z   ETC_SOURCE_STL: /home/runner/work/_temp/etc_source_extracted/HOTS04_Photo_Posed_STLs_Available_So_Far/STL_Photo_Posed_As_Generated/ETC.stl
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.4026749Z   BLENDER_EXE: /home/runner/work/_temp/blender-3.6.23-linux-x64/blender
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.4026956Z ##[endgroup]
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.5268900Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.5269443Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.5269908Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.5270382Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.5270823Z ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.5271231Z ALSA lib conf.c:5182:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.5271674Z ALSA lib conf.c:5705:(snd_config_expand) Evaluate error: No such file or directory
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.5272076Z ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:01.5272640Z Failed to open dir (No such file or directory): /run/user/1001/gvfs/
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:03.4270587Z Import finished in 0.9313 sec.
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:03.4376867Z [ETC-SMOOTH] Existing broad base detected; preserving it
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:03.4377242Z [ETC-SMOOTH] Running fine voxel union at 0.2600 mm
+build	Build physically subdivided smooth ETC models	2026-10-06T05:29:27.8556649Z [ETC-SMOOTH] Physical Catmull-Clark subdivision: 1,427,887 -> 5,711,548 polygons
+build	Build physically subdivided smooth ETC models	2026-10-06T05:31:30.3398953Z ##[error]Process completed with exit code 143.
